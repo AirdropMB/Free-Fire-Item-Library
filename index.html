@@ -1,0 +1,1650 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Free Fire Items Library</title>
+  <link rel="icon" type="image/png" href="icon_web.png?v=3.0">
+  <link rel="apple-touch-icon" href="icon_web.png?v=3.0">
+  <link rel="manifest" href="manifest.json?v=3.0">
+  <!-- Preload dữ liệu quan trọng nhất ngay khi browser parse HTML -->
+  <link rel="preload" href="ItemsData_en.json?v=3.0.0" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="updated_icons.json?v=3.0.0" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="CollectionBanner.json?v=3.0.0" as="fetch" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #06080f;
+      --nav-bg:    rgba(8,11,22,0.96);
+      --surface:   rgba(12,16,32,0.97);
+      --glass:     rgba(255,255,255,0.045);
+      --glass2:    rgba(255,255,255,0.075);
+      --border:    rgba(255,255,255,0.08);
+      --border2:   rgba(255,255,255,0.13);
+      --text:      #dde6ff;
+      --text2:     #7a8fbf;
+      --accent:    #4f8ef5;
+      --accent2:   #7c5cfc;
+      --success:   #0fcf87;
+      --gold:      #f5c842;
+      --danger:    #f05050;
+      --r:         6px;
+      --r2:        10px;
+      --t:         0.18s ease;
+      --font:      'Oxanium', sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+    body::before{
+      content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:
+        radial-gradient(ellipse 70% 50% at 8% 0%, rgba(79,142,245,.09), transparent),
+        radial-gradient(ellipse 60% 55% at 92% 90%, rgba(124,92,252,.08), transparent);
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: sticky;top:0;z-index:100;
+      height:58px;
+      background:var(--nav-bg);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      display:flex;align-items:center;
+      padding:0 20px;gap:12px;
+    }
+    /* Left: brand */
+    .nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none;}
+    .nav-title{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;color:var(--text);}
+    /* Center: search */
+    .nav-search-wrap{
+      flex:1;max-width:460px;margin:0 auto;position:relative;
+    }
+    .nav-search-icon{
+      position:absolute;left:12px;top:50%;transform:translateY(-50%);
+      color:var(--text2);pointer-events:none;display:grid;place-items:center;
+    }
+    .nav-search{
+      width:100%;height:36px;
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:6px;
+      color:var(--text);
+      padding:0 38px 0 36px;
+      font-size:.85rem;font-family:var(--font);
+      outline:none;
+      transition:border-color var(--t),box-shadow var(--t);
+    }
+    .nav-search::placeholder{color:var(--text2);}
+    .nav-search:focus{border-color:rgba(79,142,245,.5);box-shadow:0 0 0 3px rgba(79,142,245,.1);}
+    .nav-share-btn{
+      position:absolute;right:8px;top:50%;transform:translateY(-50%);
+      width:24px;height:24px;border-radius:4px;border:none;
+      background:rgba(79,142,245,.18);color:var(--accent);
+      display:none;place-items:center;cursor:pointer;
+      transition:background var(--t);
+    }
+    .nav-share-btn.show{display:grid;}
+    .nav-share-btn:hover{background:rgba(79,142,245,.3);}
+    /* Right: actions */
+    .nav-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;margin-left:auto;}
+    .nav-btn{
+      height:34px;min-width:34px;padding:0 10px;
+      border-radius:6px;
+      border:1px solid var(--border);
+      background:var(--glass);
+      color:var(--text2);
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      font-size:.78rem;font-weight:700;font-family:var(--font);
+      cursor:pointer;
+      transition:all var(--t);white-space:nowrap;
+    }
+    .nav-btn:hover{background:var(--glass2);border-color:var(--border2);color:var(--text);}
+    .nav-btn svg{flex-shrink:0;}
+    .nav-btn.lang-active{color:var(--accent);border-color:rgba(79,142,245,.35);background:rgba(79,142,245,.1);}
+    /* hamburger — mobile only */
+    .nav-menu-btn{display:none;}
+    @media(max-width:700px){
+      .nav-menu-btn{display:inline-flex;}
+      .nav-search-wrap{max-width:none;}
+      .nav-btn.hide-sm{display:none;}
+    }
+    @media(max-width:480px){
+      .navbar{padding:0 12px;gap:8px;}
+      .nav-title{display:none;}
+    }
+
+    /* ========== DRAWER ========== */
+    .overlay{
+      display:none;position:fixed;inset:0;
+      background:rgba(0,0,8,.75);z-index:200;
+      backdrop-filter:blur(3px);
+    }
+    .overlay.open{display:block;}
+    .drawer{
+      position:fixed;right:0;top:0;bottom:0;
+      width:min(320px,85vw);
+      background:var(--surface);
+      border-left:1px solid var(--border);
+      z-index:210;
+      display:flex;flex-direction:column;
+      transform:translateX(100%);
+      transition:transform .22s ease;
+      box-shadow:-8px 0 40px rgba(0,0,0,.5);
+    }
+    .drawer.open{transform:translateX(0);}
+    .drawer-head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 18px 14px;
+      border-bottom:1px solid var(--border);
+      flex-shrink:0;
+    }
+    .drawer-brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:.95rem;}
+    .drawer-logo{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:.6rem;font-weight:900;color:#fff;}
+    .drawer-x{width:30px;height:30px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--text2);display:grid;place-items:center;cursor:pointer;font-size:1rem;transition:all var(--t);}
+    .drawer-x:hover{color:var(--danger);border-color:var(--danger);}
+    .drawer-body{flex:1;overflow-y:auto;padding:10px 12px 20px;}
+    .d-section{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text2);opacity:.6;padding:14px 6px 5px;}
+    .d-divider{height:1px;background:var(--border);margin:8px 0;}
+    .d-item{
+      display:flex;align-items:center;gap:10px;
+      padding:9px 10px;border-radius:7px;
+      border:1px solid transparent;background:transparent;
+      color:var(--text2);font-size:.86rem;font-weight:600;font-family:var(--font);
+      cursor:pointer;text-decoration:none;width:100%;
+      transition:all var(--t);
+    }
+    .d-item:hover,.d-item.active{background:var(--glass2);border-color:var(--border2);color:var(--text);}
+    .d-row{display:flex;align-items:center;justify-content:space-between;padding:9px 10px;}
+    .d-row-info{display:flex;flex-direction:column;gap:2px;}
+    .d-row-label{font-size:.86rem;font-weight:600;color:var(--text);}
+    .d-row-desc{font-size:.72rem;color:var(--text2);}
+    /* toggle */
+    .tsw{position:relative;width:42px;height:24px;cursor:pointer;flex-shrink:0;}
+    .tsw input{opacity:0;width:0;height:0;position:absolute;}
+    .ttrack{position:absolute;inset:0;border-radius:999px;background:rgba(255,255,255,.12);transition:background .25s;}
+    .tthumb{position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:transform .25s;}
+    .tsw input:checked~.ttrack{background:var(--success);}
+    .tsw input:checked~.tthumb{transform:translateX(18px);}
+    /* lang buttons */
+    .d-lang{display:flex;gap:8px;padding:2px 4px;}
+    .d-lang-btn{flex:1;padding:8px 6px;border-radius:7px;border:1px solid var(--border);background:var(--glass);color:var(--text2);font-size:.8rem;font-weight:700;font-family:var(--font);cursor:pointer;transition:all var(--t);text-align:center;}
+    .d-lang-btn.active{background:rgba(79,142,245,.15);border-color:var(--accent);color:var(--accent);}
+    .d-lang-btn:hover:not(.active){border-color:var(--border2);color:var(--text);}
+    /* social row */
+    .soc-row{display:flex;gap:8px;padding:2px 4px;flex-wrap:wrap;}
+    .soc-btn{width:38px;height:38px;border-radius:7px;border:1px solid var(--border);background:var(--glass);color:var(--text);display:grid;place-items:center;text-decoration:none;transition:all var(--t);}
+    .soc-btn:hover{transform:translateY(-2px);}
+    .soc-btn.fb:hover{background:#1877f2;border-color:transparent;}
+    .soc-btn.gm:hover{background:#ea4335;border-color:transparent;}
+
+    /* ========== CONTENT ========== */
+    .wrap{max-width:1800px;margin:0 auto;padding:16px 20px 36px;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
+    @media(max-width:700px){.wrap{padding:12px 12px 28px;gap:10px;}}
+    @media(max-width:480px){.wrap{padding:10px 8px 24px;gap:8px;}}
+
+    /* ========== FILTER BAR ========== */
+    .filter-bar{
+      position:sticky;
+      top:58px;
+      z-index:95;
+      display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--r2);
+      padding:10px 14px;
+      backdrop-filter:blur(20px);
+    }
+    .filter-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);flex-shrink:0;}
+    .filter-selects{display:flex;flex-wrap:wrap;gap:7px;flex:1;}
+    .sel-wrap{position:relative;}
+    .sel-wrap::after{content:'';position:absolute;right:10px;top:50%;transform:translateY(-60%) rotate(45deg);width:6px;height:6px;border-right:1.5px solid var(--text2);border-bottom:1.5px solid var(--text2);pointer-events:none;}
+    .sel{
+      appearance:none;-webkit-appearance:none;
+      background:var(--glass);border:1px solid var(--border);
+      border-radius:6px;color:var(--text);
+      padding:6px 28px 6px 11px;
+      font-size:.8rem;font-family:var(--font);font-weight:500;
+      cursor:pointer;outline:none;
+      transition:border-color var(--t),box-shadow var(--t);
+    }
+    .sel:focus{border-color:rgba(79,142,245,.5);box-shadow:0 0 0 2px rgba(79,142,245,.1);}
+    .sel:hover{border-color:var(--border2);}
+    .sel option{background:#0d1020;color:var(--text);}
+    .filter-count{font-size:.75rem;font-weight:600;color:var(--text2);flex-shrink:0;margin-left:auto;}
+    .filter-count b{color:var(--text);}
+
+    /* ========== DEV BAR ========== */
+    .dev-bar{
+      display:none;align-items:center;flex-wrap:wrap;gap:8px;
+      background:rgba(79,142,245,.07);
+      border:1px dashed rgba(79,142,245,.3);
+      border-radius:var(--r2);
+      padding:10px 14px;
+    }
+    .dev-bar.on{display:flex;}
+    .dev-tag{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);margin-right:2px;}
+    .dev-btn{
+      display:inline-flex;align-items:center;gap:7px;
+      background:var(--glass);border:1px solid var(--border);
+      border-radius:6px;color:var(--text);
+      padding:7px 13px;font-size:.78rem;font-weight:600;font-family:var(--font);
+      cursor:pointer;transition:all var(--t);
+    }
+    .dev-btn:hover{background:rgba(79,142,245,.16);border-color:rgba(79,142,245,.4);}
+
+    /* ========== GRID ========== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(10,1fr);
+      gap:12px;
+      padding-bottom:20px;
+      contain:layout style;
+    }
+    @media(max-width:900px){.grid{grid-template-columns:repeat(5,1fr);gap:10px;}}
+    @media(max-width:600px){.grid{grid-template-columns:repeat(5,1fr);gap:8px;}}
+
+    /* ========== CARD ========== */
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+      background-size:cover;background-position:center;
+      position:relative;
+      cursor:pointer;
+      aspect-ratio:1/1;
+      padding:7%;
+      transition:transform .28s cubic-bezier(.22,.68,0,1.2),box-shadow .28s ease,border-color .2s ease;
+      box-shadow:0 4px 10px rgba(0,0,0,.35);
+      animation:fadeIn .5s ease backwards;
+      will-change:transform;
+    }
+    .card:hover{
+      transform:scale(1.06);
+      border-color:var(--accent);
+      box-shadow:0 14px 28px rgba(0,0,0,.35),0 0 16px rgba(79,142,245,.22);
+      z-index:10;
+    }
+    .card.selected{
+      border:2px solid var(--success);
+      box-shadow:0 0 16px rgba(15,207,135,.3);
+    }
+    .card.selected::after{
+      content:'✓';position:absolute;top:4px;right:4px;
+      width:18px;height:18px;border-radius:50%;
+      background:var(--success);color:#fff;font-size:.65rem;font-weight:900;
+      display:grid;place-items:center;z-index:3;
+    }
+    .card.loading::after{
+      content:'';position:absolute;inset:0;z-index:4;
+      background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.1) 50%,transparent 80%);
+      background-size:200% 100%;animation:shim 1.3s infinite linear;
+    }
+    @keyframes shim{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    .card-img{
+      width:92%;height:92%;object-fit:contain;
+      transition:transform .28s cubic-bezier(.22,.68,0,1.2),opacity .4s ease;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.6));
+      position:relative;z-index:2;
+    }
+    .card:hover .card-img{transform:scale(1.08);}
+    .upd-dot{position:absolute;top:4px;left:4px;z-index:5;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 5px rgba(79,142,245,.8);}
+
+    /* ========== PAGINATION ========== */
+    .pages{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px;}
+    .pg-btn{
+      height:32px;min-width:32px;padding:0 10px;
+      border-radius:5px;border:1px solid var(--border);
+      background:var(--glass);color:var(--text2);
+      font-weight:600;font-size:.78rem;font-family:var(--font);
+      cursor:pointer;transition:all var(--t);
+    }
+    .pg-btn:hover:not(:disabled){background:var(--glass2);border-color:var(--border2);color:var(--text);}
+    .pg-btn.cur{background:var(--accent);border-color:var(--accent);color:#fff;}
+    .pg-btn:disabled{opacity:.35;cursor:not-allowed;}
+    .pg-dots{color:var(--text2);font-size:.78rem;padding:0 3px;}
+
+    /* ========== EMPTY STATE ========== */
+    .empty{display:none;flex-direction:column;align-items:center;gap:14px;padding:60px 24px;text-align:center;}
+    .empty.show{display:flex;}
+    .empty-ico{color:var(--text2);animation:flt 3s ease-in-out infinite;}
+    @keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    .empty-title{font-size:1.7rem;font-weight:900;background:linear-gradient(90deg,#f97316,#facc15);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+    .empty-desc{color:var(--text2);max-width:340px;line-height:1.7;font-size:.9rem;}
+    .empty-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);}
+
+    /* ========== LOADER ========== */
+    .loader{
+      position:fixed;inset:0;z-index:999;
+      background:#06080f;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+      transition:opacity .5s ease;
+    }
+
+    /* Welcome text */
+    .loader-welcome{
+      display:flex;flex-direction:column;align-items:center;gap:6px;
+      animation:ldWelcomeIn .8s cubic-bezier(.22,.68,0,1.2) both;
+    }
+    @keyframes ldWelcomeIn{
+      0%{opacity:0;transform:translateY(22px) scale(.92)}
+      100%{opacity:1;transform:translateY(0) scale(1)}
+    }
+    .loader-welcome-sub{
+      font-size:.72rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;
+      color:var(--text2);
+      animation:ldFadeIn .9s .15s ease both;
+    }
+    .loader-welcome-title{
+      font-size:clamp(1.6rem,5vw,2.8rem);
+      font-weight:900;letter-spacing:-.02em;
+      background:linear-gradient(120deg,#fff 0%,var(--accent) 40%,var(--accent2) 70%,#fff 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+      animation:ldShine 2.5s linear infinite, ldFadeIn .8s .05s ease both;
+    }
+    @keyframes ldShine{0%{background-position:0% center}100%{background-position:200% center}}
+    @keyframes ldFadeIn{0%{opacity:0}100%{opacity:1}}
+
+    /* Bar */
+    .loader-bar-wrap{
+      width:min(440px,82vw);height:3px;
+      background:rgba(255,255,255,.07);
+      border-radius:999px;overflow:hidden;
+      animation:ldFadeIn .6s .5s ease both;
+    }
+    .loader-bar{
+      height:100%;width:0%;
+      background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));
+      background-size:200% 100%;
+      border-radius:999px;
+      transition:width .05s linear;
+      box-shadow:0 0 12px rgba(79,142,245,.8);
+      animation:ldBarShine 1.5s linear infinite;
+    }
+    @keyframes ldBarShine{0%{background-position:0% 0}100%{background-position:200% 0}}
+    .loader-pct{
+      font-size:.7rem;font-weight:700;color:var(--text2);
+      letter-spacing:.1em;font-variant-numeric:tabular-nums;
+      animation:ldFadeIn .6s .6s ease both;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer{text-align:center;padding:14px 20px 22px;border-top:1px solid var(--border);color:var(--text2);font-size:.75rem;}
+    .footer b{color:var(--gold);}
+
+    /* ========== MODALS ========== */
+    .modal{
+      display:none;position:fixed;inset:0;z-index:300;
+      background:rgba(2,4,12,.85);
+      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      align-items:center;justify-content:center;padding:16px;
+    }
+    .modal.open{display:flex;}
+    .mbox{
+      width:min(100%,480px);max-height:92vh;overflow-y:auto;
+      background:var(--surface);
+      border:1px solid var(--border2);
+      border-radius:12px;
+      padding:0;
+      position:relative;
+      animation:mpop .24s cubic-bezier(.34,1.46,.64,1);
+      box-shadow:0 24px 60px rgba(0,0,0,.55);
+    }
+    @keyframes mpop{0%{transform:scale(.88) translateY(12px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+    .mclose{
+      position:absolute;top:12px;right:12px;
+      width:28px;height:28px;border-radius:5px;
+      border:1px solid var(--border);background:var(--glass);
+      color:var(--text2);display:grid;place-items:center;
+      font-size:1rem;cursor:pointer;line-height:1;z-index:10;
+      transition:all var(--t);
+    }
+    .mclose:hover{color:var(--danger);border-color:var(--danger);}
+
+    /* ---- Item modal layout ---- */
+    .im-hero{
+      width:100%;
+      background:linear-gradient(180deg, rgba(10,14,32,1) 0%, rgba(8,11,24,1) 100%);
+      display:flex;flex-direction:column;align-items:center;
+      padding:36px 24px 20px;
+      border-bottom:1px solid var(--border);
+      position:relative;
+      border-radius:12px 12px 0 0;
+      overflow:hidden;
+    }
+    .im-bg-hint{
+      position:absolute;inset:0;border-radius:12px 12px 0 0;
+      background-size:cover;background-position:center;
+      opacity:.07;filter:blur(4px);transform:scale(1.1);
+    }
+    .im-glow{
+      position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);
+      width:180px;height:60px;border-radius:50%;
+      background:var(--accent);opacity:.12;filter:blur(24px);
+      pointer-events:none;
+    }
+    .im-img-wrap{
+      position:relative;z-index:2;
+      width:150px;height:150px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .im-img-wrap.loading::before{
+      content:'';position:absolute;inset:0;z-index:3;
+      background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.1) 50%,transparent 80%);
+      background-size:200% 100%;animation:shim 1.3s infinite linear;
+      border-radius:8px;
+    }
+    .im-img{
+      max-width:140px;max-height:140px;object-fit:contain;
+      filter:drop-shadow(0 10px 24px rgba(0,0,0,.65));
+      transition:opacity .2s,transform .25s ease;
+      position:relative;z-index:2;
+    }
+    .im-img.unk{transform:scale(.38);}
+    .im-rarity-badge{
+      position:relative;z-index:2;
+      margin-top:11px;
+      font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      padding:3px 12px;border-radius:999px;
+      /* All colors set via JS inline style */
+    }
+    .im-name{
+      position:relative;z-index:2;
+      margin-top:7px;
+      font-size:1rem;font-weight:800;text-align:center;
+      word-break:break-word;line-height:1.3;
+      max-width:320px;color:var(--text);
+    }
+    /* Body details */
+    .im-body{padding:14px 16px 6px;display:flex;flex-direction:column;gap:6px;}
+
+    /* Each detail row: label | value | copy-btn — all flush, no gap */
+    .im-row{
+      display:flex;align-items:stretch;
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:8px;overflow:hidden;
+      min-height:38px;
+    }
+    .im-key{
+      font-size:.6rem;font-weight:700;color:var(--text2);
+      text-transform:uppercase;letter-spacing:.07em;
+      white-space:nowrap;
+      padding:0 11px;
+      border-right:1px solid var(--border);
+      background:rgba(255,255,255,.025);
+      display:flex;align-items:center;flex-shrink:0;
+      min-width:72px;
+    }
+    .im-val{
+      flex:1;
+      font-size:.77rem;color:var(--text);
+      word-break:break-all;
+      padding:8px 10px;
+      line-height:1.45;
+      display:flex;align-items:center;
+    }
+    .im-row .copy-btn{
+      flex-shrink:0;
+      width:34px;
+      border-radius:0;
+      border:none;border-left:1px solid var(--border);
+      background:rgba(255,255,255,.02);
+      color:var(--accent);
+      padding:0;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;
+      transition:background var(--t),color var(--t);
+    }
+    .im-row .copy-btn:hover{background:rgba(79,142,245,.14);color:#fff;}
+    .im-row .copy-btn svg{pointer-events:none;}
+
+    .im-desc-box{
+      background:var(--glass);border:1px solid var(--border);
+      border-radius:8px;overflow:hidden;
+    }
+    .im-desc-key{
+      font-size:.6rem;font-weight:700;color:var(--text2);
+      text-transform:uppercase;letter-spacing:.07em;
+      padding:7px 11px 6px;
+      border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.025);
+      display:block;
+    }
+    .im-desc-val{
+      font-size:.77rem;color:var(--text2);
+      line-height:1.7;padding:8px 11px 10px;
+    }
+    .copy-btn{
+      background:transparent;border:1px solid rgba(79,142,245,.22);
+      color:var(--accent);border-radius:5px;padding:5px 7px;
+      cursor:pointer;display:grid;place-items:center;
+      transition:all var(--t);flex-shrink:0;
+    }
+    .copy-btn:hover{background:rgba(79,142,245,.12);}
+
+    .im-acts{
+      display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+      padding:12px 16px 16px;
+      border-top:1px solid var(--border);
+      margin-top:8px;
+    }
+    .im-btn{
+      display:inline-flex;align-items:center;gap:7px;
+      padding:9px 22px;border-radius:7px;border:none;
+      font-family:var(--font);font-weight:600;font-size:.83rem;
+      cursor:pointer;transition:all var(--t);
+    }
+    .im-btn.share{background:rgba(79,142,245,.15);color:var(--accent);border:1px solid rgba(79,142,245,.28);}
+    .im-btn.share:hover{background:rgba(79,142,245,.25);}
+    .im-btn.dl{background:linear-gradient(135deg,#0fcf87,#059669);color:#fff;}
+    .im-btn.dl:hover{filter:brightness(1.08);transform:translateY(-1px);}
+
+    /* ---- Settings modal ---- */
+    .sm-body{padding:20px 20px 24px;display:flex;flex-direction:column;gap:0;}
+    .sm-title{font-size:1.05rem;font-weight:800;margin-bottom:16px;}
+    .sm-item{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:12px 0;border-bottom:1px solid var(--border);
+    }
+    .sm-item:last-child{border-bottom:none;}
+    .sm-info strong{display:flex;align-items:center;gap:8px;font-size:.87rem;}
+    .sm-info span{color:var(--text2);font-size:.74rem;margin-top:2px;display:block;}
+    .sm-lrow{display:flex;gap:7px;}
+    .sm-lbtn{padding:6px 13px;border-radius:6px;border:1px solid var(--border);background:var(--glass);color:var(--text2);font-size:.75rem;font-weight:700;font-family:var(--font);cursor:pointer;transition:all var(--t);}
+    .sm-lbtn.on{background:rgba(79,142,245,.15);border-color:var(--accent);color:var(--accent);}
+    .sm-lbtn:hover:not(.on){border-color:var(--border2);color:var(--text);}
+
+    /* ---- DL modal ---- */
+    .dl-body{padding:20px 20px 24px;}
+    .dl-title{font-size:1.05rem;font-weight:800;margin-bottom:14px;}
+    .dl-list{display:flex;flex-direction:column;gap:7px;}
+    .dl-btn{
+      display:flex;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:7px;
+      border:1px solid var(--border);background:var(--glass);
+      color:var(--text);font-family:var(--font);font-size:.85rem;font-weight:600;
+      cursor:pointer;transition:all var(--t);text-align:left;
+    }
+    .dl-btn:hover{background:rgba(79,142,245,.14);border-color:rgba(79,142,245,.38);}
+
+    /* sm box */
+    .mbox.sm{max-width:400px;}
+  </style>
+</head>
+<body>
+
+<div class="loader" id="mainLoader">
+  <div class="loader-welcome">
+    <span class="loader-welcome-sub">Welcome to</span>
+    <span class="loader-welcome-title">CyberVerse</span>
+  </div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  <div class="loader-pct" id="loaderPct">0%</div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <!-- Left: brand -->
+  <a class="nav-brand" href="#">
+    <span class="nav-title" id="txtMainTitle">CyberVerse</span>
+  </a>
+
+  <!-- Center: search -->
+  <div class="nav-search-wrap">
+    <div class="nav-search-icon">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.65" y1="16.65" x2="21" y2="21"/></svg>
+    </div>
+    <input id="searchInput" type="text" class="nav-search" placeholder="Search name, icon, ID…">
+    <button id="searchShareBtn" class="nav-share-btn" title="Share search">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    </button>
+  </div>
+
+  <!-- Right: actions -->
+  <div class="nav-actions">
+    <button class="nav-btn hide-sm" id="hdrLangBtn">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,24C5.4,24,0,18.6,0,12S5.4,0,12,0s12,5.4,12,12S18.6,24,12,24z M9.5,17c0.6,3.1,1.7,5,2.5,5s1.9-1.9,2.5-5H9.5zM16.6,17c-0.3,1.7-0.8,3.3-1.4,4.5c2.3-0.8,4.3-2.4,5.5-4.5H16.6z M3.3,17c1.2,2.1,3.2,3.7,5.5,4.5c-0.6-1.2-1.1-2.8-1.4-4.5H3.3z M16.9,15h4.7c0.2-0.9,0.4-2,0.4-3s-0.2-2.1-0.5-3h-4.7c0.2,1,0.2,2,0.2,3S17,14,16.9,15z M9.2,15h5.7c0.1-0.9,0.2-1.9,0.2-3S15,9.9,14.9,9H9.2C9.1,9.9,9,10.9,9,12C9,13.1,9.1,14.1,9.2,15z M2.5,15h4.7c-0.1-1-0.1-2-0.1-3s0-2,0.1-3H2.5C2.2,9.9,2,11,2,12S2.2,14.1,2.5,15z M16.6,7h4.1c-1.2-2.1-3.2-3.7-5.5-4.5C15.8,3.7,16.3,5.3,16.6,7z M9.5,7h5.1c-0.6-3.1-1.7-5-2.5-5C11.3,2,10.1,3.9,9.5,7z M3.3,7h4.1c0.3-1.7,0.8-3.3,1.4-4.5C6.5,3.3,4.6,4.9,3.3,7z"/></svg>
+      <span id="hdrLangChip">EN</span>
+    </button>
+    <button class="nav-btn hide-sm" id="hdrSettingsBtn">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M600.704 64a32 32 0 0130.464 22.208l35.2 109.376c14.784 7.232 28.928 15.36 42.432 24.512l112.384-24.192a32 32 0 0134.432 15.36L944.32 364.8a32 32 0 01-4.032 37.504l-77.12 85.12a357.12 357.12 0 010 49.024l77.12 85.248a32 32 0 014.032 37.504l-88.704 153.6a32 32 0 01-34.432 15.296L708.8 803.904c-13.44 9.088-27.648 17.28-42.368 24.512l-35.264 109.376A32 32 0 01600.704 960H423.296a32 32 0 01-30.464-22.208L357.696 828.48a351.616 351.616 0 01-42.56-24.64l-112.32 24.256a32 32 0 01-34.432-15.36L79.68 659.2a32 32 0 014.032-37.504l77.12-85.248a357.12 357.12 0 010-48.896l-77.12-85.248A32 32 0 0179.68 364.8l88.704-153.6a32 32 0 0134.432-15.296l112.32 24.256c13.568-9.152 27.776-17.408 42.56-24.64l35.2-109.312A32 32 0 01423.232 64H600.64zm-23.424 64H446.72l-36.352 113.088-24.512 11.968a294.113 294.113 0 00-34.816 20.096l-22.656 15.36-116.224-25.088-65.28 113.152 79.68 88.192-1.92 27.136a293.12 293.12 0 000 40.192l1.92 27.136-79.808 88.192 65.344 113.152 116.224-25.024 22.656 15.296a294.113 294.113 0 0034.816 20.096l24.512 11.968L446.72 896h130.688l36.48-113.152 24.448-11.904a288.282 288.282 0 0034.752-20.096l22.592-15.296 116.288 25.024 65.28-113.152-79.744-88.192 1.92-27.136a293.12 293.12 0 000-40.256l-1.92-27.136 79.808-88.128-65.344-113.152-116.288 24.96-22.592-15.232a287.616 287.616 0 00-34.752-20.096l-24.448-11.904L577.344 128zM512 320a192 192 0 110 384 192 192 0 010-384zm0 64a128 128 0 100 256 128 128 0 000-256z"/></svg>
+      <span id="txtSettingsNav">Settings</span>
+    </button>
+    <button class="nav-btn nav-menu-btn" id="mobileMenuBtn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== DRAWER OVERLAY ===== -->
+<div class="overlay" id="overlay"></div>
+
+<!-- ===== DRAWER ===== -->
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div class="drawer-brand">
+      <span id="drawerTitle">CyberVerse</span>
+    </div>
+    <button class="drawer-x" id="drawerClose">&#x2715;</button>
+  </div>
+  <div class="drawer-body">
+
+    <div class="d-section" id="dSecNav">Navigation</div>
+    <a class="d-item" href="#filterBar" id="dNavBrowse">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span id="dNavBrowseTxt">Browse Items</span>
+    </a>
+
+    <div class="d-divider"></div>
+    <div class="d-section" id="dSecSettings">Settings</div>
+
+    <div class="d-row">
+      <div class="d-row-info">
+        <div class="d-row-label" id="dDevLabel">Developer Mode</div>
+        <div class="d-row-desc" id="dDevDesc"></div>
+      </div>
+      <label class="tsw">
+        <input type="checkbox" id="devToggle">
+        <div class="ttrack"></div><div class="tthumb"></div>
+      </label>
+    </div>
+
+    <div class="d-divider"></div>
+    <div class="d-section" id="dSecLang">Language</div>
+    <div class="d-lang">
+      <button class="d-lang-btn active" id="dLangEn">English</button>
+      <button class="d-lang-btn" id="dLangVi">Tiếng Việt</button>
+    </div>
+
+    <div class="d-divider"></div>
+    <div class="d-section" id="dSecSocial">Follow CyberVerse</div>
+    <div class="soc-row">
+      <a href="https://www.facebook.com/cyberverse.vn" target="_blank" class="soc-btn fb">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="mailto:cyberverse.vn@gmail.com" class="soc-btn gm">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="wrap">
+
+  <!-- Filter Bar -->
+  <div class="filter-bar" id="filterBar">
+    <span class="filter-lbl" id="txtFilterLbl">Filters</span>
+    <div class="filter-selects">
+      <div class="sel-wrap"><select id="tagFilter" class="sel"></select></div>
+      <div class="sel-wrap"><select id="typeFilter" class="sel"></select></div>
+      <div class="sel-wrap"><select id="rarityFilter" class="sel"></select></div>
+    </div>
+    <span class="filter-count" id="filterCount"><b>0</b> items</span>
+  </div>
+
+  <!-- Dev Bar -->
+  <div class="dev-bar" id="devBar">
+    <span class="dev-tag">DEV</span>
+    <button class="dev-btn" id="btnDevCopy">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      <span id="txtDevCopy">Copy Page IDs</span>
+    </button>
+    <button class="dev-btn" id="btnDevDl">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+      <span id="txtDevDl">Download icons</span>
+    </button>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid" id="itemsGrid"></div>
+
+  <!-- Pagination -->
+  <div class="pages" id="paginationControls"></div>
+
+  <!-- Empty State -->
+  <div class="empty" id="emptyState">
+    <svg class="empty-ico" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <h2 class="empty-title" id="txtEmptyTitle">NO ITEMS FOUND</h2>
+    <p class="empty-desc" id="txtEmptyDesc">Nothing matches your search or filter</p>
+    <span class="empty-label" id="txtFollow">Follow CyberVerse</span>
+    <div class="soc-row" style="justify-content:center;">
+      <a href="https://www.facebook.com/cyberverse.vn" target="_blank" class="soc-btn fb">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="mailto:cyberverse.vn@gmail.com" class="soc-btn gm">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer"><b id="txtFooter">Made By CyberVerse</b></footer>
+
+<!-- ===== ITEM MODAL ===== -->
+<div class="modal" id="itemModal">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal()">&#x2715;</button>
+    <!-- Hero -->
+    <div class="im-hero">
+      <div class="im-bg-hint" id="imBgHint"></div>
+      <div class="im-glow" id="imGlow"></div>
+      <div class="im-img-wrap loading" id="imImgWrap">
+        <img id="modalIcon" src="" class="im-img" alt="icon" crossorigin="anonymous" style="opacity:0;">
+      </div>
+      <span class="im-rarity-badge" id="imRarityBadge"></span>
+    </div>
+    <!-- Details -->
+    <div class="im-body">
+      <div class="im-row">
+        <span class="im-key" id="txtModalName">Name</span>
+        <span class="im-val" id="modalNameValue"></span>
+      </div>
+      <div class="im-row">
+        <span class="im-key" id="txtModalId">Item ID</span>
+        <a class="im-val" id="modalIdLink" target="_blank" rel="noopener"></a>
+        <button class="copy-btn" id="btnCopyId" onclick="copyItemId()" title="Copy Item ID">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </button>
+      </div>
+      <div class="im-row">
+        <span class="im-key" id="txtModalIconId">Icon ID</span>
+        <span class="im-val" id="modalIconId"></span>
+        <button class="copy-btn" id="btnCopyIconId" onclick="copyIconId()" title="Copy Icon ID">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </button>
+      </div>
+      <div class="im-desc-box">
+        <span class="im-desc-key" id="txtModalDesc">Description</span>
+        <div class="im-desc-val" id="modalDesc"></div>
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="im-acts">
+      <button class="im-btn share" id="btnShare">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        <span id="txtShareBtn">Share</span>
+      </button>
+      <button class="im-btn dl" id="btnDlMain">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span id="txtDlBtn">Download</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SETTINGS MODAL ===== -->
+<div class="modal" id="settingsModal">
+  <div class="mbox sm">
+    <button class="mclose" onclick="closeSettings()">&#x2715;</button>
+    <div class="sm-body">
+      <div class="sm-title" id="txtSettingsTitle">Settings</div>
+
+      <div class="sm-item">
+        <div class="sm-info">
+          <strong>
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M600.704 64a32 32 0 0130.464 22.208l35.2 109.376c14.784 7.232 28.928 15.36 42.432 24.512l112.384-24.192a32 32 0 0134.432 15.36L944.32 364.8a32 32 0 01-4.032 37.504l-77.12 85.12a357.12 357.12 0 010 49.024l77.12 85.248a32 32 0 014.032 37.504l-88.704 153.6a32 32 0 01-34.432 15.296L708.8 803.904c-13.44 9.088-27.648 17.28-42.368 24.512l-35.264 109.376A32 32 0 01600.704 960H423.296a32 32 0 01-30.464-22.208L357.696 828.48a351.616 351.616 0 01-42.56-24.64l-112.32 24.256a32 32 0 01-34.432-15.36L79.68 659.2a32 32 0 014.032-37.504l77.12-85.248a357.12 357.12 0 010-48.896l-77.12-85.248A32 32 0 0179.68 364.8l88.704-153.6a32 32 0 0134.432-15.296l112.32 24.256c13.568-9.152 27.776-17.408 42.56-24.64l35.2-109.312A32 32 0 01423.232 64H600.64zm-23.424 64H446.72l-36.352 113.088-24.512 11.968a294.113 294.113 0 00-34.816 20.096l-22.656 15.36-116.224-25.088-65.28 113.152 79.68 88.192-1.92 27.136a293.12 293.12 0 000 40.192l1.92 27.136-79.808 88.192 65.344 113.152 116.224-25.024 22.656 15.296a294.113 294.113 0 0034.816 20.096l24.512 11.968L446.72 896h130.688l36.48-113.152 24.448-11.904a288.282 288.282 0 0034.752-20.096l22.592-15.296 116.288 25.024 65.28-113.152-79.744-88.192 1.92-27.136a293.12 293.12 0 000-40.256l-1.92-27.136 79.808-88.128-65.344-113.152-116.288 24.96-22.592-15.232a287.616 287.616 0 00-34.752-20.096l-24.448-11.904L577.344 128zM512 320a192 192 0 110 384 192 192 0 010-384zm0 64a128 128 0 100 256 128 128 0 000-256z"/></svg>
+            <span id="txtDevMode">Developer Mode</span>
+          </strong>
+          <span id="txtDevDesc"></span>
+        </div>
+        <label class="tsw">
+          <input type="checkbox" id="devToggle2">
+          <div class="ttrack"></div><div class="tthumb"></div>
+        </label>
+      </div>
+
+      <div class="sm-item" style="border-bottom:none;">
+        <div class="sm-info">
+          <strong>
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,24C5.4,24,0,18.6,0,12S5.4,0,12,0s12,5.4,12,12S18.6,24,12,24z M9.5,17c0.6,3.1,1.7,5,2.5,5s1.9-1.9,2.5-5H9.5zM16.6,17c-0.3,1.7-0.8,3.3-1.4,4.5c2.3-0.8,4.3-2.4,5.5-4.5H16.6z M3.3,17c1.2,2.1,3.2,3.7,5.5,4.5c-0.6-1.2-1.1-2.8-1.4-4.5H3.3z M16.9,15h4.7c0.2-0.9,0.4-2,0.4-3s-0.2-2.1-0.5-3h-4.7c0.2,1,0.2,2,0.2,3S17,14,16.9,15z M9.2,15h5.7c0.1-0.9,0.2-1.9,0.2-3S15,9.9,14.9,9H9.2C9.1,9.9,9,10.9,9,12C9,13.1,9.1,14.1,9.2,15z M2.5,15h4.7c-0.1-1-0.1-2-0.1-3s0-2,0.1-3H2.5C2.2,9.9,2,11,2,12S2.2,14.1,2.5,15z M16.6,7h4.1c-1.2-2.1-3.2-3.7-5.5-4.5C15.8,3.7,16.3,5.3,16.6,7z M9.5,7h5.1c-0.6-3.1-1.7-5-2.5-5C11.3,2,10.1,3.9,9.5,7z M3.3,7h4.1c0.3-1.7,0.8-3.3,1.4-4.5C6.5,3.3,4.6,4.9,3.3,7z"/></svg>
+            <span id="txtLangSetting">Language</span>
+          </strong>
+        </div>
+        <div class="sm-lrow">
+          <button class="sm-lbtn" id="smLangEn">EN</button>
+          <button class="sm-lbtn" id="smLangVi">VI</button>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+        <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:8px;" id="txtSmFollow">Follow CyberVerse</div>
+        <div class="soc-row">
+          <a href="https://www.facebook.com/cyberverse.vn" target="_blank" class="soc-btn fb">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="mailto:cyberverse.vn@gmail.com" class="soc-btn gm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DL MODAL ===== -->
+<div class="modal" id="dlModal">
+  <div class="mbox sm">
+    <button class="mclose" onclick="closeDlModal()">&#x2715;</button>
+    <div class="dl-body">
+      <div class="dl-title" id="txtDlTitle">Download Options</div>
+      <div class="dl-list">
+        <button class="dl-btn" id="btnDlOpt1">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span id="txtDlOpt1">Download icon</span>
+        </button>
+        <button class="dl-btn" id="btnDlOpt2">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span id="txtDlOpt2">Download with rarity background</span>
+        </button>
+        <button class="dl-btn" id="btnDlOpt3" style="display:none;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span id="txtDlOpt3">Download Banner BG</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const APP_VERSION = "3.0.0";
+  if (localStorage.getItem('appVersion') !== APP_VERSION) {
+    localStorage.setItem('appVersion', APP_VERSION);
+    if ('caches' in window) caches.keys().then(n => n.forEach(k => caches.delete(k)));
+    window.location.reload();
+  }
+
+  const tr = {
+    en: {
+      title:"CyberVerse", items:"items", filterLbl:"Filters",
+      search:"Search name, icon, ID…",
+      allTags:"All OB", allTypes:"All Types", allRarities:"All Rarities",
+      prev:"< Prev", next:"Next >",
+      emptyTitle:"NO ITEMS FOUND", emptyDesc:"Nothing matches your search or filter",
+      follow:"Follow CyberVerse",
+      itemId:"Item ID", iconId:"Icon ID", desc:"Description",
+      settingsTitle:"Settings", devMode:"Developer Mode", devDesc:"",
+      langSetting:"Language",
+      copyIds:"Copy Page IDs", copySelIds:"Copy Selected IDs",
+      dlIcons:"Download icons", dlSelIcons:"Download selected icons",
+      dlTitle:"Download Options",
+      dlOpt1s:"Download icon", dlOpt2s:"Download with rarity background", dlOpt3s:"Download Banner BG",
+      dlOpt1p:"Download icons", dlOpt2p:"Download with rarity backgrounds", dlOpt3p:"Download Banners",
+      share:"Share", download:"Download", settingsNav:"Settings",
+      navBrowse:"Browse Items",
+      devLabel:"Developer Mode", devLabelDesc:"",
+      footer:"Made By CyberVerse",
+      shareItemText:"Check out this item:", shareSearchText:"Check out this collection:",
+      follow2:"Follow CyberVerse",
+      rarities:{
+        "ARTIFACT":"ARTIFACT 🟥","MYTHIC++":"MYTHIC++ 🟡","MYTHIC":"MYTHIC 🟨",
+        "EPIC++":"EPIC++ 🟣","EPIC":"EPIC 🟪","RARE":"RARE 🟦","UNCOMMON":"UNCOMMON 🟩","COMMON":"COMMON ⬜"
+      }, types:{}
+    },
+    vi: {
+      title:"CyberVerse", items:"mục", filterLbl:"Bộ lọc",
+      search:"Tìm theo tên, icon, ID…",
+      allTags:"Tất cả OB", allTypes:"Tất cả loại", allRarities:"Tất cả độ hiếm",
+      prev:"< Trước", next:"Tiếp >",
+      emptyTitle:"KHÔNG TÌM THẤY", emptyDesc:"Không có kết quả phù hợp",
+      follow:"Theo dõi CyberVerse",
+      itemId:"Mã mục", iconId:"Mã icon", desc:"Mô tả",
+      settingsTitle:"Cài đặt", devMode:"Chế độ nhà phát triển", devDesc:"",
+      langSetting:"Ngôn ngữ",
+      copyIds:"Sao chép ID trang", copySelIds:"Sao chép ID đã chọn",
+      dlIcons:"Tải icon trang", dlSelIcons:"Tải icon đã chọn",
+      dlTitle:"Tùy chọn tải",
+      dlOpt1s:"Tải icon", dlOpt2s:"Tải icon với nền độ hiếm", dlOpt3s:"Tải nền Banner",
+      dlOpt1p:"Tải các icon", dlOpt2p:"Tải các icon với nền", dlOpt3p:"Tải các Banner",
+      share:"Chia sẻ", download:"Tải xuống", settingsNav:"Cài đặt",
+      navBrowse:"Duyệt mục",
+      devLabel:"Chế độ nhà phát triển", devLabelDesc:"",
+      footer:"Made By CyberVerse",
+      shareItemText:"Xem mục này:", shareSearchText:"Xem bộ sưu tập:",
+      follow2:"Theo dõi CyberVerse",
+      rarities:{
+        "ARTIFACT":"Đặc biệt 🟥","MYTHIC++":"Huyền thoại++ 🟡","MYTHIC":"Huyền thoại 🟨",
+        "EPIC++":"Sử thi++ 🟣","EPIC":"Sử thi 🟪","RARE":"Hiếm 🟦","UNCOMMON":"Không phổ biến 🟩","COMMON":"Phổ thông ⬜"
+      }, types:{
+        "Bundles":"Bộ trang phục",
+        "Top":"Áo",
+        "Bottom":"Quần",
+        "Shoe":"Giày",
+        "Head":"Đầu",
+        "Mask":"Mặt nạ",
+        "Facepaint":"Vẽ mặt",
+        "Weapon Skins":"Skin vũ khí",
+        "Fist Skins":"Skin nắm đấm",
+        "Gloo Walls":"Tường Gloo",
+        "Grenade Skin":"Skin lựu đạn",
+        "Final Shot":"Cú bắn cuối",
+        "Emote":"Cảm xúc",
+        "Super Emote":"Cảm xúc đặc biệt",
+        "Arrival Animation":"Hiệu ứng xuất hiện",
+        "Finishing Move":"Đòn kết thúc",
+        "Look Changer":"Đổi diện mạo",
+        "Vehicle Skins":"Skin phương tiện",
+        "Loot Box":"Hộp chiến lợi phẩm",
+        "Bag Skins":"Skin túi",
+        "Parachute":"Dù",
+        "Skyboard":"Ván lướt",
+        "Skywings":"Cánh bay",
+        "Hyperbook":"Hyperbook",
+        "Banners":"Biểu ngữ",
+        "Avatars":"Ảnh đại diện",
+        "Profile Pin":"Huy hiệu",
+        "Battle Card":"Thẻ chiến đấu",
+        "Skill Skins":"Skin kỹ năng",
+        "Music":"Âm nhạc",
+        "Voice Packs":"Gói giọng nói",
+        "Photo Frame":"Khung ảnh",
+        "Avatar Frame":"Khung avatar",
+        "Photo Pose":"Tư thế ảnh",
+        "Stickers":"Nhãn dán",
+        "Titles":"Danh hiệu",
+        "Characters":"Nhân vật",
+        "Pets":"Thú cưng",
+        "Spark Pet Vault":"Kho thú Spark",
+        "Bundle Create":"Tạo bộ",
+        "Choice Crates":"Hộp lựa chọn",
+        "Loot Crates":"Hộp chiến lợi phẩm",
+        "Weapon Crates":"Hộp vũ khí",
+        "Exchange Tokens":"Token đổi thưởng",
+        "Vouchers":"Phiếu giảm giá"
+      }
+    }
+  };
+
+  const rarityMap = {"White":"COMMON","Green":"UNCOMMON","Blue":"RARE","Purple":"EPIC","Orange":"MYTHIC","Red":"ARTIFACT","Purple_Plus":"EPIC++","Orange_Plus":"MYTHIC++","NONE":"NONE","Card":"Card"};
+  const validRarities = ["ARTIFACT","MYTHIC++","MYTHIC","EPIC++","EPIC","RARE","UNCOMMON","COMMON"];
+  const typeGroups = [
+    ["Bundles","Top","Bottom","Shoe","Head","Mask","Facepaint"],
+    ["Weapon Skins","Fist Skins","Gloo Walls","Grenade Skin","Final Shot"],
+    ["Emote","Super Emote","Arrival Animation","Finishing Move","Look Changer","Vehicle Skins","Loot Box","Bag Skins","Parachute","Skyboard","Skywings","Hyperbook"],
+    ["Banners","Avatars","Profile Pin","Battle Card","Skill Skins","Music","Voice Packs","Photo Frame","Avatar Frame","Photo Pose","Stickers","Titles"],
+    ["Characters","Pets","Spark Pet Vault"],
+    ["Bundle Create","Choice Crates","Loot Crates","Weapon Crates","Exchange Tokens","Vouchers"]
+  ];
+
+  let lang = 'en';
+  const usp = new URLSearchParams(window.location.search);
+  if (usp.get('lang') === 'vi') lang = 'vi';
+
+  let rawData=[], items=[], filtered=[], selected=new Set();
+  let updatedSet=new Set(), banners=[], curBannerIcon=null;
+  let dlSrc='batch', curItem=null, curPage=1, perPage=200;
+  let isDevMode=false;
+  const imgBase='';
+
+  function setPerPage(){ perPage = window.innerWidth>=900?200:100; }
+  setPerPage();
+  window.addEventListener('resize',()=>{const p=perPage;setPerPage();if(p!==perPage)applyFilters(1);});
+
+  const $=id=>document.getElementById(id);
+  const searchEl=$('searchInput'), shareBtnEl=$('searchShareBtn');
+  const tagSel=$('tagFilter'), typeSel=$('typeFilter'), rareSel=$('rarityFilter');
+  const gridEl=$('itemsGrid'), pagesEl=$('paginationControls');
+  const emptyEl=$('emptyState'), loaderEl=$('mainLoader');
+  const devBarEl=$('devBar');
+  const devToggle=$('devToggle'), devToggle2=$('devToggle2');
+  const fcEl=$('filterCount');
+
+  const cpySVG=`<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`;
+  const chkSVG=`<svg width="13" height="13" fill="none" stroke="#0fcf87" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`;
+
+  /* ---- DEV TOGGLE ---- */
+  function onDev(v){
+    isDevMode=v; selected.clear();
+    devToggle.checked=v; devToggle2.checked=v;
+    devBarEl.classList.toggle('on',v);
+    updateDevBtns(); renderPage(curPage);
+  }
+  devToggle.addEventListener('change',e=>onDev(e.target.checked));
+  devToggle2.addEventListener('change',e=>onDev(e.target.checked));
+
+  /* ---- LANGUAGE ---- */
+  function setLang(l){
+    lang=l; document.body.setAttribute('dir','ltr');
+    const cs=searchEl.value,ct=tagSel.value,cy=typeSel.value,cr=rareSel.value,cp=curPage;
+    applyLangUI(); fetchData(cs,ct,cy,cr,cp); syncLangBtns();
+  }
+  function syncLangBtns(){
+    const isEn=lang==='en';
+    $('hdrLangChip').textContent=lang.toUpperCase();
+    $('dLangEn').classList.toggle('active',isEn);
+    $('dLangVi').classList.toggle('active',!isEn);
+    $('smLangEn').classList.toggle('on',isEn);
+    $('smLangVi').classList.toggle('on',!isEn);
+  }
+  $('hdrLangBtn').addEventListener('click',()=>setLang(lang==='en'?'vi':'en'));
+  $('dLangEn').addEventListener('click',()=>setLang('en'));
+  $('dLangVi').addEventListener('click',()=>setLang('vi'));
+  $('smLangEn').addEventListener('click',()=>setLang('en'));
+  $('smLangVi').addEventListener('click',()=>setLang('vi'));
+
+  /* ---- SETTINGS ---- */
+  $('hdrSettingsBtn').addEventListener('click',()=>$('settingsModal').classList.add('open'));
+  function closeSettings(){ $('settingsModal').classList.remove('open'); }
+  $('settingsModal').addEventListener('click',e=>{if(e.target===$('settingsModal'))closeSettings();});
+
+  /* ---- DRAWER ---- */
+  const overlayEl=$('overlay'), drawerEl=$('drawer');
+  function openDrawer(){drawerEl.classList.add('open');overlayEl.classList.add('open');}
+  function closeDrawer(){drawerEl.classList.remove('open');overlayEl.classList.remove('open');}
+  $('mobileMenuBtn').addEventListener('click',openDrawer);
+  $('drawerClose').addEventListener('click',closeDrawer);
+  overlayEl.addEventListener('click',closeDrawer);
+  drawerEl.querySelectorAll('.d-item').forEach(el=>el.addEventListener('click',()=>closeDrawer()));
+
+  function closeDlModal(){ $('dlModal').classList.remove('open'); }
+  $('dlModal').addEventListener('click',e=>{if(e.target===$('dlModal'))closeDlModal();});
+
+  /* ---- UI STRINGS ---- */
+  function applyLangUI(){
+    const t=tr[lang];
+    $('txtMainTitle').textContent=t.title;
+    $('drawerTitle').textContent=t.title;
+    $('txtFooter').textContent=t.footer;
+    searchEl.placeholder=t.search;
+    $('txtFilterLbl').textContent=t.filterLbl;
+    $('txtEmptyTitle').textContent=t.emptyTitle;
+    $('txtEmptyDesc').textContent=t.emptyDesc;
+    $('txtFollow').textContent=t.follow;
+    $('txtSettingsTitle').textContent=t.settingsTitle;
+    $('txtDevMode').textContent=t.devMode;
+    $('txtDevDesc').textContent=t.devDesc;
+    $('txtLangSetting').textContent=t.langSetting;
+    $('txtSmFollow').textContent=t.follow2;
+    $('txtModalId').textContent=t.itemId;
+    $('txtModalIconId').textContent=t.iconId;
+    $('txtModalDesc').textContent=t.desc;
+    $('txtShareBtn').textContent=t.share;
+    $('txtDlBtn').textContent=t.download;
+    $('txtDlTitle').textContent=t.dlTitle;
+    $('txtSettingsNav').textContent=t.settingsNav;
+    $('dNavBrowseTxt').textContent=t.navBrowse;
+    $('dDevLabel').textContent=t.devLabel;
+    $('dDevDesc').textContent=t.devLabelDesc;
+    updateDevBtns();
+  }
+  function updateDevBtns(){
+    const t=tr[lang], it=getItemsToProcess(), n=it.length, isSel=selected.size>0;
+    $('txtDevCopy').textContent=`${isSel?t.copySelIds:t.copyIds} (${n})`;
+    $('txtDevDl').textContent=`${isSel?t.dlSelIcons:t.dlIcons} (${n})`;
+  }
+  function updateCount(){
+    fcEl.innerHTML=`<b>${filtered.length.toLocaleString()}</b> ${tr[lang].items}`;
+  }
+
+  /* ---- DATA FETCH ---- */
+  function filterRaw(){
+    items = rawData.filter(i => !i.HideInIndex && i.Icon && i.Icon.trim() !== '');
+    // Cache index vào từng item 1 lần, tránh indexOf O(n) mỗi lần render
+    items.forEach((item, idx) => item._gi = idx);
+    // Map ID → item để lookup O(1) thay vì findIndex O(n)
+    window._itemsById = new Map(items.map(it => [it.Id.toString(), it._gi]));
+  }
+
+  function fetchData(rs=null,rt=null,ry=null,rr=null,rp=null){
+    loaderEl.style.opacity='1'; loaderEl.style.pointerEvents='all';
+    const file = lang==='en' ? 'ItemsData_en.json' : 'ItemsData_vi.json';
+    const dataP = fetch(`${file}?v=${APP_VERSION}`)
+      .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+      .catch(()=> fetch(`ItemsData_en.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]));
+
+    Promise.all([
+      dataP,
+      fetch(`updated_icons.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]),
+      fetch(`CollectionBanner.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
+    ]).then(([data, upd, bnr])=>{
+      try {
+        rawData   = Array.isArray(data) ? data : Object.values(data);
+        updatedSet = new Set(upd);
+        banners    = Array.isArray(bnr) ? bnr : Object.values(bnr);
+        filterRaw();
+        buildFilters();
+        if(rs !== null){
+          searchEl.value = rs;
+          if([...tagSel.options].some(o=>o.value===rt)) tagSel.value=rt;
+          if([...typeSel.options].some(o=>o.value===ry)) typeSel.value=ry;
+          if([...rareSel.options].some(o=>o.value===rr)) rareSel.value=rr;
+          applyFilters(rp||1);
+        } else { checkUrlParams(); applyFilters(1); }
+      } catch(e){
+        gridEl.innerHTML='<p style="text-align:center;color:#f05050;padding:40px;">Error processing data</p>';
+      } finally {
+        if(window._loaderFinish) window._loaderFinish();
+      }
+    }).catch(()=>{
+      gridEl.innerHTML='<p style="text-align:center;color:#f05050;padding:40px;">Failed to load data.</p>';
+      if(window._loaderFinish) window._loaderFinish();
+    });
+  }
+
+  function buildFilters(){
+    const t=tr[lang];
+    const tags=new Set(), types=new Set(), rares=new Set();
+    items.forEach(item=>{
+      if(item.Tag&&item.Tag.trim()) tags.add(item.Tag);
+      if(item.Category&&item.Category.trim()) types.add(item.Category);
+      if(item.Rare&&item.Rare.trim()){
+        const m=rarityMap[item.Rare]||item.Rare;
+        if(m!=='NONE'&&m!=='Card') rares.add(m);
+      }
+    });
+    let th=`<option value="all">${t.allTags}</option>`;
+    [...tags].sort().reverse().forEach(tg=>th+=`<option value="${tg}">${tg}</option>`);
+    tagSel.innerHTML=th;
+
+    const def=new Set(typeGroups.flat());
+    let tyh=`<option value="all">${t.allTypes}</option>`;
+    typeGroups.forEach((g,i)=>{
+      const av=g.filter(x=>types.has(x));
+      if(av.length){ if(i>0) tyh+=`<option disabled>──────</option>`; av.forEach(x=>tyh+=`<option value="${x}">${t.types[x]||x}</option>`); }
+    });
+    const oth=[...types].filter(x=>!def.has(x)).sort();
+    if(oth.length){ tyh+=`<option disabled>──────</option>`; oth.forEach(x=>tyh+=`<option value="${x}">${t.types[x]||x}</option>`); }
+    typeSel.innerHTML=tyh;
+
+    let rh=`<option value="all">${t.allRarities}</option>`;
+    validRarities.forEach(r=>{ if(rares.has(r)) rh+=`<option value="${r}">${t.rarities[r]||r}</option>`; });
+    rareSel.innerHTML=rh;
+  }
+
+  function getRarityBg(rare){
+    const m=rarityMap[rare]||rare;
+    if(!m) return imgBase+'background/UNKNOWN.PNG';
+    if(m==='NONE' || m==='Card') return imgBase+'background/COMMON.PNG';
+    if(!validRarities.includes(m)) return imgBase+'background/UNKNOWN.PNG';
+    return imgBase+`background/${m}.PNG`;
+  }
+
+  /* ---- FILTER & RENDER ---- */
+  function applyFilters(pg=null){
+    const sq=searchEl.value.toLowerCase().trim();
+    const tv=tagSel.value, tyv=typeSel.value, rv=rareSel.value;
+    const hasF=sq!==''||tv!=='all'||tyv!=='all'||rv!=='all';
+    shareBtnEl.classList.toggle('show', hasF);
+
+    // Tối ưu: chỉ tạo filter function 1 lần, không tạo lại trong loop
+    const filterAll = tv==='all', filterType = tyv==='all', filterRare = rv==='all';
+
+    filtered = items.filter(item=>{
+      if(sq){
+        const nm=(item._nm||(item._nm=(item.Name||'').toLowerCase()));
+        const ic=(item._ic||(item._ic=(item.Icon||'').toLowerCase()));
+        const id=(item._id||(item._id=(item.Id||'').toString()));
+        if(!nm.includes(sq)&&!ic.includes(sq)&&!id.includes(sq)) return false;
+      }
+      if(!filterAll && item.Tag!==tv) return false;
+      if(!filterType && item.Category!==tyv) return false;
+      if(!filterRare){
+        const m=item._rare||(item._rare=rarityMap[item.Rare]||item.Rare);
+        if(m!==rv) return false;
+      }
+      return true;
+    });
+
+    curPage = pg!==null ? pg : 1;
+    selected.clear();
+    updateCount();
+
+    if(filtered.length===0){
+      gridEl.style.display='none';
+      pagesEl.style.display='none';
+      emptyEl.classList.add('show');
+    } else {
+      gridEl.style.display='grid';
+      pagesEl.style.display='flex';
+      emptyEl.classList.remove('show');
+      renderPage(curPage);
+    }
+    updateDevBtns();
+  }
+
+  function renderPage(pg){
+    curPage=pg;
+    const st=(pg-1)*perPage, paged=filtered.slice(st, st+perPage);
+    const fb=imgBase+'background/UNKNOWN.PNG';
+
+    // Dùng DocumentFragment để batch DOM insert 1 lần duy nhất
+    const frag = document.createDocumentFragment();
+
+    paged.forEach((item, i)=>{
+      const bg  = getRarityBg(item.Rare);
+      const gi  = item._gi; // index đã được cache sẵn
+      const sc  = isDevMode && selected.has(gi) ? 'selected' : '';
+      const ids = item.Id.toString();
+
+      // Xây dựng danh sách URL fallback
+      const urls = [];
+      if(updatedSet.has(ids)) urls.push(imgBase+`icons/${ids}_2.png`);
+      urls.push(imgBase+`icons/${ids}.png`);
+      if(item.Icon){
+        const ic = item.Icon.toString();
+        if(updatedSet.has(ic)) urls.push(imgBase+`icons/${ic}_2.png`);
+        urls.push(imgBase+`icons/${ic}.png`);
+      }
+
+      const card = document.createElement('div');
+      card.className = `card${sc?' '+sc:''} loading`;
+      card.style.cssText = `background-image:url('${bg}')`;
+      card.addEventListener('click', function(){ handleCard(gi, this); });
+
+      if(updatedSet.has(ids)){
+        const dot = document.createElement('div');
+        dot.className = 'upd-dot';
+        card.appendChild(dot);
+      }
+
+      const img = document.createElement('img');
+      img.className = 'card-img';
+      img.alt = '';
+      img.crossOrigin = 'anonymous';
+      img.decoding = 'async';
+      // 30 ảnh đầu load eager để hiện ngay, còn lại lazy
+      img.loading = i < 30 ? 'eager' : 'lazy';
+      if(i < 10) img.fetchPriority = 'high';
+      img.style.opacity = '0';
+      img._urls = urls;
+      img._urlIdx = 0;
+      img._fb = fb;
+
+      img.onload = function(){
+        this.parentElement.classList.remove('loading');
+        this.style.opacity = '1';
+      };
+      img.onerror = function(){
+        this._urlIdx++;
+        if(this._urlIdx < this._urls.length){
+          this.src = this._urls[this._urlIdx];
+        } else {
+          this.onerror = null;
+          this.parentElement.classList.remove('loading');
+          this.style.opacity = '1';
+          this.src = this._fb;
+        }
+      };
+      img.src = urls[0];
+
+      card.appendChild(img);
+      frag.appendChild(card);
+    });
+
+    gridEl.innerHTML = '';
+    gridEl.appendChild(frag);
+    renderPages();
+    updateDevBtns();
+  }
+
+  function renderPages(){
+    const total=Math.ceil(filtered.length/perPage);
+    if(total<=1){ pagesEl.innerHTML=''; return; }
+    const t=tr[lang];
+    let h=`<button class="pg-btn" ${curPage===1?'disabled':''} onclick="selected.clear();renderPage(${curPage-1})">${t.prev}</button>`;
+    let s=Math.max(1,curPage-2), e=Math.min(total,curPage+2);
+    if(s>1){ h+=`<button class="pg-btn" onclick="selected.clear();renderPage(1)">1</button>`; if(s>2) h+=`<span class="pg-dots">…</span>`; }
+    for(let i=s;i<=e;i++) h+=`<button class="pg-btn ${i===curPage?'cur':''}" onclick="selected.clear();renderPage(${i})">${i}</button>`;
+    if(e<total){ if(e<total-1) h+=`<span class="pg-dots">…</span>`; h+=`<button class="pg-btn" onclick="selected.clear();renderPage(${total})">${total}</button>`; }
+    h+=`<button class="pg-btn" ${curPage===total?'disabled':''} onclick="selected.clear();renderPage(${curPage+1})">${t.next}</button>`;
+    pagesEl.innerHTML=h;
+  }
+
+  // Debounce search để không filter liên tục khi gõ nhanh
+  let _searchTimer = null;
+  searchEl.addEventListener('input',()=>{
+    clearTimeout(_searchTimer);
+    _searchTimer = setTimeout(()=>applyFilters(1), 120);
+  });
+  tagSel.addEventListener('change',()=>applyFilters(1));
+  typeSel.addEventListener('change',()=>applyFilters(1));
+  rareSel.addEventListener('change',()=>applyFilters(1));
+
+  /* ---- CARD CLICK & MODAL ---- */
+  function handleCard(gi, el){
+    if(isDevMode){
+      if(selected.has(gi)){ selected.delete(gi); el.classList.remove('selected'); }
+      else { selected.add(gi); el.classList.add('selected'); }
+      updateDevBtns();
+    } else { openModal(gi); }
+  }
+
+  function openModal(gi){
+    curItem = items[gi];
+    const bnrObj = banners.find(b=>b.itemID===curItem.Id);
+    const isBnr  = !!bnrObj;
+    curBannerIcon = (isBnr&&bnrObj.icon) ? String(bnrObj.icon).toLowerCase() : null;
+
+    const wrap  = $('imImgWrap');
+    const imgEl = $('modalIcon');
+    wrap.classList.add('loading');
+    imgEl.style.opacity='0'; imgEl.style.transition='none';
+    imgEl.className='im-img';
+
+    // Rarity badge + glow color
+    const m = rarityMap[curItem.Rare] || curItem.Rare;
+    const badge = $('imRarityBadge');
+    const glow  = $('imGlow');
+
+    const rarityStyles = {
+      'ARTIFACT': {bg:'rgba(240,60,60,.22)',  bd:'rgba(240,60,60,.55)',  gl:'rgba(240,60,60,.22)',   tx:'#f87171'},
+      'MYTHIC++': {bg:'rgba(245,200,66,.2)',  bd:'rgba(245,200,66,.6)',  gl:'rgba(245,200,66,.2)',   tx:'#fbbf24'},
+      'MYTHIC':   {bg:'rgba(245,180,40,.18)', bd:'rgba(245,180,40,.5)', gl:'rgba(245,180,40,.18)',  tx:'#f5c842'},
+      'EPIC++':   {bg:'rgba(160,90,255,.2)',  bd:'rgba(160,90,255,.55)', gl:'rgba(160,90,255,.2)',   tx:'#c084fc'},
+      'EPIC':     {bg:'rgba(124,92,252,.18)', bd:'rgba(124,92,252,.5)', gl:'rgba(124,92,252,.18)',  tx:'#a78bfa'},
+      'RARE':     {bg:'rgba(79,142,245,.18)', bd:'rgba(79,142,245,.5)', gl:'rgba(79,142,245,.18)',  tx:'#60a5fa'},
+      'UNCOMMON': {bg:'rgba(34,197,94,.16)',  bd:'rgba(34,197,94,.45)', gl:'rgba(34,197,94,.16)',   tx:'#4ade80'},
+      'COMMON':   {bg:'rgba(200,210,255,.1)', bd:'rgba(200,210,255,.25)',gl:'rgba(200,210,255,.1)',  tx:'#94a3b8'}
+    };
+
+    if(m && m !== 'NONE' && m !== 'Card' && validRarities.includes(m)) {
+      const rs = rarityStyles[m];
+      /* badge ẩn — không hiển thị brand rarity lên modal */
+      badge.textContent  = '';
+      badge.style.display = 'none';
+      glow.style.background   = rs.gl;
+      glow.style.opacity      = '1';
+    } else {
+      badge.textContent       = '';
+      badge.style.display     = 'none';
+      glow.style.opacity      = '0';
+    }
+
+    // Background hint
+    $('imBgHint').style.backgroundImage = `url('${getRarityBg(curItem.Rare)}')`;
+
+    imgEl.onload = function(){
+      wrap.classList.remove('loading');
+      if(this.src.includes('UNKNOWN.PNG')) this.classList.add('unk');
+      void this.offsetWidth;
+      if(!this.src.includes('UNKNOWN.PNG')) this.style.transition='transform .3s ease, opacity .2s';
+      this.style.opacity='1';
+    };
+
+    const fb = imgBase+'background/UNKNOWN.PNG';
+    const srcs = [];
+    const ids  = curItem.Id.toString();
+    if(isBnr && curBannerIcon){
+      if(updatedSet.has(curBannerIcon)) srcs.push(imgBase+`icons/${curBannerIcon}_2.png`);
+      srcs.push(imgBase+`icons/${curBannerIcon}.png`);
+    } else {
+      if(updatedSet.has(ids)) srcs.push(imgBase+`icons/${ids}_2.png`);
+      srcs.push(imgBase+`icons/${ids}.png`);
+      if(curItem.Icon){
+        const ic=curItem.Icon.toString();
+        if(updatedSet.has(ic)) srcs.push(imgBase+`icons/${ic}_2.png`);
+        srcs.push(imgBase+`icons/${ic}.png`);
+      }
+    }
+    srcs.push(fb);
+
+    let si=0;
+    imgEl.onerror=function(){ si++; if(si<srcs.length){this.src=srcs[si];}else{this.onerror=null;wrap.classList.remove('loading');} };
+    imgEl.src=srcs[0];
+
+    // Name
+    const fb_name = lang==='en' ? 'No name available.' : 'Không có tên.';
+    const name = (curItem.Name && curItem.Name.trim()) ? curItem.Name : fb_name;
+    $('modalNameValue').textContent = name;
+
+    // Details
+    const itemIdStr = curItem.Id.toString();
+    // URL dạng tenmien.com/?item=0123456
+    const base = window.location.origin + window.location.pathname.replace('index.html','');
+    const itemUrl = base + '?item=' + itemIdStr;
+    const idLink = $('modalIdLink');
+    idLink.textContent = itemIdStr;
+    idLink.href = itemUrl;
+    idLink.title = itemUrl;
+
+    const iconStr = (isBnr && curBannerIcon) ? curBannerIcon : (curItem.Icon || 'N/A');
+    $('modalIconId').textContent = iconStr;
+    const fb_desc = lang==='en' ? 'No description available.' : 'Không có mô tả.';
+    $('modalDesc').textContent = (curItem.Desc && curItem.Desc.trim()) ? curItem.Desc : fb_desc;
+    $('btnCopyId').innerHTML = cpySVG;
+    $('btnCopyIconId').innerHTML = cpySVG;
+
+    $('itemModal').classList.add('open');
+  }
+
+  function closeModal(){ $('itemModal').classList.remove('open'); curItem=null; }
+  $('itemModal').addEventListener('click',e=>{ if(e.target===$('itemModal')) closeModal(); });
+
+  function copyItemId(){
+    if(!curItem) return;
+    navigator.clipboard.writeText(curItem.Id).then(()=>{
+      const b=$('btnCopyId'); b.innerHTML=chkSVG;
+      setTimeout(()=>b.innerHTML=cpySVG, 2000);
+    });
+  }
+
+  function copyIconId(){
+    if(!curItem) return;
+    const iconStr = curBannerIcon || (curItem.Icon||'');
+    navigator.clipboard.writeText(iconStr).then(()=>{
+      const b=$('btnCopyIconId'); b.innerHTML=chkSVG;
+      setTimeout(()=>b.innerHTML=cpySVG, 2000);
+    });
+  }
+
+  /* ---- SHARE ---- */
+  $('btnShare').addEventListener('click',()=>{
+    if(!curItem) return;
+    const base = window.location.origin + window.location.pathname.replace('index.html','');
+    const itemUrl = base + '?item=' + curItem.Id;
+    const name=(curItem.Name&&curItem.Name.trim())?curItem.Name:'Item';
+    const txt=`${name}\n${tr[lang].shareItemText}`;
+    if(navigator.share){ navigator.share({text:txt,url:itemUrl}); }
+    else { navigator.clipboard.writeText(`${txt}\n${itemUrl}`).then(()=>alert(lang==='en'?'Link copied!':'Đã sao chép!')); }
+  });
+
+  shareBtnEl.addEventListener('click',()=>{
+    const base=window.location.pathname.replace('index.html','');
+    const url=new URL(window.location.origin+base);
+    url.searchParams.set('lang',lang);
+    const parts=[];
+    if(searchEl.value.trim()){url.searchParams.set('search',searchEl.value.trim());parts.push(searchEl.value.trim());}
+    if(typeSel.value!=='all'){url.searchParams.set('type',typeSel.value);parts.push(tr[lang].types[typeSel.value]||typeSel.value);}
+    if(rareSel.value!=='all'){url.searchParams.set('rare',rareSel.value);parts.push(tr[lang].rarities[rareSel.value]||rareSel.value);}
+    if(tagSel.value!=='all'){url.searchParams.set('tag',tagSel.value);parts.push(tagSel.value);}
+    const name=parts.length?parts.join(' '):(lang==='vi'?'Tất cả mục':'All Items');
+    const txt=`${name}\n${tr[lang].shareSearchText}`;
+    if(navigator.share){ navigator.share({text:txt,url:url.toString()}); }
+    else { navigator.clipboard.writeText(`${txt}\n${url}`).then(()=>alert(lang==='en'?'Link copied!':'Đã sao chép!')); }
+  });
+
+  function checkUrlParams(){
+    const p=new URLSearchParams(window.location.search);
+    const si=p.get('item'),ss=p.get('search'),stag=p.get('tag'),stype=p.get('type'),srare=p.get('rare');
+    if(ss) searchEl.value=ss;
+    if(stag&&[...tagSel.options].some(o=>o.value===stag)) tagSel.value=stag;
+    if(stype&&[...typeSel.options].some(o=>o.value===stype)) typeSel.value=stype;
+    if(srare&&[...rareSel.options].some(o=>o.value===srare)) rareSel.value=srare;
+    if(si){
+      const idx = window._itemsById ? window._itemsById.get(si) : items.findIndex(x=>x.Id.toString()===si);
+      if(idx !== undefined && idx !== -1) openModal(idx);
+    }
+  }
+
+  /* ---- DOWNLOAD ---- */
+  function downloadIcon(item){
+    return new Promise(res=>{
+      const ids=item.Id.toString(); const urls=[];
+      if(updatedSet.has(ids)) urls.push(imgBase+`icons/${ids}_2.png`);
+      urls.push(imgBase+`icons/${ids}.png`);
+      if(item.Icon){const ic=item.Icon.toString();if(updatedSet.has(ic))urls.push(imgBase+`icons/${ic}_2.png`);urls.push(imgBase+`icons/${ic}.png`);}
+      const exec=async(u)=>{
+        try{const r=await fetch(u,{method:'GET',mode:'cors'});if(!r.ok)throw 0;const blob=await r.blob();const a=document.createElement('a');a.style.display='none';a.href=URL.createObjectURL(blob);a.download=`${item.Id}_icon.png`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(a.href);}
+        catch{const a=document.createElement('a');a.href=u;a.download=`${item.Id}_icon.png`;a.target='_blank';document.body.appendChild(a);a.click();a.remove();}
+        setTimeout(res,200);
+      };
+      const tryN=(i)=>{if(i>=urls.length){res();return;}const img=new Image();img.onload=()=>exec(urls[i]);img.onerror=()=>tryN(i+1);img.src=urls[i];};
+      tryN(0);
+    });
+  }
+
+  function downloadIconBg(item){
+    return new Promise(res=>{
+      const cv=document.createElement('canvas');cv.width=512;cv.height=512;
+      const ctx=cv.getContext('2d');
+      const bgImg=new Image();bgImg.crossOrigin='Anonymous';bgImg.src=getRarityBg(item.Rare);
+      const ids=item.Id.toString();const urls=[];
+      if(updatedSet.has(ids))urls.push(imgBase+`icons/${ids}_2.png`);
+      urls.push(imgBase+`icons/${ids}.png`);
+      if(item.Icon){const ic=item.Icon.toString();if(updatedSet.has(ic))urls.push(imgBase+`icons/${ic}_2.png`);urls.push(imgBase+`icons/${ic}.png`);}
+      bgImg.onload=()=>{
+        ctx.drawImage(bgImg,0,0,512,512);
+        const tryIc=(i)=>{
+          if(i>=urls.length){res();return;}
+          const ic=new Image();ic.crossOrigin='Anonymous';
+          ic.onload=()=>{
+            let dw=ic.width,dh=ic.height,maxD=512*0.8,ratio=Math.min(maxD/dw,maxD/dh);dw*=ratio;dh*=ratio;
+            const isWep=(ic.naturalWidth===300&&ic.naturalHeight===90);
+            ctx.save();ctx.translate(256,256);
+            if(isWep){ctx.rotate(25*Math.PI/180);dw*=1.4;dh*=1.4;}
+            ctx.drawImage(ic,-dw/2,-dh/2,dw,dh);ctx.restore();
+            try{cv.toBlob(blob=>{const a=document.createElement('a');a.style.display='none';a.href=URL.createObjectURL(blob);a.download=`${item.Id}_full.png`;document.body.appendChild(a);a.click();a.remove();},'image/png');}
+            catch{alert(lang==='en'?'CORS Error.':'Lỗi CORS.');}
+            setTimeout(res,200);
+          };
+          ic.onerror=()=>tryIc(i+1);ic.src=urls[i];
+        };tryIc(0);
+      };bgImg.onerror=()=>res();
+    });
+  }
+
+  function downloadSpecificIcon(iconName, itemID){
+    return new Promise(res=>{
+      const urls=[];
+      if(updatedSet.has(iconName))urls.push(imgBase+`icons/${iconName}_2.png`);
+      urls.push(imgBase+`icons/${iconName}.png`);
+      const exec=async(u)=>{
+        try{const r=await fetch(u,{method:'GET',mode:'cors'});if(!r.ok)throw 0;const blob=await r.blob();const a=document.createElement('a');a.style.display='none';a.href=URL.createObjectURL(blob);a.download=`${itemID}_banner.png`;document.body.appendChild(a);a.click();a.remove();}
+        catch{const a=document.createElement('a');a.href=u;a.download=`${itemID}_banner.png`;a.target='_blank';document.body.appendChild(a);a.click();a.remove();}
+        setTimeout(res,200);
+      };
+      const tryN=(i)=>{if(i>=urls.length){res();return;}const img=new Image();img.onload=()=>exec(urls[i]);img.onerror=()=>tryN(i+1);img.src=urls[i];};tryN(0);
+    });
+  }
+
+  function getItemsToProcess(){
+    if(selected.size>0) return [...selected].map(i=>items[i]);
+    const s=(curPage-1)*perPage;
+    return filtered.slice(s,s+perPage);
+  }
+
+  $('btnDevCopy').addEventListener('click',()=>{
+    const its=getItemsToProcess(),ids=its.map(i=>i.Id).join(', ');
+    navigator.clipboard.writeText(ids).then(()=>{
+      const b=$('btnDevCopy'),orig=b.innerHTML;
+      b.innerHTML=chkSVG+`<span>${lang==='en'?'Copied!':'Đã sao chép!'}</span>`;
+      setTimeout(()=>{b.innerHTML=orig;updateDevBtns();},2000);
+    });
+  });
+
+  $('btnDlMain').addEventListener('click',()=>{
+    if(!curItem) return;
+    dlSrc='single';
+    const t=tr[lang];
+    $('txtDlOpt1').textContent=t.dlOpt1s;
+    $('txtDlOpt2').textContent=t.dlOpt2s;
+    $('txtDlOpt3').textContent=t.dlOpt3s;
+    $('btnDlOpt3').style.display=curBannerIcon?'flex':'none';
+    $('dlModal').classList.add('open');
+  });
+
+  $('btnDevDl').addEventListener('click',()=>{
+    dlSrc='batch';
+    const its=getItemsToProcess(),n=its.length,pl=n>1,t=tr[lang];
+    $('txtDlOpt1').textContent=pl?t.dlOpt1p:t.dlOpt1s;
+    $('txtDlOpt2').textContent=pl?t.dlOpt2p:t.dlOpt2s;
+    $('txtDlOpt3').textContent=pl?t.dlOpt3p:t.dlOpt3s;
+    const allBnr=its.length>0&&its.every(x=>{const b=banners.find(cb=>cb.itemID===x.Id);return b&&b.icon;});
+    $('btnDlOpt3').style.display=allBnr?'flex':'none';
+    $('dlModal').classList.add('open');
+  });
+
+  $('btnDlOpt1').addEventListener('click',async()=>{
+    closeDlModal();const its=dlSrc==='single'?[curItem]:getItemsToProcess();
+    loaderEl.style.opacity='1';for(const item of its) await downloadIcon(item);loaderEl.style.opacity='0';
+    if(dlSrc==='batch'){selected.clear();renderPage(curPage);}
+  });
+
+  $('btnDlOpt2').addEventListener('click',async()=>{
+    closeDlModal();const its=dlSrc==='single'?[curItem]:getItemsToProcess();
+    loaderEl.style.opacity='1';for(const item of its) await downloadIconBg(item);loaderEl.style.opacity='0';
+    if(dlSrc==='batch'){selected.clear();renderPage(curPage);}
+  });
+
+  $('btnDlOpt3').addEventListener('click',async()=>{
+    closeDlModal();const its=dlSrc==='single'?[curItem]:getItemsToProcess();
+    loaderEl.style.opacity='1';
+    for(const item of its){const b=banners.find(cb=>cb.itemID===item.Id);if(b&&b.icon)await downloadSpecificIcon(String(b.icon).toLowerCase(),item.Id);}
+    loaderEl.style.opacity='0';
+    if(dlSrc==='batch'){selected.clear();renderPage(curPage);}
+  });
+
+  /* ---- INTRO PROGRESS BAR ---- */
+  (function(){
+    const bar = $('loaderBar');
+    const pct = $('loaderPct');
+    if(!bar || !pct) return;
+
+    let p = 0;
+    let dataReady = false;
+    const TICK = 40;
+    // 0→80% trong 50 ticks (2000ms), 80→99% trong 25 ticks (1000ms) → tổng 3s
+    let tick = 0;
+
+    const interval = setInterval(()=>{
+      tick++;
+      if(tick <= 50){
+        p = (tick / 50) * 80;
+      } else if(tick <= 75){
+        p = 80 + ((tick - 50) / 25) * 19;
+      } else {
+        p = 99;
+      }
+      bar.style.width = p.toFixed(1) + '%';
+      pct.textContent = Math.round(p) + '%';
+      // Đủ 3 giây VÀ data đã xong → ẩn loader
+      if(tick >= 75 && dataReady) _done();
+    }, TICK);
+
+    function _done(){
+      clearInterval(interval);
+      bar.style.transition = 'width .25s ease';
+      bar.style.width = '100%';
+      pct.textContent = '100%';
+      setTimeout(()=>{
+        loaderEl.style.opacity = '0';
+        loaderEl.style.pointerEvents = 'none';
+      }, 300);
+    }
+
+    // Được gọi khi data thật load xong
+    window._loaderFinish = function(){
+      dataReady = true;
+      if(tick >= 75) _done(); // Bar đã đủ 3s → ẩn ngay
+      // Chưa đủ → interval tự xử lý khi tick đạt 75
+    };
+  })();
+
+  /* ---- INIT ---- */
+  applyLangUI();
+  syncLangBtns();
+  fetchData();
+</script>
+</body>
+</html>
