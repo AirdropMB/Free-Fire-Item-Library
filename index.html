@@ -14,8 +14,17 @@
   <link rel="preload" href="ItemsData_en.json?v=3.1.0" as="fetch" crossorigin="anonymous">
   <link rel="preload" href="updated_icons.json?v=3.1.0" as="fetch" crossorigin="anonymous">
   <link rel="preload" href="CollectionBanner.json?v=3.1.0" as="fetch" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    @font-face{
+      font-family:'GFFRegular';
+      src:url('GFF-Latin-Regular.ttf') format('truetype');
+      font-weight:400;font-style:normal;font-display:swap;
+    }
+    @font-face{
+      font-family:'GFFBold';
+      src:url('gff_latin_bold.ttf') format('truetype');
+      font-weight:700;font-style:normal;font-display:swap;
+    }
     :root{
       /* ===== TOKENS — armory / terminal ===== */
       --iron:      #0a0908;
@@ -37,9 +46,10 @@
       --danger:    #e2503f;
       --gold:      #c8a85a;
       --t:         .18s cubic-bezier(.4,0,.2,1);
-      --font-display:'Bebas Neue',sans-serif;
-      --font:      'Inter',sans-serif;
-      --font-mono: 'JetBrains Mono',monospace;
+      --font-display:'GFFBold',sans-serif;
+      --font:      'GFFBold',sans-serif;
+      --font-mono: 'GFFBold',sans-serif;
+      --font-name: 'GFFRegular',sans-serif;
       --clip-lg: polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);
       --clip-md: polygon(11px 0,100% 0,100% calc(100% - 11px),calc(100% - 11px) 100%,0 100%,0 11px);
       --clip-sm: polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);
@@ -174,8 +184,10 @@
     .soc-row{display:flex;gap:8px;padding:2px 4px;flex-wrap:wrap;}
     .soc-btn{width:38px;height:38px;clip-path:var(--clip-sm);border:1px solid var(--hair);background:var(--glass);color:var(--paper);display:grid;place-items:center;text-decoration:none;transition:all var(--t);}
     .soc-btn:hover{transform:translateY(-2px);}
-    .soc-btn.fb:hover{background:#1877f2;border-color:transparent;}
-    .soc-btn.gm:hover{background:var(--ember);border-color:transparent;}
+    .soc-btn.tt:hover{background:#25f4ee;color:#0a0908;border-color:transparent;}
+    .soc-btn.yt:hover{background:#ff0033;border-color:transparent;}
+    .soc-btn.za:hover{background:#0068ff;border-color:transparent;}
+    .soc-btn.tg:hover{background:#29a9eb;border-color:transparent;}
 
     /* ========== CONTENT ========== */
     .wrap{max-width:1800px;margin:0 auto;padding:18px 20px 36px;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
@@ -410,7 +422,7 @@
     .im-row{display:flex;align-items:stretch;background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;min-height:38px;}
     .im-key{font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:var(--brass);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;padding:0 11px;border-right:1px solid var(--hair);background:rgba(255,255,255,.02);display:flex;align-items:center;flex-shrink:0;min-width:76px;}
     .im-val{flex:1;font-family:var(--font-mono);font-size:.77rem;color:var(--paper);word-break:break-all;padding:8px 10px;line-height:1.45;display:flex;align-items:center;}
-    #modalNameValue{font-family:var(--font-display);font-size:1.15rem;letter-spacing:.02em;}
+    #modalNameValue{font-family:var(--font-name);font-size:1.15rem;letter-spacing:.02em;}
     .im-row .copy-btn{flex-shrink:0;width:34px;clip-path:none;border:none;border-left:1px solid var(--hair);background:rgba(255,255,255,.02);color:var(--ember);padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background var(--t),color var(--t);}
     .im-row .copy-btn:hover{background:var(--ember-dim);color:var(--paper);}
     .im-row .copy-btn svg{pointer-events:none;}
@@ -538,11 +550,17 @@
     <div class="d-divider"></div>
     <div class="d-section" id="dSecSocial">Follow Aurust</div>
     <div class="soc-row">
-      <a href="https://www.facebook.com/" target="_blank" class="soc-btn fb">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      <a href="https://www.tiktok.com/@aurust_" target="_blank" rel="noopener" class="soc-btn tt" title="TikTok">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v10.2a3.8 3.8 0 11-3-3.7V6.4A6.2 6.2 0 1017 12.6V8.8c1 .7 2.2 1.1 3.5 1.1V7.4A4.4 4.4 0 0117 3h-3z"/></svg>
       </a>
-      <a href="mailto:huylo2812.1966@gmail.com" class="soc-btn gm">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="https://www.youtube.com/@aurust_ff" target="_blank" rel="noopener" class="soc-btn yt" title="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9l6 3-6 3V9z" fill="#16130f"/></svg>
+      </a>
+      <a href="https://zalo.me/g/pqlkhq011" target="_blank" rel="noopener" class="soc-btn za" title="Zalo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.3 0-2.5-.3-3.6-.8L4 20l1-4.6A8.5 8.5 0 1121 11.5z"/></svg>
+      </a>
+      <a href="https://t.me/Aurust_ff" target="_blank" rel="noopener" class="soc-btn tg" title="Telegram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </a>
     </div>
 
@@ -591,11 +609,17 @@
     <p class="empty-desc" id="txtEmptyDesc">Nothing matches your search or filter</p>
     <span class="empty-label" id="txtFollow">Follow Aurust</span>
     <div class="soc-row" style="justify-content:center;">
-      <a href="https://www.facebook.com/Aurust.vn" target="_blank" class="soc-btn fb">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      <a href="https://www.tiktok.com/@aurust_" target="_blank" rel="noopener" class="soc-btn tt" title="TikTok">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v10.2a3.8 3.8 0 11-3-3.7V6.4A6.2 6.2 0 1017 12.6V8.8c1 .7 2.2 1.1 3.5 1.1V7.4A4.4 4.4 0 0117 3h-3z"/></svg>
       </a>
-      <a href="mailto:Aurust.vn@gmail.com" class="soc-btn gm">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="https://www.youtube.com/@aurust_ff" target="_blank" rel="noopener" class="soc-btn yt" title="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9l6 3-6 3V9z" fill="#16130f"/></svg>
+      </a>
+      <a href="https://zalo.me/g/pqlkhq011" target="_blank" rel="noopener" class="soc-btn za" title="Zalo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.3 0-2.5-.3-3.6-.8L4 20l1-4.6A8.5 8.5 0 1121 11.5z"/></svg>
+      </a>
+      <a href="https://t.me/Aurust_ff" target="_blank" rel="noopener" class="soc-btn tg" title="Telegram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </a>
     </div>
   </div>
@@ -694,11 +718,17 @@
       <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--hair);">
         <div style="font-family:var(--font-mono);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--brass);margin-bottom:8px;" id="txtSmFollow">Follow Aurust</div>
         <div class="soc-row">
-          <a href="https://www.facebook.com/Aurust.vn" target="_blank" class="soc-btn fb">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <a href="https://www.tiktok.com/@aurust_" target="_blank" rel="noopener" class="soc-btn tt" title="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v10.2a3.8 3.8 0 11-3-3.7V6.4A6.2 6.2 0 1017 12.6V8.8c1 .7 2.2 1.1 3.5 1.1V7.4A4.4 4.4 0 0117 3h-3z"/></svg>
           </a>
-          <a href="mailto:Aurust.vn@gmail.com" class="soc-btn gm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="https://www.youtube.com/@aurust_ff" target="_blank" rel="noopener" class="soc-btn yt" title="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9l6 3-6 3V9z" fill="#16130f"/></svg>
+          </a>
+          <a href="https://zalo.me/g/pqlkhq011" target="_blank" rel="noopener" class="soc-btn za" title="Zalo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.3 0-2.5-.3-3.6-.8L4 20l1-4.6A8.5 8.5 0 1121 11.5z"/></svg>
+          </a>
+          <a href="https://t.me/Aurust_ff" target="_blank" rel="noopener" class="soc-btn tg" title="Telegram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </a>
         </div>
       </div>
@@ -931,6 +961,7 @@
     const path = hash.split('?')[0].replace(/\/+$/,'');
     const parts = path.split('/').filter(Boolean);
     const langMap = { en:'en', vn:'vi', vi:'vi', zh:'zh', 'zh-TW':'zh' };
+    routeItemId = null;
     if(parts.length >= 2 && langMap[parts[0]] && /^\d+$/.test(parts[1])){
       lang = langMap[parts[0]];
       routeItemId = parts[1];
