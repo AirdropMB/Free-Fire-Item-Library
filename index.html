@@ -7,13 +7,13 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Free Fire Items Library</title>
-  <link rel="icon" type="image/png" href="icon_web.png?v=3.0">
-  <link rel="apple-touch-icon" href="icon_web.png?v=3.0">
-  <link rel="manifest" href="manifest.json?v=3.0">
+  <link rel="icon" type="image/png" href="icon_web.png?v=3.1">
+  <link rel="apple-touch-icon" href="icon_web.png?v=3.1">
+  <link rel="manifest" href="manifest.json?v=3.1">
   <!-- Preload dữ liệu quan trọng nhất ngay khi browser parse HTML -->
-  <link rel="preload" href="ItemsData_en.json?v=3.0.0" as="fetch" crossorigin="anonymous">
-  <link rel="preload" href="updated_icons.json?v=3.0.0" as="fetch" crossorigin="anonymous">
-  <link rel="preload" href="CollectionBanner.json?v=3.0.0" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="ItemsData_en.json?v=3.1.0" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="updated_icons.json?v=3.1.0" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="CollectionBanner.json?v=3.1.0" as="fetch" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -661,6 +661,7 @@
     <div class="d-lang">
       <button class="d-lang-btn active" id="dLangEn">English</button>
       <button class="d-lang-btn" id="dLangVi">Tiếng Việt</button>
+      <button class="d-lang-btn" id="dLangZh">中文</button>
     </div>
 
     <div class="d-divider"></div>
@@ -815,6 +816,7 @@
         <div class="sm-lrow">
           <button class="sm-lbtn" id="smLangEn">EN</button>
           <button class="sm-lbtn" id="smLangVi">VI</button>
+          <button class="sm-lbtn" id="smLangZh">ZH</button>
         </div>
       </div>
 
@@ -858,7 +860,7 @@
 </div>
 
 <script>
-  const APP_VERSION = "3.0.0";
+  const APP_VERSION = "3.1.0";
   if (localStorage.getItem('appVersion') !== APP_VERSION) {
     localStorage.setItem('appVersion', APP_VERSION);
     if ('caches' in window) caches.keys().then(n => n.forEach(k => caches.delete(k)));
@@ -963,6 +965,78 @@
         "Exchange Tokens":"Token đổi thưởng",
         "Vouchers":"Phiếu giảm giá"
       }
+    },
+    zh: {
+      title:"CyberVerse", items:"個", filterLbl:"篩選",
+      search:"搜尋名稱、圖示、ID…",
+      allTags:"所有OB", allTypes:"所有類型", allRarities:"所有稀有度",
+      prev:"< 上一頁", next:"下一頁 >",
+      emptyTitle:"找不到物品", emptyDesc:"沒有符合搜尋或篩選的結果",
+      follow:"關注 CyberVerse",
+      itemId:"物品ID", iconId:"圖示ID", desc:"描述",
+      settingsTitle:"設定", devMode:"開發者模式", devDesc:"",
+      langSetting:"語言",
+      copyIds:"複製頁面ID", copySelIds:"複製已選ID",
+      dlIcons:"下載圖示", dlSelIcons:"下載已選圖示",
+      dlTitle:"下載選項",
+      dlOpt1s:"下載圖示", dlOpt2s:"下載含稀有度背景", dlOpt3s:"下載橫幅背景",
+      dlOpt1p:"下載圖示", dlOpt2p:"下載含背景", dlOpt3p:"下載橫幅",
+      share:"分享", download:"下載", settingsNav:"設定",
+      navBrowse:"瀏覽物品",
+      devLabel:"開發者模式", devLabelDesc:"",
+      footer:"Made By CyberVerse",
+      shareItemText:"查看此物品：", shareSearchText:"查看此收藏：",
+      follow2:"關注 CyberVerse",
+      rarities:{
+        "ARTIFACT":"神器 🟥","MYTHIC++":"神話++ 🟡","MYTHIC":"神話 🟨",
+        "EPIC++":"史詩++ 🟣","EPIC":"史詩 🟪","RARE":"稀有 🟦","UNCOMMON":"不常見 🟩","COMMON":"普通 ⬜"
+      }, types:{
+        "Bundles":"套裝",
+        "Top":"上衣",
+        "Bottom":"褲子",
+        "Shoe":"鞋子",
+        "Head":"頭部",
+        "Mask":"面具",
+        "Facepaint":"臉部彩繪",
+        "Weapon Skins":"武器皮膚",
+        "Fist Skins":"拳頭皮膚",
+        "Gloo Walls":"膠牆",
+        "Grenade Skin":"手榴彈皮膚",
+        "Final Shot":"終結一擊",
+        "Emote":"動作",
+        "Super Emote":"特殊動作",
+        "Arrival Animation":"登場動畫",
+        "Finishing Move":"終結動作",
+        "Look Changer":"外觀變換",
+        "Vehicle Skins":"載具皮膚",
+        "Loot Box":"戰利品箱",
+        "Bag Skins":"背包皮膚",
+        "Parachute":"降落傘",
+        "Skyboard":"滑翔板",
+        "Skywings":"天翼",
+        "Hyperbook":"超級書",
+        "Banners":"橫幅",
+        "Avatars":"頭像",
+        "Profile Pin":"個人徽章",
+        "Battle Card":"戰鬥卡",
+        "Skill Skins":"技能皮膚",
+        "Music":"音樂",
+        "Voice Packs":"語音包",
+        "Photo Frame":"相框",
+        "Avatar Frame":"頭像框",
+        "Photo Pose":"拍照姿勢",
+        "Stickers":"貼紙",
+        "Titles":"稱號",
+        "Characters":"角色",
+        "Pets":"寵物",
+        "Spark Pet Vault":"寵物寶庫",
+        "Bundle Create":"套裝創建",
+        "Choice Crates":"選擇箱",
+        "Loot Crates":"戰利品箱",
+        "Weapon Crates":"武器箱",
+        "Exchange Tokens":"兌換代幣",
+        "Vouchers":"優惠券"
+      }
     }
   };
 
@@ -978,8 +1052,42 @@
   ];
 
   let lang = 'en';
-  const usp = new URLSearchParams(window.location.search);
-  if (usp.get('lang') === 'vi') lang = 'vi';
+  let routeItemId = null;
+  let _modalPushedHistory = false;
+
+  function parseRoute(){
+    const hash = window.location.hash.replace(/^#/,'');
+    const path = hash.split('?')[0].replace(/\/+$/,'');
+    const parts = path.split('/').filter(Boolean);
+    const langMap = { en:'en', vn:'vi', vi:'vi', zh:'zh', 'zh-TW':'zh' };
+    if(parts.length >= 2 && langMap[parts[0]] && /^\d+$/.test(parts[1])){
+      lang = langMap[parts[0]];
+      routeItemId = parts[1];
+    } else if(parts.length === 1 && langMap[parts[0]]){
+      lang = langMap[parts[0]];
+    }
+    // backward compat: ?lang=vi
+    const usp = new URLSearchParams(window.location.search);
+    if(usp.get('lang')==='vi') lang='vi';
+    else if(usp.get('lang')==='zh') lang='zh';
+    if(usp.get('item')) routeItemId = usp.get('item');
+  }
+
+  function buildUrl(itemId, search, type, rare, tag){
+    const base = window.location.origin + window.location.pathname.replace('index.html','');
+    let url = base.replace(/\/$/,'') + '/#/' + (lang==='en'?'en':lang==='vi'?'vn':'zh') + '/';
+    if(itemId) url += itemId + '/';
+    const usp = new URLSearchParams();
+    if(search) usp.set('search',search);
+    if(type && type!=='all') usp.set('type',type);
+    if(rare && rare!=='all') usp.set('rare',rare);
+    if(tag && tag!=='all') usp.set('tag',tag);
+    const qs = usp.toString();
+    if(qs) url += '?' + qs;
+    return url;
+  }
+
+  parseRoute();
 
   let rawData=[], items=[], filtered=[], selected=new Set();
   let updatedSet=new Set(), banners=[], curBannerIcon=null;
@@ -1018,20 +1126,26 @@
     lang=l; document.body.setAttribute('dir','ltr');
     const cs=searchEl.value,ct=tagSel.value,cy=typeSel.value,cr=rareSel.value,cp=curPage;
     applyLangUI(); fetchData(cs,ct,cy,cr,cp); syncLangBtns();
+    const url = buildUrl(routeItemId, cs, ct, cy, cr);
+    history.pushState({lang,itemId:routeItemId},'',url);
   }
   function syncLangBtns(){
-    const isEn=lang==='en';
+    const isEn=lang==='en', isVi=lang==='vi', isZh=lang==='zh';
     $('hdrLangChip').textContent=lang.toUpperCase();
     $('dLangEn').classList.toggle('active',isEn);
-    $('dLangVi').classList.toggle('active',!isEn);
+    $('dLangVi').classList.toggle('active',isVi);
+    $('dLangZh').classList.toggle('active',isZh);
     $('smLangEn').classList.toggle('on',isEn);
-    $('smLangVi').classList.toggle('on',!isEn);
+    $('smLangVi').classList.toggle('on',isVi);
+    $('smLangZh').classList.toggle('on',isZh);
   }
-  $('hdrLangBtn').addEventListener('click',()=>setLang(lang==='en'?'vi':'en'));
+  $('hdrLangBtn').addEventListener('click',()=>setLang(lang==='en'?'vi':lang==='vi'?'zh':'en'));
   $('dLangEn').addEventListener('click',()=>setLang('en'));
   $('dLangVi').addEventListener('click',()=>setLang('vi'));
+  $('dLangZh').addEventListener('click',()=>setLang('zh'));
   $('smLangEn').addEventListener('click',()=>setLang('en'));
   $('smLangVi').addEventListener('click',()=>setLang('vi'));
+  $('smLangZh').addEventListener('click',()=>setLang('zh'));
 
   /* ---- SETTINGS ---- */
   $('hdrSettingsBtn').addEventListener('click',()=>$('settingsModal').classList.add('open'));
@@ -1098,18 +1212,46 @@
 
   function fetchData(rs=null,rt=null,ry=null,rr=null,rp=null){
     loaderEl.style.opacity='1'; loaderEl.style.pointerEvents='all';
-    const file = lang==='en' ? 'ItemsData_en.json' : 'ItemsData_vi.json';
+    const file = lang==='en' ? 'ItemsData_en.json' : lang==='vi' ? 'ItemsData_vn.json' : 'ItemsData_zh.json';
+
+    // Với VN/ZH: luôn load song song EN để lấy Category, Tag, Icon làm fallback
     const dataP = fetch(`${file}?v=${APP_VERSION}`)
       .then(r=>{ if(!r.ok) throw 0; return r.json(); })
       .catch(()=> fetch(`ItemsData_en.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]));
 
+    const enP = (lang !== 'en')
+      ? fetch(`ItemsData_en.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
+      : Promise.resolve(null);
+
     Promise.all([
       dataP,
+      enP,
       fetch(`updated_icons.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]),
       fetch(`CollectionBanner.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
-    ]).then(([data, upd, bnr])=>{
+    ]).then(([data, enData, upd, bnr])=>{
       try {
-        rawData   = Array.isArray(data) ? data : Object.values(data);
+        let parsed = Array.isArray(data) ? data : Object.values(data);
+
+        // Merge Category, Tag, Icon từ EN nếu VN/ZH thiếu
+        if(lang !== 'en' && enData && enData.length) {
+          const enMap = new Map(enData.map(e => [e.Id, e]));
+          parsed = parsed.map(item => {
+            const en = enMap.get(item.Id);
+            if(!en) return item;
+            return {
+              ...item,
+              Category: item.Category || en.Category || '',
+              Tag:      item.Tag !== undefined ? item.Tag : (en.Tag || ''),
+              Icon:     item.Icon || en.Icon || '',
+              Rare:     item.Rare || en.Rare || '',
+              // Nếu Name/Desc rỗng thì fallback về EN
+              Name:     item.Name || en.Name || '',
+              Desc:     item.Desc || en.Desc || '',
+            };
+          });
+        }
+
+        rawData   = parsed;
         updatedSet = new Set(upd);
         banners    = Array.isArray(bnr) ? bnr : Object.values(bnr);
         filterRaw();
@@ -1320,7 +1462,7 @@
     } else { openModal(gi); }
   }
 
-  function openModal(gi){
+  function openModal(gi, pushHistory=true){
     curItem = items[gi];
     const bnrObj = banners.find(b=>b.itemID===curItem.Id);
     const isBnr  = !!bnrObj;
@@ -1394,15 +1536,13 @@
     imgEl.src=srcs[0];
 
     // Name
-    const fb_name = lang==='en' ? 'No name available.' : 'Không có tên.';
+    const fb_name = lang==='en' ? 'No name available.' : lang==='vi' ? 'Không có tên.' : '無名稱。';
     const name = (curItem.Name && curItem.Name.trim()) ? curItem.Name : fb_name;
     $('modalNameValue').textContent = name;
 
     // Details
     const itemIdStr = curItem.Id.toString();
-    // URL dạng tenmien.com/?item=0123456
-    const base = window.location.origin + window.location.pathname.replace('index.html','');
-    const itemUrl = base + '?item=' + itemIdStr;
+    const itemUrl = buildUrl(itemIdStr, null, null, null, null);
     const idLink = $('modalIdLink');
     idLink.textContent = itemIdStr;
     idLink.href = itemUrl;
@@ -1410,16 +1550,42 @@
 
     const iconStr = (isBnr && curBannerIcon) ? curBannerIcon : (curItem.Icon || 'N/A');
     $('modalIconId').textContent = iconStr;
-    const fb_desc = lang==='en' ? 'No description available.' : 'Không có mô tả.';
+    const fb_desc = lang==='en' ? 'No description available.' : lang==='vi' ? 'Không có mô tả.' : '無描述。';
     $('modalDesc').textContent = (curItem.Desc && curItem.Desc.trim()) ? curItem.Desc : fb_desc;
     $('btnCopyId').innerHTML = cpySVG;
     $('btnCopyIconId').innerHTML = cpySVG;
 
+    if(pushHistory){
+      routeItemId = curItem.Id.toString();
+      const url = buildUrl(routeItemId, searchEl.value.trim(), typeSel.value, rareSel.value, tagSel.value);
+      history.pushState({lang,itemId:routeItemId},'',url);
+      _modalPushedHistory = true;
+    }
+
     $('itemModal').classList.add('open');
   }
 
-  function closeModal(){ $('itemModal').classList.remove('open'); curItem=null; }
+  function closeModal(){ 
+    $('itemModal').classList.remove('open'); curItem=null; 
+    if(_modalPushedHistory && routeItemId){
+      history.back();
+      _modalPushedHistory = false;
+    }
+  }
   $('itemModal').addEventListener('click',e=>{ if(e.target===$('itemModal')) closeModal(); });
+
+  window.addEventListener('popstate',()=>{
+    parseRoute();
+    syncLangBtns();
+    if(routeItemId && window._itemsById){
+      const idx = window._itemsById.get(routeItemId);
+      if(idx !== undefined && idx !== -1){
+        openModal(idx, false);
+      }
+    } else if(curItem){
+      closeModal();
+    }
+  });
 
   function copyItemId(){
     if(!curItem) return;
@@ -1441,39 +1607,37 @@
   /* ---- SHARE ---- */
   $('btnShare').addEventListener('click',()=>{
     if(!curItem) return;
-    const base = window.location.origin + window.location.pathname.replace('index.html','');
-    const itemUrl = base + '?item=' + curItem.Id;
+    const itemUrl = buildUrl(curItem.Id, null, null, null, null);
     const name=(curItem.Name&&curItem.Name.trim())?curItem.Name:'Item';
     const txt=`${name}\n${tr[lang].shareItemText}`;
     if(navigator.share){ navigator.share({text:txt,url:itemUrl}); }
-    else { navigator.clipboard.writeText(`${txt}\n${itemUrl}`).then(()=>alert(lang==='en'?'Link copied!':'Đã sao chép!')); }
+    else { navigator.clipboard.writeText(`${txt}\n${itemUrl}`).then(()=>alert(lang==='en'?'Link copied!':lang==='vi'?'Đã sao chép!':'已複製!')); }
   });
 
   shareBtnEl.addEventListener('click',()=>{
-    const base=window.location.pathname.replace('index.html','');
-    const url=new URL(window.location.origin+base);
-    url.searchParams.set('lang',lang);
+    const url = buildUrl(routeItemId, searchEl.value.trim(), typeSel.value, rareSel.value, tagSel.value);
     const parts=[];
-    if(searchEl.value.trim()){url.searchParams.set('search',searchEl.value.trim());parts.push(searchEl.value.trim());}
-    if(typeSel.value!=='all'){url.searchParams.set('type',typeSel.value);parts.push(tr[lang].types[typeSel.value]||typeSel.value);}
-    if(rareSel.value!=='all'){url.searchParams.set('rare',rareSel.value);parts.push(tr[lang].rarities[rareSel.value]||rareSel.value);}
-    if(tagSel.value!=='all'){url.searchParams.set('tag',tagSel.value);parts.push(tagSel.value);}
+    if(searchEl.value.trim()){parts.push(searchEl.value.trim());}
+    if(typeSel.value!=='all'){parts.push(tr[lang].types[typeSel.value]||typeSel.value);}
+    if(rareSel.value!=='all'){parts.push(tr[lang].rarities[rareSel.value]||rareSel.value);}
+    if(tagSel.value!=='all'){parts.push(tagSel.value);}
     const name=parts.length?parts.join(' '):(lang==='vi'?'Tất cả mục':'All Items');
     const txt=`${name}\n${tr[lang].shareSearchText}`;
-    if(navigator.share){ navigator.share({text:txt,url:url.toString()}); }
-    else { navigator.clipboard.writeText(`${txt}\n${url}`).then(()=>alert(lang==='en'?'Link copied!':'Đã sao chép!')); }
+    if(navigator.share){ navigator.share({text:txt,url}); }
+    else { navigator.clipboard.writeText(`${txt}\n${url}`).then(()=>alert(lang==='en'?'Link copied!':lang==='vi'?'Đã sao chép!':'已複製!')); }
   });
 
   function checkUrlParams(){
     const p=new URLSearchParams(window.location.search);
-    const si=p.get('item'),ss=p.get('search'),stag=p.get('tag'),stype=p.get('type'),srare=p.get('rare');
+    const ss=p.get('search'),stag=p.get('tag'),stype=p.get('type'),srare=p.get('rare');
     if(ss) searchEl.value=ss;
     if(stag&&[...tagSel.options].some(o=>o.value===stag)) tagSel.value=stag;
     if(stype&&[...typeSel.options].some(o=>o.value===stype)) typeSel.value=stype;
     if(srare&&[...rareSel.options].some(o=>o.value===srare)) rareSel.value=srare;
+    const si = routeItemId || p.get('item');
     if(si){
       const idx = window._itemsById ? window._itemsById.get(si) : items.findIndex(x=>x.Id.toString()===si);
-      if(idx !== undefined && idx !== -1) openModal(idx);
+      if(idx !== undefined && idx !== -1) openModal(idx, false);
     }
   }
 
@@ -1548,7 +1712,7 @@
     const its=getItemsToProcess(),ids=its.map(i=>i.Id).join(', ');
     navigator.clipboard.writeText(ids).then(()=>{
       const b=$('btnDevCopy'),orig=b.innerHTML;
-      b.innerHTML=chkSVG+`<span>${lang==='en'?'Copied!':'Đã sao chép!'}</span>`;
+      b.innerHTML=chkSVG+`<span>${lang==='en'?'Copied!':lang==='vi'?'Đã sao chép!':'已複製!'}</span>`;
       setTimeout(()=>{b.innerHTML=orig;updateDevBtns();},2000);
     });
   });
