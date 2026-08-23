@@ -182,7 +182,7 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
   const updatedItems = toProcess.filter(t => !t.isNew).length;
   const unchanged = enData.length - toProcess.length;
 
-  console.log(`   Mới: ${newItems} | Cập nhật: ${updatedItems} | Giữ nguyên: ${unchchanged}`);
+  console.log(`   Mới: ${newItems} | Cập nhật: ${updatedItems} | Giữ nguyên: ${unchanged}`);
 
   // Dịch
   let done = 0;
