@@ -225,6 +225,8 @@
     .sel option{background:#171310;color:var(--paper);}
     .filter-count{font-family:var(--font-mono);font-size:.74rem;font-weight:600;color:var(--ash);flex-shrink:0;margin-left:auto;}
     .filter-count b{color:var(--ember);}
+    .ms-toggle{display:flex;align-items:center;gap:8px;flex-shrink:0;cursor:pointer;padding:5px 10px 5px 12px;background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);}
+    .ms-toggle span:first-child{font-family:var(--font-mono);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--brass);white-space:nowrap;}
 
     /* ========== DEV BAR ========== */
     .dev-bar{
@@ -365,6 +367,7 @@
     /* ========== FOOTER ========== */
     .footer{text-align:center;padding:16px 20px 24px;border-top:1px solid var(--hair);color:var(--ash);font-size:.75rem;font-family:var(--font-mono);}
     .footer b{color:var(--brass);font-weight:700;}
+    .footer-follow{font-family:var(--font-mono);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--brass);margin-bottom:10px;}
 
     /* ========== MODALS ========== */
     .modal{
@@ -530,20 +533,9 @@
     </a>
 
     <div class="d-divider"></div>
-    <div class="d-section" id="dSecSettings">Settings</div>
-
-    <div class="d-row">
-      <div class="d-row-info">
-        <div class="d-row-label" id="dDevLabel">Multi-select</div>
-        <div class="d-row-desc" id="dDevDesc"></div>
-      </div>
-      <label class="tsw">
-        <input type="checkbox" id="devToggle">
-        <div class="ttrack"></div><div class="tthumb"></div>
-      </label>
-    </div>
-
-    <div class="d-divider"></div>
+    <input type="checkbox" id="devToggle" style="display:none">
+    <span id="dDevLabel" style="display:none"></span>
+    <span id="dDevDesc" style="display:none"></span>
     <div class="d-section" id="dSecLang">Language</div>
     <div class="d-lang">
       <button class="d-lang-btn active" id="dLangEn">English</button>
@@ -582,6 +574,13 @@
       <div class="sel-wrap"><select id="typeFilter" class="sel"></select></div>
       <div class="sel-wrap"><select id="rarityFilter" class="sel"></select></div>
     </div>
+    <label class="ms-toggle" id="devToggleMainWrap">
+      <span id="txtDevModeMain">Multi-select</span>
+      <span class="tsw">
+        <input type="checkbox" id="devToggleMain">
+        <span class="ttrack"></span><span class="tthumb"></span>
+      </span>
+    </label>
     <span class="filter-count" id="filterCount"><b>0</b> items</span>
   </div>
 
@@ -630,7 +629,24 @@
 
 </main>
 
-<footer class="footer"><b id="txtFooter">Made By Aurust</b></footer>
+<footer class="footer">
+  <div class="footer-follow" id="txtSmFollow2">Follow Aurust</div>
+  <div class="soc-row" style="justify-content:center;margin-bottom:14px;">
+    <a href="https://www.tiktok.com/@aurust_" target="_blank" rel="noopener" class="soc-btn tt" title="TikTok">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3v10.2a3.8 3.8 0 11-3-3.7V6.4A6.2 6.2 0 1017 12.6V8.8c1 .7 2.2 1.1 3.5 1.1V7.4A4.4 4.4 0 0117 3h-3z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@aurust_ff" target="_blank" rel="noopener" class="soc-btn yt" title="YouTube">
+      <svg width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9l6 3-6 3V9z" fill="#16130f"/></svg>
+    </a>
+    <a href="https://zalo.me/g/pqlkhq011" target="_blank" rel="noopener" class="soc-btn za" title="Zalo">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.3 0-2.5-.3-3.6-.8L4 20l1-4.6A8.5 8.5 0 1121 11.5z"/></svg>
+    </a>
+    <a href="https://t.me/Aurust_ff" target="_blank" rel="noopener" class="soc-btn tg" title="Telegram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </a>
+  </div>
+  <b id="txtFooter">Made By Aurust</b>
+</footer>
 
 <!-- ===== ITEM MODAL ===== -->
 <div class="modal" id="itemModal">
@@ -691,19 +707,9 @@
     <div class="sm-body">
       <div class="sm-title" id="txtSettingsTitle">Settings</div>
 
-      <div class="sm-item">
-        <div class="sm-info">
-          <strong>
-            <svg width="15" height="15" fill="currentColor" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M600.704 64a32 32 0 0130.464 22.208l35.2 109.376c14.784 7.232 28.928 15.36 42.432 24.512l112.384-24.192a32 32 0 0134.432 15.36L944.32 364.8a32 32 0 01-4.032 37.504l-77.12 85.12a357.12 357.12 0 010 49.024l77.12 85.248a32 32 0 014.032 37.504l-88.704 153.6a32 32 0 01-34.432 15.296L708.8 803.904c-13.44 9.088-27.648 17.28-42.368 24.512l-35.264 109.376A32 32 0 01600.704 960H423.296a32 32 0 01-30.464-22.208L357.696 828.48a351.616 351.616 0 01-42.56-24.64l-112.32 24.256a32 32 0 01-34.432-15.36L79.68 659.2a32 32 0 014.032-37.504l77.12-85.248a357.12 357.12 0 010-48.896l-77.12-85.248A32 32 0 0179.68 364.8l88.704-153.6a32 32 0 0134.432-15.296l112.32 24.256c13.568-9.152 27.776-17.408 42.56-24.64l35.2-109.312A32 32 0 01423.232 64H600.64zm-23.424 64H446.72l-36.352 113.088-24.512 11.968a294.113 294.113 0 00-34.816 20.096l-22.656 15.36-116.224-25.088-65.28 113.152 79.68 88.192-1.92 27.136a293.12 293.12 0 000 40.192l1.92 27.136-79.808 88.192 65.344 113.152 116.224-25.024 22.656 15.296a294.113 294.113 0 0034.816 20.096l24.512 11.968L446.72 896h130.688l36.48-113.152 24.448-11.904a288.282 288.282 0 0034.752-20.096l22.592-15.296 116.288 25.024 65.28-113.152-79.744-88.192 1.92-27.136a293.12 293.12 0 000-40.256l-1.92-27.136 79.808-88.128-65.344-113.152-116.288 24.96-22.592-15.232a287.616 287.616 0 00-34.752-20.096l-24.448-11.904L577.344 128zM512 320a192 192 0 110 384 192 192 0 010-384zm0 64a128 128 0 100 256 128 128 0 000-256z"/></svg>
-            <span id="txtDevMode">Multi-select</span>
-          </strong>
-          <span id="txtDevDesc"></span>
-        </div>
-        <label class="tsw">
-          <input type="checkbox" id="devToggle2">
-          <div class="ttrack"></div><div class="tthumb"></div>
-        </label>
-      </div>
+      <input type="checkbox" id="devToggle2" style="display:none">
+      <span id="txtDevMode" style="display:none"></span>
+      <span id="txtDevDesc" style="display:none"></span>
 
       <div class="sm-item" style="border-bottom:none;">
         <div class="sm-info">
@@ -1011,7 +1017,7 @@
   const gridEl=$('itemsGrid'), pagesEl=$('paginationControls');
   const emptyEl=$('emptyState'), loaderEl=$('mainLoader');
   const devBarEl=$('devBar');
-  const devToggle=$('devToggle'), devToggle2=$('devToggle2');
+  const devToggle=$('devToggle'), devToggle2=$('devToggle2'), devToggleMain=$('devToggleMain');
   const fcEl=$('filterCount');
 
   const cpySVG=`<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`;
@@ -1020,12 +1026,13 @@
   /* ---- DEV TOGGLE ---- */
   function onDev(v){
     isDevMode=v; selected.clear();
-    devToggle.checked=v; devToggle2.checked=v;
+    devToggle.checked=v; devToggle2.checked=v; if(devToggleMain) devToggleMain.checked=v;
     devBarEl.classList.toggle('on',v);
     updateDevBtns(); renderPage(curPage);
   }
   devToggle.addEventListener('change',e=>onDev(e.target.checked));
   devToggle2.addEventListener('change',e=>onDev(e.target.checked));
+  if(devToggleMain) devToggleMain.addEventListener('change',e=>onDev(e.target.checked));
 
   /* ---- LANGUAGE ---- */
   function setLang(l){
@@ -1083,9 +1090,11 @@
     $('txtFollow').textContent=t.follow;
     $('txtSettingsTitle').textContent=t.settingsTitle;
     $('txtDevMode').textContent=t.devMode;
+    $('txtDevModeMain').textContent=t.devMode;
     $('txtDevDesc').textContent=t.devDesc;
     $('txtLangSetting').textContent=t.langSetting;
     $('txtSmFollow').textContent=t.follow2;
+    $('txtSmFollow2').textContent=t.follow2;
     $('txtModalId').textContent=t.itemId;
     $('txtModalIconId').textContent=t.iconId;
     $('txtModalDesc').textContent=t.desc;
