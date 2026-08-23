@@ -1118,7 +1118,7 @@
 
   /* ---- DATA FETCH ---- */
   function filterRaw(){
-    items = rawData.filter(i => !i.HideInIndex && i.Icon && i.Icon.trim() !== '');
+    items = rawData.filter(i => i.Icon && i.Icon.trim() !== '');
     // Cache index vào từng item 1 lần, tránh indexOf O(n) mỗi lần render
     items.forEach((item, idx) => item._gi = idx);
     // Map ID → item để lookup O(1) thay vì findIndex O(n)
