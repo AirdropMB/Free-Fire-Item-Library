@@ -187,6 +187,43 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
   // Dịch
   let done = 0;
   const translated = new Map();
+  const PENDING = '\u0000__PENDING__\u0000'; // sentinel: đảm bảo không khớp bất kỳ text thật nào -> lần sau sẽ bị coi là "cần dịch lại"
+
+  function commonFields(en) {
+    return {
+      Id: en.Id, Type: en.Type, CollectionType: en.CollectionType,
+      Icon: en.Icon, Rare: en.Rare, IsUnique: en.IsUnique, IconInAB: en.IconInAB,
+      Category: en.Category ?? '', Tag: en.Tag ?? '',
+    };
+  }
+
+  // Ghép kết quả TẠI THỜI ĐIỂM HIỆN TẠI (dùng cho cả checkpoint tạm & ghi cuối cùng)
+  function buildResult() {
+    return enData.map(en => {
+      const ex = existingMap.get(en.Id);
+      const tr = translated.get(en.Id);
+      if (tr) {
+        // Đã dịch xong trong lượt chạy này
+        return { ...commonFields(en), Name: tr.Name, Desc: tr.Desc, _enName: en.Name, _enDesc: en.Desc };
+      }
+      if (ex) {
+        // Item cũ, chưa đụng tới (hoặc chưa tới lượt dịch trong lượt chạy này) -> giữ nguyên bản dịch cũ
+        return { ...commonFields(en), Name: ex.Name ?? '', Desc: ex.Desc ?? '', _enName: ex._enName ?? PENDING, _enDesc: ex._enDesc ?? PENDING };
+      }
+      // Item hoàn toàn mới, chưa kịp dịch trong lượt chạy này
+      return { ...commonFields(en), Name: '', Desc: '', _enName: PENDING, _enDesc: PENDING };
+    });
+  }
+
+  let lastCheckpoint = Date.now();
+  function checkpointSave(force = false) {
+    const now = Date.now();
+    if (!force && now - lastCheckpoint < 20000) return; // tối đa 20s/lần để không làm chậm quá trình dịch
+    lastCheckpoint = now;
+    try {
+      fs.writeFileSync(outputFile, JSON.stringify(buildResult(), null, 2), 'utf-8');
+    } catch (e) { /* bỏ qua lỗi ghi tạm, sẽ thử lại ở lần sau */ }
+  }
 
   const tasks = toTranslate.map(({ en, ex, needName, needDesc }) => async () => {
     const result = { Name: ex?.Name ?? '', Desc: ex?.Desc ?? '' };
@@ -199,6 +236,7 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
     if (done % 50 === 0 || done === toTranslate.length) {
       process.stdout.write(`\r   Đã dịch: ${done}/${toTranslate.length}`);
     }
+    checkpointSave(); // lưu tạm định kỳ -> lỡ tắt giữa chừng vẫn giữ được tiến độ đã dịch
   });
 
   if (tasks.length > 0) {
@@ -206,26 +244,8 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
     console.log('');
   }
 
-  // Ghép kết quả theo thứ tự EN
-  const result = enData.map(en => {
-    const ex  = existingMap.get(en.Id);
-    const tr  = translated.get(en.Id);
-    return {
-      Id:             en.Id,
-      Type:           en.Type,
-      CollectionType: en.CollectionType,
-      Name:           tr?.Name  ?? ex?.Name  ?? '',
-      Desc:           tr?.Desc  ?? ex?.Desc  ?? '',
-      Icon:           en.Icon,
-      Rare:           en.Rare,
-      IsUnique:       en.IsUnique,
-      IconInAB:       en.IconInAB,
-      Category:       en.Category ?? '',
-      Tag:            en.Tag      ?? '',
-      _enName:        en.Name,
-      _enDesc:        en.Desc,
-    };
-  });
+  // Ghép kết quả cuối cùng theo thứ tự EN
+  const result = buildResult();
 
   fs.writeFileSync(outputFile, JSON.stringify(result, null, 2), 'utf-8');
   console.log(`   ✅ Ghi ${result.length} items → ${path.basename(outputFile)}`);
