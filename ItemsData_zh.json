@@ -729,9 +729,9 @@
     "IconInAB": "CDN",
     "Category": "Characters",
     "Tag": "",
-    "Name": "Alok",
+    "Name": "阿洛克",
     "Desc": "Alok 是世界級的 DJ，drop the beat！",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Alok",
     "_enDesc": "Alok is a world famous DJ, ready to drop a beat."
   },
   {
@@ -836,7 +836,7 @@
     "Tag": "",
     "Name": "K",
     "Desc": "K 是一個大學教授，同時也是一名柔術專家",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "K",
     "_enDesc": "K is a professor and jiu-jitsu expert."
   },
   {
@@ -939,9 +939,9 @@
     "IconInAB": "CDN",
     "Category": "Characters",
     "Tag": "",
-    "Name": "D-bee",
+    "Name": "D-蜜蜂",
     "Desc": "D-bee 是一位音樂製作人，同時也是街舞表演者",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "D-bee",
     "_enDesc": "D-bee is a music maker and streetdancer."
   },
   {
@@ -179440,9 +179440,9 @@
     "Category": "Bundle Create",
     "Tag": "OB30",
     "Name": "武士刀-DATC幸運箱",
-    "Desc": "TH Partner",
+    "Desc": "天合合夥人",
     "_enName": "dtac Katana Box",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "TH Partner"
   },
   {
     "Id": 400030158,
@@ -179455,9 +179455,9 @@
     "Category": "Bundle Create",
     "Tag": "OB30",
     "Name": "武士刀-DATC幸運箱",
-    "Desc": "TH Partner",
+    "Desc": "天合合夥人",
     "_enName": "Katana dtac",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "TH Partner"
   },
   {
     "Id": 400030159,
@@ -179471,7 +179471,7 @@
     "Tag": "OB30",
     "Name": "dtac 6",
     "Desc": "天合合夥人",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 6",
     "_enDesc": "TH Partner"
   },
   {
@@ -180609,9 +180609,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "OB30",
-    "Name": "CIS Pro league Season 3 Box",
+    "Name": "CIS 職業聯賽第 3 季盒子",
     "Desc": "開啟後可獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "CIS Pro league Season 3 Box",
     "_enDesc": "Open to get amazing rewards"
   },
   {
@@ -184299,9 +184299,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "OB32",
-    "Name": "Box 95",
+    "Name": "95號信箱",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Box 95",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -184404,9 +184404,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "OB32",
-    "Name": "Box 102",
+    "Name": "102號信箱",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Box 102",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -184539,9 +184539,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "OB32",
-    "Name": "Box 91",
+    "Name": "91號信箱",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Box 91",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -202824,9 +202824,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "OB39",
-    "Name": "Box 152",
+    "Name": "152號信箱",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Box 152",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -202869,9 +202869,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "OB39",
-    "Name": "Box 155",
+    "Name": "155號信箱",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Box 155",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -235570,9 +235570,9 @@
     "Category": "Weapon Crates",
     "Tag": "OB51",
     "Name": "Trogon 火焰兵恐龍戰利品箱",
-    "Desc": "Open to receive a Trogon Pyro Dino",
+    "Desc": "打開即可獲得 Trogon Pyro Dino",
     "_enName": "Trogon Pyro Dino Loot Crate",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Open to receive a Trogon Pyro Dino"
   },
   {
     "Id": 400051501,
@@ -250300,9 +250300,9 @@
     "Category": "Bundles",
     "Tag": "",
     "Name": "越南學生節",
-    "Desc": "A bundle to commemorate Vietnamese Student's Day.",
+    "Desc": "紀念越南學生節的套裝。",
     "_enName": "Vietnamese Student's Day",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "A bundle to commemorate Vietnamese Student's Day."
   },
   {
     "Id": 700000185,
@@ -259330,9 +259330,9 @@
     "Category": "Bundles",
     "Tag": "",
     "Name": "越南學生節",
-    "Desc": "A bundle to commemorate Vietnamese Student's Day.",
+    "Desc": "紀念越南學生節的套裝。",
     "_enName": "Vietnamese Student's Day",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "A bundle to commemorate Vietnamese Student's Day."
   },
   {
     "Id": 710000209,
@@ -286120,9 +286120,9 @@
     "Category": "Voice Packs",
     "Tag": "OB42",
     "Name": "實況主語音包",
-    "Desc": "Pick your favorite Streamer's line",
+    "Desc": "選擇你最喜歡的主播台詞",
     "_enName": "Streamer Voice Pack",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Pick your favorite Streamer's line"
   },
   {
     "Id": 710042005,
@@ -289060,9 +289060,9 @@
     "Category": "Voice Packs",
     "Tag": "OB43",
     "Name": "情人節語音包",
-    "Desc": "Two famous Thai voice actors, BeamSensei and YesiamDart, are here to share sweet love messages",
+    "Desc": "兩位泰國著名配音員BeamSensei和YesiamDart來分享甜甜的愛情訊息",
     "_enName": "Valentine Voice Pack",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Two famous Thai voice actors, BeamSensei and YesiamDart, are here to share sweet love messages"
   },
   {
     "Id": 710043130,
@@ -289165,9 +289165,9 @@
     "Category": "Voice Packs",
     "Tag": "OB43",
     "Name": "德拉古諾夫語音包",
-    "Desc": "Get Dragunov's one-of-a-kind \"Eat it, Bro!\" voice pack here!",
+    "Desc": "聽聽德拉古諾夫獨一無二的「吃掉吧，兄弟！」語音包在這裡！",
     "_enName": "Dragunov Voice Pack",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Get Dragunov's one-of-a-kind \"Eat it, Bro!\" voice pack here!"
   },
   {
     "Id": 710043137,
@@ -289180,9 +289180,9 @@
     "Category": "Voice Packs",
     "Tag": "OB43",
     "Name": "德拉古諾夫語音包",
-    "Desc": "Get Dragunov's one-of-a-kind \"Eat it, Bro!\" voice pack here!",
+    "Desc": "聽聽德拉古諾夫獨一無二的「吃掉吧，兄弟！」語音包在這裡！",
     "_enName": "Dragunov Voice Pack",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Get Dragunov's one-of-a-kind \"Eat it, Bro!\" voice pack here!"
   },
   {
     "Id": 710043138,
@@ -304599,10 +304599,10 @@
     "IconInAB": "CDN",
     "Category": "Bundles",
     "Tag": "OB54",
-    "Name": "Street Diva Bundle",
-    "Desc": "Open to receive all the items in the bundle!",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "街頭女主角捆綁包",
+    "Desc": "打開即可收到捆綁包中的所有物品！",
+    "_enName": "Street Diva Bundle",
+    "_enDesc": "Open to receive all the items in the bundle!"
   },
   {
     "Id": 710054051,
@@ -309504,9 +309504,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "",
-    "Name": "Daily Bonus Reward",
+    "Name": "每日獎金獎勵",
     "Desc": "翠鳥 - 暗影盜賊",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Daily Bonus Reward",
     "_enDesc": "Kingfisher - Shadow Rogue"
   },
   {
@@ -312340,9 +312340,9 @@
     "Category": "",
     "Tag": "",
     "Name": "聖誕襪",
-    "Desc": "Symbol for friendship or truelove",
+    "Desc": "友誼或真愛的象徵",
     "_enName": "Socks",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Symbol for friendship or truelove"
   },
   {
     "Id": 801000045,
@@ -312430,9 +312430,9 @@
     "Category": "",
     "Tag": "",
     "Name": "傳情玫瑰",
-    "Desc": "Symbol for friendship or truelove",
+    "Desc": "友誼或真愛的象徵",
     "_enName": "Rose",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Symbol for friendship or truelove"
   },
   {
     "Id": 801000051,
@@ -324909,9 +324909,9 @@
     "IconInAB": "AB",
     "Category": "Exchange Tokens",
     "Tag": "",
-    "Name": "Yomost",
+    "Name": "約莫斯特",
     "Desc": "兌換道具，可在指定活動中兌換獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Yomost",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -329397,7 +329397,7 @@
     "Name": "漁夫帽",
     "Desc": "LBFF6",
     "_enName": "Red Bucket Hat",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "LBFF6"
   },
   {
     "Id": 801001185,
@@ -329532,7 +329532,7 @@
     "Name": "帥氣的標誌",
     "Desc": "LBFF6",
     "_enName": "\"SWAG\" Label",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "LBFF6"
   },
   {
     "Id": 801001194,
@@ -329589,9 +329589,9 @@
     "IconInAB": "AB",
     "Category": "Exchange Tokens",
     "Tag": "",
-    "Name": "Battle in Style",
+    "Name": "風格戰鬥",
     "Desc": "兌換道具，可在指定活動中兌換獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Battle in Style",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -332394,9 +332394,9 @@
     "IconInAB": "AB",
     "Category": "Exchange Tokens",
     "Tag": "",
-    "Name": "Holi Hai",
+    "Name": "灑紅節",
     "Desc": "兌換道具，可在指定活動中兌換獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Holi Hai",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -480519,9 +480519,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "OB45",
-    "Name": "Naatu Naatu",
+    "Name": "納圖納圖",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Naatu Naatu",
     "_enDesc": ""
   },
   {
@@ -485769,9 +485769,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "",
-    "Name": "The Creed of Fire",
+    "Name": "火之信條",
     "Desc": "The Creed of Fire 大廳音樂",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "The Creed of Fire",
     "_enDesc": "Lobby music of The Creed of Fire"
   },
   {
@@ -485859,9 +485859,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB33",
-    "Name": "FFWS 2021",
+    "Name": "2021年國際蔬果展",
     "Desc": "FFWS 2021 大廳音樂",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FFWS 2021",
     "_enDesc": "Lobby music of FFWS 2021"
   },
   {
@@ -485874,9 +485874,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB33",
-    "Name": "FFWS 2022",
+    "Name": "2022 年世界糧食安全論壇",
     "Desc": "FFWS 2022 大廳音樂",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FFWS 2022",
     "_enDesc": "Lobby music of FFWS 2022"
   },
   {
@@ -485889,9 +485889,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB33",
-    "Name": "Kill Chori",
+    "Name": "殺死蝶裡",
     "Desc": "慶祝 2021 年排燈節的音樂",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kill Chori",
     "_enDesc": "Diwali 2021 track with Shraddha Kapoor and Bhuvan Bam"
   },
   {
@@ -485904,9 +485904,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB33",
-    "Name": "Hoje é Só Capa",
+    "Name": "霍耶·索·卡帕",
     "Desc": "Free Fire 巴西的經典音樂",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Hoje é Só Capa",
     "_enDesc": "Iconic Brazilian FF song"
   },
   {
@@ -486534,9 +486534,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB37",
-    "Name": "JKT48 - Feel The Fire",
+    "Name": "JKT48 - 感受火焰",
     "Desc": "根據 Booyah Day「覺醒時刻」歌曲翻譯",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "JKT48 - Feel The Fire",
     "_enDesc": "Translated based on the Booyah Day Feel the Fire song"
   },
   {
@@ -488139,9 +488139,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB54",
-    "Name": "Booyahka",
+    "Name": "布亞卡",
     "Desc": "AAA 合作主題曲",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyahka",
     "_enDesc": "AAA collab theme song"
   },
   {
@@ -488874,9 +488874,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB46",
-    "Name": "Tera bhai Sambhaal lega",
+    "Name": "Tera bhai Sambhaal 法律",
     "Desc": "Bolly Boli 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Tera bhai Sambhaal lega",
     "_enDesc": "Bolly Boli Voice Pack"
   },
   {
@@ -488889,9 +488889,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB46",
-    "Name": "Swagat nahi karoge hamara?",
+    "Name": "Swagat nahi karoge hamara？",
     "Desc": "Bolly Boli 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Swagat nahi karoge hamara?",
     "_enDesc": "Bolly Boli Voice Pack"
   },
   {
@@ -488904,9 +488904,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB46",
-    "Name": "Waat lag gayi",
+    "Name": "瓦特·拉格·蓋伊",
     "Desc": "Bolly Boli 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Waat lag gayi",
     "_enDesc": "Bolly Boli Voice Pack"
   },
   {
@@ -488934,9 +488934,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB46",
-    "Name": "Thann Khachh Booyah!",
+    "Name": "坦恩·卡赫·布亞！",
     "Desc": "來自 FFM，為了 FFM！",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Thann Khachh Booyah!",
     "_enDesc": "From the FFM community, for the FFM community!"
   },
   {
@@ -488964,9 +488964,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB46",
-    "Name": "Darr Raha Hai Kya?",
+    "Name": "達爾·拉哈·海基亞？",
     "Desc": "來自 FFM，為了 FFM！",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Darr Raha Hai Kya?",
     "_enDesc": "From the FFM community, for the FFM community!"
   },
   {
@@ -488979,9 +488979,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB46",
-    "Name": "Tere Bass Ki Baat Nahi",
+    "Name": "特雷巴斯基巴特納希",
     "Desc": "來自 FFM，為了 FFM！",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Tere Bass Ki Baat Nahi",
     "_enDesc": "From the FFM community, for the FFM community!"
   },
   {
@@ -489055,9 +489055,9 @@
     "Category": "Voice Packs",
     "Tag": "OB47",
     "Name": "傳奇，你準備好了嗎？",
-    "Desc": "Legends x Dominators",
+    "Desc": "傳奇 x 統治者",
     "_enName": "Legends, are you ready?",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Legends x Dominators"
   },
   {
     "Id": 921047006,
@@ -489279,9 +489279,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB47",
-    "Name": "Na ami bishwash kori na",
+    "Name": "娜阿米·比什瓦什·科里·娜",
     "Desc": "欣賞隊友",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Na ami bishwash kori na",
     "_enDesc": "Appreciating teammates"
   },
   {
@@ -489504,9 +489504,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB48",
-    "Name": "Don't let there be a third time",
+    "Name": "不要讓第三次發生",
     "Desc": "Tar 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Don't let there be a third time",
     "_enDesc": "Tar Voice Pack"
   },
   {
@@ -489534,9 +489534,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB48",
-    "Name": "It's about to go down",
+    "Name": "快要下降了",
     "Desc": "Tar 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "It's about to go down",
     "_enDesc": "Tar Voice Pack"
   },
   {
@@ -489549,9 +489549,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB48",
-    "Name": "You can revive me here, buddy",
+    "Name": "你可以在這裡讓我復活，夥計",
     "Desc": "Tar 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "You can revive me here, buddy",
     "_enDesc": "Tar Voice Pack"
   },
   {
@@ -489564,9 +489564,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB48",
-    "Name": "Saving up coins for a house or what!?",
+    "Name": "存錢買房子什麼的！ ？",
     "Desc": "Tar 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Saving up coins for a house or what!?",
     "_enDesc": "Tar Voice Pack"
   },
   {
@@ -489624,9 +489624,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB48",
-    "Name": "[Habib Ja'far] Don't be angry while playing!",
+    "Name": "[Habib Ja'far] 玩耍時不要生氣！",
     "Desc": "Fasting 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "[Habib Ja'far] Don't be angry while playing!",
     "_enDesc": "Fasting Voice Pack"
   },
   {
@@ -490239,9 +490239,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB49",
-    "Name": "Enemies down on the ground, eliminations up to the sky!",
+    "Name": "地上敵人，天上消滅！",
     "Desc": "FF 回憶",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Enemies down on the ground, eliminations up to the sky!",
     "_enDesc": "FF Nostalgia"
   },
   {
@@ -490284,9 +490284,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB49",
-    "Name": "Pure red, no yellow.",
+    "Name": "純紅色，沒有黃色。",
     "Desc": "FF 回憶",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Pure red, no yellow.",
     "_enDesc": "FF Nostalgia"
   },
   {
@@ -490419,9 +490419,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB49",
-    "Name": "Hey buddy, you are naughty!",
+    "Name": "嘿，哥們，你真調皮！",
     "Desc": "Phanthamit 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Hey buddy, you are naughty!",
     "_enDesc": "Phanthamit Voice Pack"
   },
   {
@@ -490434,9 +490434,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB49",
-    "Name": "Dodge in digital! Digital! Digital!",
+    "Name": "數字閃避！數位的!數位的!",
     "Desc": "Phanthamit 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Dodge in digital! Digital! Digital!",
     "_enDesc": "Phanthamit Voice Pack"
   },
   {
@@ -490449,9 +490449,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB49",
-    "Name": "Go talk to a mango tree!",
+    "Name": "去跟芒果樹說話吧！",
     "Desc": "Phanthamit 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Go talk to a mango tree!",
     "_enDesc": "Phanthamit Voice Pack"
   },
   {
@@ -494139,9 +494139,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB42",
-    "Name": "Your aim is amazing!",
+    "Name": "你的目標太棒了！",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Your aim is amazing!",
     "_enDesc": ""
   },
   {
@@ -494229,9 +494229,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB42",
-    "Name": "Help me, mate!",
+    "Name": "幫幫我吧，老兄！",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Help me, mate!",
     "_enDesc": ""
   },
   {
@@ -494529,9 +494529,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB43",
-    "Name": "Hey, stop it!",
+    "Name": "嘿，別說了！",
     "Desc": "社區中最受歡迎的短語",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Hey, stop it!",
     "_enDesc": "The most popular phrases in the community"
   },
   {
@@ -495669,9 +495669,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB45",
-    "Name": "Bhai matter ho gaya",
+    "Name": "巴伊·馬特·霍·加亞",
     "Desc": "Bhaichara 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Bhai matter ho gaya",
     "_enDesc": "Bhaichara Voice Pack"
   },
   {
