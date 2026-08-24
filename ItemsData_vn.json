@@ -11,7 +11,7 @@
     "Tag": "",
     "Name": "Nulla",
     "Desc": "Không ai biết cô ấy tới Đảo Quân Sự bằng cách nào, trừ việc cô ấy ở đây trước tất cả mọi người. Cô ấy như một con tắc kè hoa, có thể thích nghi với mọi hoàn cảnh để sinh tồn.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nulla",
     "_enDesc": "Nobody knows how she got onto Bermuda, except that she was here before everyone else. Extremely good at adapting to the environment, she is like a chameleon that survives and thrives."
   },
   {
@@ -71,7 +71,7 @@
     "Tag": "",
     "Name": "Olivia",
     "Desc": "Olivia đã từng là một y tá xinh đẹp",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Olivia",
     "_enDesc": "Chief nurse of a renowned hospital."
   },
   {
@@ -86,7 +86,7 @@
     "Tag": "",
     "Name": "Kelly",
     "Desc": "Kelly là một vận động viên điền kinh",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kelly",
     "_enDesc": "Kelly is an athlete, a sprinter."
   },
   {
@@ -101,7 +101,7 @@
     "Tag": "",
     "Name": "Nikita",
     "Desc": "Nikita là một Vệ sĩ chuyên nghiệp",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nikita",
     "_enDesc": "Nikita works as a professional bodyguard."
   },
   {
@@ -116,7 +116,7 @@
     "Tag": "",
     "Name": "Misha",
     "Desc": "Misha là một cô gái vô cùng tài năng",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Misha",
     "_enDesc": "Misha is an extremely talented racer."
   },
   {
@@ -131,7 +131,7 @@
     "Tag": "",
     "Name": "Paloma",
     "Desc": "Paloma là bà trùm buôn vũ khí của thế giới ngầm",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Paloma",
     "_enDesc": "Paloma is the reigning arms queen of the underworld."
   },
   {
@@ -146,7 +146,7 @@
     "Tag": "",
     "Name": "Caroline",
     "Desc": "Caroline là một cô bé giàu có thích cosplay",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Caroline",
     "_enDesc": "A schoolgirl from an extremely wealthy family."
   },
   {
@@ -161,7 +161,7 @@
     "Tag": "",
     "Name": "Moco",
     "Desc": "Moco là một hacker siêu đẳng",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Moco",
     "_enDesc": "Moco is an outstanding hacker."
   },
   {
@@ -176,7 +176,7 @@
     "Tag": "",
     "Name": "Laura",
     "Desc": "Laura là một Mật vụ siêu đẳng.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Laura",
     "_enDesc": "Laura is an outstanding special agent."
   },
   {
@@ -191,7 +191,7 @@
     "Tag": "",
     "Name": "A124",
     "Desc": "A124 là người máy với công nghệ hiện đại. Kỹ năng của cô nàng là độc quyền.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "A124",
     "_enDesc": "A124 is a robot made with modern technology."
   },
   {
@@ -206,7 +206,7 @@
     "Tag": "",
     "Name": "Shani",
     "Desc": "Shani là kỹ sư làm việc tại bãi phế liệu",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Shani",
     "_enDesc": "Shani is an engineer who works at a junkyard."
   },
   {
@@ -236,7 +236,7 @@
     "Tag": "",
     "Name": "Notora",
     "Desc": "Notora là một thành viên băng đảng xe máy tomboy.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Notora",
     "_enDesc": "Notora is a tomboyish motorcycle gang member."
   },
   {
@@ -251,7 +251,7 @@
     "Tag": "",
     "Name": "Steffie",
     "Desc": "Steffie là 1 nghệ sĩ",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Steffie",
     "_enDesc": "Steffie is a pro graffiti artist."
   },
   {
@@ -266,7 +266,7 @@
     "Tag": "",
     "Name": "Kapella",
     "Desc": "Kapella là một ca sĩ nhạc pop và ngôi sao nổi tiếng.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kapella",
     "_enDesc": "Kapella is a popular pop singer and star."
   },
   {
@@ -281,7 +281,7 @@
     "Tag": "",
     "Name": "Clu",
     "Desc": "Clu là một thám tử tư hiện đại.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Clu",
     "_enDesc": "Clu is a modern day private detective."
   },
   {
@@ -326,7 +326,7 @@
     "Tag": "",
     "Name": "Xayne",
     "Desc": "Xayne là một vận động viên thể thao mạo hiểm",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Xayne",
     "_enDesc": "Xayne is an extreme sports athlete."
   },
   {
@@ -356,7 +356,7 @@
     "Tag": "",
     "Name": "A-Patroa",
     "Desc": "A-Patroa là chủ một cửa hàng âm nhạc, cũng là nơi trú ẩn an toàn cho cộng đồng địa phương. Cô ấy sử dụng âm nhạc của mình để phục hồi sức khỏe cho mọi người",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "A-Patroa",
     "_enDesc": "A-Patroa is an owner of a music shop, which doubles as a safe haven for the local community. She uses her music to rehabilitate people."
   },
   {
@@ -401,7 +401,7 @@
     "Tag": "",
     "Name": "Sonia",
     "Desc": "Sonia là một nhà khoa học nano biến đổi gen với trí thông minh đặc biệt và chuyên môn về công nghệ sinh học nano.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Sonia",
     "_enDesc": "Sonia is a genetically modified nanoscientist with exceptional intelligence and expertise in nanobiotechnology."
   },
   {
@@ -416,7 +416,7 @@
     "Tag": "",
     "Name": "Suzy",
     "Desc": "Suzy, một sát thủ săn tiền thưởng đáng gờm và có trái tim nhân hậu. Cô ấy yêu thương những đứa trẻ mồ côi và luôn thực hiện công việc của mình để ngăn chúng có một tuổi thơ giống như cô ấy.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Suzy",
     "_enDesc": "Suzy is a formidable bounty assassin who is kind at heart. She has a soft spot for orphans and is willing to continue her profession to prevent them from having a similar childhood as hers."
   },
   {
@@ -431,7 +431,7 @@
     "Tag": "",
     "Name": "Kassie",
     "Desc": "Một nhà tâm thần học quái dị, hoang tưởng, đứng giữa lằn ranh giữa phản diện và anh hùng. Cô ả bị ám ảnh bởi các phương pháp sốc điện và luôn làm theo ý bản thân.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kassie",
     "_enDesc": "A paranoid, eccentric neuroscientist who walks the line between good and evil. She is obsessed with electroshock therapies and follows her own set of rules."
   },
   {
@@ -446,7 +446,7 @@
     "Tag": "",
     "Name": "Lila",
     "Desc": "Một cô nàng năng động, siêu ngầu đến từ thành phố La Luna với kỹ năng parkour đỉnh cao và tính tình ham chơi. Rất thích cùng Cánh Cụt Waggor nghĩ ra trò gì đó để \"ao nhây\" kẻ địch bằng những phát minh Bom Keo tiên tiến.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Lila",
     "_enDesc": "A cool, spry girl from the city of La Luna with excellent parkour skills and a playful nature. She likes to work with Mr. Waggor, outsmarting their foes together with clever pranks and innovative Gloo inventions."
   },
   {
@@ -461,7 +461,7 @@
     "Tag": "",
     "Name": "Rin",
     "Desc": "Cô em gái của Hayato là một ninja tài năng và lạnh lùng. Là người con thứ hai của nhà Yagami, cô ẩn mình trong bóng tối để giữ ngọn lửa gia tộc bùng cháy.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Rin",
     "_enDesc": "Hayato's younger sister, a skilled and calm ninja. As the second child of the Yagami family, she dwells in the shadow to keep her family's flame alive."
   },
   {
@@ -581,7 +581,7 @@
     "Tag": "",
     "Name": "Andrew",
     "Desc": "Andrew đã từng là một sĩ quan cảnh sát",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Andrew",
     "_enDesc": "Andrew was once a police officer."
   },
   {
@@ -596,7 +596,7 @@
     "Tag": "",
     "Name": "Ford",
     "Desc": "Ford là một thủy thủ rất mạnh mẽ.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ford",
     "_enDesc": "Ford is trained at sea and extremely tough."
   },
   {
@@ -626,7 +626,7 @@
     "Tag": "",
     "Name": "Kla",
     "Desc": "Kla là một học viên Muay Thai",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kla",
     "_enDesc": "Kla is a renowned Muay Thai practitioner."
   },
   {
@@ -641,7 +641,7 @@
     "Tag": "",
     "Name": "Miguel",
     "Desc": "Miguel là chỉ huy của một đơn vị trong lực lượng đặc nhiệm.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Miguel",
     "_enDesc": "Miguel is the commander of a section in the special forces."
   },
   {
@@ -656,7 +656,7 @@
     "Tag": "",
     "Name": "Antonio",
     "Desc": "Antonio là một đứa trẻ mồ côi, và sau này lớn lên trở thành gangster",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Antonio",
     "_enDesc": "Antonio was an orphan who grew up to be a gangster."
   },
   {
@@ -701,7 +701,7 @@
     "Tag": "",
     "Name": "Rafael",
     "Desc": "Rafael là một sát thủ chuyên nghiệp.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Rafael",
     "_enDesc": "Rafael is a deadly killer."
   },
   {
@@ -716,7 +716,7 @@
     "Tag": "",
     "Name": "Joseph",
     "Desc": "Joseph là một nhà vật lý nối tiếng nhưng anh cũng là một tay chơi thứ thiệt.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Joseph",
     "_enDesc": "Joseph is a well-known physicist, but he is also a player."
   },
   {
@@ -731,7 +731,7 @@
     "Tag": "",
     "Name": "Alok",
     "Desc": "Alok là một DJ nổi tiếng thế giới, sẵn sàng quẩy mọi lúc mọi nơi",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Alok",
     "_enDesc": "Alok is a world famous DJ, ready to drop a beat."
   },
   {
@@ -746,7 +746,7 @@
     "Tag": "",
     "Name": "Alvaro",
     "Desc": "Alvaro là một chuyên gia chất nổ hoang dã nhưng lành nghề.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Alvaro",
     "_enDesc": "Alvaro is a wild but skilled demolitionist."
   },
   {
@@ -761,7 +761,7 @@
     "Tag": "",
     "Name": "Jota",
     "Desc": "Jota là một chuyên gia parkour và diễn viên đóng thế.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Jota",
     "_enDesc": "Jota is a parkour expert and stuntman."
   },
   {
@@ -776,7 +776,7 @@
     "Tag": "",
     "Name": "Luqueta",
     "Desc": "Luqueta là một ngôi sao bóng đá đang lên.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Luqueta",
     "_enDesc": "Luqueta is an up and rising soccer star."
   },
   {
@@ -791,7 +791,7 @@
     "Tag": "",
     "Name": "Wolfrahh",
     "Desc": "Wolfrahh là một game streamer và tuyển thủ esport.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Wolfrahh",
     "_enDesc": "Wolfrahh is a game streamer and esport player."
   },
   {
@@ -821,7 +821,7 @@
     "Tag": "",
     "Name": "Jai",
     "Desc": "Jai là 1 chỉ huy của SWAT",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Jai",
     "_enDesc": "Jai is a decorated SWAT commander."
   },
   {
@@ -836,7 +836,7 @@
     "Tag": "",
     "Name": "K",
     "Desc": "K là một giáo sư và chuyên gia jiu-jitsu.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "K",
     "_enDesc": "K is a professor and jiu-jitsu expert."
   },
   {
@@ -851,7 +851,7 @@
     "Tag": "",
     "Name": "Sverr",
     "Desc": "Sverr là một võ sĩ MMA hàng đầu.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Sverr",
     "_enDesc": "Sverr is a top-tier MMA fighter."
   },
   {
@@ -881,7 +881,7 @@
     "Tag": "",
     "Name": "Skyler",
     "Desc": "Skyler là chủ tịch tập đoàn và cũng là một siêu sao đẳng cấp.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Skyler",
     "_enDesc": "Skyler is a CEO and superstar."
   },
   {
@@ -926,7 +926,7 @@
     "Tag": "",
     "Name": "Maro",
     "Desc": "Maro là người huấn luyện chim chuyên nghiệp",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Maro",
     "_enDesc": "Maro is a professional falconer."
   },
   {
@@ -956,7 +956,7 @@
     "Tag": "",
     "Name": "Thiva",
     "Desc": "Thiva là nhạc sĩ và ca sĩ cực hot!",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Thiva",
     "_enDesc": "Thiva is a rising singer-musician star."
   },
   {
@@ -971,7 +971,7 @@
     "Tag": "",
     "Name": "Dimitri",
     "Desc": "Dimitri là DJ nổi tiếng hàng đầu thế giới",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Dimitri",
     "_enDesc": "Dimitri is a world renowned sound technology engineer."
   },
   {
@@ -986,7 +986,7 @@
     "Tag": "",
     "Name": "Leon",
     "Desc": "Leon là ngôi sao bóng rổ đang lên",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Leon",
     "_enDesc": "Leon is a rising star in the basketball scene."
   },
   {
@@ -1016,7 +1016,7 @@
     "Tag": "",
     "Name": "Nairi",
     "Desc": "Nairi là một người săn bão, một chuyên gia nghiên cứu về các công nghệ thời tiết.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nairi",
     "_enDesc": "Nairi is a storm chaser who researches about climate technology."
   },
   {
@@ -1046,7 +1046,7 @@
     "Tag": "",
     "Name": "Kenta",
     "Desc": "Kenta là vệ sĩ của Hayato và là thợ chế tạo vũ khí",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kenta",
     "_enDesc": "Kenta is Hayato's bodyguard and a skilled weaponsmith."
   },
   {
@@ -1061,7 +1061,7 @@
     "Tag": "",
     "Name": "Homer",
     "Desc": "Homer là một sát thủ mù có các giác quan khác bù đắp cho thị lực của anh ấy",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Homer",
     "_enDesc": "Homer is a blind assassin whose other senses more than make up for his lost one."
   },
   {
@@ -1076,7 +1076,7 @@
     "Tag": "",
     "Name": "J.Biebs",
     "Desc": "J.Biebs là một ca sĩ cống hiến cả đời để đoàn kết thế giới",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "J.Biebs",
     "_enDesc": "J.Biebs is a singer who dedicates his life and uses his singing to reunite the world."
   },
   {
@@ -1091,7 +1091,7 @@
     "Tag": "",
     "Name": "Tatsuya",
     "Desc": "Tatsuya là một kẻ nóng tính nhưng sẵn sàng làm mọi thứ vì thành phố của anh ta",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Tatsuya",
     "_enDesc": "Tatsuya is a hothead who is willing to trust to make his city a better place."
   },
   {
@@ -1106,7 +1106,7 @@
     "Tag": "",
     "Name": "Santino",
     "Desc": "Santino Valentine là nhà thiết kế thời trang luôn nổi bật trên thế giới",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Santino",
     "_enDesc": "Santino Valentine is a fashion designer, who is always a trending subject in the fashion world and on social media."
   },
   {
@@ -1121,7 +1121,7 @@
     "Tag": "",
     "Name": "Orion",
     "Desc": "Orion là một cựu lính đánh thuê đã trải qua quá trình biến đổi sinh học và có được một sức mạnh đáng gờm.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Orion",
     "_enDesc": "Orion is a former mercenary who underwent a biological transformation and obtained a formidable power."
   },
   {
@@ -1181,7 +1181,7 @@
     "Tag": "",
     "Name": "Ryden",
     "Desc": "Một nhà phát minh 16 tuổi thiên tài, với kiến thức vượt xa độ tuổi của bản thân. Từng là một cậu bé yếu ớt nương náu dưới sự bảo vệ của chị gái mình, Suzy, giờ đây cậu đã có thể vững chãi đứng trên chiến trận với những phát minh của mình.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ryden",
     "_enDesc": "A 16-year-old genius inventor with knowledge beyond his age. Once a little boy who sought refuge under the protection of his sister, Suzy, he now bravely stands on the battlefield with his inventions."
   },
   {
@@ -1196,7 +1196,7 @@
     "Tag": "",
     "Name": "Kairos",
     "Desc": "Từng là một chiến binh dày dặn trong một Đội Đặc Nhiệm. Biến cố lớn xảy ra khi gã chạm trán với một nguồn năng lượng thần bí, khiến bản thân bị biến đổi và trở nên không ngừng thèm khát năng lượng.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kairos",
     "_enDesc": "A former soldier of the Special Forces. His fate took a sharp turn when encountering a mysterious energy source, which transformed his body and instilled a constant craving for more energy."
   },
   {
@@ -1211,7 +1211,7 @@
     "Tag": "",
     "Name": "Koda",
     "Desc": "Sinh ra nơi vùng địa cực lạnh giá, Koda đã được một chú cáo tuyết dẫn dắt để tìm thấy chiếc mặt nạ mang theo công nghệ tân tiến. Với tình yêu thiên nhiên, cậu mong muốn được phiêu lưu nơi thế giới bên ngoài. Và sau khi gặp gỡ Wolfrahh khi chơi game, và về sau là Leon và chị gái của anh ta, Koda đã bước chân vào chuyến hành trình tìm đến những điều kỳ thú.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Koda",
     "_enDesc": "Born in the arctic region, Koda was once led by a snow fox to find a mask embedded with advanced tech of his village. The nature-loving boy has longed for an adventure in the outside world. As he met Wolfrahh while playing games online and, later on, Leon and his sister, Koda began to explore what is beyond the familiar."
   },
   {
@@ -1226,7 +1226,7 @@
     "Tag": "",
     "Name": "Oscar",
     "Desc": "Sáng làm học sinh, tối làm anh hùng. Với phong cách chiến đấu độc đáo, Oscar xuất ẩn xuất hiện trong bóng đêm để trừng phạt kẻ ác.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Oscar",
     "_enDesc": "A brilliant, even slightly overachieving student by day and a beloved vigilante by night. With his flashy physical prowess, Oscar leaps through the shadows to take down the evil."
   },
   {
@@ -1241,7 +1241,7 @@
     "Tag": "",
     "Name": "Nero",
     "Desc": "Người sống sót kỳ diệu sau cơn bão tuyết tàn khốc, đã có được sức mạnh tạo hình giấc mơ trong những giây phút cuối cùng của sự sống. Hắn nắm giữ quyền năng tối thượng trong thế giới mộng tưởng, hành động đơn độc và hoàn toàn không có tung tích gì ở thực tại.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nero",
     "_enDesc": "A miraculous survivor of a brutal freeze, who gained the power to shape dreams on his last legs. All-powerful in the dreamspace, he acts solitarily and stays untraceable in the waking world."
   },
   {
@@ -1256,7 +1256,7 @@
     "Tag": "",
     "Name": "Morse",
     "Desc": "Tĩnh lặng và tự do như một chú chuột, Morse không bao giờ để lại dấu vết. Anh ta lẩn khuất giữa thế giới thực và thế giới mạng, chỉ hoạt động dựa trên lợi ích cá nhân.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Morse",
     "_enDesc": "Silent and free like a mouse, Morse never leaves a trace behind. He slips between the real world and the web, driven only by self-interests."
   },
   {
@@ -16346,7 +16346,7 @@
     "Tag": "",
     "Name": "Joeman",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Joeman",
     "_enDesc": ""
   },
   {
@@ -41771,7 +41771,7 @@
     "Tag": "OB49",
     "Name": "Tung Tung Tung",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Tung Tung Tung",
     "_enDesc": ""
   },
   {
@@ -145796,7 +145796,7 @@
     "Tag": "",
     "Name": "Amaterasu",
     "Desc": "Tạo một màn hắc hỏa ở vị trí chỉ định. Màn lửa sẽ đốt Bom Keo và gây sát thương lên đối phương chạm phải. Màn lửa không bị ảnh hưởng bởi chướng ngại vật.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Amaterasu",
     "_enDesc": "Create a wall of dark flames in the target area. It will destroy Gloo Walls and deal damage to enemies inside. It will also ignore any obstacles."
   },
   {
@@ -150596,7 +150596,7 @@
     "Tag": "",
     "Name": "Hộp Nonolive xanh",
     "Desc": "Sự kiện tương tự Nonolive",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Hộp Nonolive xanh",
     "_enDesc": "Sự kiện cùng Nonolive"
   },
   {
@@ -150611,8 +150611,8 @@
     "Tag": "",
     "Name": "Hộp 8/3",
     "Desc": "Tôn vinh phụ nữ Việt Nam",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enName": "Hộp 8/3",
+    "_enDesc": "Tôn vinh phụ nữ Việt Nam"
   },
   {
     "Id": 400000315,
@@ -235541,7 +235541,7 @@
     "Tag": "OB51",
     "Name": "Charge Buster Frenzy Bunny Loot Crate",
     "Desc": "Mở để nhận Charge Buster Frenzy Bunny",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Charge Buster Frenzy Bunny Loot Crate",
     "_enDesc": "Open to receive a Charge Buster Frenzy Bunny"
   },
   {
@@ -235556,7 +235556,7 @@
     "Tag": "OB51",
     "Name": "AWM Breath of Silence Loot Crate",
     "Desc": "Mở để nhận AWM Breath of Silence",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "AWM Breath of Silence Loot Crate",
     "_enDesc": "Open to receive a AWM Breath of Silence"
   },
   {
@@ -271661,7 +271661,7 @@
     "Tag": "OB28",
     "Name": "Laura",
     "Desc": "Laura là một Mật vụ siêu đẳng.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Laura",
     "_enDesc": "Laura is an outstanding special agent."
   },
   {
@@ -271676,7 +271676,7 @@
     "Tag": "OB28",
     "Name": "Antonio",
     "Desc": "Antonio là một đứa trẻ mồ côi, và sau này lớn lên trở thành gangster",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Antonio",
     "_enDesc": "Antonio was an orphan who grew up to be a gangster."
   },
   {
@@ -271691,7 +271691,7 @@
     "Tag": "OB28",
     "Name": "Clu",
     "Desc": "Clu là một thám tử tư hiện đại.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Clu",
     "_enDesc": "Clu is a modern day private detective."
   },
   {
@@ -294386,8 +294386,8 @@
     "Tag": "OB46",
     "Name": "Matuê",
     "Desc": "Matuê",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enName": "Matuê",
+    "_enDesc": "Matuê"
   },
   {
     "Id": 710046048,
@@ -295151,7 +295151,7 @@
     "Tag": "OB47",
     "Name": "Nhà Sáng Tạo Free Fire VN",
     "Desc": "Nhà Sáng Tạo Free Fire VN",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nhà Sáng Tạo Free Fire VN",
     "_enDesc": "Free Fire VN Creator"
   },
   {
@@ -311846,7 +311846,7 @@
     "Tag": "",
     "Name": "Ketupat",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ketupat",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -311876,7 +311876,7 @@
     "Tag": "",
     "Name": "HEXA",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HEXA",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -313571,7 +313571,7 @@
     "Tag": "",
     "Name": "Ketupat",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ketupat",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -317487,7 +317487,7 @@
     "Name": "HH Lều Barraca",
     "Desc": "Barraca de quermesse",
     "_enName": "Barraca",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Barraca de quermesse"
   },
   {
     "Id": 801000389,
@@ -319331,7 +319331,7 @@
     "Tag": "",
     "Name": "HH Xmen Uy",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HH Xmen Uy",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -319361,7 +319361,7 @@
     "Tag": "",
     "Name": "HH Xmen",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HH Xmen",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -319437,7 +319437,7 @@
     "Name": "HH Wolfrahh",
     "Desc": "GG",
     "_enName": "Wolfrahh",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "GG"
   },
   {
     "Id": 801000519,
@@ -337647,7 +337647,7 @@
     "Name": "Huy Hiệu Free Fire",
     "Desc": "Free Fire",
     "_enName": "Free Fire Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Free Fire"
   },
   {
     "Id": 801001737,
@@ -343241,7 +343241,7 @@
     "Tag": "OB40",
     "Name": "M1887",
     "Desc": "Với Shotgun, bạn đã đánh bại nhiều đối thủ để trở thành kẻ thống trị cuộc chiến.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M1887",
     "_enDesc": "With this shotgun, you have defeated countless enemies and become the ruler of the battlefield."
   },
   {
@@ -343256,7 +343256,7 @@
     "Tag": "OB40",
     "Name": "Katana",
     "Desc": "Với katana trong tay, bạn trở thành bậc thầy cận chiến, đánh bại mọi kẻ thù và trở thành huyền thoại ở Đảo Quân Sự.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Katana",
     "_enDesc": "With this katana in hand, you once transformed into a melee master, defeated all enemies, and became a legend in Bermuda."
   },
   {
@@ -366611,7 +366611,7 @@
     "Tag": "",
     "Name": "T_55_XO_EXCHANGE_1111v",
     "Desc": "Sử dụng để quay để nhận các giải thưởng thú vị!",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "T_55_XO_EXCHANGE_1111v",
     "_enDesc": "Use to spin for exciting prizes!"
   },
   {
@@ -385886,7 +385886,7 @@
     "Tag": "",
     "Name": "Nulla",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nulla",
     "_enDesc": ""
   },
   {
@@ -385901,7 +385901,7 @@
     "Tag": "",
     "Name": "Andrew",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Andrew",
     "_enDesc": ""
   },
   {
@@ -385916,7 +385916,7 @@
     "Tag": "",
     "Name": "Kelly",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kelly",
     "_enDesc": ""
   },
   {
@@ -385931,7 +385931,7 @@
     "Tag": "",
     "Name": "Olivia",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Olivia",
     "_enDesc": ""
   },
   {
@@ -385946,7 +385946,7 @@
     "Tag": "",
     "Name": "Ford",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ford",
     "_enDesc": ""
   },
   {
@@ -385961,7 +385961,7 @@
     "Tag": "",
     "Name": "Nikita",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nikita",
     "_enDesc": ""
   },
   {
@@ -387011,7 +387011,7 @@
     "Tag": "",
     "Name": "Paloma",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Paloma",
     "_enDesc": ""
   },
   {
@@ -387026,7 +387026,7 @@
     "Tag": "",
     "Name": "Miguel",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Miguel",
     "_enDesc": ""
   },
   {
@@ -387116,7 +387116,7 @@
     "Tag": "",
     "Name": "Brazil",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Brazil",
     "_enDesc": ""
   },
   {
@@ -387251,7 +387251,7 @@
     "Tag": "",
     "Name": "Caroline",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Caroline",
     "_enDesc": ""
   },
   {
@@ -387596,7 +387596,7 @@
     "Tag": "",
     "Name": "Moco",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Moco",
     "_enDesc": ""
   },
   {
@@ -387896,7 +387896,7 @@
     "Tag": "",
     "Name": "GOLPISTAS",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "GOLPISTAS",
     "_enDesc": ""
   },
   {
@@ -387941,7 +387941,7 @@
     "Tag": "",
     "Name": "TEREM",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "TEREM",
     "_enDesc": ""
   },
   {
@@ -388091,7 +388091,7 @@
     "Tag": "",
     "Name": "SAYONARA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SAYONARA",
     "_enDesc": ""
   },
   {
@@ -388106,7 +388106,7 @@
     "Tag": "",
     "Name": "VEGA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "VEGA",
     "_enDesc": ""
   },
   {
@@ -388166,7 +388166,7 @@
     "Tag": "",
     "Name": "Anáhac Negativo",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Anáhac Negativo",
     "_enDesc": ""
   },
   {
@@ -388196,7 +388196,7 @@
     "Tag": "",
     "Name": "EVOS",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "EVOS",
     "_enDesc": ""
   },
   {
@@ -388211,7 +388211,7 @@
     "Tag": "",
     "Name": "SFI",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SFI",
     "_enDesc": ""
   },
   {
@@ -388796,7 +388796,7 @@
     "Tag": "",
     "Name": "A124",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "A124",
     "_enDesc": ""
   },
   {
@@ -418316,7 +418316,7 @@
     "Tag": "",
     "Name": "Akatsuki",
     "Desc": "Dùng tất cả Kỷ Vật Akatsuki để nhận danh hiệu đặc biệt",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Akatsuki",
     "_enDesc": "Use all Akatsuki Keepsakes to claim the special title"
   },
   {
@@ -427121,7 +427121,7 @@
     "Tag": "",
     "Name": "AN94 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "AN94 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -427151,7 +427151,7 @@
     "Tag": "",
     "Name": "Groza - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Groza - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -435596,7 +435596,7 @@
     "Tag": "",
     "Name": "AN94 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "AN94 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -435611,7 +435611,7 @@
     "Tag": "",
     "Name": "M14 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M14 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -459251,7 +459251,7 @@
     "Tag": "OB52",
     "Name": "Groza - Yuji Itadori",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Groza - Yuji Itadori",
     "_enDesc": ""
   },
   {
@@ -460766,7 +460766,7 @@
     "Tag": "OB53",
     "Name": "Winchester - Kagura",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Winchester - Kagura",
     "_enDesc": ""
   },
   {
@@ -460781,7 +460781,7 @@
     "Tag": "OB53",
     "Name": "Katana - Toyako",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Katana - Toyako",
     "_enDesc": ""
   },
   {
@@ -466361,7 +466361,7 @@
     "Tag": "",
     "Name": "M14 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M14 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -488141,7 +488141,7 @@
     "Tag": "OB54",
     "Name": "Booyahka",
     "Desc": "Nhạc chủ đề hợp tác AAA",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyahka",
     "_enDesc": "AAA collab theme song"
   },
   {
