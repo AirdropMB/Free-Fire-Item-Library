@@ -926,7 +926,7 @@
     "Tag": "",
     "Name": "Maro",
     "Desc": "Maro là người huấn luyện chim chuyên nghiệp",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Maro",
     "_enDesc": "Maro is a professional falconer."
   },
   {
@@ -971,7 +971,7 @@
     "Tag": "",
     "Name": "Dimitri",
     "Desc": "Dimitri là DJ nổi tiếng hàng đầu thế giới",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Dimitri",
     "_enDesc": "Dimitri is a world renowned sound technology engineer."
   },
   {
@@ -1196,7 +1196,7 @@
     "Tag": "",
     "Name": "Kairos",
     "Desc": "Từng là một chiến binh dày dặn trong một Đội Đặc Nhiệm. Biến cố lớn xảy ra khi gã chạm trán với một nguồn năng lượng thần bí, khiến bản thân bị biến đổi và trở nên không ngừng thèm khát năng lượng.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kairos",
     "_enDesc": "A former soldier of the Special Forces. His fate took a sharp turn when encountering a mysterious energy source, which transformed his body and instilled a constant craving for more energy."
   },
   {
@@ -1211,7 +1211,7 @@
     "Tag": "",
     "Name": "Koda",
     "Desc": "Sinh ra nơi vùng địa cực lạnh giá, Koda đã được một chú cáo tuyết dẫn dắt để tìm thấy chiếc mặt nạ mang theo công nghệ tân tiến. Với tình yêu thiên nhiên, cậu mong muốn được phiêu lưu nơi thế giới bên ngoài. Và sau khi gặp gỡ Wolfrahh khi chơi game, và về sau là Leon và chị gái của anh ta, Koda đã bước chân vào chuyến hành trình tìm đến những điều kỳ thú.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Koda",
     "_enDesc": "Born in the arctic region, Koda was once led by a snow fox to find a mask embedded with advanced tech of his village. The nature-loving boy has longed for an adventure in the outside world. As he met Wolfrahh while playing games online and, later on, Leon and his sister, Koda began to explore what is beyond the familiar."
   },
   {
@@ -1226,7 +1226,7 @@
     "Tag": "",
     "Name": "Oscar",
     "Desc": "Sáng làm học sinh, tối làm anh hùng. Với phong cách chiến đấu độc đáo, Oscar xuất ẩn xuất hiện trong bóng đêm để trừng phạt kẻ ác.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Oscar",
     "_enDesc": "A brilliant, even slightly overachieving student by day and a beloved vigilante by night. With his flashy physical prowess, Oscar leaps through the shadows to take down the evil."
   },
   {
@@ -1241,7 +1241,7 @@
     "Tag": "",
     "Name": "Nero",
     "Desc": "Người sống sót kỳ diệu sau cơn bão tuyết tàn khốc, đã có được sức mạnh tạo hình giấc mơ trong những giây phút cuối cùng của sự sống. Hắn nắm giữ quyền năng tối thượng trong thế giới mộng tưởng, hành động đơn độc và hoàn toàn không có tung tích gì ở thực tại.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nero",
     "_enDesc": "A miraculous survivor of a brutal freeze, who gained the power to shape dreams on his last legs. All-powerful in the dreamspace, he acts solitarily and stays untraceable in the waking world."
   },
   {
@@ -1256,7 +1256,7 @@
     "Tag": "",
     "Name": "Morse",
     "Desc": "Tĩnh lặng và tự do như một chú chuột, Morse không bao giờ để lại dấu vết. Anh ta lẩn khuất giữa thế giới thực và thế giới mạng, chỉ hoạt động dựa trên lợi ích cá nhân.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Morse",
     "_enDesc": "Silent and free like a mouse, Morse never leaves a trace behind. He slips between the real world and the web, driven only by self-interests."
   },
   {
@@ -1269,9 +1269,9 @@
     "IconInAB": "CDN",
     "Category": "Characters",
     "Tag": "",
-    "Name": "Ray",
+    "Name": "Tia",
     "Desc": "Chán nản với những cuộc chiến không hồi kết, Ray quyết định rời bỏ băng đảng với sự giúp đỡ từ cha của Shirou. Kể từ đó, anh lang thang qua những góc ngách của nhiều thành phố, dùng sức mạnh của mình để bảo vệ kẻ yếu thế.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ray",
     "_enDesc": "Tired of endless fighting, Ray chose to leave the gang behind with help from Shirou's father. Since then, he has wandered through the hidden corners of different cities, protecting the weak with his own power."
   },
   {
@@ -8829,9 +8829,9 @@
     "IconInAB": "AB",
     "Category": "",
     "Tag": "",
-    "Name": "Free Fire Indonesia Masters",
+    "Name": "Bậc thầy Free Fire Indonesia",
     "Desc": "Free Fire Indonesia Masters (FFIM) là giải đấu mở dành cho tất cả người chơi Free Fire ở Indonesia.\\n\\nNhà vô địch của giải đấu sẽ tới Vòng Play-ins",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Free Fire Indonesia Masters",
     "_enDesc": "Free Fire Indonesia Masters (FFIM) is an open tournament for all Free Fire players in Indonesia.\\n\\nThe champions of FFIM will represent the Indonesia region as the second seed. They will compete in the FFWS Play-ins."
   },
   {
@@ -8859,9 +8859,9 @@
     "IconInAB": "AB",
     "Category": "",
     "Tag": "",
-    "Name": "Free Fire League",
+    "Name": "Liên minh lửa miễn phí",
     "Desc": "Free Fire League Latin America (FFL) là giải đấu Free Fire ở Khu vực Mỹ Latin.\\n\\nCác nhà vô địch của FFL sẽ đại diện cho khu vực LATAM với tư cách là hạt giống số 1 và thi đấu trong trận Chung kết FFWS.\\n\\nĐội đứng thứ 2 của FFL sẽ đại diện cho khu vực LATAM với tư cách là hạt giống số hai và thi đấu trong Vòng Play-ins.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Free Fire League",
     "_enDesc": "Free Fire League Latin America (FFL) is the ultimate Free Fire tournament in Latin America.\\n\\nThe champions of FFL will represent the LATAM region as the first seed, and will compete in the FFWS Finals.\\n\\nThe 2nd placed team in FFL will represent the LATAM region as the second seed, and will compete in the FFWS Play-ins."
   },
   {
@@ -8874,9 +8874,9 @@
     "IconInAB": "AB",
     "Category": "",
     "Tag": "",
-    "Name": "Free Fire Pakistan League",
+    "Name": "Liên đoàn Free Fire Pakistan",
     "Desc": "Free Fire Pakistan League (FFPL) là giải đấu cấp độ cao nhất dành cho Free Fire ở Pakistan.\\n\\nNhà vô địch của giải đấu sẽ có mặt tại vòng Play-ins FFWS.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Free Fire Pakistan League",
     "_enDesc": "Free Fire Pakistan League (FFPL) is the highest tier of tournaments for Free Fire in Pakistan. \\n\\nThe champions of Free Fire Pakistan League will represent the Pakistan region as the 1st seed. They will compete in the FFWS Play-ins."
   },
   {
@@ -8949,9 +8949,9 @@
     "IconInAB": "AB",
     "Category": "",
     "Tag": "",
-    "Name": "MCPS Majors",
+    "Name": "Chuyên ngành MCPS",
     "Desc": "MCPS Majors là giải đấu hàng đầu dành cho khu vực Malaysia, Campuchia, Philippines và Sri Lanka.\\n\\nNhà vô địch giải đấu sẽ tới trận chung kết FFWS.\\nVị trí thứ hai sẽ tới vòng Play-ins FFWS.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "MCPS Majors",
     "_enDesc": "MCPS Majors is the top league for Malaysia, Cambodia, Philippines, and Sri Lanka region. \\n\\nThe champions of MCPS Majors will represent the MCPS region as the first seed, and will compete in the FFWS Finals.\\n\\nThe 2nd placed team in MCPS Majors will represent the MCPS region as the second seed, and will compete in the FFWS Play-ins."
   },
   {
@@ -11124,9 +11124,9 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Keep calm",
+    "Name": "Giữ bình tĩnh",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Keep calm",
     "_enDesc": ""
   },
   {
@@ -11169,9 +11169,9 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Keep calm",
+    "Name": "Giữ bình tĩnh",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Keep calm",
     "_enDesc": ""
   },
   {
@@ -11184,9 +11184,9 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Keep calm",
+    "Name": "Giữ bình tĩnh",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Keep calm",
     "_enDesc": ""
   },
   {
@@ -11214,9 +11214,9 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Keep calm",
+    "Name": "Giữ bình tĩnh",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Keep calm",
     "_enDesc": ""
   },
   {
@@ -15384,9 +15384,9 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "HUAWEI Y6",
+    "Name": "Huawei Y6",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HUAWEI Y6",
     "_enDesc": ""
   },
   {
@@ -45399,9 +45399,9 @@
     "IconInAB": "CDN",
     "Category": "Top",
     "Tag": "OB54",
-    "Name": "2026 EWC Champions T-shirt",
+    "Name": "Áo thun vô địch EWC 2026",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "2026 EWC Champions T-shirt",
     "_enDesc": ""
   },
   {
@@ -138924,9 +138924,9 @@
     "IconInAB": "CDN",
     "Category": "Mask",
     "Tag": "OB54",
-    "Name": "",
+    "Name": "Boss Chuối (Mặt Nạ)",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Boss Banana (Mask)",
     "_enDesc": ""
   },
   {
@@ -144954,10 +144954,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Vương miện vàng",
+    "Desc": "Vương miện vàng",
+    "_enName": "Golden Crown",
+    "_enDesc": "Golden Crown"
   },
   {
     "Id": 246754003,
@@ -144969,10 +144969,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Bóng bay màu vàng và xanh",
+    "Desc": "Bóng bay màu vàng và xanh",
+    "_enName": "Yellow & Green Balloons",
+    "_enDesc": "Yellow & Green Balloons"
   },
   {
     "Id": 246754004,
@@ -144984,10 +144984,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Bóng bay màu đỏ và tím",
+    "Desc": "Bóng bay màu đỏ và tím",
+    "_enName": "Red & Purple Balloons",
+    "_enDesc": "Red & Purple Balloons"
   },
   {
     "Id": 246754005,
@@ -145014,10 +145014,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Bóng Bay Vàng & Bạc",
+    "Desc": "Bóng Bay Vàng & Bạc",
+    "_enName": "Golden & Silver Balloons",
+    "_enDesc": "Golden & Silver Balloons"
   },
   {
     "Id": 246754007,
@@ -145029,10 +145029,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Quả cầu lửa xanh",
+    "Desc": "Quả cầu lửa xanh",
+    "_enName": "Blue Fireball",
+    "_enDesc": "Blue Fireball"
   },
   {
     "Id": 246754008,
@@ -145134,10 +145134,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Kính đen",
+    "Desc": "Kính đen",
+    "_enName": "Black Goggle",
+    "_enDesc": "Black Goggle"
   },
   {
     "Id": 246754015,
@@ -145149,10 +145149,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Kính trái tim xanh",
+    "Desc": "Kính trái tim xanh",
+    "_enName": "Blue Heart Glasses",
+    "_enDesc": "Blue Heart Glasses"
   },
   {
     "Id": 246754016,
@@ -145509,10 +145509,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Beige",
-    "Desc": "Beige",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Be",
+    "Desc": "Be",
+    "_enName": "Beige",
+    "_enDesc": "Beige"
   },
   {
     "Id": 246955010,
@@ -145524,10 +145524,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Smoky Rose",
-    "Desc": "Smoky Rose",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "hoa hồng khói",
+    "Desc": "hoa hồng khói",
+    "_enName": "Smoky Rose",
+    "_enDesc": "Smoky Rose"
   },
   {
     "Id": 246955011,
@@ -145539,10 +145539,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Colorful Pixel Glasses",
-    "Desc": "Colorful Pixel Glasses",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Kính Pixel đầy màu sắc",
+    "Desc": "Kính Pixel đầy màu sắc",
+    "_enName": "Colorful Pixel Glasses",
+    "_enDesc": "Colorful Pixel Glasses"
   },
   {
     "Id": 246955012,
@@ -145554,10 +145554,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Purple  Goggles",
-    "Desc": "Purple  Goggles",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Kính màu tím",
+    "Desc": "Kính màu tím",
+    "_enName": "Purple  Goggles",
+    "_enDesc": "Purple  Goggles"
   },
   {
     "Id": 246955013,
@@ -145569,10 +145569,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Yellow Cute Goggles",
-    "Desc": "Yellow Cute Goggles",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Kính bảo hộ màu vàng dễ thương",
+    "Desc": "Kính bảo hộ màu vàng dễ thương",
+    "_enName": "Yellow Cute Goggles",
+    "_enDesc": "Yellow Cute Goggles"
   },
   {
     "Id": 246955014,
@@ -145614,10 +145614,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Blue Elephant Hat",
-    "Desc": "Blue Elephant Hat",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Mũ voi xanh",
+    "Desc": "Mũ voi xanh",
+    "_enName": "Blue Elephant Hat",
+    "_enDesc": "Blue Elephant Hat"
   },
   {
     "Id": 246955017,
@@ -145629,10 +145629,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Red Cat Hat",
-    "Desc": "Red Cat Hat",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Mũ Mèo Đỏ",
+    "Desc": "Mũ Mèo Đỏ",
+    "_enName": "Red Cat Hat",
+    "_enDesc": "Red Cat Hat"
   },
   {
     "Id": 246955018,
@@ -145674,10 +145674,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Spooky Rabbit Backpack",
-    "Desc": "Spooky Rabbit Backpack",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Ba lô thỏ ma quái",
+    "Desc": "Ba lô thỏ ma quái",
+    "_enName": "Spooky Rabbit Backpack",
+    "_enDesc": "Spooky Rabbit Backpack"
   },
   {
     "Id": 246955021,
@@ -145689,10 +145689,10 @@
     "IconInAB": "CDN",
     "Category": "Spark Pet Vault",
     "Tag": "",
-    "Name": "Pumpkin",
-    "Desc": "Pumpkin",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "bí ngô",
+    "Desc": "bí ngô",
+    "_enName": "Pumpkin",
+    "_enDesc": "Pumpkin"
   },
   {
     "Id": 246955022,
@@ -145796,7 +145796,7 @@
     "Tag": "",
     "Name": "Amaterasu",
     "Desc": "Tạo một màn hắc hỏa ở vị trí chỉ định. Màn lửa sẽ đốt Bom Keo và gây sát thương lên đối phương chạm phải. Màn lửa không bị ảnh hưởng bởi chướng ngại vật.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Amaterasu",
     "_enDesc": "Create a wall of dark flames in the target area. It will destroy Gloo Walls and deal damage to enemies inside. It will also ignore any obstacles."
   },
   {
@@ -150595,9 +150595,9 @@
     "Category": "Bundle Create",
     "Tag": "",
     "Name": "Hộp Nonolive xanh",
-    "Desc": "Sự kiện cùng Nonolive",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Desc": "Sự kiện tương tự Nonolive",
+    "_enName": "Hộp Nonolive xanh",
+    "_enDesc": "Sự kiện cùng Nonolive"
   },
   {
     "Id": 400000314,
@@ -150611,8 +150611,8 @@
     "Tag": "",
     "Name": "Hộp 8/3",
     "Desc": "Tôn vinh phụ nữ Việt Nam",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enName": "Hộp 8/3",
+    "_enDesc": "Tôn vinh phụ nữ Việt Nam"
   },
   {
     "Id": 400000315,
@@ -184509,9 +184509,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "OB32",
-    "Name": "Beat Box",
+    "Name": "Hộp đánh bại",
     "Desc": "Mở để nhận quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Beat Box",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -235541,7 +235541,7 @@
     "Tag": "OB51",
     "Name": "Charge Buster Frenzy Bunny Loot Crate",
     "Desc": "Mở để nhận Charge Buster Frenzy Bunny",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Charge Buster Frenzy Bunny Loot Crate",
     "_enDesc": "Open to receive a Charge Buster Frenzy Bunny"
   },
   {
@@ -235556,7 +235556,7 @@
     "Tag": "OB51",
     "Name": "AWM Breath of Silence Loot Crate",
     "Desc": "Mở để nhận AWM Breath of Silence",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "AWM Breath of Silence Loot Crate",
     "_enDesc": "Open to receive a AWM Breath of Silence"
   },
   {
@@ -295089,10 +295089,10 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB47",
-    "Name": "Legends x Dominators",
-    "Desc": "Legends x Dominators",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Huyền thoại x Kẻ thống trị",
+    "Desc": "Huyền thoại x Kẻ thống trị",
+    "_enName": "Legends x Dominators",
+    "_enDesc": "Legends x Dominators"
   },
   {
     "Id": 710047033,
@@ -295151,7 +295151,7 @@
     "Tag": "OB47",
     "Name": "Nhà Sáng Tạo Free Fire VN",
     "Desc": "Nhà Sáng Tạo Free Fire VN",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nhà Sáng Tạo Free Fire VN",
     "_enDesc": "Free Fire VN Creator"
   },
   {
@@ -311846,7 +311846,7 @@
     "Tag": "",
     "Name": "Ketupat",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ketupat",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -311876,7 +311876,7 @@
     "Tag": "",
     "Name": "HEXA",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HEXA",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -313571,7 +313571,7 @@
     "Tag": "",
     "Name": "Ketupat",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ketupat",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -315774,10 +315774,10 @@
     "IconInAB": "CDN",
     "Category": "Exchange Tokens",
     "Tag": "",
-    "Name": "Mr. Santa",
-    "Desc": "Ho! Ho! Ho!",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Ông già Noel",
+    "Desc": "ồ! ồ! ồ!",
+    "_enName": "Mr. Santa",
+    "_enDesc": "Ho! Ho! Ho!"
   },
   {
     "Id": 801000274,
@@ -317487,7 +317487,7 @@
     "Name": "HH Lều Barraca",
     "Desc": "Barraca de quermesse",
     "_enName": "Barraca",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Barraca de quermesse"
   },
   {
     "Id": 801000389,
@@ -319361,7 +319361,7 @@
     "Tag": "",
     "Name": "HH Xmen",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HH Xmen",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -327430,9 +327430,9 @@
     "Category": "Exchange Tokens",
     "Tag": "",
     "Name": "HH tai nghe",
-    "Desc": "Boom! Boom! Bass...",
+    "Desc": "Bùm! Bùm! Âm trầm...",
     "_enName": "King of the Street Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Boom! Boom! Bass..."
   },
   {
     "Id": 801001054,
@@ -327460,9 +327460,9 @@
     "Category": "Exchange Tokens",
     "Tag": "",
     "Name": "HH Vịt vàng",
-    "Desc": "Quack! Quack!",
+    "Desc": "Lang băm! Lang băm!",
     "_enName": "Cutie Little Duck Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Quack! Quack!"
   },
   {
     "Id": 801001056,
@@ -337525,9 +337525,9 @@
     "Category": "Exchange Tokens",
     "Tag": "",
     "Name": "Huy Hiệu Cổ Xưa",
-    "Desc": "POW!",
+    "Desc": "Tù binh!",
     "_enName": "Archaic Fist Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "POW!"
   },
   {
     "Id": 801001729,
@@ -337647,7 +337647,7 @@
     "Name": "Huy Hiệu Free Fire",
     "Desc": "Free Fire",
     "_enName": "Free Fire Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Free Fire"
   },
   {
     "Id": 801001737,
@@ -343241,7 +343241,7 @@
     "Tag": "OB40",
     "Name": "M1887",
     "Desc": "Với Shotgun, bạn đã đánh bại nhiều đối thủ để trở thành kẻ thống trị cuộc chiến.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M1887",
     "_enDesc": "With this shotgun, you have defeated countless enemies and become the ruler of the battlefield."
   },
   {
@@ -343256,7 +343256,7 @@
     "Tag": "OB40",
     "Name": "Katana",
     "Desc": "Với katana trong tay, bạn trở thành bậc thầy cận chiến, đánh bại mọi kẻ thù và trở thành huyền thoại ở Đảo Quân Sự.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Katana",
     "_enDesc": "With this katana in hand, you once transformed into a melee master, defeated all enemies, and became a legend in Bermuda."
   },
   {
@@ -357564,10 +357564,10 @@
     "IconInAB": "CDN",
     "Category": "Vouchers",
     "Tag": "",
-    "Name": "Black God Noir Voucher",
-    "Desc": "Use to spin for exciting prizes!",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Voucher Black God Noir",
+    "Desc": "Sử dụng để quay để nhận các giải thưởng thú vị!",
+    "_enName": "Black God Noir Voucher",
+    "_enDesc": "Use to spin for exciting prizes!"
   },
   {
     "Id": 802000141,
@@ -358224,10 +358224,10 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Garden Pack",
-    "Desc": "Garden Pack, open to obtain tools to build your garden.",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Gói làm vườn",
+    "Desc": "Garden Pack, mở để nhận các công cụ xây dựng khu vườn của bạn.",
+    "_enName": "Garden Pack",
+    "_enDesc": "Garden Pack, open to obtain tools to build your garden."
   },
   {
     "Id": 804555002,
@@ -358254,10 +358254,10 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Garden Pack",
-    "Desc": "Garden Pack, open to obtain tools to build your garden.",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Gói làm vườn",
+    "Desc": "Garden Pack, mở để nhận các công cụ xây dựng khu vườn của bạn.",
+    "_enName": "Garden Pack",
+    "_enDesc": "Garden Pack, open to obtain tools to build your garden."
   },
   {
     "Id": 804555004,
@@ -385886,7 +385886,7 @@
     "Tag": "",
     "Name": "Nulla",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nulla",
     "_enDesc": ""
   },
   {
@@ -386259,9 +386259,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "Maxim",
+    "Name": "Châm ngôn",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Maxim",
     "_enDesc": ""
   },
   {
@@ -386739,9 +386739,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "Muay Thai",
+    "Name": "Muay Thái",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Muay Thai",
     "_enDesc": ""
   },
   {
@@ -386814,9 +386814,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "UAV",
+    "Name": "máy bay không người lái",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "UAV",
     "_enDesc": ""
   },
   {
@@ -386859,9 +386859,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "Lovers",
+    "Name": "Người yêu",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Lovers",
     "_enDesc": ""
   },
   {
@@ -387026,7 +387026,7 @@
     "Tag": "",
     "Name": "Miguel",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Miguel",
     "_enDesc": ""
   },
   {
@@ -387116,7 +387116,7 @@
     "Tag": "",
     "Name": "Brazil",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Brazil",
     "_enDesc": ""
   },
   {
@@ -387251,7 +387251,7 @@
     "Tag": "",
     "Name": "Caroline",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Caroline",
     "_enDesc": ""
   },
   {
@@ -387596,7 +387596,7 @@
     "Tag": "",
     "Name": "Moco",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Moco",
     "_enDesc": ""
   },
   {
@@ -387896,7 +387896,7 @@
     "Tag": "",
     "Name": "GOLPISTAS",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "GOLPISTAS",
     "_enDesc": ""
   },
   {
@@ -387924,9 +387924,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "PINK LADY",
+    "Name": "QUÝ VỊ HỒNG",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "PINK LADY",
     "_enDesc": ""
   },
   {
@@ -387941,7 +387941,7 @@
     "Tag": "",
     "Name": "TEREM",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "TEREM",
     "_enDesc": ""
   },
   {
@@ -387954,9 +387954,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "4KING OF THE KING",
+    "Name": "4VUA CỦA VUA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "4KING OF THE KING",
     "_enDesc": ""
   },
   {
@@ -387969,9 +387969,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "APOLLO SPY",
+    "Name": "GIÁN ĐIỆP APOLLO",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "APOLLO SPY",
     "_enDesc": ""
   },
   {
@@ -387984,9 +387984,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "DON'T FAMILY",
+    "Name": "KHÔNG GIA ĐÌNH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "DON'T FAMILY",
     "_enDesc": ""
   },
   {
@@ -388059,9 +388059,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "SPS 3.7T E-SPORT CLAN",
+    "Name": "SPS 3.7T THỂ THAO ĐIỆN TỬ CLAN",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SPS 3.7T E-SPORT CLAN",
     "_enDesc": ""
   },
   {
@@ -388091,7 +388091,7 @@
     "Tag": "",
     "Name": "SAYONARA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SAYONARA",
     "_enDesc": ""
   },
   {
@@ -388119,9 +388119,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "WISDOM",
+    "Name": "KHÔN NGOAN",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "WISDOM",
     "_enDesc": ""
   },
   {
@@ -388134,9 +388134,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "WAG",
+    "Name": "HAY BÔNG LƠN",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "WAG",
     "_enDesc": ""
   },
   {
@@ -388149,9 +388149,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "TOP",
+    "Name": "ĐỨNG ĐẦU",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "TOP",
     "_enDesc": ""
   },
   {
@@ -388181,7 +388181,7 @@
     "Tag": "",
     "Name": "TEKA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "TEKA",
     "_enDesc": ""
   },
   {
@@ -388196,7 +388196,7 @@
     "Tag": "",
     "Name": "EVOS",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "EVOS",
     "_enDesc": ""
   },
   {
@@ -388211,7 +388211,7 @@
     "Tag": "",
     "Name": "SFI",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SFI",
     "_enDesc": ""
   },
   {
@@ -396894,9 +396894,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "OB42",
-    "Name": "FFWS Magic Squad",
+    "Name": "Biệt đội ma thuật FFWS",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FFWS Magic Squad",
     "_enDesc": ""
   },
   {
@@ -418316,7 +418316,7 @@
     "Tag": "",
     "Name": "Akatsuki",
     "Desc": "Dùng tất cả Kỷ Vật Akatsuki để nhận danh hiệu đặc biệt",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Akatsuki",
     "_enDesc": "Use all Akatsuki Keepsakes to claim the special title"
   },
   {
@@ -418779,10 +418779,10 @@
     "IconInAB": "AB",
     "Category": "Titles",
     "Tag": "",
-    "Name": "Ace Manager",
-    "Desc": "Complete missions in the web event to claim",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Người quản lý xuất sắc",
+    "Desc": "Hoàn thành nhiệm vụ trong sự kiện web để nhận",
+    "_enName": "Ace Manager",
+    "_enDesc": "Complete missions in the web event to claim"
   },
   {
     "Id": 906000001,
@@ -427121,7 +427121,7 @@
     "Tag": "",
     "Name": "AN94 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "AN94 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -427136,7 +427136,7 @@
     "Tag": "",
     "Name": "M14 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M14 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -427151,7 +427151,7 @@
     "Tag": "",
     "Name": "Groza - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Groza - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -427166,7 +427166,7 @@
     "Tag": "",
     "Name": "UMP - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "UMP - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -435596,7 +435596,7 @@
     "Tag": "",
     "Name": "AN94 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "AN94 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -435611,7 +435611,7 @@
     "Tag": "",
     "Name": "M14 - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M14 - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -435626,7 +435626,7 @@
     "Tag": "",
     "Name": "Groza - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Groza - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -435641,7 +435641,7 @@
     "Tag": "",
     "Name": "UMP - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "UMP - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -448794,9 +448794,9 @@
     "IconInAB": "CDN",
     "Category": "Weapon Skins",
     "Tag": "OB38",
-    "Name": "USP-2 - Ebony & Ivory",
+    "Name": "USP-2 - Gỗ mun & Ngà",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "USP-2 - Ebony & Ivory",
     "_enDesc": ""
   },
   {
@@ -448824,9 +448824,9 @@
     "IconInAB": "CDN",
     "Category": "Weapon Skins",
     "Tag": "OB38",
-    "Name": "USP - Ivory",
+    "Name": "USP - Ngà voi",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "USP - Ivory",
     "_enDesc": ""
   },
   {
@@ -454959,9 +454959,9 @@
     "IconInAB": "CDN",
     "Category": "Weapon Skins",
     "Tag": "OB46",
-    "Name": "Vector - BLUE LOCK",
+    "Name": "Kho ảnh - BLUE LOCK",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Vector - BLUE LOCK",
     "_enDesc": ""
   },
   {
@@ -460766,7 +460766,7 @@
     "Tag": "OB53",
     "Name": "Winchester - Kagura",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Winchester - Kagura",
     "_enDesc": ""
   },
   {
@@ -460781,7 +460781,7 @@
     "Tag": "OB53",
     "Name": "Katana - Toyako",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Katana - Toyako",
     "_enDesc": ""
   },
   {
@@ -466391,7 +466391,7 @@
     "Tag": "",
     "Name": "UMP - BOOYAH",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "UMP - BOOYAH",
     "_enDesc": ""
   },
   {
@@ -473441,7 +473441,7 @@
     "Tag": "OB38",
     "Name": "Cavaliere R",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Cavaliere R",
     "_enDesc": ""
   },
   {
@@ -475824,9 +475824,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "",
-    "Name": "LOL",
+    "Name": "CƯỜI",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "LOL",
     "_enDesc": ""
   },
   {
@@ -475869,9 +475869,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "",
-    "Name": "Dab",
+    "Name": "Thoa",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Dab",
     "_enDesc": ""
   },
   {
@@ -476379,9 +476379,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "",
-    "Name": "Break dance",
+    "Name": "Nhảy breakdance",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Break dance",
     "_enDesc": ""
   },
   {
@@ -476634,9 +476634,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "",
-    "Name": "Captain Booyah",
+    "Name": "Thuyền trưởng Booyah",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Captain Booyah",
     "_enDesc": ""
   },
   {
@@ -476666,7 +476666,7 @@
     "Tag": "",
     "Name": "BOOYAH!",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "BOOYAH!",
     "_enDesc": ""
   },
   {
@@ -479529,9 +479529,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "OB41",
-    "Name": "Beast Breathing Fifth Fang: Crazy Cutting",
+    "Name": "Quái thú thở nanh thứ năm: Cắt điên cuồng",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Beast Breathing Fifth Fang: Crazy Cutting",
     "_enDesc": ""
   },
   {
@@ -480521,7 +480521,7 @@
     "Tag": "OB45",
     "Name": "Naatu Naatu",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Naatu Naatu",
     "_enDesc": ""
   },
   {
@@ -480759,9 +480759,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "OB46",
-    "Name": "Isagi's Spatial Awareness",
+    "Name": "Nhận thức về không gian của Isagi",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Isagi's Spatial Awareness",
     "_enDesc": ""
   },
   {
@@ -480774,9 +480774,9 @@
     "IconInAB": "CDN",
     "Category": "Emote",
     "Tag": "OB46",
-    "Name": "Nagi's Trapping",
+    "Name": "Bẫy của Nagi",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nagi's Trapping",
     "_enDesc": ""
   },
   {
@@ -481001,7 +481001,7 @@
     "Tag": "OB47",
     "Name": "Rasengan",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Rasengan",
     "_enDesc": ""
   },
   {
@@ -481331,7 +481331,7 @@
     "Tag": "OB48",
     "Name": "Bailalo Rocky",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Bailalo Rocky",
     "_enDesc": ""
   },
   {
@@ -482351,7 +482351,7 @@
     "Tag": "OB51",
     "Name": "67",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "67",
     "_enDesc": ""
   },
   {
@@ -484434,9 +484434,9 @@
     "IconInAB": "CDN",
     "Category": "Skywings",
     "Tag": "OB36",
-    "Name": "Celestial",
+    "Name": "thiên thể",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Celestial",
     "_enDesc": ""
   },
   {
@@ -485214,9 +485214,9 @@
     "IconInAB": "CDN",
     "Category": "Arrival Animation",
     "Tag": "OB41",
-    "Name": "Water Breathing Tenth Form: Constant Flux",
+    "Name": "Thở bằng nước Dạng thứ mười: Dòng chảy không đổi",
     "Desc": "Trang bị để hiển thị các hiệu ứng trong quá trình ghép trận, thông tin cá nhân và thông báo MVP",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Water Breathing Tenth Form: Constant Flux",
     "_enDesc": "Equip to display special effects during team matchmaking, on profile page, and in MVP announcements."
   },
   {
@@ -485846,7 +485846,7 @@
     "Tag": "OB33",
     "Name": "GEN FF",
     "Desc": "Nhạc trong sảnh chờ của Gen FF",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "GEN FF",
     "_enDesc": "Gen FF event lobby music"
   },
   {
@@ -485890,9 +485890,9 @@
     "Category": "Music",
     "Tag": "OB33",
     "Name": "Hạ Chori",
-    "Desc": "Diwali 2021 track with Shraddha Kapoor and Bhuvan Bam",
+    "Desc": "Đường đua Diwali 2021 với Shraddha Kapoor và Bhuvan Bam",
     "_enName": "Kill Chori",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Diwali 2021 track with Shraddha Kapoor and Bhuvan Bam"
   },
   {
     "Id": 913033005,
@@ -485906,7 +485906,7 @@
     "Tag": "OB33",
     "Name": "Hoje é Só Capa",
     "Desc": "Bài hát biểu tượng FF của Brazil",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Hoje é Só Capa",
     "_enDesc": "Iconic Brazilian FF song"
   },
   {
@@ -485921,7 +485921,7 @@
     "Tag": "OB33",
     "Name": "GEN FF",
     "Desc": "Nhạc trong sảnh chờ của Gen FF",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "GEN FF",
     "_enDesc": "Gen FF event lobby music"
   },
   {
@@ -485949,9 +485949,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB34",
-    "Name": "Rampage 2020",
+    "Name": "Cơn thịnh nộ 2020",
     "Desc": "Nhạc Nền Rampage 2020",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Rampage 2020",
     "_enDesc": "Rampage 2020 lobby music"
   },
   {
@@ -485964,9 +485964,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB34",
-    "Name": "Rampage 2021",
+    "Name": "Cơn thịnh nộ 2021",
     "Desc": "Nhạc sảnh chờ Rampage 2021",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Rampage 2021",
     "_enDesc": "Rampage 2021 lobby music"
   },
   {
@@ -485979,9 +485979,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB34",
-    "Name": "Rampage 2022",
+    "Name": "Cơn thịnh nộ 2022",
     "Desc": "Nhạc Nền Rampage 2022",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Rampage 2022",
     "_enDesc": "Rampage 2022 lobby music"
   },
   {
@@ -486099,9 +486099,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB34",
-    "Name": "Rampage 2022",
+    "Name": "Cơn thịnh nộ 2022",
     "Desc": "Nhạc Nền Rampage 2022",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Rampage 2022",
     "_enDesc": "Rampage 2022 lobby music"
   },
   {
@@ -486957,7 +486957,7 @@
     "Name": "Tất cả",
     "Desc": "Free Fire World Series 2021 Singapore",
     "_enName": "All In",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Free Fire World Series 2021 Singapore"
   },
   {
     "Id": 913042004,
@@ -486984,9 +486984,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB42",
-    "Name": "Thai Halloween",
+    "Name": "Halloween kiểu Thái",
     "Desc": "Bài hát chủ đề Halloween 2023 của Free Fire Thái cho bản đồ 4v4 mới với những bóng ma Thái Lan nổi tiếng",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Thai Halloween",
     "_enDesc": "Free Fire Thai Halloween 2023 Theme Song for new 4v4 map with famous Thai ghosts"
   },
   {
@@ -487164,9 +487164,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB45",
-    "Name": "Feeling The Fire",
+    "Name": "Cảm nhận ngọn lửa",
     "Desc": "Nhạc chủ đề Sinh Nhật 7 Tuổi",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Feeling The Fire",
     "_enDesc": "7th Anniversary Theme Song"
   },
   {
@@ -487449,9 +487449,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB47",
-    "Name": "Pushpa 2: The Rule",
+    "Name": "Pushpa 2: Quy tắc",
     "Desc": "Nhạc hợp tác chính thức Free Fire MAX x Pushpa 2: The Rule",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Pushpa 2: The Rule",
     "_enDesc": "The official collaboration music of Free Fire MAX x Pushpa 2: The Rule"
   },
   {
@@ -487854,9 +487854,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Awakening Path",
+    "Name": "Con đường thức tỉnh",
     "Desc": "Nhạc nền hợp tác Chú Thuật Hồi Chiến",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Awakening Path",
     "_enDesc": "Jujutsu Kaisen collaboration theme song"
   },
   {
@@ -487869,9 +487869,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Awakening Path",
+    "Name": "Con đường thức tỉnh",
     "Desc": "Nhạc nền hợp tác Chú Thuật Hồi Chiến",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Awakening Path",
     "_enDesc": "Jujutsu Kaisen collaboration theme song"
   },
   {
@@ -487884,9 +487884,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Awakening Battle",
+    "Name": "Trận chiến thức tỉnh",
     "Desc": "Nhạc nền hợp tác Chú Thuật Hồi Chiến",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Awakening Battle",
     "_enDesc": "Jujutsu Kaisen collaboration theme song"
   },
   {
@@ -487899,9 +487899,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Awakening Battle",
+    "Name": "Trận chiến thức tỉnh",
     "Desc": "Nhạc nền hợp tác Chú Thuật Hồi Chiến",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Awakening Battle",
     "_enDesc": "Jujutsu Kaisen collaboration theme song"
   },
   {
@@ -487974,9 +487974,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Reunion",
+    "Name": "Đoàn tụ",
     "Desc": "Bài hát chủ đề Đại Tiệc Âm Nhạc",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Reunion",
     "_enDesc": "Beat Carnival theme song"
   },
   {
@@ -487989,9 +487989,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Reunion",
+    "Name": "Đoàn tụ",
     "Desc": "Bài hát chủ đề Đại Tiệc Âm Nhạc",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Reunion",
     "_enDesc": "Beat Carnival theme song"
   },
   {
@@ -488005,9 +488005,9 @@
     "Category": "Music",
     "Tag": "OB52",
     "Name": "Truy Tìm Kho Báu",
-    "Desc": "Ramadan",
+    "Desc": "tháng chay Ramadan",
     "_enName": "Lost Treasure",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Ramadan"
   },
   {
     "Id": 913052012,
@@ -488020,9 +488020,9 @@
     "Category": "Music",
     "Tag": "OB52",
     "Name": "Truy Tìm Kho Báu",
-    "Desc": "Ramadan",
+    "Desc": "tháng chay Ramadan",
     "_enName": "Lost Treasure",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Ramadan"
   },
   {
     "Id": 913052013,
@@ -488035,9 +488035,9 @@
     "Category": "Music",
     "Tag": "OB52",
     "Name": "Berburu Berkah",
-    "Desc": "Ramadan ID 2026",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Desc": "ID tháng Ramadan 2026",
+    "_enName": "Berburu Berkah",
+    "_enDesc": "Ramadan ID 2026"
   },
   {
     "Id": 913053001,
@@ -488081,7 +488081,7 @@
     "Tag": "OB53",
     "Name": "Booyah Olé",
     "Desc": "Nhạc nền Đại Tiệc Sân Cỏ",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyah Olé",
     "_enDesc": "Fire Kickoff theme song"
   },
   {
@@ -488096,7 +488096,7 @@
     "Tag": "OB53",
     "Name": "Booyah Olé",
     "Desc": "Nhạc nền Đại Tiệc Sân Cỏ",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyah Olé",
     "_enDesc": "Fire Kickoff theme song"
   },
   {
@@ -488141,7 +488141,7 @@
     "Tag": "OB54",
     "Name": "Booyahka",
     "Desc": "Nhạc chủ đề hợp tác AAA",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyahka",
     "_enDesc": "AAA collab theme song"
   },
   {
@@ -488156,7 +488156,7 @@
     "Tag": "OB54",
     "Name": "Booyahka",
     "Desc": "Nhạc chủ đề hợp tác AAA",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyahka",
     "_enDesc": "AAA collab theme song"
   },
   {
@@ -488169,9 +488169,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB54",
-    "Name": "Made for the Fire",
+    "Name": "Dành cho lửa",
     "Desc": "Nhạc chủ đề Sinh Nhật 9 Tuổi",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Made for the Fire",
     "_enDesc": "9th Anniversary theme song"
   },
   {
@@ -488184,9 +488184,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB54",
-    "Name": "Made for the Fire",
+    "Name": "Dành cho lửa",
     "Desc": "Nhạc chủ đề Sinh Nhật 9 Tuổi",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Made for the Fire",
     "_enDesc": "9th Anniversary theme song"
   },
   {
@@ -488201,7 +488201,7 @@
     "Tag": "OB54",
     "Name": "ก้าว (9)",
     "Desc": "Nhạc chủ đề Sinh Nhật 9 Tuổi",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "ก้าว (9)",
     "_enDesc": "9th Anniversary theme song"
   },
   {
@@ -488214,10 +488214,10 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB54",
-    "Name": "",
-    "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Cari yang Baru",
+    "Desc": "Bài hát chủ đề hợp tác Tenxi",
+    "_enName": "Cari yang Baru",
+    "_enDesc": "Tenxi collab theme song"
   },
   {
     "Id": 914000001,
@@ -488652,7 +488652,7 @@
     "Name": "Có nấm ở đây",
     "Desc": "Matuê",
     "_enName": "Found a mushroom",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Matuê"
   },
   {
     "Id": 921046005,
@@ -488667,7 +488667,7 @@
     "Name": "Kế hoạch mới đã đến!",
     "Desc": "Matuê",
     "_enName": "I got another plan for us",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Matuê"
   },
   {
     "Id": 921046006,
@@ -488682,7 +488682,7 @@
     "Name": "Ném sang cho tôi!",
     "Desc": "Matuê",
     "_enName": "Pass it to me!",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Matuê"
   },
   {
     "Id": 921046007,
@@ -488697,7 +488697,7 @@
     "Name": "Ngạo nghễ nhỉ?",
     "Desc": "Matuê",
     "_enName": "Got a bit too proud, huh?",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Matuê"
   },
   {
     "Id": 921046008,
@@ -488891,7 +488891,7 @@
     "Tag": "OB46",
     "Name": "Swagat nahi karoge hamara?",
     "Desc": "Gói giọng nói Bolly Boli",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Swagat nahi karoge hamara?",
     "_enDesc": "Bolly Boli Voice Pack"
   },
   {
@@ -488906,7 +488906,7 @@
     "Tag": "OB46",
     "Name": "Waat lag gayi",
     "Desc": "Gói giọng nói Bolly Boli",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Waat lag gayi",
     "_enDesc": "Bolly Boli Voice Pack"
   },
   {
@@ -488936,7 +488936,7 @@
     "Tag": "OB46",
     "Name": "Thann Khachh Booyah!",
     "Desc": "Của cộng đồng Free Fire, vì cộng đồng Free Fire",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Thann Khachh Booyah!",
     "_enDesc": "From the FFM community, for the FFM community!"
   },
   {
@@ -488951,7 +488951,7 @@
     "Tag": "OB46",
     "Name": "Khelega Free Fire?",
     "Desc": "Của cộng đồng Free Fire, vì cộng đồng Free Fire",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Khelega Free Fire?",
     "_enDesc": "From the FFM community, for the FFM community!"
   },
   {
@@ -488966,7 +488966,7 @@
     "Tag": "OB46",
     "Name": "Darr Raha Hai Kya?",
     "Desc": "Của cộng đồng Free Fire, vì cộng đồng Free Fire",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Darr Raha Hai Kya?",
     "_enDesc": "From the FFM community, for the FFM community!"
   },
   {
@@ -489055,9 +489055,9 @@
     "Category": "Voice Packs",
     "Tag": "OB47",
     "Name": "Huyền thoại, đã sẵn sàng chưa?",
-    "Desc": "Legends x Dominators",
+    "Desc": "Huyền thoại x Kẻ thống trị",
     "_enName": "Legends, are you ready?",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Legends x Dominators"
   },
   {
     "Id": 921047006,
@@ -489070,9 +489070,9 @@
     "Category": "Voice Packs",
     "Tag": "OB47",
     "Name": "Dominators, sẵn sàng chưa?",
-    "Desc": "Legends x Dominators",
+    "Desc": "Huyền thoại x Kẻ thống trị",
     "_enName": "Dominators, are you ready?",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Legends x Dominators"
   },
   {
     "Id": 921047007,
@@ -489086,7 +489086,7 @@
     "Tag": "OB47",
     "Name": "Kenok sikok!",
     "Desc": "Chơi vui cùng gói giọng nói chất!",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kenok sikok!",
     "_enDesc": "Have more fun playing with funny voice lines!"
   },
   {
@@ -489144,9 +489144,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB47",
-    "Name": "I'm actually 2 person",
+    "Name": "Thực ra tôi là 2 người",
     "Desc": "Chơi vui cùng gói giọng nói chất!",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "I'm actually 2 person",
     "_enDesc": "Have more fun playing with funny voice lines!"
   },
   {
@@ -489249,9 +489249,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB47",
-    "Name": "Mama, tumi to sera!",
+    "Name": "Mẹ ơi, tumi tới sera!",
     "Desc": "Cổ vũ đồng đội",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Mama, tumi to sera!",
     "_enDesc": "Appreciating teammates"
   },
   {
@@ -489266,7 +489266,7 @@
     "Tag": "OB47",
     "Name": "Amar bhul hoyeche!",
     "Desc": "Cổ vũ đồng đội",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Amar bhul hoyeche!",
     "_enDesc": "Appreciating teammates"
   },
   {
@@ -489281,7 +489281,7 @@
     "Tag": "OB47",
     "Name": "Na ami bishwash kori na",
     "Desc": "Cổ vũ đồng đội",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Na ami bishwash kori na",
     "_enDesc": "Appreciating teammates"
   },
   {
@@ -489294,9 +489294,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB47",
-    "Name": "Bujho nai bepar ta?",
+    "Name": "Bạn có thể làm gì được không?",
     "Desc": "Cổ vũ đồng đội",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Bujho nai bepar ta?",
     "_enDesc": "Appreciating teammates"
   },
   {
@@ -489311,7 +489311,7 @@
     "Tag": "OB47",
     "Name": "Dourao...!",
     "Desc": "Cổ vũ đồng đội",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Dourao...!",
     "_enDesc": "Appreciating teammates"
   },
   {
@@ -489911,7 +489911,7 @@
     "Tag": "OB49",
     "Name": "Troll Troll Free Fire",
     "Desc": "Gói giọng nói Câu nói Nổi bật",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Troll Troll Free Fire",
     "_enDesc": "Trendy Sound"
   },
   {
@@ -490150,9 +490150,9 @@
     "Category": "Voice Packs",
     "Tag": "OB49",
     "Name": "Tốt lắm, tốt lắm!",
-    "Desc": "Memes 3",
+    "Desc": "Meme 3",
     "_enName": "Well done, well done!",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Memes 3"
   },
   {
     "Id": 921049030,
@@ -490165,9 +490165,9 @@
     "Category": "Voice Packs",
     "Tag": "OB49",
     "Name": "Thật điên cuồng!",
-    "Desc": "Memes 3",
+    "Desc": "Meme 3",
     "_enName": "That's crazy!",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Memes 3"
   },
   {
     "Id": 921049031,
@@ -490210,9 +490210,9 @@
     "Category": "Voice Packs",
     "Tag": "OB49",
     "Name": "Úi!",
-    "Desc": "Memes 3",
+    "Desc": "Meme 3",
     "_enName": "Oof!",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Memes 3"
   },
   {
     "Id": 921049034,
@@ -490509,9 +490509,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB49",
-    "Name": "Technologiya!",
+    "Name": "Công nghệ đấy!",
     "Desc": "Gói giọng nói Technologiya",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Technologiya!",
     "_enDesc": "Technologiya Voice Pack"
   },
   {
@@ -490526,7 +490526,7 @@
     "Tag": "OB49",
     "Name": "Tung Tung Tung Sahur!",
     "Desc": "Gói giọng nói Tung Tung Tung Sahur",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Tung Tung Tung Sahur!",
     "_enDesc": "Tung Tung Tung Sahur Voice Pack"
   },
   {
@@ -491365,9 +491365,9 @@
     "Category": "Voice Packs",
     "Tag": "OB51",
     "Name": "[ONIC] Onic Xung Phong!",
-    "Desc": "FFWS Global Finals Indonesia 2025",
+    "Desc": "Vòng chung kết toàn cầu FFWS Indonesia 2025",
     "_enName": "[ONIC] Go Onic!",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "FFWS Global Finals Indonesia 2025"
   },
   {
     "Id": 921051011,
@@ -491380,9 +491380,9 @@
     "Category": "Voice Packs",
     "Tag": "OB51",
     "Name": "[BTR] Bigetron Thắng!",
-    "Desc": "FFWS Global Finals Indonesia 2025",
+    "Desc": "Vòng chung kết toàn cầu FFWS Indonesia 2025",
     "_enName": "[BTR] Bigetron Win!",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "FFWS Global Finals Indonesia 2025"
   },
   {
     "Id": 921051012,
@@ -491395,9 +491395,9 @@
     "Category": "Voice Packs",
     "Tag": "OB51",
     "Name": "[KAGE] Kagendra Juara!",
-    "Desc": "FFWS Global Finals Indonesia 2025",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Desc": "Vòng chung kết toàn cầu FFWS Indonesia 2025",
+    "_enName": "[KAGE] Kagendra Juara!",
+    "_enDesc": "FFWS Global Finals Indonesia 2025"
   },
   {
     "Id": 921051013,
@@ -491410,9 +491410,9 @@
     "Category": "Voice Packs",
     "Tag": "OB51",
     "Name": "[RRQ] RRQ Thần Thánh!",
-    "Desc": "FFWS Global Finals Indonesia 2025",
+    "Desc": "Vòng chung kết toàn cầu FFWS Indonesia 2025",
     "_enName": "[RRQ] Viva RRQ!",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "FFWS Global Finals Indonesia 2025"
   },
   {
     "Id": 921051014,
@@ -493314,9 +493314,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB54",
-    "Name": "Booooooo!",
+    "Name": "Boooooo!",
     "Desc": "Gói giọng nói \"Đấu Vật đây!'",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booooooo!",
     "_enDesc": "The Wrestling is here! voice pack"
   },
   {
@@ -493854,9 +493854,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB42",
-    "Name": "WOW!",
+    "Name": "Ồ!",
     "Desc": "Thể hiện cảm xúc của bạn! (Chỉ có tại Cửa hàng quy đổi quân đoàn)",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "WOW!",
     "_enDesc": "Express your emotions! (Exclusively available at the Guild Exchange Store.)"
   },
   {
@@ -494094,9 +494094,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB42",
-    "Name": "Ouchhh!",
+    "Name": "Ôi!",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ouchhh!",
     "_enDesc": ""
   },
   {
@@ -494169,9 +494169,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB42",
-    "Name": "From Zero to Hero",
+    "Name": "Từ số không đến anh hùng",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "From Zero to Hero",
     "_enDesc": ""
   },
   {
@@ -494486,7 +494486,7 @@
     "Tag": "OB43",
     "Name": "PvP",
     "Desc": "Những câu nói nổi đình nổi đám trong cộng đồng",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "PvP",
     "_enDesc": "The most popular phrases in the community"
   },
   {
@@ -495114,9 +495114,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB43",
-    "Name": "From Zero to Hero",
+    "Name": "Từ số không đến anh hùng",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "From Zero to Hero",
     "_enDesc": ""
   },
   {
@@ -495416,7 +495416,7 @@
     "Tag": "OB44",
     "Name": "Vroom, stutututu... (Adel)",
     "Desc": "Gói giọng nói của các thành viên JKT48",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Vroom, stutututu... (Adel)",
     "_enDesc": "Playing will be even more fun with the special voices of the JKT48 members!"
   },
   {
@@ -495641,7 +495641,7 @@
     "Tag": "OB45",
     "Name": "Ae noobde",
     "Desc": "Gói giọng nói Bhaichara",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ae noobde",
     "_enDesc": "Bhaichara Voice Pack"
   },
   {
@@ -495656,7 +495656,7 @@
     "Tag": "OB45",
     "Name": "Arre bhai bhai bhai bhai bhai",
     "Desc": "Gói giọng nói Bhaichara",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Arre bhai bhai bhai bhai bhai",
     "_enDesc": "Bhaichara Voice Pack"
   },
   {
@@ -495669,9 +495669,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB45",
-    "Name": "Bhai matter ho gaya",
+    "Name": "Bhai vấn đề ho gaya",
     "Desc": "Gói giọng nói Bhaichara",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Bhai matter ho gaya",
     "_enDesc": "Bhaichara Voice Pack"
   },
   {
@@ -495686,7 +495686,7 @@
     "Tag": "OB45",
     "Name": "Bhai main toh nahi sehta",
     "Desc": "Gói giọng nói Bhaichara",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Bhai main toh nahi sehta",
     "_enDesc": "Bhaichara Voice Pack"
   },
   {
@@ -496586,8 +496586,8 @@
     "Tag": "OB51",
     "Name": "Booyah!",
     "Desc": "Booyah!",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enName": "Booyah!",
+    "_enDesc": "Booyah!"
   },
   {
     "Id": 928005104,
@@ -499494,9 +499494,9 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Mr. Waggor",
+    "Name": "Ông Waggor",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Mr. Waggor",
     "_enDesc": ""
   },
   {
@@ -499509,10 +499509,10 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Cutie Kelly",
-    "Desc": "Cutie Kelly",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Kelly dễ thương",
+    "Desc": "Kelly dễ thương",
+    "_enName": "Cutie Kelly",
+    "_enDesc": "Cutie Kelly"
   },
   {
     "Id": 1300000001,
@@ -499586,7 +499586,7 @@
     "Tag": "",
     "Name": "Shiba",
     "Desc": "BAM ! Shiba tới đây rồi ! Hãy sẵn sàng",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Shiba",
     "_enDesc": "BAM! Shiba is here! Prepare yourselves!"
   },
   {
@@ -499614,9 +499614,9 @@
     "IconInAB": "CDN",
     "Category": "Pets",
     "Tag": "",
-    "Name": "Robo",
+    "Name": "robot",
     "Desc": "Từng là một robot nhà hữu ích, Robo đã kết thúc trên hòn đảo này sau khi lang thang lạc lối.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Robo",
     "_enDesc": "Once a helpful house robot, Robo ended up on this island after wandering astray."
   },
   {
@@ -499629,9 +499629,9 @@
     "IconInAB": "CDN",
     "Category": "Pets",
     "Tag": "",
-    "Name": "Poring",
+    "Name": "nghiền",
     "Desc": "Một fan hâm mộ lớn của táo, và đi theo bất cứ ai có trái cây. Cẩn thận không để mất thú cưng của bạn theo cách này.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Poring",
     "_enDesc": "A big fan of apples, and follows anyone with the fruit. Careful not to lose your pet this way."
   },
   {
@@ -499644,9 +499644,9 @@
     "IconInAB": "CDN",
     "Category": "Pets",
     "Tag": "",
-    "Name": "Ottero",
+    "Name": "rái cá",
     "Desc": "Ngủ với tai nghe luôn bật, một chú rái cá cùng tài năng âm nhạc",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ottero",
     "_enDesc": "Sleeps with its headphones on, a musically talented otter"
   },
   {
@@ -499674,9 +499674,9 @@
     "IconInAB": "CDN",
     "Category": "Pets",
     "Tag": "",
-    "Name": "Mr. Waggor",
+    "Name": "Ông Waggor",
     "Desc": "Từng là một con chuột lang trong phòng thí nghiệm, Mr. Waggor được đưa về nhà làm thú cưng vì sự dễ thương của mình. Điều đó dẫn đến cuộc đào thoát vĩ đại của anh ta và cuộc sống lang thang sau đó.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Mr. Waggor",
     "_enDesc": "Once a guinea pig in the lab, Mr. Waggor was brought home as a pet due to his cuteness. That led to his great escape and subsequent wandering life."
   },
   {
@@ -499734,9 +499734,9 @@
     "IconInAB": "CDN",
     "Category": "Pets",
     "Tag": "",
-    "Name": "Moony",
+    "Name": "ánh trăng",
     "Desc": "Tuy không thuộc về thế giới này nhưng Moony yêu tất cả mọi thứ nơi đây!",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Moony",
     "_enDesc": "Although not from this world, he loves everything about us!"
   },
   {
@@ -499796,7 +499796,7 @@
     "Tag": "",
     "Name": "Yeti",
     "Desc": "Hãy chiêm ngưỡng bộ lông siêu mượt mà của ta",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Yeti",
     "_enDesc": "Admire my silky fur"
   },
   {
@@ -499869,9 +499869,9 @@
     "IconInAB": "CDN",
     "Category": "Pets",
     "Tag": "",
-    "Name": "Fang",
+    "Name": "Răng nanh",
     "Desc": "Trung thành là đức tính",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Fang",
     "_enDesc": "Loyalty is virtue"
   },
   {
@@ -499899,9 +499899,9 @@
     "IconInAB": "CDN",
     "Category": "Pets",
     "Tag": "",
-    "Name": "Kactus",
+    "Name": "xương rồng",
     "Desc": "Chủ yếu là chúng tôi phát triển.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Kactus",
     "_enDesc": "Mostly we grow."
   },
   {
@@ -499916,7 +499916,7 @@
     "Tag": "",
     "Name": "Pug",
     "Desc": "Trong bộ đồ vest bóng bẩy, Pug đang ngắm thẳng đến trái tim bạn!",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Pug",
     "_enDesc": "Looking slick in a suit, Pug is aiming straight for your heart!"
   },
   {
@@ -499931,7 +499931,7 @@
     "Tag": "",
     "Name": "Agumon",
     "Desc": "Agumon là bạn của Taichi và là Digimon Bò Sát.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Agumon",
     "_enDesc": "Agumon is Taichi's partner and a Reptile Digimon."
   },
   {
@@ -503200,9 +503200,9 @@
     "Category": "Pets",
     "Tag": "",
     "Name": "Skin Beanie Băng giá",
-    "Desc": "Brrr...!",
+    "Desc": "brrr...!",
     "_enName": "Pet Skin: Glamstar Beanie",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Brrr...!"
   },
   {
     "Id": 1310000159,
@@ -503485,9 +503485,9 @@
     "Category": "Pets",
     "Tag": "",
     "Name": "Skin Yeti Băng giá",
-    "Desc": "Brrr...!",
+    "Desc": "brrr...!",
     "_enName": "Pet Skin: Winterlands Yeti",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Brrr...!"
   },
   {
     "Id": 1310000186,
