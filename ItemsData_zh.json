@@ -191,7 +191,7 @@
     "Tag": "",
     "Name": "A124",
     "Desc": "A124 是一個經人工生化改造的作戰兵器",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "A124",
     "_enDesc": "A124 is a robot made with modern technology."
   },
   {
@@ -7989,9 +7989,9 @@
     "IconInAB": "CDN",
     "Category": "Choice Crates",
     "Tag": "OB49",
-    "Name": "Lion Cereal Box x Free Fire",
+    "Name": "獅子麥片盒 x Free Fire",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Lion Cereal Box x Free Fire",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -15399,9 +15399,9 @@
     "IconInAB": "CDN",
     "Category": "Top",
     "Tag": "",
-    "Name": "FFWC T-Shirt",
+    "Name": "FFWC T 卹",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FFWC T-Shirt",
     "_enDesc": ""
   },
   {
@@ -147370,9 +147370,9 @@
     "Category": "Loot Crates",
     "Tag": "",
     "Name": "搖桿包",
-    "Desc": "Chance to get pieces from the rocker set and other rewards (all fashion obtained are permanent)",
+    "Desc": "有機會獲得搖桿套裝中的物品和其他獎勵（獲得的所有時裝都是永久性的）",
     "_enName": "Rocker Pack",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Chance to get pieces from the rocker set and other rewards (all fashion obtained are permanent)"
   },
   {
     "Id": 400000099,
@@ -159444,9 +159444,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "",
-    "Name": "FACT4 #3",
+    "Name": "事實4#3",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FACT4 #3",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -159459,9 +159459,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "",
-    "Name": "FACT4 #4",
+    "Name": "事實4 #4",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FACT4 #4",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -159549,9 +159549,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "",
-    "Name": "CreatorsTH_BOX",
+    "Name": "創作者TH_BOX",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "CreatorsTH_BOX",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -162504,9 +162504,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "",
-    "Name": "FF x BMN1",
+    "Name": "FF×BMN1",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FF x BMN1",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -162549,9 +162549,9 @@
     "IconInAB": "AB",
     "Category": "Bundle Create",
     "Tag": "",
-    "Name": "FF x BMN4",
+    "Name": "FF×BMN4",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "FF x BMN4",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -486579,9 +486579,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB37",
-    "Name": "Score in Style",
+    "Name": "風格得分",
     "Desc": "足球傳說大廳音樂",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Score in Style",
     "_enDesc": "Football Fable lobby music"
   },
   {
@@ -486624,9 +486624,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB38",
-    "Name": "Style It Up",
+    "Name": "風格它",
     "Desc": "行動代號：變裝特工大廳音樂",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Style It Up",
     "_enDesc": "\"Mission: Makeover\" lobby music"
   },
   {
@@ -486699,9 +486699,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB39",
-    "Name": "Gor Free Pa",
+    "Name": "戈爾自由帕",
     "Desc": "2022 潑水節，我想和你一起度過美好時光",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Gor Free Pa",
     "_enDesc": "Songkran \"Splash Em'UP\" 2022. Happiness and enjoy all the event."
   },
   {
@@ -486714,9 +486714,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB39",
-    "Name": "Mun Sard Day",
+    "Name": "蒙薩德日",
     "Desc": "2021潑水節，我想和你一起度過美好時光......在 Free Fire 中~",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Mun Sard Day",
     "_enDesc": "Songkran 2021\\nSongkran 2021. I have wanna have a cool time with you... in Free Fire~"
   },
   {
@@ -486955,9 +486955,9 @@
     "Category": "Music",
     "Tag": "OB42",
     "Name": "全部投入",
-    "Desc": "Free Fire World Series 2021 Singapore",
+    "Desc": "Free Fire 世界大賽 2021 新加坡",
     "_enName": "All In",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Free Fire World Series 2021 Singapore"
   },
   {
     "Id": 913042004,
@@ -487375,9 +487375,9 @@
     "Category": "Music",
     "Tag": "OB47",
     "Name": "GYC 2024 主題曲",
-    "Desc": "Make your school proud!",
+    "Desc": "讓您的學校感到自豪！",
     "_enName": "GYC 2024 Theme Song",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Make your school proud!"
   },
   {
     "Id": 913047006,
@@ -487974,9 +487974,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Reunion",
+    "Name": "團圓",
     "Desc": "馭豹聲浪",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Reunion",
     "_enDesc": "Beat Carnival theme song"
   },
   {
@@ -487989,9 +487989,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Reunion",
+    "Name": "團圓",
     "Desc": "馭豹聲浪",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Reunion",
     "_enDesc": "Beat Carnival theme song"
   },
   {
@@ -488079,9 +488079,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB53",
-    "Name": "Booyah Olé",
+    "Name": "布亞奧萊",
     "Desc": "烈焰開球主題曲",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyah Olé",
     "_enDesc": "Fire Kickoff theme song"
   },
   {
@@ -494259,9 +494259,9 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB42",
-    "Name": "C'mon!",
+    "Name": "來吧！",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "C'mon!",
     "_enDesc": ""
   },
   {
