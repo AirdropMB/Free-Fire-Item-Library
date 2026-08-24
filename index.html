@@ -15,6 +15,7 @@
   <!-- Preload dữ liệu quan trọng nhất ngay khi browser parse HTML -->
   <link rel="preload" href="ItemsData_en.json?v=3.1.0" as="fetch" crossorigin="anonymous">
   <link rel="preload" href="updated_icons.json?v=3.1.0" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="new_items.json?v=3.1.0" as="fetch" crossorigin="anonymous">
   <link rel="preload" href="CollectionBanner.json?v=3.1.0" as="fetch" crossorigin="anonymous">
   <style>
     @font-face{
@@ -782,7 +783,7 @@
     en: {
       title:"Aurust", items:"items", filterLbl:"Filters",
       search:"Search name, icon, ID…",
-      allTags:"All OB", allTypes:"All Types", allRarities:"All Rarities",
+      allTags:"All OB", allTypes:"All Types", allRarities:"All Rarities", newItems:"NEWLY ADDED ITEMS",
       prev:"< Prev", next:"Next >",
       emptyTitle:"NO ITEMS FOUND", emptyDesc:"Nothing matches your search or filter",
       follow:"Follow Aurust",
@@ -808,7 +809,7 @@
     vi: {
       title:"Aurust", items:"mục", filterLbl:"Bộ lọc",
       search:"Tìm theo tên, icon, ID…",
-      allTags:"Tất cả OB", allTypes:"Tất cả loại", allRarities:"Tất cả độ hiếm",
+      allTags:"Tất cả OB", allTypes:"Tất cả loại", allRarities:"Tất cả độ hiếm", newItems:"CÁC VẬT PHẨM MỚI THÊM",
       prev:"< Trước", next:"Tiếp >",
       emptyTitle:"KHÔNG TÌM THẤY", emptyDesc:"Không có kết quả phù hợp",
       follow:"Theo dõi Aurust",
@@ -880,7 +881,7 @@
     zh: {
       title:"Aurust", items:"個", filterLbl:"篩選",
       search:"搜尋名稱、圖示、ID…",
-      allTags:"所有OB", allTypes:"所有類型", allRarities:"所有稀有度",
+      allTags:"所有OB", allTypes:"所有類型", allRarities:"所有稀有度", newItems:"新增物品",
       prev:"< 上一頁", next:"下一頁 >",
       emptyTitle:"找不到物品", emptyDesc:"沒有符合搜尋或篩選的結果",
       follow:"關注 Aurust",
@@ -916,7 +917,7 @@
         "Final Shot":"最終絕殺",
         "Emote":"動作",
         "Super Emote":"召喚動作",
-        "Arrival Animation":"入场动作",
+        "Arrival Animation":"入場動作",
         "Finishing Move":"終結技",
         "Look Changer":"獵殺代號",
         "Vehicle Skins":"載具",
@@ -1002,7 +1003,7 @@
   parseRoute();
 
   let rawData=[], items=[], filtered=[], selected=new Set();
-  let updatedSet=new Set(), banners=[], curBannerIcon=null;
+  let updatedSet=new Set(), banners=[], curBannerIcon=null, newItemsSet=new Set();
   let dlSrc='batch', curItem=null, curPage=1, perPage=200;
   let isDevMode=false;
   const imgBase='';
@@ -1142,8 +1143,9 @@
       dataP,
       enP,
       fetch(`updated_icons.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]),
-      fetch(`CollectionBanner.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
-    ]).then(([data, enData, upd, bnr])=>{
+      fetch(`CollectionBanner.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]),
+      fetch(`new_items.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
+    ]).then(([data, enData, upd, bnr, newIds])=>{
       try {
         let parsed = Array.isArray(data) ? data : Object.values(data);
 
@@ -1169,6 +1171,7 @@
         rawData   = parsed;
         updatedSet = new Set(upd);
         banners    = Array.isArray(bnr) ? bnr : Object.values(bnr);
+        newItemsSet = new Set(Array.isArray(newIds) ? newIds : []);
         filterRaw();
         buildFilters();
         if(rs !== null){
@@ -1206,6 +1209,10 @@
 
     const def=new Set(typeGroups.flat());
     let tyh=`<option value="all">${t.allTypes}</option>`;
+    if(newItemsSet.size>0){
+      const hasNew = items.some(it=>newItemsSet.has(it.Id.toString()));
+      if(hasNew){ tyh+=`<option value="__NEW__">${t.newItems}</option><option disabled>──────</option>`; }
+    }
     typeGroups.forEach((g,i)=>{
       const av=g.filter(x=>types.has(x));
       if(av.length){ if(i>0) tyh+=`<option disabled>──────</option>`; av.forEach(x=>tyh+=`<option value="${x}">${t.types[x]||x}</option>`); }
@@ -1236,6 +1243,7 @@
 
     // Tối ưu: chỉ tạo filter function 1 lần, không tạo lại trong loop
     const filterAll = tv==='all', filterType = tyv==='all', filterRare = rv==='all';
+    const isNewFilter = tyv==='__NEW__';
 
     filtered = items.filter(item=>{
       if(sq){
@@ -1245,7 +1253,8 @@
         if(!nm.includes(sq)&&!ic.includes(sq)&&!id.includes(sq)) return false;
       }
       if(!filterAll && item.Tag!==tv) return false;
-      if(!filterType && item.Category!==tyv) return false;
+      if(isNewFilter){ if(!newItemsSet.has(item.Id.toString())) return false; }
+      else if(!filterType && item.Category!==tyv) return false;
       if(!filterRare){
         const m=item._rare||(item._rare=rarityMap[item.Rare]||item.Rare);
         if(m!==rv) return false;
