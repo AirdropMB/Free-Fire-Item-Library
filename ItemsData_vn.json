@@ -145420,9 +145420,9 @@
     "Category": "Spark Pet Vault",
     "Tag": "",
     "Name": "Chocolate",
-    "Desc": "Chocolate",
+    "Desc": "Sôcôla",
     "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Chocolate"
   },
   {
     "Id": 246955004,
@@ -150611,8 +150611,8 @@
     "Tag": "",
     "Name": "Hộp 8/3",
     "Desc": "Tôn vinh phụ nữ Việt Nam",
-    "_enName": "Hộp 8/3",
-    "_enDesc": "Tôn vinh phụ nữ Việt Nam"
+    "_enName": "\u0000__PENDING__\u0000",
+    "_enDesc": "\u0000__PENDING__\u0000"
   },
   {
     "Id": 400000315,
@@ -235556,7 +235556,7 @@
     "Tag": "OB51",
     "Name": "AWM Breath of Silence Loot Crate",
     "Desc": "Mở để nhận AWM Breath of Silence",
-    "_enName": "AWM Breath of Silence Loot Crate",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Open to receive a AWM Breath of Silence"
   },
   {
@@ -271676,7 +271676,7 @@
     "Tag": "OB28",
     "Name": "Antonio",
     "Desc": "Antonio là một đứa trẻ mồ côi, và sau này lớn lên trở thành gangster",
-    "_enName": "Antonio",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Antonio was an orphan who grew up to be a gangster."
   },
   {
@@ -295059,10 +295059,10 @@
     "IconInAB": "CDN",
     "Category": "Voice Packs",
     "Tag": "OB47",
-    "Name": "Legends x Dominators",
-    "Desc": "Legends x Dominators",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Huyền thoại x Kẻ thống trị",
+    "Desc": "Huyền thoại x Kẻ thống trị",
+    "_enName": "Legends x Dominators",
+    "_enDesc": "Legends x Dominators"
   },
   {
     "Id": 710047031,
@@ -295151,7 +295151,7 @@
     "Tag": "OB47",
     "Name": "Nhà Sáng Tạo Free Fire VN",
     "Desc": "Nhà Sáng Tạo Free Fire VN",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Nhà Sáng Tạo Free Fire VN",
     "_enDesc": "Free Fire VN Creator"
   },
   {
@@ -311876,7 +311876,7 @@
     "Tag": "",
     "Name": "HEXA",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "HEXA",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -313571,7 +313571,7 @@
     "Tag": "",
     "Name": "Ketupat",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Ketupat",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -317487,7 +317487,7 @@
     "Name": "HH Lều Barraca",
     "Desc": "Barraca de quermesse",
     "_enName": "Barraca",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Barraca de quermesse"
   },
   {
     "Id": 801000389,
@@ -319331,7 +319331,7 @@
     "Tag": "",
     "Name": "HH Xmen Uy",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HH Xmen Uy",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -319540,9 +319540,9 @@
     "Category": "Exchange Tokens",
     "Tag": "",
     "Name": "HH Con bò",
-    "Desc": "Moooooooo",
+    "Desc": "moooooo",
     "_enName": "Cow Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Moooooooo"
   },
   {
     "Id": 801000526,
@@ -324549,9 +324549,9 @@
     "IconInAB": "AB",
     "Category": "Exchange Tokens",
     "Tag": "",
-    "Name": "Est 1",
+    "Name": "Ước tính 1",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Est 1",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -324579,9 +324579,9 @@
     "IconInAB": "AB",
     "Category": "Exchange Tokens",
     "Tag": "",
-    "Name": "Est 3",
+    "Name": "Ước tính 3",
     "Desc": "Huy hiệu dùng để đổi quà",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Est 3",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -327130,9 +327130,9 @@
     "Category": "Exchange Tokens",
     "Tag": "",
     "Name": "HH chân cún",
-    "Desc": "Bow Wow!",
+    "Desc": "Cúi đầu Ôi!",
     "_enName": "Dog's Paw Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Bow Wow!"
   },
   {
     "Id": 801001034,
@@ -337540,9 +337540,9 @@
     "Category": "Exchange Tokens",
     "Tag": "",
     "Name": "Huy Hiệu Lựu Đạn",
-    "Desc": "BOOM!",
+    "Desc": "BÙM!",
     "_enName": "Archaic Grenade Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "BOOM!"
   },
   {
     "Id": 801001730,
@@ -337647,7 +337647,7 @@
     "Name": "Huy Hiệu Free Fire",
     "Desc": "Free Fire",
     "_enName": "Free Fire Token",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "Free Fire"
   },
   {
     "Id": 801001737,
@@ -343241,7 +343241,7 @@
     "Tag": "OB40",
     "Name": "M1887",
     "Desc": "Với Shotgun, bạn đã đánh bại nhiều đối thủ để trở thành kẻ thống trị cuộc chiến.",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M1887",
     "_enDesc": "With this shotgun, you have defeated countless enemies and become the ruler of the battlefield."
   },
   {
@@ -358239,10 +358239,10 @@
     "IconInAB": "CDN",
     "Category": "",
     "Tag": "",
-    "Name": "Garden Pack",
-    "Desc": "Garden Pack, open to obtain tools to build your garden.",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "Name": "Gói làm vườn",
+    "Desc": "Garden Pack, mở để nhận các công cụ xây dựng khu vườn của bạn.",
+    "_enName": "Garden Pack",
+    "_enDesc": "Garden Pack, open to obtain tools to build your garden."
   },
   {
     "Id": 804555003,
@@ -385886,7 +385886,7 @@
     "Tag": "",
     "Name": "Nulla",
     "Desc": "",
-    "_enName": "Nulla",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -385901,7 +385901,7 @@
     "Tag": "",
     "Name": "Andrew",
     "Desc": "",
-    "_enName": "Andrew",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -387251,7 +387251,7 @@
     "Tag": "",
     "Name": "Caroline",
     "Desc": "",
-    "_enName": "Caroline",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -387596,7 +387596,7 @@
     "Tag": "",
     "Name": "Moco",
     "Desc": "",
-    "_enName": "Moco",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -387941,7 +387941,7 @@
     "Tag": "",
     "Name": "TEREM",
     "Desc": "",
-    "_enName": "TEREM",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -387999,9 +387999,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "KING OF SHOT",
+    "Name": "VUA SÚT",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "KING OF SHOT",
     "_enDesc": ""
   },
   {
@@ -388074,9 +388074,9 @@
     "IconInAB": "CDN",
     "Category": "Avatars",
     "Tag": "",
-    "Name": "SPS E-SPORT",
+    "Name": "THỂ THAO ĐIỆN TỬ SPS",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SPS E-SPORT",
     "_enDesc": ""
   },
   {
@@ -388091,7 +388091,7 @@
     "Tag": "",
     "Name": "SAYONARA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SAYONARA",
     "_enDesc": ""
   },
   {
@@ -388106,7 +388106,7 @@
     "Tag": "",
     "Name": "VEGA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "VEGA",
     "_enDesc": ""
   },
   {
@@ -388166,7 +388166,7 @@
     "Tag": "",
     "Name": "Anáhac Negativo",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Anáhac Negativo",
     "_enDesc": ""
   },
   {
@@ -388181,7 +388181,7 @@
     "Tag": "",
     "Name": "TEKA",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "TEKA",
     "_enDesc": ""
   },
   {
@@ -388211,7 +388211,7 @@
     "Tag": "",
     "Name": "SFI",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "SFI",
     "_enDesc": ""
   },
   {
@@ -388796,7 +388796,7 @@
     "Tag": "",
     "Name": "A124",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "A124",
     "_enDesc": ""
   },
   {
@@ -427136,7 +427136,7 @@
     "Tag": "",
     "Name": "M14 - BOOYAH",
     "Desc": "",
-    "_enName": "M14 - BOOYAH",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -427166,7 +427166,7 @@
     "Tag": "",
     "Name": "UMP - BOOYAH",
     "Desc": "",
-    "_enName": "UMP - BOOYAH",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -435596,7 +435596,7 @@
     "Tag": "",
     "Name": "AN94 - BOOYAH",
     "Desc": "",
-    "_enName": "AN94 - BOOYAH",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -435611,7 +435611,7 @@
     "Tag": "",
     "Name": "M14 - BOOYAH",
     "Desc": "",
-    "_enName": "M14 - BOOYAH",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -435626,7 +435626,7 @@
     "Tag": "",
     "Name": "Groza - BOOYAH",
     "Desc": "",
-    "_enName": "Groza - BOOYAH",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -435641,7 +435641,7 @@
     "Tag": "",
     "Name": "UMP - BOOYAH",
     "Desc": "",
-    "_enName": "UMP - BOOYAH",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -459251,7 +459251,7 @@
     "Tag": "OB52",
     "Name": "Groza - Yuji Itadori",
     "Desc": "",
-    "_enName": "Groza - Yuji Itadori",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -460766,7 +460766,7 @@
     "Tag": "OB53",
     "Name": "Winchester - Kagura",
     "Desc": "",
-    "_enName": "Winchester - Kagura",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -460781,7 +460781,7 @@
     "Tag": "OB53",
     "Name": "Katana - Toyako",
     "Desc": "",
-    "_enName": "Katana - Toyako",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -466346,7 +466346,7 @@
     "Tag": "",
     "Name": "AN94 - BOOYAH",
     "Desc": "",
-    "_enName": "AN94 - BOOYAH",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": ""
   },
   {
@@ -480521,7 +480521,7 @@
     "Tag": "OB45",
     "Name": "Naatu Naatu",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Naatu Naatu",
     "_enDesc": ""
   },
   {
@@ -487406,7 +487406,7 @@
     "Tag": "OB47",
     "Name": "Bang Bang",
     "Desc": "Nhạc hợp tác chính thức Free Fire x Matuê",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Bang Bang",
     "_enDesc": "The official collaboration music of Free Fire x Matuê"
   },
   {
@@ -487914,9 +487914,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "BULLETPROOF",
+    "Name": "CHỐNG ĐẠN",
     "Desc": "Bài hát chủ đề Đại Tiệc Âm Nhạc",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "BULLETPROOF",
     "_enDesc": "Beat Carnival theme song"
   },
   {
@@ -487959,9 +487959,9 @@
     "IconInAB": "CDN",
     "Category": "Music",
     "Tag": "OB52",
-    "Name": "Vale Vale",
+    "Name": "Thung lũng Vale",
     "Desc": "Bài hát chủ đề Đại Tiệc Âm Nhạc",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Vale Vale",
     "_enDesc": "Beat Carnival theme song"
   },
   {
@@ -488036,7 +488036,7 @@
     "Tag": "OB52",
     "Name": "Berburu Berkah",
     "Desc": "ID tháng Ramadan 2026",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Berburu Berkah",
     "_enDesc": "Ramadan ID 2026"
   },
   {
@@ -488096,7 +488096,7 @@
     "Tag": "OB53",
     "Name": "Booyah Olé",
     "Desc": "Nhạc nền Đại Tiệc Sân Cỏ",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Booyah Olé",
     "_enDesc": "Fire Kickoff theme song"
   },
   {
@@ -488156,7 +488156,7 @@
     "Tag": "OB54",
     "Name": "Booyahka",
     "Desc": "Nhạc chủ đề hợp tác AAA",
-    "_enName": "Booyahka",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "AAA collab theme song"
   },
   {
@@ -488201,7 +488201,7 @@
     "Tag": "OB54",
     "Name": "ก้าว (9)",
     "Desc": "Nhạc chủ đề Sinh Nhật 9 Tuổi",
-    "_enName": "ก้าว (9)",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "9th Anniversary theme song"
   },
   {
@@ -488216,7 +488216,7 @@
     "Tag": "OB54",
     "Name": "Cari yang Baru",
     "Desc": "Bài hát chủ đề hợp tác Tenxi",
-    "_enName": "Cari yang Baru",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Tenxi collab theme song"
   },
   {
@@ -488621,7 +488621,7 @@
     "Tag": "OB46",
     "Name": "Boom shaka laka",
     "Desc": "Gói giọng nói độc quyền sự kiện",
-    "_enName": "Boom shaka laka",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Event-exclusive voice pack"
   },
   {
@@ -488697,7 +488697,7 @@
     "Name": "Ngạo nghễ nhỉ?",
     "Desc": "Matuê",
     "_enName": "Got a bit too proud, huh?",
-    "_enDesc": "Matuê"
+    "_enDesc": "\u0000__PENDING__\u0000"
   },
   {
     "Id": 921046008,
@@ -488891,7 +488891,7 @@
     "Tag": "OB46",
     "Name": "Swagat nahi karoge hamara?",
     "Desc": "Gói giọng nói Bolly Boli",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Swagat nahi karoge hamara?",
     "_enDesc": "Bolly Boli Voice Pack"
   },
   {
@@ -495416,7 +495416,7 @@
     "Tag": "OB44",
     "Name": "Vroom, stutututu... (Adel)",
     "Desc": "Gói giọng nói của các thành viên JKT48",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Vroom, stutututu... (Adel)",
     "_enDesc": "Playing will be even more fun with the special voices of the JKT48 members!"
   },
   {
@@ -496586,8 +496586,8 @@
     "Tag": "OB51",
     "Name": "Booyah!",
     "Desc": "Booyah!",
-    "_enName": "\u0000__PENDING__\u0000",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enName": "Booyah!",
+    "_enDesc": "Booyah!"
   },
   {
     "Id": 928005104,
@@ -499586,7 +499586,7 @@
     "Tag": "",
     "Name": "Shiba",
     "Desc": "BAM ! Shiba tới đây rồi ! Hãy sẵn sàng",
-    "_enName": "Shiba",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "BAM! Shiba is here! Prepare yourselves!"
   },
   {
@@ -504221,7 +504221,7 @@
     "Tag": "",
     "Name": "Agumon",
     "Desc": "Agumon là bạn của Taichi và là Digimon Bò Sát.",
-    "_enName": "Agumon",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Agumon is Taichi's partner and a Reptile Digimon."
   },
   {

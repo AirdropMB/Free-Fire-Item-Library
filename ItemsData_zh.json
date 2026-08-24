@@ -191,7 +191,7 @@
     "Tag": "",
     "Name": "A124",
     "Desc": "A124 是一個經人工生化改造的作戰兵器",
-    "_enName": "A124",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "A124 is a robot made with modern technology."
   },
   {
@@ -171191,7 +171191,7 @@
     "Tag": "OB27",
     "Name": "dtac 4",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "dtac 4",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -179501,7 +179501,7 @@
     "Tag": "OB30",
     "Name": "dtac 8",
     "Desc": "天合合夥人",
-    "_enName": "dtac 8",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "TH Partner"
   },
   {
@@ -179516,7 +179516,7 @@
     "Tag": "OB30",
     "Name": "dtac 9",
     "Desc": "天合合夥人",
-    "_enName": "dtac 9",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "TH Partner"
   },
   {
@@ -319331,7 +319331,7 @@
     "Tag": "",
     "Name": "HH Xmen Uy",
     "Desc": "兌換道具，可在指定活動中兌換獎勵",
-    "_enName": "HH Xmen Uy",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -319437,7 +319437,7 @@
     "Name": "沃爾夫勒",
     "Desc": "GG",
     "_enName": "Wolfrahh",
-    "_enDesc": "GG"
+    "_enDesc": "\u0000__PENDING__\u0000"
   },
   {
     "Id": 801000519,
@@ -329397,7 +329397,7 @@
     "Name": "漁夫帽",
     "Desc": "LBFF6",
     "_enName": "Red Bucket Hat",
-    "_enDesc": "LBFF6"
+    "_enDesc": "\u0000__PENDING__\u0000"
   },
   {
     "Id": 801001185,
@@ -329532,7 +329532,7 @@
     "Name": "帥氣的標誌",
     "Desc": "LBFF6",
     "_enName": "\"SWAG\" Label",
-    "_enDesc": "LBFF6"
+    "_enDesc": "\u0000__PENDING__\u0000"
   },
   {
     "Id": 801001194,
