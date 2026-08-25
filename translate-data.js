@@ -144,6 +144,21 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
   const existingMap = new Map(existingData.map(i => [i.Id, i]));
   const PENDING = '\u0000__PENDING__\u0000';
 
+  // File "meta" riêng, chỉ chứa _enName/_enDesc để so sánh thay đổi - KHÔNG gửi cho web
+  // (giúp ItemsData_vn.json/ItemsData_zh.json nhẹ bằng đúng bản EN, không bị nhân đôi dung lượng)
+  const metaFile = outputFile.replace(/\.json$/, '.meta.json');
+  let existingMetaArr = [];
+  if (fs.existsSync(metaFile)) {
+    try { existingMetaArr = JSON.parse(fs.readFileSync(metaFile, 'utf-8')); } catch { existingMetaArr = []; }
+  }
+  const existingMeta = new Map(existingMetaArr.map(m => [m.Id, m]));
+  // Tự động chuyển dữ liệu cũ (bản trước có _enName/_enDesc nhúng thẳng trong item) sang file meta riêng
+  if (existingMeta.size === 0) {
+    for (const item of existingData) {
+      if ('_enName' in item) existingMeta.set(item.Id, { Id: item.Id, _enName: item._enName, _enDesc: item._enDesc });
+    }
+  }
+
   const toProcess = [];
 
   for (const en of enData) {
@@ -153,8 +168,9 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
     } else if (force) {
       toProcess.push({ en, ex, needName: !!en.Name?.trim(), needDesc: !!en.Desc?.trim(), isNew: false });
     } else {
-      const sourceName = ex._enName ?? PENDING;
-      const sourceDesc = ex._enDesc ?? PENDING;
+      const exMeta = existingMeta.get(en.Id);
+      const sourceName = exMeta?._enName ?? PENDING;
+      const sourceDesc = exMeta?._enDesc ?? PENDING;
 
       // Tự động phát hiện nếu bị kẹt Tiếng Anh hoặc chưa được dịch
       const isNameUntranslated = !!en.Name?.trim() && (!ex.Name?.trim() || ex.Name === en.Name || sourceName === PENDING);
@@ -190,30 +206,30 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
     };
   }
 
+  // Trả về 2 phần tách biệt: publicItems (ghi ra file web tải) và metaItems (chỉ để theo dõi nội bộ)
   function buildResult() {
-    return enData.map(en => {
+    const publicItems = [];
+    const metaItems = [];
+    for (const en of enData) {
       const ex = existingMap.get(en.Id);
       const tr = translated.get(en.Id);
+      let Name, Desc, enNameOut, enDescOut;
       if (tr) {
-        return {
-          ...commonFields(en),
-          Name: tr.Name,
-          Desc: tr.Desc,
-          _enName: tr.successName ? en.Name : PENDING,
-          _enDesc: tr.successDesc ? en.Desc : PENDING
-        };
+        Name = tr.Name; Desc = tr.Desc;
+        enNameOut = tr.successName ? en.Name : PENDING;
+        enDescOut = tr.successDesc ? en.Desc : PENDING;
+      } else if (ex) {
+        Name = ex.Name ?? ''; Desc = ex.Desc ?? '';
+        const exMeta = existingMeta.get(en.Id);
+        enNameOut = exMeta?._enName ?? PENDING;
+        enDescOut = exMeta?._enDesc ?? PENDING;
+      } else {
+        Name = ''; Desc = ''; enNameOut = PENDING; enDescOut = PENDING;
       }
-      if (ex) {
-        return {
-          ...commonFields(en),
-          Name: ex.Name ?? '',
-          Desc: ex.Desc ?? '',
-          _enName: ex._enName ?? PENDING,
-          _enDesc: ex._enDesc ?? PENDING
-        };
-      }
-      return { ...commonFields(en), Name: '', Desc: '', _enName: PENDING, _enDesc: PENDING };
-    });
+      publicItems.push({ ...commonFields(en), Name, Desc });
+      metaItems.push({ Id: en.Id, _enName: enNameOut, _enDesc: enDescOut });
+    }
+    return { publicItems, metaItems };
   }
 
   let lastCheckpoint = Date.now();
@@ -222,7 +238,9 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
     if (!force && now - lastCheckpoint < 20000) return;
     lastCheckpoint = now;
     try {
-      fs.writeFileSync(outputFile, JSON.stringify(buildResult(), null, 2), 'utf-8');
+      const { publicItems, metaItems } = buildResult();
+      fs.writeFileSync(outputFile, JSON.stringify(publicItems, null, 2), 'utf-8');
+      fs.writeFileSync(metaFile, JSON.stringify(metaItems), 'utf-8');
     } catch (e) {}
   }
 
@@ -262,10 +280,11 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
     await pool(tasks, CONCURRENCY);
   }
 
-  const result = buildResult();
-  fs.writeFileSync(outputFile, JSON.stringify(result, null, 2), 'utf-8');
-  console.log(`   ✅ Ghi ${result.length} items → ${path.basename(outputFile)}`);
-  return { total: result.length, translated: toTranslate.length, unchanged };
+  const { publicItems, metaItems } = buildResult();
+  fs.writeFileSync(outputFile, JSON.stringify(publicItems, null, 2), 'utf-8');
+  fs.writeFileSync(metaFile, JSON.stringify(metaItems), 'utf-8');
+  console.log(`   ✅ Ghi ${publicItems.length} items → ${path.basename(outputFile)} (+ ${path.basename(metaFile)} nội bộ)`);
+  return { total: publicItems.length, translated: toTranslate.length, unchanged };
 }
 
 function writeNewItemsFile(enData, vnData) {
