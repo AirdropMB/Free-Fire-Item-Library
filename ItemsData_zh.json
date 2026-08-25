@@ -191,7 +191,7 @@
     "Tag": "",
     "Name": "A124",
     "Desc": "A124 是一個經人工生化改造的作戰兵器",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "A124",
     "_enDesc": "A124 is a robot made with modern technology."
   },
   {
@@ -836,7 +836,7 @@
     "Tag": "",
     "Name": "K",
     "Desc": "K 是一個大學教授，同時也是一名柔術專家",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "K",
     "_enDesc": "K is a professor and jiu-jitsu expert."
   },
   {
@@ -171191,7 +171191,7 @@
     "Tag": "OB27",
     "Name": "dtac 4",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 4",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -171206,7 +171206,7 @@
     "Tag": "OB27",
     "Name": "dtac 5",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 5",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -178527,7 +178527,7 @@
     "Name": "漁夫帽幸運箱",
     "Desc": "LBFF6",
     "_enName": "Red Bucket Hat Box",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "LBFF6"
   },
   {
     "Id": 400030097,
@@ -179471,7 +179471,7 @@
     "Tag": "OB30",
     "Name": "dtac 6",
     "Desc": "天合合夥人",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 6",
     "_enDesc": "TH Partner"
   },
   {
@@ -179486,7 +179486,7 @@
     "Tag": "OB30",
     "Name": "dtac 7",
     "Desc": "天合合夥人",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 7",
     "_enDesc": "TH Partner"
   },
   {
@@ -179501,7 +179501,7 @@
     "Tag": "OB30",
     "Name": "dtac 8",
     "Desc": "天合合夥人",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 8",
     "_enDesc": "TH Partner"
   },
   {
@@ -179516,7 +179516,7 @@
     "Tag": "OB30",
     "Name": "dtac 9",
     "Desc": "天合合夥人",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 9",
     "_enDesc": "TH Partner"
   },
   {
@@ -319331,7 +319331,7 @@
     "Tag": "",
     "Name": "HH Xmen Uy",
     "Desc": "兌換道具，可在指定活動中兌換獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HH Xmen Uy",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -319437,7 +319437,7 @@
     "Name": "沃爾夫勒",
     "Desc": "GG",
     "_enName": "Wolfrahh",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "GG"
   },
   {
     "Id": 801000519,
@@ -329397,7 +329397,7 @@
     "Name": "漁夫帽",
     "Desc": "LBFF6",
     "_enName": "Red Bucket Hat",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "LBFF6"
   },
   {
     "Id": 801001185,
@@ -329532,7 +329532,7 @@
     "Name": "帥氣的標誌",
     "Desc": "LBFF6",
     "_enName": "\"SWAG\" Label",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "LBFF6"
   },
   {
     "Id": 801001194,
@@ -343241,7 +343241,7 @@
     "Tag": "OB40",
     "Name": "M1887",
     "Desc": "你曾經用這把霰彈槍打敗無數個敵人，主宰了整個戰場",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M1887",
     "_enDesc": "With this shotgun, you have defeated countless enemies and become the ruler of the battlefield."
   },
   {
@@ -366611,7 +366611,7 @@
     "Tag": "",
     "Name": "T_55_XO_EXCHANGE_1111v",
     "Desc": "使用旋轉以獲得令人興奮的獎品！",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "T_55_XO_EXCHANGE_1111v",
     "_enDesc": "Use to spin for exciting prizes!"
   },
   {
@@ -482351,7 +482351,7 @@
     "Tag": "OB51",
     "Name": "67",
     "Desc": "",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "67",
     "_enDesc": ""
   },
   {
@@ -495686,7 +495686,7 @@
     "Tag": "OB45",
     "Name": "Bhai main toh nahi sehta",
     "Desc": "Bhaichara 語音包",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "Bhai main toh nahi sehta",
     "_enDesc": "Bhaichara Voice Pack"
   },
   {
