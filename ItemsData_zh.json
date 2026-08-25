@@ -171206,7 +171206,7 @@
     "Tag": "OB27",
     "Name": "dtac 5",
     "Desc": "開啟後獲得獎勵",
-    "_enName": "dtac 5",
+    "_enName": "\u0000__PENDING__\u0000",
     "_enDesc": "Open to receive exciting rewards"
   },
   {
@@ -179516,7 +179516,7 @@
     "Tag": "OB30",
     "Name": "dtac 9",
     "Desc": "天合合夥人",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "dtac 9",
     "_enDesc": "TH Partner"
   },
   {
@@ -319331,7 +319331,7 @@
     "Tag": "",
     "Name": "HH Xmen Uy",
     "Desc": "兌換道具，可在指定活動中兌換獎勵",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "HH Xmen Uy",
     "_enDesc": "Tokens can be used for redeeming rewards"
   },
   {
@@ -319437,7 +319437,7 @@
     "Name": "沃爾夫勒",
     "Desc": "GG",
     "_enName": "Wolfrahh",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "GG"
   },
   {
     "Id": 801000519,
@@ -329397,7 +329397,7 @@
     "Name": "漁夫帽",
     "Desc": "LBFF6",
     "_enName": "Red Bucket Hat",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "LBFF6"
   },
   {
     "Id": 801001185,
@@ -329532,7 +329532,7 @@
     "Name": "帥氣的標誌",
     "Desc": "LBFF6",
     "_enName": "\"SWAG\" Label",
-    "_enDesc": "\u0000__PENDING__\u0000"
+    "_enDesc": "LBFF6"
   },
   {
     "Id": 801001194,
@@ -343241,7 +343241,7 @@
     "Tag": "OB40",
     "Name": "M1887",
     "Desc": "你曾經用這把霰彈槍打敗無數個敵人，主宰了整個戰場",
-    "_enName": "\u0000__PENDING__\u0000",
+    "_enName": "M1887",
     "_enDesc": "With this shotgun, you have defeated countless enemies and become the ruler of the battlefield."
   },
   {
