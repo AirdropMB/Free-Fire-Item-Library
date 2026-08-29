@@ -1598,10 +1598,13 @@
     if(!curItem) return;
     const idStr = curItem.Id.toString();
     navigator.clipboard.writeText(idStr).then(()=>{
-      const msg = lang==='en' ? `ID ${idStr} copied! Paste it (Ctrl+V) into the wishlist page.`
-                : lang==='vi' ? `Đã copy ID ${idStr}! Dán (Ctrl+V) vào ô trên trang Wishlist rồi bấm THÊM.`
-                : `已複製 ID ${idStr}！請貼上 (Ctrl+V) 到願望清單頁面。`;
-      alert(msg);
+      const b = $('btnWishlistItem');
+      if(b.dataset.busy) return; // tránh spam khi bấm liên tục
+      b.dataset.busy='1';
+      const origHTML = b.innerHTML;
+      const copiedTxt = lang==='en' ? `ID ${idStr} copied` : lang==='vi' ? `Đã copy ID ${idStr}` : `已複製 ID ${idStr}`;
+      b.innerHTML = `<svg width="14" height="14" fill="none" stroke="#0a3d2b" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>${copiedTxt}</span>`;
+      setTimeout(()=>{ b.innerHTML = origHTML; delete b.dataset.busy; }, 2200);
     }).catch(()=>{});
     // Không chặn hành vi mặc định của thẻ <a> — trang wishlist vẫn mở ở tab mới như bình thường
   });
