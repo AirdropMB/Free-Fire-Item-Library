@@ -127,6 +127,24 @@
     .nav-btn:hover{background:var(--glass2);border-color:var(--hair2);color:var(--paper);}
     .nav-btn svg{flex-shrink:0;}
     .nav-btn.lang-active{color:var(--ember);border-color:rgba(255,90,51,.4);background:var(--ember-dim);}
+    .nav-wishlist-btn{
+      height:34px;padding:0 14px;flex-shrink:0;
+      clip-path:var(--clip-sm);
+      border:1px solid rgba(255,90,51,.55);
+      background:linear-gradient(135deg,var(--ember),#ff8156);
+      color:#1a0a05;
+      display:inline-flex;align-items:center;justify-content:center;gap:7px;
+      font-size:.74rem;font-weight:700;font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase;
+      cursor:pointer;text-decoration:none;white-space:nowrap;
+      box-shadow:0 0 16px rgba(255,90,51,.4);
+      transition:filter var(--t),box-shadow var(--t),transform var(--t);
+    }
+    .nav-wishlist-btn:hover{filter:brightness(1.08);box-shadow:0 0 22px rgba(255,90,51,.6);transform:translateY(-1px);}
+    .nav-wishlist-btn svg{flex-shrink:0;}
+    @media(max-width:560px){
+      .nav-wishlist-btn span{display:none;}
+      .nav-wishlist-btn{padding:0 10px;}
+    }
     .nav-menu-btn{display:none;}
     @media(max-width:700px){
       .nav-menu-btn{display:inline-flex;}
@@ -502,6 +520,12 @@
     </button>
   </div>
 
+  <!-- Wishlist CTA -->
+  <a class="nav-wishlist-btn" id="hdrWishlistBtn" href="https://free-fire-wishlist.vercel.app/?lang=en" target="_blank" rel="noopener">
+    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12.1 21.35l-1.1-1.05C5.14 15.24 2 12.39 2 8.9 2 6.09 4.09 4 6.9 4c1.54 0 3.04.68 4.05 1.75L12 6.9l1.05-1.15C14.06 4.68 15.56 4 17.1 4 19.91 4 22 6.09 22 8.9c0 3.49-3.14 6.34-9 11.4l-1 .95z"/></svg>
+    <span id="txtWishlistBtn">ADD TO WISHLIST</span>
+  </a>
+
   <!-- Right: actions -->
   <div class="nav-actions">
     <button class="nav-btn hide-sm" id="hdrLangBtn">
@@ -806,6 +830,7 @@
       footer:"Made By Aurust",
       shareItemText:"Check out this item:", shareSearchText:"Check out this collection:",
       follow2:"Follow Aurust",
+      wishlistBtn:"ADD TO WISHLIST",
       rarities:{
         "ARTIFACT":"ARTIFACT 🟥","MYTHIC++":"MYTHIC++ 🟡","MYTHIC":"MYTHIC 🟨",
         "EPIC++":"EPIC++ 🟣","EPIC":"EPIC 🟪","RARE":"RARE 🟦","UNCOMMON":"UNCOMMON 🟩","COMMON":"COMMON ⬜"
@@ -832,6 +857,7 @@
       footer:"Made By Aurust",
       shareItemText:"Xem mục này:", shareSearchText:"Xem bộ sưu tập:",
       follow2:"Theo dõi Aurust",
+      wishlistBtn:"THÊM VÀO DSMM",
       rarities:{
         "ARTIFACT":"Đặc biệt 🟥","MYTHIC++":"Huyền thoại++ 🟡","MYTHIC":"Huyền thoại 🟨",
         "EPIC++":"Sử thi++ 🟣","EPIC":"Sử thi 🟪","RARE":"Hiếm 🟦","UNCOMMON":"Không phổ biến 🟩","COMMON":"Phổ thông ⬜"
@@ -904,6 +930,7 @@
       footer:"Made By Aurust",
       shareItemText:"查看此物品：", shareSearchText:"查看此收藏：",
       follow2:"關注 Aurust",
+      wishlistBtn:"加入願望清單",
       rarities:{
         "ARTIFACT":"神器 🟥","MYTHIC++":"神話++ 🟡","MYTHIC":"神話 🟨",
         "EPIC++":"史詩++ 🟣","EPIC":"史詩 🟪","RARE":"稀有 🟦","UNCOMMON":"不常見 🟩","COMMON":"普通 ⬜"
@@ -1111,6 +1138,8 @@
     $('dNavBrowseTxt').textContent=t.navBrowse;
     $('dDevLabel').textContent=t.devLabel;
     $('dDevDesc').textContent=t.devLabelDesc;
+    $('txtWishlistBtn').textContent=t.wishlistBtn;
+    $('hdrWishlistBtn').href='https://free-fire-wishlist.vercel.app/?lang='+lang;
     updateDevBtns();
   }
   function updateDevBtns(){
