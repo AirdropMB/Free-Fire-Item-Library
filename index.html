@@ -1593,6 +1593,19 @@
     else { navigator.clipboard.writeText(`${txt}\n${itemUrl}`).then(()=>alert(lang==='en'?'Link copied!':lang==='vi'?'Đã sao chép!':'已複製!')); }
   });
 
+  /* ---- WISHLIST: copy ID sẵn để dán bên trang wishlist ---- */
+  $('btnWishlistItem').addEventListener('click',()=>{
+    if(!curItem) return;
+    const idStr = curItem.Id.toString();
+    navigator.clipboard.writeText(idStr).then(()=>{
+      const msg = lang==='en' ? `ID ${idStr} copied! Paste it (Ctrl+V) into the wishlist page.`
+                : lang==='vi' ? `Đã copy ID ${idStr}! Dán (Ctrl+V) vào ô trên trang Wishlist rồi bấm THÊM.`
+                : `已複製 ID ${idStr}！請貼上 (Ctrl+V) 到願望清單頁面。`;
+      alert(msg);
+    }).catch(()=>{});
+    // Không chặn hành vi mặc định của thẻ <a> — trang wishlist vẫn mở ở tab mới như bình thường
+  });
+
   shareBtnEl.addEventListener('click',()=>{
     const url = buildUrl(routeItemId, searchEl.value.trim(), typeSel.value, rareSel.value, tagSel.value);
     const parts=[];
