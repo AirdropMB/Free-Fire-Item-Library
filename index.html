@@ -1594,19 +1594,27 @@
   });
 
   /* ---- WISHLIST: copy ID sẵn để dán bên trang wishlist ---- */
-  $('btnWishlistItem').addEventListener('click',()=>{
+  $('btnWishlistItem').addEventListener('click',(e)=>{
     if(!curItem) return;
+    e.preventDefault(); // tự điều khiển thời điểm mở tab mới, để kịp hiện thông báo đã copy
+    const b = $('btnWishlistItem');
+    if(b.dataset.busy) return; // tránh spam khi bấm liên tục
     const idStr = curItem.Id.toString();
+    const targetUrl = b.href;
+    b.dataset.busy='1';
+    const origHTML = b.innerHTML;
     navigator.clipboard.writeText(idStr).then(()=>{
-      const b = $('btnWishlistItem');
-      if(b.dataset.busy) return; // tránh spam khi bấm liên tục
-      b.dataset.busy='1';
-      const origHTML = b.innerHTML;
       const copiedTxt = lang==='en' ? `ID ${idStr} copied` : lang==='vi' ? `Đã copy ID ${idStr}` : `已複製 ID ${idStr}`;
       b.innerHTML = `<svg width="14" height="14" fill="none" stroke="#0a3d2b" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>${copiedTxt}</span>`;
-      setTimeout(()=>{ b.innerHTML = origHTML; delete b.dataset.busy; }, 2200);
-    }).catch(()=>{});
-    // Không chặn hành vi mặc định của thẻ <a> — trang wishlist vẫn mở ở tab mới như bình thường
+      setTimeout(()=>{
+        window.open(targetUrl,'_blank','noopener');
+        b.innerHTML = origHTML;
+        delete b.dataset.busy;
+      }, 900);
+    }).catch(()=>{
+      window.open(targetUrl,'_blank','noopener');
+      delete b.dataset.busy;
+    });
   });
 
   shareBtnEl.addEventListener('click',()=>{
