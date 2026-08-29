@@ -468,6 +468,9 @@
     .im-btn.share:hover{background:rgba(255,90,51,.28);}
     .im-btn.dl{background:linear-gradient(135deg,var(--success),#3f8f56);color:#fff;}
     .im-btn.dl:hover{filter:brightness(1.08);transform:translateY(-1px);}
+    .im-btn.wish{background:linear-gradient(135deg,var(--ember),#ff8156);color:#1a0a05;box-shadow:0 0 14px rgba(255,90,51,.35);text-decoration:none;}
+    .im-btn.wish:hover{filter:brightness(1.08);box-shadow:0 0 20px rgba(255,90,51,.55);transform:translateY(-1px);}
+    .im-btn.wish.hidden{display:none;}
 
     /* ---- Settings modal ---- */
     .sm-body{padding:22px 20px 24px;display:flex;flex-direction:column;gap:0;}
@@ -726,6 +729,10 @@
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
         <span id="txtDlBtn">Download</span>
       </button>
+      <a class="im-btn wish" id="btnWishlistItem" href="https://free-fire-wishlist.vercel.app/?lang=en" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12.1 21.35l-1.1-1.05C5.14 15.24 2 12.39 2 8.9 2 6.09 4.09 4 6.9 4c1.54 0 3.04.68 4.05 1.75L12 6.9l1.05-1.15C14.06 4.68 15.56 4 17.1 4 19.91 4 22 6.09 22 8.9c0 3.49-3.14 6.34-9 11.4l-1 .95z"/></svg>
+        <span id="txtWishlistItemBtn">ADD TO WISHLIST</span>
+      </a>
     </div>
   </div>
 </div>
@@ -994,6 +1001,8 @@
     ["Characters","Pets","Spark Pet Vault"],
     ["Bundle Create","Choice Crates","Loot Crates","Weapon Crates","Exchange Tokens","Vouchers"]
   ];
+  // Các loại vật phẩm KHÔNG hiển thị nút "Thêm vào DSMM" (Nhân vật, Thú cưng, Phụ Kiện Của Pyro, Hộp, Hộp lựa chọn, Hòm Xác, Hộp vũ khí, Huy Hiệu, Vé Giảm Giá)
+  const wishlistExcludedTypes = new Set(["Characters","Pets","Spark Pet Vault","Bundle Create","Choice Crates","Loot Crates","Weapon Crates","Exchange Tokens","Vouchers"]);
 
   let lang = 'en';
   let routeItemId = null;
@@ -1140,6 +1149,7 @@
     $('dDevDesc').textContent=t.devLabelDesc;
     $('txtWishlistBtn').textContent=t.wishlistBtn;
     $('hdrWishlistBtn').href='https://free-fire-wishlist.vercel.app/?lang='+lang;
+    $('txtWishlistItemBtn').textContent=t.wishlistBtn;
     updateDevBtns();
   }
   function updateDevBtns(){
@@ -1514,6 +1524,15 @@
     $('modalDesc').textContent = (curItem.Desc && curItem.Desc.trim()) ? curItem.Desc : fb_desc;
     $('btnCopyId').innerHTML = cpySVG;
     $('btnCopyIconId').innerHTML = cpySVG;
+
+    // Nút "Thêm vào DSMM" — ẩn với các loại: Nhân vật, Thú cưng, Phụ Kiện Của Pyro, Hộp, Hộp lựa chọn, Hòm Xác, Hộp vũ khí, Huy Hiệu, Vé Giảm Giá
+    const wishBtn = $('btnWishlistItem');
+    if(wishlistExcludedTypes.has(curItem.Category)){
+      wishBtn.classList.add('hidden');
+    } else {
+      wishBtn.classList.remove('hidden');
+      wishBtn.href = 'https://free-fire-wishlist.vercel.app/?lang='+lang;
+    }
 
     if(pushHistory){
       routeItemId = curItem.Id.toString();
