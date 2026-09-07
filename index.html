@@ -199,9 +199,12 @@
     .tthumb{position:absolute;width:16px;height:16px;background:var(--ash);top:3px;left:3px;transition:transform .25s,background .25s;}
     .tsw input:checked~.ttrack{background:var(--ember-dim);border-color:var(--ember);}
     .tsw input:checked~.tthumb{transform:translateX(18px);background:var(--ember);}
-    .d-lang{display:flex;gap:8px;padding:2px 4px;}
-    .d-lang-btn{flex:1;padding:8px 6px;clip-path:var(--clip-sm);border:1px solid var(--hair);background:var(--glass);color:var(--ash);font-size:.8rem;font-weight:700;font-family:var(--font-mono);cursor:pointer;transition:all var(--t);text-align:center;}
-    .d-lang-btn.active{background:var(--ember-dim);border-color:var(--ember);color:var(--ember);}
+    .d-lang-box{background:var(--glass);border:1px solid var(--hair2);clip-path:var(--clip-md);padding:12px 10px;margin:2px 4px 4px;}
+    .d-lang-box .d-section{padding:0 2px 8px;display:flex;align-items:center;gap:6px;opacity:1;}
+    .d-lang-box .d-section svg{flex-shrink:0;color:var(--ember);}
+    .d-lang{display:flex;gap:8px;}
+    .d-lang-btn{flex:1;padding:12px 6px;clip-path:var(--clip-sm);border:1px solid var(--hair);background:var(--glass);color:var(--ash);font-size:.88rem;font-weight:700;font-family:var(--font-mono);cursor:pointer;transition:all var(--t);text-align:center;}
+    .d-lang-btn.active{background:var(--ember-dim);border-color:var(--ember);color:var(--ember);box-shadow:0 0 14px rgba(255,90,51,.3);}
     .d-lang-btn:hover:not(.active){border-color:var(--hair2);color:var(--paper);}
     .soc-row{display:flex;gap:8px;padding:2px 4px;flex-wrap:wrap;}
     .soc-btn{width:38px;height:38px;clip-path:var(--clip-sm);border:1px solid var(--hair);background:var(--glass);color:var(--paper);display:grid;place-items:center;text-decoration:none;transition:all var(--t);}
@@ -559,6 +562,20 @@
   </div>
   <div class="drawer-body">
 
+    <div class="d-lang-box">
+      <div class="d-section" id="dSecLang">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20z"/></svg>
+        Language
+      </div>
+      <div class="d-lang">
+        <button class="d-lang-btn active" id="dLangEn">English</button>
+        <button class="d-lang-btn" id="dLangVi">Tiếng Việt</button>
+        <button class="d-lang-btn" id="dLangZh">中文</button>
+      </div>
+    </div>
+
+    <div class="d-divider"></div>
+
     <div class="d-section" id="dSecNav">Navigation</div>
     <a class="d-item" href="#filterBar" id="dNavBrowse">
       <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -569,12 +586,6 @@
     <input type="checkbox" id="devToggle" style="display:none">
     <span id="dDevLabel" style="display:none"></span>
     <span id="dDevDesc" style="display:none"></span>
-    <div class="d-section" id="dSecLang">Language</div>
-    <div class="d-lang">
-      <button class="d-lang-btn active" id="dLangEn">English</button>
-      <button class="d-lang-btn" id="dLangVi">Tiếng Việt</button>
-      <button class="d-lang-btn" id="dLangZh">中文</button>
-    </div>
 
     <div class="d-divider"></div>
     <div class="d-section" id="dSecSocial">Follow Aurust</div>
