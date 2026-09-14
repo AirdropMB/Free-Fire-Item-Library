@@ -15,20 +15,36 @@ jobs:
       - name: Checkout repo này
         uses: actions/checkout@v4
 
-      - name: Tải ItemsData_en.json mới nhất từ Library
+      # ===== BẢN LIVE (giữ nguyên tên file ở root để không phá logic cũ) =====
+      - name: Tải ItemsData_en.json (Live) mới nhất
         run: |
-          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/ItemsData_en.json" \
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/live/FF_ItemsData.json" \
             -o ItemsData_en.json
 
-      - name: Tải CollectionBanner.json mới nhất
+      - name: Tải CollectionBanner.json (Live) mới nhất
         run: |
-          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/fetch-icons.js" \
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/live/CollectionBanner.json" \
             -o CollectionBanner.json
 
-      - name: Tải ignore_list.json mới nhất
+      - name: Tải IconCDNMap.json (Live, dùng làm fallback CDN cho icon)
         run: |
-          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/fetch-icons.js" \
-            -o ignore_list.json
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/live/IconCDNMap.json" \
+            -o IconCDNMap.json
+
+      # ===== BẢN ADVANCE / OB TEST SERVER (lưu file riêng, không đè lên bản Live) =====
+      - name: Tải FFAdv_ItemsData.json (Advance) mới nhất
+        run: |
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/advance/FFAdv_ItemsData.json" \
+            -o ItemsData_en_advance.json
+
+      - name: Tải CollectionBanner.json (Advance) mới nhất
+        run: |
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/advance/CollectionBanner.json" \
+            -o CollectionBanner_advance.json
+
+      # Lưu ý: ignore_list.json đã bị repo nguồn loại bỏ hoàn toàn (404 ở mọi path).
+      # Nếu bạn vẫn cần danh sách ignore, hãy tự duy trì file ignore_list.json thủ công
+      # trong repo này (đừng để step tự động tải đè lên nữa).
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -45,4 +61,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-synced data & icons [1h]"
-          file_pattern: 'ItemsData_en.json ItemsData_vn.json ItemsData_zh.json CollectionBanner.json ignore_list.json icons/ updated_icons.json'
+          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_zh.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json icons/ updated_icons.json'
