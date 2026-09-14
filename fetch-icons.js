@@ -4,6 +4,11 @@ const path = require('path');
 const dataPath = path.join(__dirname, 'ItemsData_en.json');
 const bannerPath = path.join(__dirname, 'CollectionBanner.json');
 const iconsDir = path.join(__dirname, 'icons');
+
+const advDataPath = path.join(__dirname, 'ItemsData_en_advance.json');
+const advBannerPath = path.join(__dirname, 'CollectionBanner_advance.json');
+const advIconsDir = path.join(__dirname, 'icons_advance');
+
 const ignoreListPath = path.join(__dirname, 'ignore_list.json');
 const CONCURRENCY_LIMIT = 150;
 const FORCE_UPDATE = false;
@@ -28,15 +33,20 @@ if (fs.existsSync(ignoreListPath)) {
     }
 }
 
-if (fs.existsSync(iconsDir)) {
-    if (FORCE_UPDATE) {
-        fs.rmSync(iconsDir, { recursive: true, force: true });
-        fs.mkdirSync(iconsDir);
-        console.log('Cleaned icons folder.');
+function ensureIconsDir(dir) {
+    if (fs.existsSync(dir)) {
+        if (FORCE_UPDATE) {
+            fs.rmSync(dir, { recursive: true, force: true });
+            fs.mkdirSync(dir);
+            console.log(`Cleaned ${path.basename(dir)} folder.`);
+        }
+    } else {
+        fs.mkdirSync(dir, { recursive: true });
     }
-} else {
-    fs.mkdirSync(iconsDir, { recursive: true });
 }
+
+ensureIconsDir(iconsDir);
+ensureIconsDir(advIconsDir);
 
 async function fetchWithRetry(url, maxRetries = 5) {
     for (let i = 0; i < maxRetries; i++) {
@@ -56,10 +66,10 @@ async function fetchWithRetry(url, maxRetries = 5) {
     return { ok: false };
 }
 
-async function downloadIcon(item) {
+async function downloadIcon(item, targetIconsDir) {
     const itemID = String(item.Id);
     const iconName = item.Icon ? String(item.Icon) : null;
-    
+
     const isAllIgnored = ignoreData.ignore_all.includes(itemID) || (iconName && ignoreData.ignore_all.includes(iconName));
     const isUpdateIgnored = ignoreData.ignore_update.includes(itemID) || (iconName && ignoreData.ignore_update.includes(iconName));
 
@@ -71,8 +81,8 @@ async function downloadIcon(item) {
     let mainIconFound = false;
 
     const targetId = { id: itemID, file: `${itemID}.png` };
-    const pathId = path.join(iconsDir, targetId.file);
-    
+    const pathId = path.join(targetIconsDir, targetId.file);
+
     if (!FORCE_UPDATE && fs.existsSync(pathId)) {
         stats.skipped++;
         mainIconFound = true;
@@ -89,7 +99,7 @@ async function downloadIcon(item) {
 
     if (!mainIconFound && iconName) {
         const targetIcon = { id: iconName, file: `${iconName}.png` };
-        const pathIcon = path.join(iconsDir, targetIcon.file);
+        const pathIcon = path.join(targetIconsDir, targetIcon.file);
 
         if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
             stats.skipped++;
@@ -114,8 +124,8 @@ async function downloadIcon(item) {
 
     if (!isUpdateIgnored) {
         const targetId2 = { id: `${itemID}_2`, file: `${itemID}_2.png` };
-        const pathId2 = path.join(iconsDir, targetId2.file);
-        
+        const pathId2 = path.join(targetIconsDir, targetId2.file);
+
         if (!FORCE_UPDATE && fs.existsSync(pathId2)) {
             stats.skipped++;
         } else {
@@ -130,12 +140,12 @@ async function downloadIcon(item) {
     }
 }
 
-async function downloadBanner(bannerItem) {
+async function downloadBanner(bannerItem, targetIconsDir) {
     const iconVal = bannerItem.icon;
     if (!iconVal || String(iconVal).trim() === "") return;
 
     const iconName = String(iconVal).toLowerCase();
-    
+
     const isAllIgnored = ignoreData.ignore_all.includes(iconName);
 
     if (isAllIgnored) {
@@ -145,7 +155,7 @@ async function downloadBanner(bannerItem) {
 
     let mainIconFound = false;
     const targetIcon = { id: iconName, file: `${iconName}.png` };
-    const pathIcon = path.join(iconsDir, targetIcon.file);
+    const pathIcon = path.join(targetIconsDir, targetIcon.file);
 
     if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
         stats.skipped++;
@@ -168,17 +178,30 @@ async function downloadBanner(bannerItem) {
     }
 }
 
+function writeUpdatedIcons(targetIconsDir, outputFileName) {
+    if (!fs.existsSync(targetIconsDir)) return;
+    const allFiles = fs.readdirSync(targetIconsDir);
+    const updatedIcons = allFiles
+        .filter(file => file.endsWith('_2.png'))
+        .map(file => file.replace('_2.png', ''))
+        .filter(id => !ignoreData.ignore_update.includes(id) && !ignoreData.ignore_all.includes(id));
+
+    fs.writeFileSync(path.join(__dirname, outputFileName), JSON.stringify(updatedIcons));
+    return updatedIcons.length;
+}
+
 async function start() {
     const tasks = [];
 
+    // ===== LIVE =====
     if (fs.existsSync(dataPath)) {
         const rawData = fs.readFileSync(dataPath, 'utf8');
         const items = JSON.parse(rawData);
         const itemsArray = Array.isArray(items) ? items : Object.values(items);
         const validItems = itemsArray.filter(item => !(item.HideInIndex === true || !item.Icon || String(item.Icon).trim() === ""));
-        
+
         validItems.forEach(item => {
-            tasks.push(() => downloadIcon(item));
+            tasks.push(() => downloadIcon(item, iconsDir));
         });
     }
 
@@ -186,9 +209,31 @@ async function start() {
         const rawBanner = fs.readFileSync(bannerPath, 'utf8');
         const banners = JSON.parse(rawBanner);
         const bannerArray = Array.isArray(banners) ? banners : Object.values(banners);
-        
+
         bannerArray.forEach(banner => {
-            tasks.push(() => downloadBanner(banner));
+            tasks.push(() => downloadBanner(banner, iconsDir));
+        });
+    }
+
+    // ===== ADVANCE (OB test server) =====
+    if (fs.existsSync(advDataPath)) {
+        const rawAdvData = fs.readFileSync(advDataPath, 'utf8');
+        const advItems = JSON.parse(rawAdvData);
+        const advItemsArray = Array.isArray(advItems) ? advItems : Object.values(advItems);
+        const validAdvItems = advItemsArray.filter(item => !(item.HideInIndex === true || !item.Icon || String(item.Icon).trim() === ""));
+
+        validAdvItems.forEach(item => {
+            tasks.push(() => downloadIcon(item, advIconsDir));
+        });
+    }
+
+    if (fs.existsSync(advBannerPath)) {
+        const rawAdvBanner = fs.readFileSync(advBannerPath, 'utf8');
+        const advBanners = JSON.parse(rawAdvBanner);
+        const advBannerArray = Array.isArray(advBanners) ? advBanners : Object.values(advBanners);
+
+        advBannerArray.forEach(banner => {
+            tasks.push(() => downloadBanner(banner, advIconsDir));
         });
     }
 
@@ -208,13 +253,8 @@ async function start() {
 
     await Promise.all(workers);
 
-    const allFiles = fs.readdirSync(iconsDir);
-    const updatedIcons = allFiles
-        .filter(file => file.endsWith('_2.png'))
-        .map(file => file.replace('_2.png', ''))
-        .filter(id => !ignoreData.ignore_update.includes(id) && !ignoreData.ignore_all.includes(id));
-    
-    fs.writeFileSync(path.join(__dirname, 'updated_icons.json'), JSON.stringify(updatedIcons));
+    const updatedCountLive = writeUpdatedIcons(iconsDir, 'updated_icons.json') || 0;
+    const updatedCountAdv = writeUpdatedIcons(advIconsDir, 'updated_icons_advance.json') || 0;
 
     console.log('\n====================================');
     console.log('         DOWNLOAD SUMMARY           ');
@@ -224,8 +264,9 @@ async function start() {
     console.log(`Skipped (Exists): ${stats.skipped}`);
     console.log(`Downloaded New  : ${stats.downloaded}`);
     console.log(`Failed          : ${stats.failed}`);
-    console.log(`Updated Icons Detected & Saved: ${updatedIcons.length}`);
-    
+    console.log(`Updated Icons Detected & Saved (Live)    : ${updatedCountLive}`);
+    console.log(`Updated Icons Detected & Saved (Advance) : ${updatedCountAdv}`);
+
     if (stats.failedItems.length > 0) {
         console.log('------------------------------------');
         console.log('Failed Items IDs / Banners:');
