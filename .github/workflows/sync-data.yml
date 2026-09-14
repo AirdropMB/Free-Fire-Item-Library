@@ -22,12 +22,12 @@ jobs:
 
       - name: Tải CollectionBanner.json mới nhất
         run: |
-          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/CollectionBanner.json" \
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/fetch-icons.js" \
             -o CollectionBanner.json
 
       - name: Tải ignore_list.json mới nhất
         run: |
-          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/ignore_list.json" \
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/fetch-icons.js" \
             -o ignore_list.json
 
       - name: Setup Node.js
