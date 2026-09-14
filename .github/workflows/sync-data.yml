@@ -61,4 +61,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-synced data & icons [1h]"
-          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_zh.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json icons/ updated_icons.json'
+          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_zh.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json icons/ icons_advance/ updated_icons.json updated_icons_advance.json'
