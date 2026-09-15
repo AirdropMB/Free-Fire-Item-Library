@@ -577,6 +577,19 @@
 
     <div class="d-divider"></div>
 
+    <div class="d-lang-box">
+      <div class="d-section" id="dSecServer">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span id="dSecServerTxt">Server</span>
+      </div>
+      <div class="d-lang">
+        <button class="d-lang-btn active" id="dSrvLive">Live</button>
+        <button class="d-lang-btn" id="dSrvAdvance">Advance</button>
+      </div>
+    </div>
+
+    <div class="d-divider"></div>
+
     <div class="d-section" id="dSecNav">Navigation</div>
     <a class="d-item" href="#filterBar" id="dNavBrowse">
       <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -610,6 +623,12 @@
 
 <!-- ===== MAIN CONTENT ===== -->
 <main class="wrap">
+
+  <!-- Advance/OB Test Server notice -->
+  <div id="advanceBanner" style="display:none;margin:14px 0;padding:10px 14px;background:rgba(255,90,51,.1);border:1px solid rgba(255,90,51,.4);clip-path:var(--clip-sm);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.02em;color:var(--paper-dim);display:flex;align-items:center;gap:8px;">
+    <svg width="14" height="14" fill="none" stroke="var(--ember)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><path d="M12 9v4m0 4h.01M10.29 3.86l-8.18 14.14A2 2 0 004.18 21h15.64a2 2 0 001.87-2.99L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+    <span id="txtAdvanceNotice">Advance / OB Test Server — preview data, subject to change. English only.</span>
+  </div>
 
   <!-- Filter Bar -->
   <div class="filter-bar" id="filterBar">
@@ -774,6 +793,19 @@
         </div>
       </div>
 
+      <div class="sm-item" style="border-bottom:none;padding-top:0;">
+        <div class="sm-info">
+          <strong>
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span id="txtServerSetting">Server</span>
+          </strong>
+        </div>
+        <div class="sm-lrow">
+          <button class="sm-lbtn" id="smSrvLive">LIVE</button>
+          <button class="sm-lbtn" id="smSrvAdvance">ADVANCE</button>
+        </div>
+      </div>
+
       <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--hair);">
         <div style="font-family:var(--font-mono);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--brass);margin-bottom:8px;" id="txtSmFollow">Follow Aurust</div>
         <div class="soc-row">
@@ -850,6 +882,8 @@
       shareItemText:"Check out this item:", shareSearchText:"Check out this collection:",
       follow2:"Follow Aurust",
       wishlistBtn:"ADD TO WISHLIST",
+      serverSetting:"Server",
+      advanceNotice:"Advance / OB Test Server — preview data, subject to change. English only.",
       rarities:{
         "ARTIFACT":"ARTIFACT 🟥","MYTHIC++":"MYTHIC++ 🟡","MYTHIC":"MYTHIC 🟨",
         "EPIC++":"EPIC++ 🟣","EPIC":"EPIC 🟪","RARE":"RARE 🟦","UNCOMMON":"UNCOMMON 🟩","COMMON":"COMMON ⬜"
@@ -877,6 +911,8 @@
       shareItemText:"Xem mục này:", shareSearchText:"Xem bộ sưu tập:",
       follow2:"Theo dõi Aurust",
       wishlistBtn:"THÊM VÀO DSMM",
+      serverSetting:"Máy chủ",
+      advanceNotice:"Máy chủ thử nghiệm Advance/OB — dữ liệu xem trước, có thể thay đổi. Chỉ có tiếng Anh.",
       rarities:{
         "ARTIFACT":"Đặc biệt 🟥","MYTHIC++":"Huyền thoại++ 🟡","MYTHIC":"Huyền thoại 🟨",
         "EPIC++":"Sử thi++ 🟣","EPIC":"Sử thi 🟪","RARE":"Hiếm 🟦","UNCOMMON":"Không phổ biến 🟩","COMMON":"Phổ thông ⬜"
@@ -950,6 +986,8 @@
       shareItemText:"查看此物品：", shareSearchText:"查看此收藏：",
       follow2:"關注 Aurust",
       wishlistBtn:"加入願望清單",
+      serverSetting:"伺服器",
+      advanceNotice:"Advance / OB 測試服 — 預覽資料，可能變動。僅提供英文。",
       rarities:{
         "ARTIFACT":"神器 🟥","MYTHIC++":"神話++ 🟡","MYTHIC":"神話 🟨",
         "EPIC++":"史詩++ 🟣","EPIC":"史詩 🟪","RARE":"稀有 🟦","UNCOMMON":"不常見 🟩","COMMON":"普通 ⬜"
@@ -1061,6 +1099,10 @@
   let isDevMode=false;
   const imgBase='';
 
+  /* serverMode: 'live' | 'advance' (OB test server) */
+  let serverMode = (localStorage.getItem('serverMode')==='advance') ? 'advance' : 'live';
+  function iconsFolder(){ return serverMode==='advance' ? 'icons_advance/' : 'icons/'; }
+
   function setPerPage(){ perPage = window.innerWidth>=900?200:100; }
   setPerPage();
   window.addEventListener('resize',()=>{const p=perPage;setPerPage();if(p!==perPage)applyFilters(1);});
@@ -1110,6 +1152,28 @@
   $('dLangEn').addEventListener('click',()=>setLang('en'));
   $('dLangVi').addEventListener('click',()=>setLang('vi'));
   $('dLangZh').addEventListener('click',()=>setLang('zh'));
+
+  /* ---- SERVER (Live / Advance) ---- */
+  function setServer(s){
+    if(s===serverMode) return;
+    serverMode = s;
+    localStorage.setItem('serverMode', s);
+    selected.clear();
+    syncServerBtns();
+    fetchData();
+  }
+  function syncServerBtns(){
+    const isLive=serverMode==='live', isAdv=serverMode==='advance';
+    $('smSrvLive').classList.toggle('on',isLive);
+    $('smSrvAdvance').classList.toggle('on',isAdv);
+    $('dSrvLive').classList.toggle('active',isLive);
+    $('dSrvAdvance').classList.toggle('active',isAdv);
+    $('advanceBanner').style.display = isAdv ? 'flex' : 'none';
+  }
+  $('smSrvLive').addEventListener('click',()=>setServer('live'));
+  $('smSrvAdvance').addEventListener('click',()=>setServer('advance'));
+  $('dSrvLive').addEventListener('click',()=>setServer('live'));
+  $('dSrvAdvance').addEventListener('click',()=>setServer('advance'));
   $('smLangEn').addEventListener('click',()=>setLang('en'));
   $('smLangVi').addEventListener('click',()=>setLang('vi'));
   $('smLangZh').addEventListener('click',()=>setLang('zh'));
@@ -1162,6 +1226,9 @@
     $('txtWishlistBtn').textContent=t.wishlistBtn;
     $('hdrWishlistBtn').href='https://free-fire-wishlist.vercel.app/?lang='+lang;
     $('txtWishlistItemBtn').textContent=t.wishlistBtn;
+    $('txtServerSetting').textContent=t.serverSetting;
+    $('dSecServerTxt').textContent=t.serverSetting;
+    $('txtAdvanceNotice').textContent=t.advanceNotice;
     updateDevBtns();
   }
   function updateDevBtns(){
@@ -1184,6 +1251,40 @@
 
   function fetchData(rs=null,rt=null,ry=null,rr=null,rp=null){
     loaderEl.style.opacity='1'; loaderEl.style.pointerEvents='all';
+
+    if(serverMode==='advance'){
+      // Bản Advance (OB test server): chỉ có dữ liệu tiếng Anh, không có VN/ZH, không có new_items.
+      Promise.all([
+        fetch(`ItemsData_en_advance.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]),
+        fetch(`updated_icons_advance.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[]),
+        fetch(`CollectionBanner_advance.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
+      ]).then(([data, upd, bnr])=>{
+        try {
+          rawData    = Array.isArray(data) ? data : Object.values(data);
+          updatedSet = new Set(upd);
+          banners    = Array.isArray(bnr) ? bnr : Object.values(bnr);
+          newItemsSet = new Set();
+          filterRaw();
+          buildFilters();
+          if(rs !== null){
+            searchEl.value = rs;
+            if([...tagSel.options].some(o=>o.value===rt)) tagSel.value=rt;
+            if([...typeSel.options].some(o=>o.value===ry)) typeSel.value=ry;
+            if([...rareSel.options].some(o=>o.value===rr)) rareSel.value=rr;
+            applyFilters(rp||1);
+          } else { checkUrlParams(); applyFilters(1); }
+        } catch(e){
+          gridEl.innerHTML='<p style="text-align:center;color:#f05050;padding:40px;">Error processing data</p>';
+        } finally {
+          if(window._loaderFinish) window._loaderFinish();
+        }
+      }).catch(()=>{
+        gridEl.innerHTML='<p style="text-align:center;color:#f05050;padding:40px;">Failed to load data.</p>';
+        if(window._loaderFinish) window._loaderFinish();
+      });
+      return;
+    }
+
     const file = lang==='en' ? 'ItemsData_en.json' : lang==='vi' ? 'ItemsData_vn.json' : 'ItemsData_zh.json';
 
     // Với VN/ZH: luôn load song song EN để lấy Category, Tag, Icon làm fallback
@@ -1351,12 +1452,12 @@
 
       // Xây dựng danh sách URL fallback
       const urls = [];
-      if(updatedSet.has(ids)) urls.push(imgBase+`icons/${ids}_2.png`);
-      urls.push(imgBase+`icons/${ids}.png`);
+      if(updatedSet.has(ids)) urls.push(iconsFolder()+`${ids}_2.png`);
+      urls.push(iconsFolder()+`${ids}.png`);
       if(item.Icon){
         const ic = item.Icon.toString();
-        if(updatedSet.has(ic)) urls.push(imgBase+`icons/${ic}_2.png`);
-        urls.push(imgBase+`icons/${ic}.png`);
+        if(updatedSet.has(ic)) urls.push(iconsFolder()+`${ic}_2.png`);
+        urls.push(iconsFolder()+`${ic}.png`);
       }
 
       const card = document.createElement('div');
@@ -1500,15 +1601,15 @@
     const srcs = [];
     const ids  = curItem.Id.toString();
     if(isBnr && curBannerIcon){
-      if(updatedSet.has(curBannerIcon)) srcs.push(imgBase+`icons/${curBannerIcon}_2.png`);
-      srcs.push(imgBase+`icons/${curBannerIcon}.png`);
+      if(updatedSet.has(curBannerIcon)) srcs.push(iconsFolder()+`${curBannerIcon}_2.png`);
+      srcs.push(iconsFolder()+`${curBannerIcon}.png`);
     } else {
-      if(updatedSet.has(ids)) srcs.push(imgBase+`icons/${ids}_2.png`);
-      srcs.push(imgBase+`icons/${ids}.png`);
+      if(updatedSet.has(ids)) srcs.push(iconsFolder()+`${ids}_2.png`);
+      srcs.push(iconsFolder()+`${ids}.png`);
       if(curItem.Icon){
         const ic=curItem.Icon.toString();
-        if(updatedSet.has(ic)) srcs.push(imgBase+`icons/${ic}_2.png`);
-        srcs.push(imgBase+`icons/${ic}.png`);
+        if(updatedSet.has(ic)) srcs.push(iconsFolder()+`${ic}_2.png`);
+        srcs.push(iconsFolder()+`${ic}.png`);
       }
     }
     srcs.push(fb);
@@ -1660,9 +1761,9 @@
   function downloadIcon(item){
     return new Promise(res=>{
       const ids=item.Id.toString(); const urls=[];
-      if(updatedSet.has(ids)) urls.push(imgBase+`icons/${ids}_2.png`);
-      urls.push(imgBase+`icons/${ids}.png`);
-      if(item.Icon){const ic=item.Icon.toString();if(updatedSet.has(ic))urls.push(imgBase+`icons/${ic}_2.png`);urls.push(imgBase+`icons/${ic}.png`);}
+      if(updatedSet.has(ids)) urls.push(iconsFolder()+`${ids}_2.png`);
+      urls.push(iconsFolder()+`${ids}.png`);
+      if(item.Icon){const ic=item.Icon.toString();if(updatedSet.has(ic))urls.push(iconsFolder()+`${ic}_2.png`);urls.push(iconsFolder()+`${ic}.png`);}
       const exec=async(u)=>{
         try{const r=await fetch(u,{method:'GET',mode:'cors'});if(!r.ok)throw 0;const blob=await r.blob();const a=document.createElement('a');a.style.display='none';a.href=URL.createObjectURL(blob);a.download=`${item.Id}_icon.png`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(a.href);}
         catch{const a=document.createElement('a');a.href=u;a.download=`${item.Id}_icon.png`;a.target='_blank';document.body.appendChild(a);a.click();a.remove();}
@@ -1679,9 +1780,9 @@
       const ctx=cv.getContext('2d');
       const bgImg=new Image();bgImg.crossOrigin='Anonymous';bgImg.src=getRarityBg(item.Rare);
       const ids=item.Id.toString();const urls=[];
-      if(updatedSet.has(ids))urls.push(imgBase+`icons/${ids}_2.png`);
-      urls.push(imgBase+`icons/${ids}.png`);
-      if(item.Icon){const ic=item.Icon.toString();if(updatedSet.has(ic))urls.push(imgBase+`icons/${ic}_2.png`);urls.push(imgBase+`icons/${ic}.png`);}
+      if(updatedSet.has(ids))urls.push(iconsFolder()+`${ids}_2.png`);
+      urls.push(iconsFolder()+`${ids}.png`);
+      if(item.Icon){const ic=item.Icon.toString();if(updatedSet.has(ic))urls.push(iconsFolder()+`${ic}_2.png`);urls.push(iconsFolder()+`${ic}.png`);}
       bgImg.onload=()=>{
         ctx.drawImage(bgImg,0,0,512,512);
         const tryIc=(i)=>{
@@ -1706,8 +1807,8 @@
   function downloadSpecificIcon(iconName, itemID){
     return new Promise(res=>{
       const urls=[];
-      if(updatedSet.has(iconName))urls.push(imgBase+`icons/${iconName}_2.png`);
-      urls.push(imgBase+`icons/${iconName}.png`);
+      if(updatedSet.has(iconName))urls.push(iconsFolder()+`${iconName}_2.png`);
+      urls.push(iconsFolder()+`${iconName}.png`);
       const exec=async(u)=>{
         try{const r=await fetch(u,{method:'GET',mode:'cors'});if(!r.ok)throw 0;const blob=await r.blob();const a=document.createElement('a');a.style.display='none';a.href=URL.createObjectURL(blob);a.download=`${itemID}_banner.png`;document.body.appendChild(a);a.click();a.remove();}
         catch{const a=document.createElement('a');a.href=u;a.download=`${itemID}_banner.png`;a.target='_blank';document.body.appendChild(a);a.click();a.remove();}
@@ -1823,6 +1924,7 @@
   /* ---- INIT ---- */
   applyLangUI();
   syncLangBtns();
+  syncServerBtns();
   fetchData();
 </script>
 </body>
