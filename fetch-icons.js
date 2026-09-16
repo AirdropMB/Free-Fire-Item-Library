@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const CDN_BASE_URL = 'https://dl.cdn.freefiremobile.com/live/ABHotUpdates/IconCDN/other/';
+
 const dataPath = path.join(__dirname, 'ItemsData_en.json');
 const bannerPath = path.join(__dirname, 'CollectionBanner.json');
 const iconsDir = path.join(__dirname, 'icons');
@@ -10,8 +12,11 @@ const advBannerPath = path.join(__dirname, 'CollectionBanner_advance.json');
 const advIconsDir = path.join(__dirname, 'icons_advance');
 
 const ignoreListPath = path.join(__dirname, 'ignore_list.json');
-const CONCURRENCY_LIMIT = 150;
+const CONCURRENCY_LIMIT = 50; // Giảm xuống 50 để tránh bị CDN rate-limit
 const FORCE_UPDATE = false;
+
+// Ngưỡng dung lượng (byte): Ảnh đen/che thường nhỏ hơn 5KB (5120 bytes)
+const PLACEHOLDER_SIZE_LIMIT = 5120;
 
 const stats = {
     downloaded: 0,
@@ -48,22 +53,49 @@ function ensureIconsDir(dir) {
 ensureIconsDir(iconsDir);
 ensureIconsDir(advIconsDir);
 
-async function fetchWithRetry(url, maxRetries = 5) {
+async function fetchWithRetry(url, maxRetries = 3) {
     for (let i = 0; i < maxRetries; i++) {
         try {
             const response = await fetch(url);
-            if (response.status === 404) {
-                return response;
-            }
-            if (response.ok) {
-                return response;
-            }
+            if (response.status === 404) return null;
+            if (response.ok) return response;
         } catch (error) {
-            if (i === maxRetries - 1) throw error;
+            if (i === maxRetries - 1) return null;
         }
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 500));
     }
-    return { ok: false };
+    return null;
+}
+
+// Hàm kiểm tra và tải từ CDN Garena
+async function tryDownloadCDN(targetId, targetIconsDir) {
+    const fileName = `${targetId}.png`;
+    const filePath = path.join(targetIconsDir, fileName);
+
+    // Kiểm tra xem file đã tồn tại và CÓ PHẢI LÀ ẢNH HỢP LỆ (>= 5KB) hay không
+    if (!FORCE_UPDATE && fs.existsSync(filePath)) {
+        const fileStat = fs.statSync(filePath);
+        if (fileStat.size >= PLACEHOLDER_SIZE_LIMIT) {
+            stats.skipped++;
+            return true;
+        }
+        console.log(`[REPLACE] Phát hiện ảnh đen (${fileStat.size}b), đang tải lại: ${fileName}`);
+    }
+
+    const url = `${CDN_BASE_URL}${targetId}.png`;
+    const res = await fetchWithRetry(url);
+
+    if (res) {
+        const buffer = Buffer.from(await res.arrayBuffer());
+        // Chỉ lưu nếu dung lượng tải về lớn hơn ảnh che mặc định
+        if (buffer.length >= PLACEHOLDER_SIZE_LIMIT) {
+            fs.writeFileSync(filePath, buffer);
+            stats.downloaded++;
+            console.log(`Downloaded from CDN: ${fileName}`);
+            return true;
+        }
+    }
+    return false;
 }
 
 async function downloadIcon(item, targetIconsDir) {
@@ -80,40 +112,12 @@ async function downloadIcon(item, targetIconsDir) {
 
     let mainIconFound = false;
 
-    const targetId = { id: itemID, file: `${itemID}.png` };
-    const pathId = path.join(targetIconsDir, targetId.file);
+    // 1. Thử tải theo Item ID
+    mainIconFound = await tryDownloadCDN(itemID, targetIconsDir);
 
-    if (!FORCE_UPDATE && fs.existsSync(pathId)) {
-        stats.skipped++;
-        mainIconFound = true;
-    } else {
-        const url1 = `https://kog-ff-icons.vercel.app/api/icon/${targetId.id}?no_fallback=true`;
-        let res1 = await fetchWithRetry(url1);
-        if (res1.ok) {
-            fs.writeFileSync(pathId, Buffer.from(await res1.arrayBuffer()));
-            stats.downloaded++;
-            console.log(`Downloaded: ${targetId.file}`);
-            mainIconFound = true;
-        }
-    }
-
+    // 2. Thử tải theo Icon Name nếu ID thất bại
     if (!mainIconFound && iconName) {
-        const targetIcon = { id: iconName, file: `${iconName}.png` };
-        const pathIcon = path.join(targetIconsDir, targetIcon.file);
-
-        if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
-            stats.skipped++;
-            mainIconFound = true;
-        } else {
-            const urlIcon = `https://kog-ff-icons.vercel.app/api/icon/${targetIcon.id}?no_fallback=true`;
-            let resIcon = await fetchWithRetry(urlIcon);
-            if (resIcon.ok) {
-                fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
-                stats.downloaded++;
-                console.log(`Downloaded: ${targetIcon.file}`);
-                mainIconFound = true;
-            }
-        }
+        mainIconFound = await tryDownloadCDN(iconName, targetIconsDir);
     }
 
     if (!mainIconFound) {
@@ -122,21 +126,9 @@ async function downloadIcon(item, targetIconsDir) {
         console.log(`Failed: ${itemID} ${iconName ? '& ' + iconName : ''}`);
     }
 
+    // Tải icon phiên bản nâng cấp/thứ 2 (Ví dụ: ID_2.png)
     if (!isUpdateIgnored) {
-        const targetId2 = { id: `${itemID}_2`, file: `${itemID}_2.png` };
-        const pathId2 = path.join(targetIconsDir, targetId2.file);
-
-        if (!FORCE_UPDATE && fs.existsSync(pathId2)) {
-            stats.skipped++;
-        } else {
-            const url2 = `https://kog-ff-icons.vercel.app/api/icon/${targetId2.id}?no_fallback=true`;
-            let res2 = await fetchWithRetry(url2);
-            if (res2.ok) {
-                fs.writeFileSync(pathId2, Buffer.from(await res2.arrayBuffer()));
-                stats.downloaded++;
-                console.log(`Downloaded: ${targetId2.file}`);
-            }
-        }
+        await tryDownloadCDN(`${itemID}_2`, targetIconsDir);
     }
 }
 
@@ -145,7 +137,6 @@ async function downloadBanner(bannerItem, targetIconsDir) {
     if (!iconVal || String(iconVal).trim() === "") return;
 
     const iconName = String(iconVal).toLowerCase();
-
     const isAllIgnored = ignoreData.ignore_all.includes(iconName);
 
     if (isAllIgnored) {
@@ -153,25 +144,9 @@ async function downloadBanner(bannerItem, targetIconsDir) {
         return;
     }
 
-    let mainIconFound = false;
-    const targetIcon = { id: iconName, file: `${iconName}.png` };
-    const pathIcon = path.join(targetIconsDir, targetIcon.file);
+    const success = await tryDownloadCDN(iconName, targetIconsDir);
 
-    if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
-        stats.skipped++;
-        mainIconFound = true;
-    } else {
-        const urlIcon = `https://kog-ff-icons.vercel.app/api/icon/${targetIcon.id}?no_fallback=true`;
-        let resIcon = await fetchWithRetry(urlIcon);
-        if (resIcon.ok) {
-            fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
-            stats.downloaded++;
-            console.log(`Downloaded: ${targetIcon.file}`);
-            mainIconFound = true;
-        }
-    }
-
-    if (!mainIconFound) {
+    if (!success) {
         stats.failed++;
         stats.failedItems.push(`Banner: ${iconName}`);
         console.log(`Failed: Banner ${iconName}`);
@@ -215,7 +190,7 @@ async function start() {
         });
     }
 
-    // ===== ADVANCE (OB test server) =====
+    // ===== ADVANCE =====
     if (fs.existsSync(advDataPath)) {
         const rawAdvData = fs.readFileSync(advDataPath, 'utf8');
         const advItems = JSON.parse(rawAdvData);
