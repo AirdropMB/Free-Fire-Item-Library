@@ -1,28 +1,36 @@
-name: Auto Download & Update CDN Icons
+const CDN_ID_URL = 'https://dl.cdn.freefiremobile.com/live/ABHotUpdates/IconCDN/other/';
+const CDN_NAME_URL = 'https://freefiremobile-a.akamaihd.net/common/Local/PK/FF_UI_Icon/';
 
-on:
-  workflow_dispatch: # Cho phép bấm nút chạy thủ công trên GitHub
+// Hàm tự động chọn CDN phù hợp dựa vào ID hay Tên Icon
+async function tryDownloadCDN(targetId, targetIconsDir) {
+    const fileName = `${targetId}.png`;
+    const filePath = path.join(targetIconsDir, fileName);
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    // Kiểm tra xem file đã có sẵn & là ảnh thật (>= 5KB) chưa
+    if (!FORCE_UPDATE && fs.existsSync(filePath)) {
+        const fileStat = fs.statSync(filePath);
+        if (fileStat.size >= PLACEHOLDER_SIZE_LIMIT) {
+            stats.skipped++;
+            return true;
+        }
+        console.log(`[REPLACE] Phát hiện ảnh che/đen (${fileStat.size}b), đang thay thế: ${fileName}`);
+    }
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+    // Nếu chỉ gồm chữ số -> Dùng CDN ID. Nếu chứa chữ cái -> Dùng CDN Akamai cho Tên Icon
+    const isOnlyNumbers = /^\d+$/.test(targetId);
+    const baseUrl = isOnlyNumbers ? CDN_ID_URL : CDN_NAME_URL;
+    const url = `${baseUrl}${targetId}.png`;
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    const res = await fetchWithRetry(url);
 
-      - name: Run Fetch Icons Script
-        run: node fetch-icons.js
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Auto updated missing icons from Garena CDN" || exit 0
-          git push
+    if (res) {
+        const buffer = Buffer.from(await res.arrayBuffer());
+        if (buffer.length >= PLACEHOLDER_SIZE_LIMIT) {
+            fs.writeFileSync(filePath, buffer);
+            stats.downloaded++;
+            console.log(`[SUCCESS] Downloaded: ${fileName} từ ${isOnlyNumbers ? 'CDN ID' : 'CDN Akamai'}`);
+            return true;
+        }
+    }
+    return false;
+}
