@@ -5,6 +5,10 @@ on:
     - cron: '0 */1 * * *'   # Tự chạy mỗi 1 tiếng 1 lần để giảm chậm trễ
   workflow_dispatch:           # Cho phép chạy thủ công trên GitHub Actions
 
+concurrency:
+  group: sync-data
+  cancel-in-progress: true
+
 jobs:
   sync-and-fetch:
     runs-on: ubuntu-latest
