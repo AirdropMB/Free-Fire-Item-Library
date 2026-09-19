@@ -3,6 +3,10 @@ name: Auto Download & Update CDN Icons
 on:
   workflow_dispatch:
 
+concurrency:
+  group: download-icons
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
