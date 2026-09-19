@@ -1,0 +1,407 @@
+[
+    {
+        "IconName": "902047005",
+        "CDNUrl": "902047005_2",
+        "ID": 0
+    },
+    {
+        "IconName": "901047007",
+        "CDNUrl": "901047007_2",
+        "ID": 1
+    },
+    {
+        "IconName": "Icon_callsign_basebg_Auroraboy",
+        "CDNUrl": "Icon_callsign_basebg_Auroraboy_2",
+        "ID": 2
+    },
+    {
+        "IconName": "Icon_avatar_top_cos_new_max",
+        "CDNUrl": "Icon_avatar_top_cos_new_max_2",
+        "ID": 3
+    },
+    {
+        "IconName": "819650331",
+        "CDNUrl": "819650331_2",
+        "ID": 4
+    },
+    {
+        "IconName": "819650430",
+        "CDNUrl": "819650430_2",
+        "ID": 5
+    },
+    {
+        "IconName": "203000573",
+        "CDNUrl": "203000573_2",
+        "ID": 6
+    },
+    {
+        "IconName": "926004905",
+        "CDNUrl": "926004905_2",
+        "ID": 13
+    },
+    {
+        "IconName": "926004906",
+        "CDNUrl": "926004906_2",
+        "ID": 14
+    },
+    {
+        "IconName": "901049019",
+        "CDNUrl": "901049019_2",
+        "ID": 15
+    },
+    {
+        "IconName": "500000003",
+        "CDNUrl": "Icon_NewLoadout_Supplies",
+        "ID": 17
+    },
+    {
+        "IconName": "500000004",
+        "CDNUrl": "Icon_NewLoadout_TacticalStore",
+        "ID": 18
+    },
+    {
+        "IconName": "500000008",
+        "CDNUrl": "Icon_NewLoadout_Reinforced",
+        "ID": 19
+    },
+    {
+        "IconName": "500000005",
+        "CDNUrl": "Icon_NewLoadout_TeamEnhancer",
+        "ID": 20
+    },
+    {
+        "IconName": "500000014",
+        "CDNUrl": "Icon_ff_PlayCard_TacticalStore",
+        "ID": 21
+    },
+    {
+        "IconName": "500000015",
+        "CDNUrl": "Icon_ff_PlayCard_TeamEnhancer",
+        "ID": 22
+    },
+    {
+        "IconName": "500000018",
+        "CDNUrl": "Icon_ff_PlayCard_Reinforced",
+        "ID": 23
+    },
+    {
+        "IconName": "500000021",
+        "CDNUrl": "Icon_ff_PlayCard_Supplies",
+        "ID": 24
+    },
+    {
+        "IconName": "710042072",
+        "CDNUrl": "710042072_2",
+        "ID": 25
+    },
+    {
+        "IconName": "710043138",
+        "CDNUrl": "710043138_2",
+        "ID": 26
+    },
+    {
+        "IconName": "801051003",
+        "CDNUrl": "801051003_2",
+        "ID": 27
+    },
+    {
+        "IconName": "907105156",
+        "CDNUrl": "907105156_2",
+        "ID": 28
+    },
+    {
+        "IconName": "904051011",
+        "CDNUrl": "904051011_2",
+        "ID": 29
+    },
+    {
+        "IconName": "203051044",
+        "CDNUrl": "203051044_2",
+        "ID": 30
+    },
+    {
+        "IconName": "FF_UI_Vault_Music_Trea25",
+        "CDNUrl": "FF_UI_Vault_Music_Trea25_2",
+        "ID": 31
+    },
+    {
+        "IconName": "909853001",
+        "CDNUrl": "909853001_2",
+        "ID": 32
+    },
+    {
+        "IconName": "203053030",
+        "CDNUrl": "203053030_2",
+        "ID": 33
+    },
+    {
+        "IconName": "204053027",
+        "CDNUrl": "204053027_2",
+        "ID": 34
+    },
+    {
+        "IconName": "205053029",
+        "CDNUrl": "205053029_2",
+        "ID": 35
+    },
+    {
+        "IconName": "214053006",
+        "CDNUrl": "214053006_2",
+        "ID": 36
+    },
+    {
+        "IconName": "203053031",
+        "CDNUrl": "203053031_2",
+        "ID": 37
+    },
+    {
+        "IconName": "204053028",
+        "CDNUrl": "204053028_2",
+        "ID": 38
+    },
+    {
+        "IconName": "205053030",
+        "CDNUrl": "205053030_2",
+        "ID": 39
+    },
+    {
+        "IconName": "214053007",
+        "CDNUrl": "214053007_2",
+        "ID": 40
+    },
+    {
+        "IconName": "921054008",
+        "CDNUrl": "921054008_2",
+        "ID": 41
+    },
+    {
+        "IconName": "921054009",
+        "CDNUrl": "921054009_2",
+        "ID": 42
+    },
+    {
+        "IconName": "921054010",
+        "CDNUrl": "921054010_2",
+        "ID": 43
+    },
+    {
+        "IconName": "921054011",
+        "CDNUrl": "921054011_2",
+        "ID": 44
+    },
+    {
+        "IconName": "710054036",
+        "CDNUrl": "710054036_2",
+        "ID": 45
+    },
+    {
+        "IconName": "211051037",
+        "CDNUrl": "211051037_2",
+        "ID": 52
+    },
+    {
+        "IconName": "203054023",
+        "CDNUrl": "203054023_2",
+        "ID": 53
+    },
+    {
+        "IconName": "205054028",
+        "CDNUrl": "205054028_2",
+        "ID": 54
+    },
+    {
+        "IconName": "Icon_face_male_head_sc_Blacksmith",
+        "CDNUrl": "Icon_face_male_head_sc_Blacksmith_2",
+        "ID": 55
+    },
+    {
+        "IconName": "FF_UI_Character_Blacksmith",
+        "CDNUrl": "FF_UI_Character_Blacksmith_2",
+        "ID": 56
+    },
+    {
+        "IconName": "102000036",
+        "CDNUrl": "102000036_2",
+        "ID": 57
+    },
+    {
+        "IconName": "902054005",
+        "CDNUrl": "902054005_2",
+        "ID": 58
+    },
+    {
+        "IconName": "905054006",
+        "CDNUrl": "905054006_2",
+        "ID": 59
+    },
+    {
+        "IconName": "906054005",
+        "CDNUrl": "906054005_2",
+        "ID": 60
+    },
+    {
+        "IconName": "904054007",
+        "CDNUrl": "904054007_2",
+        "ID": 61
+    },
+    {
+        "IconName": "908054010",
+        "CDNUrl": "908054010_2",
+        "ID": 62
+    },
+    {
+        "IconName": "906054004",
+        "CDNUrl": "906054004_2",
+        "ID": 63
+    },
+    {
+        "IconName": "903054012",
+        "CDNUrl": "903054012_3",
+        "ID": 64
+    },
+    {
+        "IconName": "907105414",
+        "CDNUrl": "907105414_2",
+        "ID": 65
+    },
+    {
+        "IconName": "907105419",
+        "CDNUrl": "907105419_2",
+        "ID": 66
+    },
+    {
+        "IconName": "907105434",
+        "CDNUrl": "907105434_2",
+        "ID": 67
+    },
+    {
+        "IconName": "907105449",
+        "CDNUrl": "907105449_2",
+        "ID": 68
+    },
+    {
+        "IconName": "Icon_box_Virgo26BP_54",
+        "CDNUrl": "Icon_box_Virgo26BP_54_2",
+        "ID": 69
+    },
+    {
+        "IconName": "203054005",
+        "CDNUrl": "203054005_2",
+        "ID": 70
+    },
+    {
+        "IconName": "203054006",
+        "CDNUrl": "203054006_2",
+        "ID": 71
+    },
+    {
+        "IconName": "205054005",
+        "CDNUrl": "205054005_2",
+        "ID": 72
+    },
+    {
+        "IconName": "205054006",
+        "CDNUrl": "205054006_2",
+        "ID": 73
+    },
+    {
+        "IconName": "205054030",
+        "CDNUrl": "205054030_2",
+        "ID": 74
+    },
+    {
+        "IconName": "400054031",
+        "CDNUrl": "400054031_2",
+        "ID": 75
+    },
+    {
+        "IconName": "400054032",
+        "CDNUrl": "400054032_2",
+        "ID": 76
+    },
+    {
+        "IconName": "400054033",
+        "CDNUrl": "400054033_2",
+        "ID": 77
+    },
+    {
+        "IconName": "400054034",
+        "CDNUrl": "400054034_2",
+        "ID": 78
+    },
+    {
+        "IconName": "400054035",
+        "CDNUrl": "400054035_2",
+        "ID": 79
+    },
+    {
+        "IconName": "400054036",
+        "CDNUrl": "400054036_2",
+        "ID": 80
+    },
+    {
+        "IconName": "400054037",
+        "CDNUrl": "400054037_2",
+        "ID": 81
+    },
+    {
+        "IconName": "400054038",
+        "CDNUrl": "400054038_2",
+        "ID": 82
+    },
+    {
+        "IconName": "400054039",
+        "CDNUrl": "400054039_2",
+        "ID": 83
+    },
+    {
+        "IconName": "400054040",
+        "CDNUrl": "400054040_2",
+        "ID": 84
+    },
+    {
+        "IconName": "400054041",
+        "CDNUrl": "400054041_2",
+        "ID": 85
+    },
+    {
+        "IconName": "400054042",
+        "CDNUrl": "400054042_2",
+        "ID": 86
+    },
+    {
+        "IconName": "400054043",
+        "CDNUrl": "400054043_2",
+        "ID": 87
+    },
+    {
+        "IconName": "400054044",
+        "CDNUrl": "400054044_2",
+        "ID": 88
+    },
+    {
+        "IconName": "400054045",
+        "CDNUrl": "400054045_2",
+        "ID": 89
+    },
+    {
+        "IconName": "710054009",
+        "CDNUrl": "710054009_2",
+        "ID": 90
+    },
+    {
+        "IconName": "710054010",
+        "CDNUrl": "710054010_2",
+        "ID": 91
+    },
+    {
+        "IconName": "820570228",
+        "CDNUrl": "820570228_2",
+        "ID": 92
+    },
+    {
+        "IconName": "820570331",
+        "CDNUrl": "820570331_2",
+        "ID": 93
+    }
+]

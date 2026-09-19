@@ -7978,7 +7978,7 @@
         "name": "Snow Fox Banner",
         "sortID": 1,
         "sourceType": 1,
-        "icon": "Icon_callsign_basebg_Auroraboy",
+        "icon": "Icon_callsign_basebg_Auroraboy_2",
         "effectRes": "",
         "notInCDN": false
     },
@@ -9208,7 +9208,7 @@
     },
     {
         "itemID": 901055001,
-        "name": "T_55_H_BANNER_WB_N",
+        "name": "Ben 10 Banner",
         "sortID": 1,
         "sourceType": 4,
         "icon": "Icon_callsign_basebg_WB",
