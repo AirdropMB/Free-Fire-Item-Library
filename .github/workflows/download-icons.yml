@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
@@ -21,7 +23,7 @@ jobs:
       - name: Increase Git Buffer & Node Memory
         run: |
           git config --global http.postBuffer 524288000
-          export NODE_OPTIONS="--max-old-space-size=4096"
+          echo "NODE_OPTIONS=--max-old-space-size=4096" >> "$GITHUB_ENV"
 
       - name: Run Fetch Icons Script
         run: node fetch-icons.js
@@ -30,12 +32,13 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
+
           # Tự động chia nhỏ commit để tránh tràn RAM
           git add icons/ icons_advance/ *.json || true
-          
+
           if ! git diff-index --quiet HEAD --; then
             git commit -m "Auto update real item icons from Garena CDN"
+            git pull --rebase origin main
             git push origin main
           else
             echo "Không có icon mới nào được cập nhật."
