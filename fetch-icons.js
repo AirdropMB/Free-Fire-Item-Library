@@ -12,7 +12,9 @@ const advBannerPath = path.join(__dirname, 'CollectionBanner_advance.json');
 const advIconsDir = path.join(__dirname, 'icons_advance');
 
 const ignoreListPath = path.join(__dirname, 'ignore_list.json');
-const CONCURRENCY_LIMIT = 50; // Giảm xuống 50 để tránh bị CDN rate-limit
+
+// Tối ưu luồng chạy trên GitHub Actions (20 luồng giúp chạy mượt, không đơ)
+const CONCURRENCY_LIMIT = 20; 
 const FORCE_UPDATE = false;
 
 // Ngưỡng dung lượng (byte): Ảnh đen/che thường nhỏ hơn 5KB (5120 bytes)
@@ -43,7 +45,6 @@ function ensureIconsDir(dir) {
         if (FORCE_UPDATE) {
             fs.rmSync(dir, { recursive: true, force: true });
             fs.mkdirSync(dir);
-            console.log(`Cleaned ${path.basename(dir)} folder.`);
         }
     } else {
         fs.mkdirSync(dir, { recursive: true });
@@ -72,14 +73,12 @@ async function tryDownloadCDN(targetId, targetIconsDir) {
     const fileName = `${targetId}.png`;
     const filePath = path.join(targetIconsDir, fileName);
 
-    // Kiểm tra xem file đã tồn tại và CÓ PHẢI LÀ ẢNH HỢP LỆ (>= 5KB) hay không
     if (!FORCE_UPDATE && fs.existsSync(filePath)) {
         const fileStat = fs.statSync(filePath);
         if (fileStat.size >= PLACEHOLDER_SIZE_LIMIT) {
             stats.skipped++;
             return true;
         }
-        console.log(`[REPLACE] Phát hiện ảnh đen (${fileStat.size}b), đang tải lại: ${fileName}`);
     }
 
     const url = `${CDN_BASE_URL}${targetId}.png`;
@@ -87,11 +86,9 @@ async function tryDownloadCDN(targetId, targetIconsDir) {
 
     if (res) {
         const buffer = Buffer.from(await res.arrayBuffer());
-        // Chỉ lưu nếu dung lượng tải về lớn hơn ảnh che mặc định
         if (buffer.length >= PLACEHOLDER_SIZE_LIMIT) {
             fs.writeFileSync(filePath, buffer);
             stats.downloaded++;
-            console.log(`Downloaded from CDN: ${fileName}`);
             return true;
         }
     }
@@ -123,10 +120,9 @@ async function downloadIcon(item, targetIconsDir) {
     if (!mainIconFound) {
         stats.failed++;
         stats.failedItems.push(itemID);
-        console.log(`Failed: ${itemID} ${iconName ? '& ' + iconName : ''}`);
     }
 
-    // Tải icon phiên bản nâng cấp/thứ 2 (Ví dụ: ID_2.png)
+    // Tải icon phiên bản nâng cấp/thứ 2
     if (!isUpdateIgnored) {
         await tryDownloadCDN(`${itemID}_2`, targetIconsDir);
     }
@@ -149,7 +145,6 @@ async function downloadBanner(bannerItem, targetIconsDir) {
     if (!success) {
         stats.failed++;
         stats.failedItems.push(`Banner: ${iconName}`);
-        console.log(`Failed: Banner ${iconName}`);
     }
 }
 
@@ -205,7 +200,7 @@ async function start() {
     if (fs.existsSync(advBannerPath)) {
         const rawAdvBanner = fs.readFileSync(advBannerPath, 'utf8');
         const advBanners = JSON.parse(rawAdvBanner);
-        const advBannerArray = Array.isArray(advBanners) ? advBanners : Object.values(advBanners);
+        const advBannerArray = Array.isArray(advBanners) ? advBanners : Object.values(advBannerArray);
 
         advBannerArray.forEach(banner => {
             tasks.push(() => downloadBanner(banner, advIconsDir));
@@ -241,12 +236,6 @@ async function start() {
     console.log(`Failed          : ${stats.failed}`);
     console.log(`Updated Icons Detected & Saved (Live)    : ${updatedCountLive}`);
     console.log(`Updated Icons Detected & Saved (Advance) : ${updatedCountAdv}`);
-
-    if (stats.failedItems.length > 0) {
-        console.log('------------------------------------');
-        console.log('Failed Items IDs / Banners:');
-        console.log(stats.failedItems.join(', '));
-    }
     console.log('====================================\n');
 }
 
