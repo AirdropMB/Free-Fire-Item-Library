@@ -20,12 +20,21 @@ const FORCE_UPDATE = false;
 // Ngưỡng dung lượng (byte): Ảnh đen/che thường nhỏ hơn 5KB (5120 bytes)
 const PLACEHOLDER_SIZE_LIMIT = 5120;
 
+// ⏱ Time budget: dừng nhận task mới sau 45 phút để job LUÔN kết thúc gọn gàng
+// và bước "git commit & push" phía sau còn chạy được (tránh bị GitHub Actions
+// kill cứng ở mốc 6 tiếng và mất trắng toàn bộ icon đã tải trong lần chạy đó).
+// Item Live được xếp hàng trước Advance nên luôn được ưu tiên tải xong trước.
+const START_TIME = Date.now();
+const TIME_BUDGET_MS = 45 * 60 * 1000;
+function timeUp() { return Date.now() - START_TIME > TIME_BUDGET_MS; }
+
 const stats = {
     downloaded: 0,
     skipped: 0,
     failed: 0,
     ignoredFull: 0,
-    failedItems: []
+    failedItems: [],
+    timedOut: false
 };
 
 let ignoreData = { ignore_update: [], ignore_all: [] };
@@ -211,6 +220,7 @@ async function start() {
 
     async function worker() {
         while (currentIndex < tasks.length) {
+            if (timeUp()) { stats.timedOut = true; return; }
             const task = tasks[currentIndex++];
             await task();
         }
@@ -223,13 +233,19 @@ async function start() {
 
     await Promise.all(workers);
 
+    const remaining = tasks.length - currentIndex;
+
     const updatedCountLive = writeUpdatedIcons(iconsDir, 'updated_icons.json') || 0;
     const updatedCountAdv = writeUpdatedIcons(advIconsDir, 'updated_icons_advance.json') || 0;
 
     console.log('\n====================================');
     console.log('         DOWNLOAD SUMMARY           ');
     console.log('====================================');
-    console.log(`Total Processed : ${tasks.length}`);
+    if (stats.timedOut) {
+        console.log(`⏱ HẾT NGÂN SÁCH THỜI GIAN (${TIME_BUDGET_MS / 60000} phút) — dừng sớm để kịp commit.`);
+        console.log(`   Còn ${remaining}/${tasks.length} task chưa xử lý, sẽ tiếp tục ở lần chạy sau.`);
+    }
+    console.log(`Total Processed : ${tasks.length - remaining} / ${tasks.length}`);
     console.log(`Fully Ignored   : ${stats.ignoredFull}`);
     console.log(`Skipped (Exists): ${stats.skipped}`);
     console.log(`Downloaded New  : ${stats.downloaded}`);
