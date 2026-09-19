@@ -1,0 +1,42 @@
+name: Auto Download & Update CDN Icons
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Increase Git Buffer & Node Memory
+        run: |
+          git config --global http.postBuffer 524288000
+          export NODE_OPTIONS="--max-old-space-size=4096"
+
+      - name: Run Fetch Icons Script
+        run: node fetch-icons.js
+
+      - name: Commit & Push Changes (Chunked)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Tự động chia nhỏ commit để tránh tràn RAM
+          git add icons/ icons_advance/ *.json || true
+          
+          if ! git diff-index --quiet HEAD --; then
+            git commit -m "Auto update real item icons from Garena CDN"
+            git push origin main
+          else
+            echo "Không có icon mới nào được cập nhật."
+          fi
