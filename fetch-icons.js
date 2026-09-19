@@ -200,7 +200,7 @@ async function start() {
     if (fs.existsSync(advBannerPath)) {
         const rawAdvBanner = fs.readFileSync(advBannerPath, 'utf8');
         const advBanners = JSON.parse(rawAdvBanner);
-        const advBannerArray = Array.isArray(advBanners) ? advBanners : Object.values(advBannerArray);
+        const advBannerArray = Array.isArray(advBanners) ? advBanners : Object.values(advBanners);
 
         advBannerArray.forEach(banner => {
             tasks.push(() => downloadBanner(banner, advIconsDir));
