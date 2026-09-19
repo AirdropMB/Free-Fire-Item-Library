@@ -12,6 +12,7 @@ concurrency:
 jobs:
   sync-and-fetch:
     runs-on: ubuntu-latest
+    timeout-minutes: 55   # Job phải xong trong 55 phút (dưới 1 tiếng của chu kỳ cron)
     permissions:
       contents: write
 
