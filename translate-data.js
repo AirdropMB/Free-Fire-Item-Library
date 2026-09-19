@@ -1,6 +1,11 @@
 /**
  * translate-data.js
- * Tự động dịch ItemsData_en.json → ItemsData_vn.json & ItemsData_zh.json
+ * Tự động dịch ItemsData_en.json → ItemsData_zh.json
+ *
+ * LƯU Ý: Phần Tiếng Việt KHÔNG còn được xử lý ở đây nữa.
+ * Từ nay ItemsData_vn.json được tạo bằng resolve-loc.js dựa trên bản dịch
+ * CHÍNH THỨC của Garena (Data/live/loc_vn.txt), chất lượng cao hơn dịch máy
+ * và chạy nhanh hơn nhiều (không cần gọi API dịch). Xem sync-data.yml.
  */
 
 const fs   = require('fs');
@@ -9,7 +14,6 @@ const https = require('https');
 
 // ── Config ──────────────────────────────────────
 const EN_FILE   = path.join(__dirname, 'ItemsData_en.json');
-const VN_FILE   = path.join(__dirname, 'ItemsData_vn.json');
 const ZH_FILE   = path.join(__dirname, 'ItemsData_zh.json');
 const NEW_ITEMS_FILE = path.join(__dirname, 'new_items.json');
 
@@ -287,9 +291,9 @@ async function processLanguage(enData, existingData, targetLang, outputFile, lab
   return { total: publicItems.length, translated: toTranslate.length, unchanged };
 }
 
-function writeNewItemsFile(enData, vnData) {
+function writeNewItemsFile(enData, refData) {
   try {
-    const existingIds = new Set(vnData.map(i => i.Id.toString()));
+    const existingIds = new Set(refData.map(i => i.Id.toString()));
     const newIds = enData.filter(en => !existingIds.has(en.Id.toString())).map(en => en.Id.toString());
     fs.writeFileSync(NEW_ITEMS_FILE, JSON.stringify(newIds), 'utf-8');
     console.log(`   🆕 ${newIds.length} vật phẩm mới → ${path.basename(NEW_ITEMS_FILE)}`);
@@ -308,19 +312,16 @@ async function watchMode() {
       const hiddenCount = rawEnData.length - enData.length;
       if (hiddenCount > 0) console.log(`🙈 Đã tạm ẩn ${hiddenCount} vật phẩm thuộc OB55.`);
 
-      const vnData = fs.existsSync(VN_FILE) ? JSON.parse(fs.readFileSync(VN_FILE, 'utf-8')) : [];
       const zhData = fs.existsSync(ZH_FILE) ? JSON.parse(fs.readFileSync(ZH_FILE, 'utf-8')) : [];
 
-      console.log(`\n📂 EN: ${enData.length} | VN: ${vnData.length} | ZH: ${zhData.length}`);
-      writeNewItemsFile(enData, vnData);
+      console.log(`\n📂 EN: ${enData.length} | ZH: ${zhData.length}`);
+      writeNewItemsFile(enData, zhData);
 
       const t0 = Date.now();
-      const vnStats = await processLanguage(enData, vnData, 'vi',    VN_FILE, 'Tiếng Việt');
       const zhStats = await processLanguage(enData, zhData, 'zh-TW', ZH_FILE, 'Tiếng Trung');
 
       const sec = ((Date.now() - t0) / 1000).toFixed(1);
       console.log(`\n✅ Hoàn thành trong ${sec}s`);
-      console.log(`   VN: ${vnStats.translated} dịch, ${vnStats.unchanged} giữ nguyên`);
       console.log(`   ZH: ${zhStats.translated} dịch, ${zhStats.unchanged} giữ nguyên`);
     } catch (e) {
       console.error('❌ Lỗi:', e.message);
@@ -358,19 +359,16 @@ async function main() {
   const hiddenCount = rawEnData.length - enData.length;
   if (hiddenCount > 0) console.log(`🙈 Đã tạm ẩn ${hiddenCount} vật phẩm thuộc OB55.`);
 
-  const vnData = fs.existsSync(VN_FILE) ? JSON.parse(fs.readFileSync(VN_FILE, 'utf-8')) : [];
   const zhData = fs.existsSync(ZH_FILE) ? JSON.parse(fs.readFileSync(ZH_FILE, 'utf-8')) : [];
 
-  console.log(`📂 EN: ${enData.length} | VN: ${vnData.length} | ZH: ${zhData.length}`);
-  writeNewItemsFile(enData, vnData);
+  console.log(`📂 EN: ${enData.length} | ZH: ${zhData.length}`);
+  writeNewItemsFile(enData, zhData);
 
   const t0 = Date.now();
-  const vnStats = await processLanguage(enData, vnData, 'vi',    VN_FILE, 'Tiếng Việt', force);
   const zhStats = await processLanguage(enData, zhData, 'zh-TW', ZH_FILE, 'Tiếng Trung', force);
 
   const sec = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`\n✅ Hoàn thành trong ${sec}s`);
-  console.log(`   VN: ${vnStats.translated} dịch/sửa, ${vnStats.unchanged} giữ nguyên`);
   console.log(`   ZH: ${zhStats.translated} dịch/sửa, ${zhStats.unchanged} giữ nguyên`);
 }
 
