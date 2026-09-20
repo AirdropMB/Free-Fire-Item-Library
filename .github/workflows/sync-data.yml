@@ -6,7 +6,7 @@ on:
   workflow_dispatch:           # Cho phép chạy thủ công trên GitHub Actions
 
 concurrency:
-  group: sync-data
+  group: freefire-repo-sync
   cancel-in-progress: true
 
 jobs:
