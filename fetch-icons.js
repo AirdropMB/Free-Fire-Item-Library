@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const CDN_BASE_URL = 'https://dl.cdn.freefiremobile.com/live/ABHotUpdates/IconCDN/other/';
-
 const dataPath = path.join(__dirname, 'ItemsData_en.json');
 const bannerPath = path.join(__dirname, 'CollectionBanner.json');
 const iconsDir = path.join(__dirname, 'icons');
@@ -12,13 +10,13 @@ const advBannerPath = path.join(__dirname, 'CollectionBanner_advance.json');
 const advIconsDir = path.join(__dirname, 'icons_advance');
 
 const ignoreListPath = path.join(__dirname, 'ignore_list.json');
-
-// Tối ưu luồng chạy trên GitHub Actions (20 luồng giúp chạy mượt, không đơ)
-const CONCURRENCY_LIMIT = 20; 
+const CONCURRENCY_LIMIT = 40;
 const FORCE_UPDATE = false;
 
-// Ngưỡng dung lượng (byte): Ảnh đen/che thường nhỏ hơn 5KB (5120 bytes)
-const PLACEHOLDER_SIZE_LIMIT = 5120;
+// Proxy tự giải mã file .astc của Garena thành .png bình thường — CDN gốc của
+// Garena (dl-tata.freefireind.in/.../IconCDN/android/{id}_rgb.astc) không thể
+// tải trực tiếp thành .png, phải qua proxy này.
+const ICON_API = 'https://kog-ff-icons.vercel.app/api/icon/';
 
 // ⏱ Time budget: dừng nhận task mới sau 45 phút để job LUÔN kết thúc gọn gàng
 // và bước "git commit & push" phía sau còn chạy được (tránh bị GitHub Actions
@@ -54,6 +52,7 @@ function ensureIconsDir(dir) {
         if (FORCE_UPDATE) {
             fs.rmSync(dir, { recursive: true, force: true });
             fs.mkdirSync(dir);
+            console.log(`Cleaned ${path.basename(dir)} folder.`);
         }
     } else {
         fs.mkdirSync(dir, { recursive: true });
@@ -63,45 +62,18 @@ function ensureIconsDir(dir) {
 ensureIconsDir(iconsDir);
 ensureIconsDir(advIconsDir);
 
-async function fetchWithRetry(url, maxRetries = 3) {
+async function fetchWithRetry(url, maxRetries = 4) {
     for (let i = 0; i < maxRetries; i++) {
         try {
             const response = await fetch(url);
-            if (response.status === 404) return null;
+            if (response.status === 404) return response;
             if (response.ok) return response;
         } catch (error) {
-            if (i === maxRetries - 1) return null;
+            if (i === maxRetries - 1) throw error;
         }
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 800));
     }
-    return null;
-}
-
-// Hàm kiểm tra và tải từ CDN Garena
-async function tryDownloadCDN(targetId, targetIconsDir) {
-    const fileName = `${targetId}.png`;
-    const filePath = path.join(targetIconsDir, fileName);
-
-    if (!FORCE_UPDATE && fs.existsSync(filePath)) {
-        const fileStat = fs.statSync(filePath);
-        if (fileStat.size >= PLACEHOLDER_SIZE_LIMIT) {
-            stats.skipped++;
-            return true;
-        }
-    }
-
-    const url = `${CDN_BASE_URL}${targetId}.png`;
-    const res = await fetchWithRetry(url);
-
-    if (res) {
-        const buffer = Buffer.from(await res.arrayBuffer());
-        if (buffer.length >= PLACEHOLDER_SIZE_LIMIT) {
-            fs.writeFileSync(filePath, buffer);
-            stats.downloaded++;
-            return true;
-        }
-    }
-    return false;
+    return { ok: false };
 }
 
 async function downloadIcon(item, targetIconsDir) {
@@ -118,12 +90,40 @@ async function downloadIcon(item, targetIconsDir) {
 
     let mainIconFound = false;
 
-    // 1. Thử tải theo Item ID
-    mainIconFound = await tryDownloadCDN(itemID, targetIconsDir);
+    const targetId = { id: itemID, file: `${itemID}.png` };
+    const pathId = path.join(targetIconsDir, targetId.file);
 
-    // 2. Thử tải theo Icon Name nếu ID thất bại
+    if (!FORCE_UPDATE && fs.existsSync(pathId)) {
+        stats.skipped++;
+        mainIconFound = true;
+    } else {
+        const url1 = `${ICON_API}${targetId.id}?no_fallback=true`;
+        let res1 = await fetchWithRetry(url1);
+        if (res1.ok) {
+            fs.writeFileSync(pathId, Buffer.from(await res1.arrayBuffer()));
+            stats.downloaded++;
+            console.log(`Downloaded: ${targetId.file}`);
+            mainIconFound = true;
+        }
+    }
+
     if (!mainIconFound && iconName) {
-        mainIconFound = await tryDownloadCDN(iconName, targetIconsDir);
+        const targetIcon = { id: iconName, file: `${iconName}.png` };
+        const pathIcon = path.join(targetIconsDir, targetIcon.file);
+
+        if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
+            stats.skipped++;
+            mainIconFound = true;
+        } else {
+            const urlIcon = `${ICON_API}${targetIcon.id}?no_fallback=true`;
+            let resIcon = await fetchWithRetry(urlIcon);
+            if (resIcon.ok) {
+                fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
+                stats.downloaded++;
+                console.log(`Downloaded: ${targetIcon.file}`);
+                mainIconFound = true;
+            }
+        }
     }
 
     if (!mainIconFound) {
@@ -131,9 +131,21 @@ async function downloadIcon(item, targetIconsDir) {
         stats.failedItems.push(itemID);
     }
 
-    // Tải icon phiên bản nâng cấp/thứ 2
     if (!isUpdateIgnored) {
-        await tryDownloadCDN(`${itemID}_2`, targetIconsDir);
+        const targetId2 = { id: `${itemID}_2`, file: `${itemID}_2.png` };
+        const pathId2 = path.join(targetIconsDir, targetId2.file);
+
+        if (!FORCE_UPDATE && fs.existsSync(pathId2)) {
+            stats.skipped++;
+        } else {
+            const url2 = `${ICON_API}${targetId2.id}?no_fallback=true`;
+            let res2 = await fetchWithRetry(url2);
+            if (res2.ok) {
+                fs.writeFileSync(pathId2, Buffer.from(await res2.arrayBuffer()));
+                stats.downloaded++;
+                console.log(`Downloaded: ${targetId2.file}`);
+            }
+        }
     }
 }
 
@@ -149,9 +161,25 @@ async function downloadBanner(bannerItem, targetIconsDir) {
         return;
     }
 
-    const success = await tryDownloadCDN(iconName, targetIconsDir);
+    let mainIconFound = false;
+    const targetIcon = { id: iconName, file: `${iconName}.png` };
+    const pathIcon = path.join(targetIconsDir, targetIcon.file);
 
-    if (!success) {
+    if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
+        stats.skipped++;
+        mainIconFound = true;
+    } else {
+        const urlIcon = `${ICON_API}${targetIcon.id}?no_fallback=true`;
+        let resIcon = await fetchWithRetry(urlIcon);
+        if (resIcon.ok) {
+            fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
+            stats.downloaded++;
+            console.log(`Downloaded: ${targetIcon.file}`);
+            mainIconFound = true;
+        }
+    }
+
+    if (!mainIconFound) {
         stats.failed++;
         stats.failedItems.push(`Banner: ${iconName}`);
     }
@@ -172,7 +200,7 @@ function writeUpdatedIcons(targetIconsDir, outputFileName) {
 async function start() {
     const tasks = [];
 
-    // ===== LIVE =====
+    // ===== LIVE (ưu tiên xếp trước) =====
     if (fs.existsSync(dataPath)) {
         const rawData = fs.readFileSync(dataPath, 'utf8');
         const items = JSON.parse(rawData);
@@ -194,7 +222,7 @@ async function start() {
         });
     }
 
-    // ===== ADVANCE =====
+    // ===== ADVANCE (OB test server) =====
     if (fs.existsSync(advDataPath)) {
         const rawAdvData = fs.readFileSync(advDataPath, 'utf8');
         const advItems = JSON.parse(rawAdvData);
@@ -252,6 +280,12 @@ async function start() {
     console.log(`Failed          : ${stats.failed}`);
     console.log(`Updated Icons Detected & Saved (Live)    : ${updatedCountLive}`);
     console.log(`Updated Icons Detected & Saved (Advance) : ${updatedCountAdv}`);
+
+    if (stats.failedItems.length > 0 && stats.failedItems.length <= 50) {
+        console.log('------------------------------------');
+        console.log('Failed Items IDs / Banners:');
+        console.log(stats.failedItems.join(', '));
+    }
     console.log('====================================\n');
 }
 
