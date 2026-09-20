@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: download-icons
+  group: freefire-repo-sync
   cancel-in-progress: true
 
 jobs:
