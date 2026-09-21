@@ -13,10 +13,28 @@ const ignoreListPath = path.join(__dirname, 'ignore_list.json');
 const CONCURRENCY_LIMIT = 40;
 const FORCE_UPDATE = false;
 
-// Proxy tự giải mã file .astc của Garena thành .png bình thường — CDN gốc của
-// Garena (dl-tata.freefireind.in/.../IconCDN/android/{id}_rgb.astc) không thể
-// tải trực tiếp thành .png, phải qua proxy này.
-const ICON_API = 'https://kog-ff-icons.vercel.app/api/icon/';
+// Garena phục vụ icon qua 2 domain khác nhau tuỳ loại mã:
+//  - Icon dạng MÃ SỐ (item.Id, hoặc Icon toàn số)  -> dl.cdn.freefiremobile.com
+//  - Icon dạng TÊN CHỮ (item.Icon kiểu Icon_face_xxx) -> freefiremobile-a.akamaihd.net
+const CDN_NUMERIC = 'https://dl.cdn.freefiremobile.com/live/ABHotUpdates/IconCDN/other/';
+const CDN_NAMED = 'https://freefiremobile-a.akamaihd.net/common/Local/PK/FF_UI_Icon/';
+// Proxy dự phòng cuối cùng nếu cả 2 domain gốc đều fail (đã từng hoạt động ổn định)
+const ICON_API_FALLBACK = 'https://kog-ff-icons.vercel.app/api/icon/';
+
+function isNumericCode(id) { return /^\d+$/.test(String(id)); }
+function cdnUrlFor(id) {
+    return isNumericCode(id) ? `${CDN_NUMERIC}${id}.png` : `${CDN_NAMED}${id}.png`;
+}
+
+// Thử domain CDN gốc trước (đúng loại theo id), nếu fail thì thử proxy dự phòng.
+// Trả về Response nếu thành công (ok), hoặc null nếu cả 2 đều fail.
+async function downloadOneIcon(id) {
+    const primary = await fetchWithRetry(cdnUrlFor(id));
+    if (primary && primary.ok) return primary;
+    const fallback = await fetchWithRetry(`${ICON_API_FALLBACK}${id}?no_fallback=true`);
+    if (fallback && fallback.ok) return fallback;
+    return null;
+}
 
 // ⏱ Time budget: dừng nhận task mới sau 45 phút để job LUÔN kết thúc gọn gàng
 // và bước "git commit & push" phía sau còn chạy được (tránh bị GitHub Actions
@@ -69,7 +87,7 @@ async function fetchWithRetry(url, maxRetries = 4) {
             if (response.status === 404) return response;
             if (response.ok) return response;
         } catch (error) {
-            if (i === maxRetries - 1) throw error;
+            // Lỗi mạng tạm thời -> thử lại, không throw để tránh sập cả job
         }
         await new Promise(resolve => setTimeout(resolve, 800));
     }
@@ -97,9 +115,8 @@ async function downloadIcon(item, targetIconsDir) {
         stats.skipped++;
         mainIconFound = true;
     } else {
-        const url1 = `${ICON_API}${targetId.id}?no_fallback=true`;
-        let res1 = await fetchWithRetry(url1);
-        if (res1.ok) {
+        let res1 = await downloadOneIcon(targetId.id);
+        if (res1) {
             fs.writeFileSync(pathId, Buffer.from(await res1.arrayBuffer()));
             stats.downloaded++;
             console.log(`Downloaded: ${targetId.file}`);
@@ -115,9 +132,8 @@ async function downloadIcon(item, targetIconsDir) {
             stats.skipped++;
             mainIconFound = true;
         } else {
-            const urlIcon = `${ICON_API}${targetIcon.id}?no_fallback=true`;
-            let resIcon = await fetchWithRetry(urlIcon);
-            if (resIcon.ok) {
+            let resIcon = await downloadOneIcon(targetIcon.id);
+            if (resIcon) {
                 fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
                 stats.downloaded++;
                 console.log(`Downloaded: ${targetIcon.file}`);
@@ -138,9 +154,8 @@ async function downloadIcon(item, targetIconsDir) {
         if (!FORCE_UPDATE && fs.existsSync(pathId2)) {
             stats.skipped++;
         } else {
-            const url2 = `${ICON_API}${targetId2.id}?no_fallback=true`;
-            let res2 = await fetchWithRetry(url2);
-            if (res2.ok) {
+            let res2 = await downloadOneIcon(targetId2.id);
+            if (res2) {
                 fs.writeFileSync(pathId2, Buffer.from(await res2.arrayBuffer()));
                 stats.downloaded++;
                 console.log(`Downloaded: ${targetId2.file}`);
@@ -169,9 +184,8 @@ async function downloadBanner(bannerItem, targetIconsDir) {
         stats.skipped++;
         mainIconFound = true;
     } else {
-        const urlIcon = `${ICON_API}${targetIcon.id}?no_fallback=true`;
-        let resIcon = await fetchWithRetry(urlIcon);
-        if (resIcon.ok) {
+        let resIcon = await downloadOneIcon(targetIcon.id);
+        if (resIcon) {
             fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
             stats.downloaded++;
             console.log(`Downloaded: ${targetIcon.file}`);
