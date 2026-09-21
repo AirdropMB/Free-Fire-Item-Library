@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout repo này
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1   # Chỉ lấy commit mới nhất, không tải toàn bộ lịch sử (repo có rất nhiều file icon)
 
       # ===== BẢN LIVE (giữ nguyên tên file ở root để không phá logic cũ) =====
       - name: Tải ItemsData_en.json (Live) mới nhất
