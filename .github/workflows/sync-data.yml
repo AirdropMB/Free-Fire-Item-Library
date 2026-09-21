@@ -2,17 +2,19 @@ name: Sync Data & Fetch Icons
 
 on:
   schedule:
-    - cron: '0 */1 * * *'   # Tự chạy mỗi 1 tiếng 1 lần để giảm chậm trễ
+    - cron: '0 */2 * * *'   # Chạy vào các giờ CHẴN (0h, 2h, 4h... UTC). download-icons chạy các giờ LẺ.
   workflow_dispatch:           # Cho phép chạy thủ công trên GitHub Actions
 
+# Dùng CHUNG group với download-icons.yml và KHÔNG hủy run đang chạy:
+# nếu 2 workflow trùng giờ thì cái sau sẽ xếp hàng chờ cái trước xong, không đè/hủy nhau.
 concurrency:
   group: freefire-repo-sync
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   sync-and-fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 55   # Job phải xong trong 55 phút (dưới 1 tiếng của chu kỳ cron)
+    timeout-minutes: 55
     permissions:
       contents: write
 
@@ -89,5 +91,6 @@ jobs:
       - name: Commit và push nếu có thay đổi
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Auto-synced data & icons [1h]"
-          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_zh.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json'
+          commit_message: "Auto-synced data & icons [2h]"
+          # Đã thêm icon_miss_cache.json để lưu tiến trình giữa các lần chạy
+          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_zh.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json icon_miss_cache.json'
