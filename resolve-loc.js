@@ -59,8 +59,19 @@ function loadLocLines() {
     return raw.split(/\r\n/);
 }
 
+// Nhận diện 1 chuỗi có phải "loc-key" (chưa resolve) hay không: dựa vào việc
+// nó CÓ TỒN TẠI trong bảng FF_LocId.json — không đoán theo tiền tố (TXT_,
+// T_NN_...) vì nguồn có thể đổi kiểu đặt tên key bất cứ lúc nào (đã từng đổi
+// từ TXT_ sang T_NN_ mà không báo trước). Chỉ coi là "có khả năng là key" nếu
+// dạng chữ hoa/số/gạch dưới, không có khoảng trắng — để không đụng vào tên
+// thật (vốn có khoảng trắng, chữ thường).
+function looksLikeLocKey(str) {
+    return /^[A-Z0-9_]+$/.test(str);
+}
+
 function resolveKey(key, locMap, lines) {
-    if (typeof key !== 'string' || !key.startsWith('TXT_')) return key;
+    if (typeof key !== 'string' || !key) return key;
+    if (!looksLikeLocKey(key)) return key; // không giống key (có thể đã là text thật) -> giữ nguyên
     const row = locMap.get(key);
     if (row === undefined) return key; // không tìm thấy key -> giữ nguyên
     const idx = row - 1;
@@ -82,7 +93,7 @@ function start() {
     let resolvedName = 0, resolvedDesc = 0, placeholderName = 0, placeholderDesc = 0, unresolvedName = 0, unresolvedDesc = 0;
 
     items.forEach(item => {
-        if (typeof item.Name === 'string' && item.Name.startsWith('TXT_')) {
+        if (typeof item.Name === 'string' && looksLikeLocKey(item.Name)) {
             const before = item.Name;
             const after = resolveKey(before, locMap, lines);
             if (after !== before) {
@@ -92,7 +103,7 @@ function start() {
                 unresolvedName++;
             }
         }
-        if (typeof item.Desc === 'string' && item.Desc.startsWith('TXT_')) {
+        if (typeof item.Desc === 'string' && looksLikeLocKey(item.Desc)) {
             const before = item.Desc;
             const after = resolveKey(before, locMap, lines);
             if (after !== before) {
