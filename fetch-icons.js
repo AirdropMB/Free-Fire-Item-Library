@@ -18,28 +18,57 @@ const FORCE_UPDATE = false;
 //  - Icon dạng TÊN CHỮ (item.Icon kiểu Icon_face_xxx) -> freefiremobile-a.akamaihd.net
 const CDN_NUMERIC = 'https://dl.cdn.freefiremobile.com/live/ABHotUpdates/IconCDN/other/';
 const CDN_NAMED = 'https://freefiremobile-a.akamaihd.net/common/Local/PK/FF_UI_Icon/';
-// Proxy dự phòng cuối cùng nếu cả 2 domain gốc đều fail (đã từng hoạt động ổn định)
+// Proxy dự phòng cuối cùng nếu cả 2 domain gốc đều fail
 const ICON_API_FALLBACK = 'https://kog-ff-icons.vercel.app/api/icon/';
+
+// ===== CACHE "MISS" =====
+// Lưu những icon đã hỏi CDN mà CDN xác nhận KHÔNG có (404/403), để các lần chạy sau
+// không hỏi lại từ đầu. File này phải được commit cùng repo (xem file_pattern trong workflow).
+const missCachePath = path.join(__dirname, 'icon_miss_cache.json');
+const MISS_TTL_MAIN_MS = 24 * 60 * 60 * 1000;       // icon chính: thử lại sau 1 ngày (icon mới có thể vừa lên CDN)
+const MISS_TTL_UPDATE_MS = 7 * 24 * 60 * 60 * 1000; // icon _2: thử lại sau 7 ngày
+const MISS_CACHE_SAVE_INTERVAL_MS = 2 * 60 * 1000;
+
+let missCache = {};
+if (fs.existsSync(missCachePath)) {
+    try {
+        missCache = JSON.parse(fs.readFileSync(missCachePath, 'utf8')) || {};
+    } catch (error) {
+        console.error('Error reading icon_miss_cache.json:', error.message);
+        missCache = {};
+    }
+}
+
+function missKey(dir, file) { return `${path.basename(dir)}/${file}`; }
+function isKnownMiss(dir, file, ttl) {
+    const t = missCache[missKey(dir, file)];
+    return typeof t === 'number' && (Date.now() - t) < ttl;
+}
+function markMiss(dir, file) { missCache[missKey(dir, file)] = Date.now(); }
+function clearMiss(dir, file) { delete missCache[missKey(dir, file)]; }
+function saveMissCache() {
+    try {
+        const now = Date.now();
+        const pruned = {};
+        for (const [k, t] of Object.entries(missCache)) {
+            if (typeof t === 'number' && (now - t) < MISS_TTL_UPDATE_MS) pruned[k] = t;
+        }
+        missCache = pruned;
+        fs.writeFileSync(missCachePath, JSON.stringify(missCache));
+    } catch (error) {
+        console.error('Error saving icon_miss_cache.json:', error.message);
+    }
+}
 
 function isNumericCode(id) { return /^\d+$/.test(String(id)); }
 function cdnUrlFor(id) {
     return isNumericCode(id) ? `${CDN_NUMERIC}${id}.png` : `${CDN_NAMED}${id}.png`;
 }
-
-// Thử domain CDN gốc trước (đúng loại theo id), nếu fail thì thử proxy dự phòng.
-// Trả về Response nếu thành công (ok), hoặc null nếu cả 2 đều fail.
-async function downloadOneIcon(id) {
-    const primary = await fetchWithRetry(cdnUrlFor(id));
-    if (primary && primary.ok) return primary;
-    const fallback = await fetchWithRetry(`${ICON_API_FALLBACK}${id}?no_fallback=true`);
-    if (fallback && fallback.ok) return fallback;
-    return null;
-}
+function isDefinitiveMiss(res) { return !!res && (res.status === 404 || res.status === 403); }
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // ⏱ Time budget: dừng nhận task mới sau 45 phút để job LUÔN kết thúc gọn gàng
-// và bước "git commit & push" phía sau còn chạy được (tránh bị GitHub Actions
-// kill cứng ở mốc 6 tiếng và mất trắng toàn bộ icon đã tải trong lần chạy đó).
-// Item Live được xếp hàng trước Advance nên luôn được ưu tiên tải xong trước.
+// và bước "git commit & push" phía sau còn chạy được.
 const START_TIME = Date.now();
 const TIME_BUDGET_MS = 45 * 60 * 1000;
 function timeUp() { return Date.now() - START_TIME > TIME_BUDGET_MS; }
@@ -47,6 +76,7 @@ function timeUp() { return Date.now() - START_TIME > TIME_BUDGET_MS; }
 const stats = {
     downloaded: 0,
     skipped: 0,
+    cachedMiss: 0,
     failed: 0,
     ignoredFull: 0,
     failedItems: [],
@@ -80,21 +110,65 @@ function ensureIconsDir(dir) {
 ensureIconsDir(iconsDir);
 ensureIconsDir(advIconsDir);
 
+// Trả về Response nếu ok hoặc 404; nếu hết lượt retry thì trả về response cuối (có .status)
+// hoặc { ok:false, status:0 } khi lỗi mạng.
 async function fetchWithRetry(url, maxRetries = 4) {
+    let last = { ok: false, status: 0 };
     for (let i = 0; i < maxRetries; i++) {
         try {
             const response = await fetch(url);
-            if (response.status === 404) return response;
-            if (response.ok) return response;
+            if (response.ok || response.status === 404) return response;
+            last = response;
         } catch (error) {
             // Lỗi mạng tạm thời -> thử lại, không throw để tránh sập cả job
+            last = { ok: false, status: 0 };
         }
-        await new Promise(resolve => setTimeout(resolve, 800));
+        if (i < maxRetries - 1) await sleep(800);
     }
-    return { ok: false };
+    return last;
 }
 
-async function downloadIcon(item, targetIconsDir) {
+// probe = true (dùng cho icon _2): chỉ thử nhanh 2 lần, KHÔNG gọi proxy dự phòng.
+// Trả về { res, definitiveMiss }.
+async function downloadOneIcon(id, { probe = false } = {}) {
+    const primary = await fetchWithRetry(cdnUrlFor(id), probe ? 2 : 4);
+    if (primary.ok) return { res: primary, definitiveMiss: false };
+    if (probe) return { res: null, definitiveMiss: isDefinitiveMiss(primary) };
+
+    const fallback = await fetchWithRetry(`${ICON_API_FALLBACK}${id}?no_fallback=true`);
+    if (fallback.ok) return { res: fallback, definitiveMiss: false };
+    return { res: null, definitiveMiss: isDefinitiveMiss(primary) };
+}
+
+// Tải 1 icon về targetDir. Trả về true nếu file đã có / tải xong.
+async function tryDownload(id, targetDir, missTtl, probe = false) {
+    const file = `${id}.png`;
+    const filePath = path.join(targetDir, file);
+
+    if (!FORCE_UPDATE && fs.existsSync(filePath)) {
+        stats.skipped++;
+        return true;
+    }
+    if (!FORCE_UPDATE && isKnownMiss(targetDir, file, missTtl)) {
+        stats.cachedMiss++;
+        return false;
+    }
+
+    const { res, definitiveMiss } = await downloadOneIcon(id, { probe });
+    if (res) {
+        fs.writeFileSync(filePath, Buffer.from(await res.arrayBuffer()));
+        clearMiss(targetDir, file);
+        stats.downloaded++;
+        console.log(`Downloaded: ${file}`);
+        return true;
+    }
+    if (definitiveMiss) markMiss(targetDir, file);
+    return false;
+}
+
+// doMain   : tải icon chính (<Id>.png hoặc <Icon>.png)
+// doUpdate : thăm dò icon cập nhật (<Id>_2.png)
+async function downloadIcon(item, targetIconsDir, { doMain = true, doUpdate = true } = {}) {
     const itemID = String(item.Id);
     const iconName = item.Icon ? String(item.Icon) : null;
 
@@ -102,65 +176,23 @@ async function downloadIcon(item, targetIconsDir) {
     const isUpdateIgnored = ignoreData.ignore_update.includes(itemID) || (iconName && ignoreData.ignore_update.includes(iconName));
 
     if (isAllIgnored) {
-        stats.ignoredFull++;
+        if (doMain) stats.ignoredFull++;
         return;
     }
 
-    let mainIconFound = false;
-
-    const targetId = { id: itemID, file: `${itemID}.png` };
-    const pathId = path.join(targetIconsDir, targetId.file);
-
-    if (!FORCE_UPDATE && fs.existsSync(pathId)) {
-        stats.skipped++;
-        mainIconFound = true;
-    } else {
-        let res1 = await downloadOneIcon(targetId.id);
-        if (res1) {
-            fs.writeFileSync(pathId, Buffer.from(await res1.arrayBuffer()));
-            stats.downloaded++;
-            console.log(`Downloaded: ${targetId.file}`);
-            mainIconFound = true;
+    if (doMain) {
+        let found = await tryDownload(itemID, targetIconsDir, MISS_TTL_MAIN_MS);
+        if (!found && iconName) {
+            found = await tryDownload(iconName, targetIconsDir, MISS_TTL_MAIN_MS);
+        }
+        if (!found) {
+            stats.failed++;
+            stats.failedItems.push(itemID);
         }
     }
 
-    if (!mainIconFound && iconName) {
-        const targetIcon = { id: iconName, file: `${iconName}.png` };
-        const pathIcon = path.join(targetIconsDir, targetIcon.file);
-
-        if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
-            stats.skipped++;
-            mainIconFound = true;
-        } else {
-            let resIcon = await downloadOneIcon(targetIcon.id);
-            if (resIcon) {
-                fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
-                stats.downloaded++;
-                console.log(`Downloaded: ${targetIcon.file}`);
-                mainIconFound = true;
-            }
-        }
-    }
-
-    if (!mainIconFound) {
-        stats.failed++;
-        stats.failedItems.push(itemID);
-    }
-
-    if (!isUpdateIgnored) {
-        const targetId2 = { id: `${itemID}_2`, file: `${itemID}_2.png` };
-        const pathId2 = path.join(targetIconsDir, targetId2.file);
-
-        if (!FORCE_UPDATE && fs.existsSync(pathId2)) {
-            stats.skipped++;
-        } else {
-            let res2 = await downloadOneIcon(targetId2.id);
-            if (res2) {
-                fs.writeFileSync(pathId2, Buffer.from(await res2.arrayBuffer()));
-                stats.downloaded++;
-                console.log(`Downloaded: ${targetId2.file}`);
-            }
-        }
+    if (doUpdate && !isUpdateIgnored) {
+        await tryDownload(`${itemID}_2`, targetIconsDir, MISS_TTL_UPDATE_MS, true);
     }
 }
 
@@ -169,31 +201,13 @@ async function downloadBanner(bannerItem, targetIconsDir) {
     if (!iconVal || String(iconVal).trim() === "") return;
 
     const iconName = String(iconVal).toLowerCase();
-    const isAllIgnored = ignoreData.ignore_all.includes(iconName);
-
-    if (isAllIgnored) {
+    if (ignoreData.ignore_all.includes(iconName)) {
         stats.ignoredFull++;
         return;
     }
 
-    let mainIconFound = false;
-    const targetIcon = { id: iconName, file: `${iconName}.png` };
-    const pathIcon = path.join(targetIconsDir, targetIcon.file);
-
-    if (!FORCE_UPDATE && fs.existsSync(pathIcon)) {
-        stats.skipped++;
-        mainIconFound = true;
-    } else {
-        let resIcon = await downloadOneIcon(targetIcon.id);
-        if (resIcon) {
-            fs.writeFileSync(pathIcon, Buffer.from(await resIcon.arrayBuffer()));
-            stats.downloaded++;
-            console.log(`Downloaded: ${targetIcon.file}`);
-            mainIconFound = true;
-        }
-    }
-
-    if (!mainIconFound) {
+    const found = await tryDownload(iconName, targetIconsDir, MISS_TTL_MAIN_MS);
+    if (!found) {
         stats.failed++;
         stats.failedItems.push(`Banner: ${iconName}`);
     }
@@ -211,52 +225,52 @@ function writeUpdatedIcons(targetIconsDir, outputFileName) {
     return updatedIcons.length;
 }
 
+function loadArray(filePath) {
+    const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    return Array.isArray(raw) ? raw : Object.values(raw);
+}
+
+function validItemsOf(filePath) {
+    return loadArray(filePath).filter(item => !(item.HideInIndex === true || !item.Icon || String(item.Icon).trim() === ""));
+}
+
 async function start() {
-    const tasks = [];
+    // Pha 1: icon chính (Live -> Banner -> Advance). Pha 2: thăm dò icon _2.
+    // Tách pha để phần Advance không bị chặn phía sau hàng chục nghìn lần thăm dò _2.
+    const mainTasks = [];
+    const updateTasks = [];
 
-    // ===== LIVE (ưu tiên xếp trước) =====
+    // ===== LIVE =====
     if (fs.existsSync(dataPath)) {
-        const rawData = fs.readFileSync(dataPath, 'utf8');
-        const items = JSON.parse(rawData);
-        const itemsArray = Array.isArray(items) ? items : Object.values(items);
-        const validItems = itemsArray.filter(item => !(item.HideInIndex === true || !item.Icon || String(item.Icon).trim() === ""));
-
-        validItems.forEach(item => {
-            tasks.push(() => downloadIcon(item, iconsDir));
+        validItemsOf(dataPath).forEach(item => {
+            mainTasks.push(() => downloadIcon(item, iconsDir, { doMain: true, doUpdate: false }));
+            updateTasks.push(() => downloadIcon(item, iconsDir, { doMain: false, doUpdate: true }));
         });
     }
-
     if (fs.existsSync(bannerPath)) {
-        const rawBanner = fs.readFileSync(bannerPath, 'utf8');
-        const banners = JSON.parse(rawBanner);
-        const bannerArray = Array.isArray(banners) ? banners : Object.values(banners);
-
-        bannerArray.forEach(banner => {
-            tasks.push(() => downloadBanner(banner, iconsDir));
+        loadArray(bannerPath).forEach(banner => {
+            mainTasks.push(() => downloadBanner(banner, iconsDir));
         });
     }
 
     // ===== ADVANCE (OB test server) =====
     if (fs.existsSync(advDataPath)) {
-        const rawAdvData = fs.readFileSync(advDataPath, 'utf8');
-        const advItems = JSON.parse(rawAdvData);
-        const advItemsArray = Array.isArray(advItems) ? advItems : Object.values(advItems);
-        const validAdvItems = advItemsArray.filter(item => !(item.HideInIndex === true || !item.Icon || String(item.Icon).trim() === ""));
-
-        validAdvItems.forEach(item => {
-            tasks.push(() => downloadIcon(item, advIconsDir));
+        validItemsOf(advDataPath).forEach(item => {
+            mainTasks.push(() => downloadIcon(item, advIconsDir, { doMain: true, doUpdate: false }));
+            updateTasks.push(() => downloadIcon(item, advIconsDir, { doMain: false, doUpdate: true }));
         });
     }
-
     if (fs.existsSync(advBannerPath)) {
-        const rawAdvBanner = fs.readFileSync(advBannerPath, 'utf8');
-        const advBanners = JSON.parse(rawAdvBanner);
-        const advBannerArray = Array.isArray(advBanners) ? advBanners : Object.values(advBanners);
-
-        advBannerArray.forEach(banner => {
-            tasks.push(() => downloadBanner(banner, advIconsDir));
+        loadArray(advBannerPath).forEach(banner => {
+            mainTasks.push(() => downloadBanner(banner, advIconsDir));
         });
     }
+
+    const tasks = mainTasks.concat(updateTasks);
+    console.log(`Tasks: ${mainTasks.length} main + ${updateTasks.length} update-probe = ${tasks.length}`);
+
+    const saveTimer = setInterval(saveMissCache, MISS_CACHE_SAVE_INTERVAL_MS);
+    saveTimer.unref();
 
     let currentIndex = 0;
 
@@ -264,7 +278,11 @@ async function start() {
         while (currentIndex < tasks.length) {
             if (timeUp()) { stats.timedOut = true; return; }
             const task = tasks[currentIndex++];
-            await task();
+            try {
+                await task();
+            } catch (error) {
+                console.error('Task error:', error.message);
+            }
         }
     }
 
@@ -274,6 +292,8 @@ async function start() {
     }
 
     await Promise.all(workers);
+    clearInterval(saveTimer);
+    saveMissCache();
 
     const remaining = tasks.length - currentIndex;
 
@@ -290,8 +310,10 @@ async function start() {
     console.log(`Total Processed : ${tasks.length - remaining} / ${tasks.length}`);
     console.log(`Fully Ignored   : ${stats.ignoredFull}`);
     console.log(`Skipped (Exists): ${stats.skipped}`);
+    console.log(`Skipped (Cached miss): ${stats.cachedMiss}`);
     console.log(`Downloaded New  : ${stats.downloaded}`);
     console.log(`Failed          : ${stats.failed}`);
+    console.log(`Miss cache size : ${Object.keys(missCache).length}`);
     console.log(`Updated Icons Detected & Saved (Live)    : ${updatedCountLive}`);
     console.log(`Updated Icons Detected & Saved (Advance) : ${updatedCountAdv}`);
 
