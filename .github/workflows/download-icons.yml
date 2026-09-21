@@ -1,15 +1,19 @@
 name: Auto Download & Update CDN Icons
 
 on:
-  workflow_dispatch:
+  schedule:
+    - cron: '0 1-23/2 * * *'   # Chạy vào các giờ LẺ (1h, 3h, 5h... UTC). sync-data chạy các giờ CHẴN.
+  workflow_dispatch:            # Vẫn cho phép chạy thủ công
 
+# CHUNG group với sync-data.yml và KHÔNG hủy run đang chạy -> 2 workflow xếp hàng, không đè nhau.
 concurrency:
   group: freefire-repo-sync
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 55
     permissions:
       contents: write
 
@@ -22,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Increase Git Buffer & Node Memory
         run: |
@@ -32,15 +36,15 @@ jobs:
       - name: Run Fetch Icons Script
         run: node fetch-icons.js
 
-      - name: Commit & Push Changes (Chunked)
+      - name: Commit & Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Tự động chia nhỏ commit để tránh tràn RAM
+          # *.json đã bao gồm icon_miss_cache.json, updated_icons*.json
           git add icons/ icons_advance/ *.json || true
 
-          if ! git diff-index --quiet HEAD --; then
+          if ! git diff --cached --quiet; then
             git commit -m "Auto update real item icons from Garena CDN"
             git pull --rebase origin main
             git push origin main
