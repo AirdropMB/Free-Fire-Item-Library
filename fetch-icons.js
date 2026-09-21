@@ -17,6 +17,8 @@ const FORCE_UPDATE = false;
 //  - Icon dạng MÃ SỐ (item.Id, hoặc Icon toàn số)  -> dl.cdn.freefiremobile.com
 //  - Icon dạng TÊN CHỮ (item.Icon kiểu Icon_face_xxx) -> freefiremobile-a.akamaihd.net
 const CDN_NUMERIC = 'https://dl.cdn.freefiremobile.com/live/ABHotUpdates/IconCDN/other/';
+// Icon dạng MÃ SỐ của bản ADVANCE (OB test server) nằm ở thư mục /advance/ riêng
+const CDN_NUMERIC_ADV = 'https://dl.cdn.freefiremobile.com/advance/ABHotUpdates/IconCDN/other/';
 const CDN_NAMED = 'https://freefiremobile-a.akamaihd.net/common/Local/PK/FF_UI_Icon/';
 // Proxy dự phòng cuối cùng nếu cả 2 domain gốc đều fail
 const ICON_API_FALLBACK = 'https://kog-ff-icons.vercel.app/api/icon/';
@@ -61,8 +63,9 @@ function saveMissCache() {
 }
 
 function isNumericCode(id) { return /^\d+$/.test(String(id)); }
-function cdnUrlFor(id) {
-    return isNumericCode(id) ? `${CDN_NUMERIC}${id}.png` : `${CDN_NAMED}${id}.png`;
+function cdnUrlFor(id, advance = false) {
+    if (isNumericCode(id)) return `${advance ? CDN_NUMERIC_ADV : CDN_NUMERIC}${id}.png`;
+    return `${CDN_NAMED}${id}.png`;
 }
 function isDefinitiveMiss(res) { return !!res && (res.status === 404 || res.status === 403); }
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -130,14 +133,21 @@ async function fetchWithRetry(url, maxRetries = 4) {
 
 // probe = true (dùng cho icon _2): chỉ thử nhanh 2 lần, KHÔNG gọi proxy dự phòng.
 // Trả về { res, definitiveMiss }.
-async function downloadOneIcon(id, { probe = false } = {}) {
-    const primary = await fetchWithRetry(cdnUrlFor(id), probe ? 2 : 4);
+// Mỗi thư mục chỉ dùng CDN của chính nó, KHÔNG chéo sang bên kia:
+//  - icons_advance : CDN advance (/advance/...)
+//  - icons (live)  : CDN live (/live/...), proxy dự phòng nếu CDN live lỗi
+// probe = true (icon _2): thử nhanh, không proxy.
+async function downloadOneIcon(id, { probe = false, advance = false } = {}) {
+    const primary = await fetchWithRetry(cdnUrlFor(id, advance), probe ? 2 : 4);
     if (primary.ok) return { res: primary, definitiveMiss: false };
-    if (probe) return { res: null, definitiveMiss: isDefinitiveMiss(primary) };
+
+    const miss = isDefinitiveMiss(primary);
+    // Proxy chỉ dành cho bản Live (proxy không phục vụ icon của bản Advance)
+    if (probe || advance) return { res: null, definitiveMiss: miss };
 
     const fallback = await fetchWithRetry(`${ICON_API_FALLBACK}${id}?no_fallback=true`);
     if (fallback.ok) return { res: fallback, definitiveMiss: false };
-    return { res: null, definitiveMiss: isDefinitiveMiss(primary) };
+    return { res: null, definitiveMiss: miss };
 }
 
 // Tải 1 icon về targetDir. Trả về true nếu file đã có / tải xong.
@@ -154,7 +164,7 @@ async function tryDownload(id, targetDir, missTtl, probe = false) {
         return false;
     }
 
-    const { res, definitiveMiss } = await downloadOneIcon(id, { probe });
+    const { res, definitiveMiss } = await downloadOneIcon(id, { probe, advance: targetDir === advIconsDir });
     if (res) {
         fs.writeFileSync(filePath, Buffer.from(await res.arrayBuffer()));
         clearMiss(targetDir, file);
