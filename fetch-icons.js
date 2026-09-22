@@ -14,47 +14,85 @@ const CONCURRENCY_LIMIT = 40;
 const FORCE_UPDATE = false;
 
 // Icon chưa có thật trên CDN nhưng CDN vẫn trả về response 200 kèm 1 ảnh "placeholder"
-// gần như toàn màu đen, thay vì báo lỗi 404. Placeholder đã quan sát được có nhiều
-// kích thước byte khác nhau tuỳ kích thước ảnh (icon vuông nhỏ ~200-400B, ảnh nền
-// chữ nhật ~3000B), nên KHÔNG dùng 1 ngưỡng byte cố định — thay vào đó so
-// "byte trên mỗi pixel": ảnh gần như 1 màu nén cực nhỏ so với số pixel dù ảnh to hay nhỏ,
-// còn icon thật có chi tiết nên tỉ lệ này cao hơn hẳn bất kể kích thước ảnh.
-// Đã xác nhận thực tế: 907105548.png (Icon_Halloween26_Grenade) = 418B, 110x110,
-// ratio=0.0345 vẫn là ảnh đen -> ngưỡng phải CAO HƠN 0.0345 để bắt được case này.
-const PLACEHOLDER_BYTES_PER_PIXEL = 0.05;
-// File nhỏ hơn mốc này thì luôn coi là placeholder dù không đọc được kích thước ảnh
+// gần như toàn màu đen, thay vì báo lỗi 404. ĐÃ THỬ dùng dung lượng file / tỉ lệ
+// byte-trên-pixel để nhận diện, nhưng KHÔNG đáng tin: nhiều placeholder có kèm chunk
+// color-profile (iCCP) nặng ~2.6KB (không liên quan gì tới nội dung ảnh) khiến dung
+// lượng file bị đội lên, làm sai lệch mọi cách tính dựa trên tổng dung lượng file.
+// Cách đúng là GIẢI NÉN dữ liệu pixel thật (chunk IDAT) và đếm xem có bao nhiêu giá
+// trị màu khác nhau: ảnh placeholder gần như chỉ có 1-2 giá trị (VD toàn màu đen, hoặc
+// đen + alpha 255 cho ảnh RGBA), còn icon thật có chi tiết/gradient nên có hàng chục
+// đến hàng trăm giá trị byte khác nhau.
+const zlib = require('zlib');
+
+// Số giá trị byte khác nhau tối đa trong dữ liệu pixel để còn coi là "gần như 1 màu".
+// Đã xác nhận thực tế: 902055031.png (RGB, toàn màu đen) chỉ có 1 giá trị byte duy nhất;
+// icon_callsign_basebg_rank54.png (RGBA, đen + alpha 255) chỉ có 2 giá trị byte.
+const PLACEHOLDER_MAX_UNIQUE_BYTES = 16;
+// File nhỏ hơn mốc này thì luôn coi là placeholder dù không đọc/giải nén được
 // (ví dụ không phải PNG hợp lệ, hoặc response bị cắt ngang).
 const PLACEHOLDER_ABSOLUTE_MIN_BYTES = 150;
 
-// Đọc width/height từ header PNG (8 byte signature + chunk IHDR ngay sau đó).
-// Trả về null nếu không phải PNG hợp lệ.
-function parsePngSize(buffer) {
-    if (!buffer || buffer.length < 24) return null;
+// Đọc toàn bộ chunk PNG, lấy width/height (IHDR) và dữ liệu pixel đã giải nén (IDAT).
+// Trả về null nếu không phải PNG hợp lệ hoặc không giải nén được.
+function decodePngRaw(buffer) {
+    if (!buffer || buffer.length < 8) return null;
     const isPng = buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4E && buffer[3] === 0x47;
     if (!isPng) return null;
-    const width = buffer.readUInt32BE(16);
-    const height = buffer.readUInt32BE(20);
-    if (!width || !height) return null;
-    return { width, height };
+
+    let offset = 8;
+    let width = 0, height = 0;
+    const idatParts = [];
+    try {
+        while (offset + 8 <= buffer.length) {
+            const len = buffer.readUInt32BE(offset);
+            const type = buffer.toString('ascii', offset + 4, offset + 8);
+            const dataStart = offset + 8;
+            const dataEnd = dataStart + len;
+            if (dataEnd > buffer.length) break; // chunk bị cắt ngang -> dừng, dùng phần đã đọc được
+
+            if (type === 'IHDR') {
+                width = buffer.readUInt32BE(dataStart);
+                height = buffer.readUInt32BE(dataStart + 4);
+            } else if (type === 'IDAT') {
+                idatParts.push(buffer.slice(dataStart, dataEnd));
+            } else if (type === 'IEND') {
+                break;
+            }
+            offset = dataEnd + 4; // bỏ qua 4 byte CRC
+        }
+        if (!width || !height || idatParts.length === 0) return null;
+        const raw = zlib.inflateSync(Buffer.concat(idatParts));
+        return { width, height, raw };
+    } catch (error) {
+        return null;
+    }
 }
 
 // true nếu buffer nhiều khả năng là ảnh placeholder (gần như 1 màu), dựa trên
-// tỉ lệ byte/pixel; false nếu không xác định được (coi như ảnh thật, không chặn nhầm).
+// SỐ GIÁ TRỊ MÀU KHÁC NHAU trong dữ liệu pixel thật; false nếu không xác định
+// được (coi như ảnh thật, không chặn nhầm).
 function looksLikePlaceholder(buffer) {
-    if (buffer.length < PLACEHOLDER_ABSOLUTE_MIN_BYTES) return true;
-    const size = parsePngSize(buffer);
-    if (!size) return false;
-    const ratio = buffer.length / (size.width * size.height);
-    return ratio < PLACEHOLDER_BYTES_PER_PIXEL;
+    if (!buffer || buffer.length < PLACEHOLDER_ABSOLUTE_MIN_BYTES) return true;
+    const decoded = decodePngRaw(buffer);
+    if (!decoded) return false;
+
+    const seen = new Set();
+    for (let i = 0; i < decoded.raw.length; i++) {
+        seen.add(decoded.raw[i]);
+        // Đủ đa dạng màu rồi -> chắc chắn là ảnh thật, dừng sớm cho nhanh.
+        if (seen.size > PLACEHOLDER_MAX_UNIQUE_BYTES) return false;
+    }
+    return true;
 }
 
 // Garena phục vụ icon qua 2 domain khác nhau tuỳ loại mã:
 //  - Icon dạng MÃ SỐ (item.Id, hoặc Icon toàn số)  -> dl.cdn.freefiremobile.com
-//  - Icon dạng TÊN CHỮ (item.Icon kiểu Icon_face_xxx) -> freefiremobile-a.akamaihd.net
+//  - Icon dạng TÊN CHỮ (item.Icon kiểu Icon_face_xxx) -> mirror GitHub Pages riêng
+//    (đổi từ freefiremobile-a.akamaihd.net sang nguồn này theo yêu cầu)
 const CDN_NUMERIC = 'https://dl.cdn.freefiremobile.com/live/ABHotUpdates/IconCDN/other/';
 // Icon dạng MÃ SỐ của bản ADVANCE (OB test server) nằm ở thư mục /advance/ riêng
 const CDN_NUMERIC_ADV = 'https://dl.cdn.freefiremobile.com/advance/ABHotUpdates/IconCDN/other/';
-const CDN_NAMED = 'https://freefiremobile-a.akamaihd.net/common/Local/PK/FF_UI_Icon/';
+const CDN_NAMED = 'https://kingofgames02.github.io/Free-Fire-Items-Library/ff-icons/';
 // Proxy dự phòng cuối cùng nếu cả 2 domain gốc đều fail
 const ICON_API_FALLBACK = 'https://kog-ff-icons.vercel.app/api/icon/';
 
@@ -199,9 +237,10 @@ async function readIfReal(res, debugLabel) {
     if (!res || !res.ok) return { buffer: null, isPlaceholder: false };
     const buffer = Buffer.from(await res.arrayBuffer());
     if (looksLikePlaceholder(buffer)) {
-        const size = parsePngSize(buffer);
-        const ratio = size ? (buffer.length / (size.width * size.height)).toFixed(4) : 'n/a';
-        console.log(`Placeholder phát hiện: ${debugLabel} (${buffer.length}B, ${size ? `${size.width}x${size.height}` : '?'}, ratio=${ratio})`);
+        const decoded = decodePngRaw(buffer);
+        const dims = decoded ? `${decoded.width}x${decoded.height}` : '?';
+        const uniqueCount = decoded ? new Set(decoded.raw).size : 'n/a';
+        console.log(`Placeholder phát hiện: ${debugLabel} (${buffer.length}B, ${dims}, màu khác nhau=${uniqueCount})`);
         return { buffer: null, isPlaceholder: true };
     }
     return { buffer, isPlaceholder: false };
