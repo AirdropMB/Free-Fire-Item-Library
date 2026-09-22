@@ -19,7 +19,9 @@ const FORCE_UPDATE = false;
 // chữ nhật ~3000B), nên KHÔNG dùng 1 ngưỡng byte cố định — thay vào đó so
 // "byte trên mỗi pixel": ảnh gần như 1 màu nén cực nhỏ so với số pixel dù ảnh to hay nhỏ,
 // còn icon thật có chi tiết nên tỉ lệ này cao hơn hẳn bất kể kích thước ảnh.
-const PLACEHOLDER_BYTES_PER_PIXEL = 0.03;
+// Đã xác nhận thực tế: 907105548.png (Icon_Halloween26_Grenade) = 418B, 110x110,
+// ratio=0.0345 vẫn là ảnh đen -> ngưỡng phải CAO HƠN 0.0345 để bắt được case này.
+const PLACEHOLDER_BYTES_PER_PIXEL = 0.05;
 // File nhỏ hơn mốc này thì luôn coi là placeholder dù không đọc được kích thước ảnh
 // (ví dụ không phải PNG hợp lệ, hoặc response bị cắt ngang).
 const PLACEHOLDER_ABSOLUTE_MIN_BYTES = 150;
