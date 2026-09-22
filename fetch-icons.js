@@ -13,6 +13,39 @@ const ignoreListPath = path.join(__dirname, 'ignore_list.json');
 const CONCURRENCY_LIMIT = 40;
 const FORCE_UPDATE = false;
 
+// Icon chưa có thật trên CDN nhưng CDN vẫn trả về response 200 kèm 1 ảnh "placeholder"
+// gần như toàn màu đen, thay vì báo lỗi 404. Placeholder đã quan sát được có nhiều
+// kích thước byte khác nhau tuỳ kích thước ảnh (icon vuông nhỏ ~200-400B, ảnh nền
+// chữ nhật ~3000B), nên KHÔNG dùng 1 ngưỡng byte cố định — thay vào đó so
+// "byte trên mỗi pixel": ảnh gần như 1 màu nén cực nhỏ so với số pixel dù ảnh to hay nhỏ,
+// còn icon thật có chi tiết nên tỉ lệ này cao hơn hẳn bất kể kích thước ảnh.
+const PLACEHOLDER_BYTES_PER_PIXEL = 0.03;
+// File nhỏ hơn mốc này thì luôn coi là placeholder dù không đọc được kích thước ảnh
+// (ví dụ không phải PNG hợp lệ, hoặc response bị cắt ngang).
+const PLACEHOLDER_ABSOLUTE_MIN_BYTES = 150;
+
+// Đọc width/height từ header PNG (8 byte signature + chunk IHDR ngay sau đó).
+// Trả về null nếu không phải PNG hợp lệ.
+function parsePngSize(buffer) {
+    if (!buffer || buffer.length < 24) return null;
+    const isPng = buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4E && buffer[3] === 0x47;
+    if (!isPng) return null;
+    const width = buffer.readUInt32BE(16);
+    const height = buffer.readUInt32BE(20);
+    if (!width || !height) return null;
+    return { width, height };
+}
+
+// true nếu buffer nhiều khả năng là ảnh placeholder (gần như 1 màu), dựa trên
+// tỉ lệ byte/pixel; false nếu không xác định được (coi như ảnh thật, không chặn nhầm).
+function looksLikePlaceholder(buffer) {
+    if (buffer.length < PLACEHOLDER_ABSOLUTE_MIN_BYTES) return true;
+    const size = parsePngSize(buffer);
+    if (!size) return false;
+    const ratio = buffer.length / (size.width * size.height);
+    return ratio < PLACEHOLDER_BYTES_PER_PIXEL;
+}
+
 // Garena phục vụ icon qua 2 domain khác nhau tuỳ loại mã:
 //  - Icon dạng MÃ SỐ (item.Id, hoặc Icon toàn số)  -> dl.cdn.freefiremobile.com
 //  - Icon dạng TÊN CHỮ (item.Icon kiểu Icon_face_xxx) -> freefiremobile-a.akamaihd.net
@@ -113,6 +146,33 @@ function ensureIconsDir(dir) {
 ensureIconsDir(iconsDir);
 ensureIconsDir(advIconsDir);
 
+// Dọn các icon đã lỡ lưu placeholder (đen) từ những lần chạy trước ngưỡng này chưa có.
+// Xoá file để lượt chạy này tải lại đúng ảnh, hoặc bị đánh dấu miss nếu vẫn chưa có thật.
+function cleanupPlaceholders(dir) {
+    if (!fs.existsSync(dir)) return 0;
+    let removed = 0;
+    for (const file of fs.readdirSync(dir)) {
+        if (!file.endsWith('.png')) continue;
+        const filePath = path.join(dir, file);
+        try {
+            const buffer = fs.readFileSync(filePath);
+            if (looksLikePlaceholder(buffer)) {
+                fs.rmSync(filePath);
+                removed++;
+            }
+        } catch (error) {
+            // bỏ qua nếu không đọc/xoá được
+        }
+    }
+    return removed;
+}
+
+const removedPlaceholdersLive = cleanupPlaceholders(iconsDir);
+const removedPlaceholdersAdv = cleanupPlaceholders(advIconsDir);
+if (removedPlaceholdersLive || removedPlaceholdersAdv) {
+    console.log(`Đã xoá icon placeholder cũ: Live ${removedPlaceholdersLive}, Advance ${removedPlaceholdersAdv}`);
+}
+
 // Trả về Response nếu ok hoặc 404; nếu hết lượt retry thì trả về response cuối (có .status)
 // hoặc { ok:false, status:0 } khi lỗi mạng.
 async function fetchWithRetry(url, maxRetries = 4) {
@@ -131,23 +191,40 @@ async function fetchWithRetry(url, maxRetries = 4) {
     return last;
 }
 
+// Đọc response thành buffer và kiểm tra có phải placeholder (quá nhỏ) hay không.
+// Trả về { buffer, isPlaceholder } — buffer = null nếu response không ok.
+async function readIfReal(res, debugLabel) {
+    if (!res || !res.ok) return { buffer: null, isPlaceholder: false };
+    const buffer = Buffer.from(await res.arrayBuffer());
+    if (looksLikePlaceholder(buffer)) {
+        const size = parsePngSize(buffer);
+        const ratio = size ? (buffer.length / (size.width * size.height)).toFixed(4) : 'n/a';
+        console.log(`Placeholder phát hiện: ${debugLabel} (${buffer.length}B, ${size ? `${size.width}x${size.height}` : '?'}, ratio=${ratio})`);
+        return { buffer: null, isPlaceholder: true };
+    }
+    return { buffer, isPlaceholder: false };
+}
+
 // probe = true (dùng cho icon _2): chỉ thử nhanh 2 lần, KHÔNG gọi proxy dự phòng.
-// Trả về { res, definitiveMiss }.
+// Trả về { buffer, definitiveMiss }. definitiveMiss = true khi CDN xác nhận icon
+// không tồn tại (404/403) HOẶC trả về ảnh placeholder rỗng.
 // Mỗi thư mục chỉ dùng CDN của chính nó, KHÔNG chéo sang bên kia:
 //  - icons_advance : CDN advance (/advance/...)
 //  - icons (live)  : CDN live (/live/...), proxy dự phòng nếu CDN live lỗi
 // probe = true (icon _2): thử nhanh, không proxy.
 async function downloadOneIcon(id, { probe = false, advance = false } = {}) {
     const primary = await fetchWithRetry(cdnUrlFor(id, advance), probe ? 2 : 4);
-    if (primary.ok) return { res: primary, definitiveMiss: false };
+    const { buffer: primaryBuf, isPlaceholder: primaryPlaceholder } = await readIfReal(primary, `${id}.png (CDN)`);
+    if (primaryBuf) return { buffer: primaryBuf, definitiveMiss: false };
 
-    const miss = isDefinitiveMiss(primary);
+    const miss = isDefinitiveMiss(primary) || primaryPlaceholder;
     // Proxy chỉ dành cho bản Live (proxy không phục vụ icon của bản Advance)
-    if (probe || advance) return { res: null, definitiveMiss: miss };
+    if (probe || advance) return { buffer: null, definitiveMiss: miss };
 
     const fallback = await fetchWithRetry(`${ICON_API_FALLBACK}${id}?no_fallback=true`);
-    if (fallback.ok) return { res: fallback, definitiveMiss: false };
-    return { res: null, definitiveMiss: miss };
+    const { buffer: fallbackBuf, isPlaceholder: fallbackPlaceholder } = await readIfReal(fallback, `${id}.png (proxy)`);
+    if (fallbackBuf) return { buffer: fallbackBuf, definitiveMiss: false };
+    return { buffer: null, definitiveMiss: miss || isDefinitiveMiss(fallback) || fallbackPlaceholder };
 }
 
 // Tải 1 icon về targetDir. Trả về true nếu file đã có / tải xong.
@@ -164,9 +241,9 @@ async function tryDownload(id, targetDir, missTtl, probe = false) {
         return false;
     }
 
-    const { res, definitiveMiss } = await downloadOneIcon(id, { probe, advance: targetDir === advIconsDir });
-    if (res) {
-        fs.writeFileSync(filePath, Buffer.from(await res.arrayBuffer()));
+    const { buffer, definitiveMiss } = await downloadOneIcon(id, { probe, advance: targetDir === advIconsDir });
+    if (buffer) {
+        fs.writeFileSync(filePath, buffer);
         clearMiss(targetDir, file);
         stats.downloaded++;
         console.log(`Downloaded: ${file}`);
@@ -321,6 +398,7 @@ async function start() {
     console.log(`Fully Ignored   : ${stats.ignoredFull}`);
     console.log(`Skipped (Exists): ${stats.skipped}`);
     console.log(`Skipped (Cached miss): ${stats.cachedMiss}`);
+    console.log(`Placeholder (đen) cũ đã xoá lúc khởi động (Live/Advance): ${removedPlaceholdersLive}/${removedPlaceholdersAdv}`);
     console.log(`Downloaded New  : ${stats.downloaded}`);
     console.log(`Failed          : ${stats.failed}`);
     console.log(`Miss cache size : ${Object.keys(missCache).length}`);
