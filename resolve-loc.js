@@ -62,11 +62,16 @@ function loadLocLines() {
 // Nhận diện 1 chuỗi có phải "loc-key" (chưa resolve) hay không: dựa vào việc
 // nó CÓ TỒN TẠI trong bảng FF_LocId.json — không đoán theo tiền tố (TXT_,
 // T_NN_...) vì nguồn có thể đổi kiểu đặt tên key bất cứ lúc nào (đã từng đổi
-// từ TXT_ sang T_NN_ mà không báo trước). Chỉ coi là "có khả năng là key" nếu
-// dạng chữ hoa/số/gạch dưới, không có khoảng trắng — để không đụng vào tên
-// thật (vốn có khoảng trắng, chữ thường).
+// từ TXT_ sang T_NN_ mà không báo trước, và gần đây lại xuất hiện key có
+// XEN LẪN chữ thường, ví dụ "T_55_YU_QCITEM_ALL_NB1Re_1_1" — chữ "e" thường
+// trong "NB1Re" khiến regex thuần chữ hoa trước đây bỏ sót hoàn toàn key này).
+// Vẫn giữ nguyên tắc: chỉ coi là "có khả năng là key" nếu KHÔNG có khoảng
+// trắng (chữ/câu thật luôn có khoảng trắng hoặc dấu câu), để không đụng vào
+// tên/mô tả đã resolve thật. resolveKey() bên dưới vẫn tự bỏ qua an toàn nếu
+// chuỗi không thật sự tồn tại trong bảng key, nên nới lỏng ở đây không gây
+// hại — chỉ có tác dụng KHÔNG bỏ sót các key dạng mới.
 function looksLikeLocKey(str) {
-    return /^[A-Z0-9_]+$/.test(str);
+    return /^[A-Za-z0-9_]+$/.test(str);
 }
 
 function resolveKey(key, locMap, lines) {
