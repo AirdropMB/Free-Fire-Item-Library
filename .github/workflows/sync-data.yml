@@ -40,7 +40,7 @@ jobs:
           curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/live/IconCDNMap.json" \
             -o IconCDNMap.json
 
-      - name: Tải FF_LocId.json + loc_en.txt + loc_vn.txt (Live, để resolve Name/Desc)
+      - name: Tải FF_LocId.json + loc_en.txt + loc_vn.txt + loc_zh-tw.txt (Live, để resolve Name/Desc)
         run: |
           curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/live/FF_LocId.json" \
             -o FF_LocId.json
@@ -48,11 +48,15 @@ jobs:
             -o loc_en.txt
           curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/live/loc_vn.txt" \
             -o loc_vn.txt
+          curl -fsSL "https://raw.githubusercontent.com/KingofGames02/Free-Fire-Items-Library/main/Data/live/loc_zh-tw.txt" \
+            -o loc_zh-tw.txt
 
-      # Nhân bản dữ liệu thô (Name/Desc còn ở dạng TXT_...) làm nguồn cho bản VN,
+      # Nhân bản dữ liệu thô (Name/Desc còn ở dạng TXT_...) làm nguồn cho bản VN và TW,
       # PHẢI làm TRƯỚC bước resolve EN vì resolve-loc.js ghi đè trực tiếp vào file.
-      - name: Tạo bản sao dữ liệu thô cho ItemsData_vn.json
-        run: cp ItemsData_en.json ItemsData_vn.json
+      - name: Tạo bản sao dữ liệu thô cho ItemsData_vn.json và ItemsData_tw.json
+        run: |
+          cp ItemsData_en.json ItemsData_vn.json
+          cp ItemsData_en.json ItemsData_tw.json
 
       # ===== BẢN ADVANCE / OB TEST SERVER (lưu file riêng, không đè lên bản Live) =====
       - name: Tải FFAdv_ItemsData.json (Advance) mới nhất
@@ -81,10 +85,11 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Resolve Name/Desc dạng TXT_... thành text thật (EN, VN chính thức, Advance)
+      - name: Resolve Name/Desc dạng TXT_... thành text thật (EN, VN, TW chính thức, Advance)
         run: |
           node resolve-loc.js ItemsData_en.json FF_LocId.json loc_en.txt
           node resolve-loc.js ItemsData_vn.json FF_LocId.json loc_vn.txt
+          node resolve-loc.js ItemsData_tw.json FF_LocId.json loc_zh-tw.txt
           node resolve-loc.js ItemsData_en_advance.json FFAdv_LocId.json loc_en_advance.txt
 
       - name: Chạy fetch icons
@@ -95,4 +100,4 @@ jobs:
         with:
           commit_message: "Auto-synced data & icons [2h]"
           # Đã thêm icon_miss_cache.json để lưu tiến trình giữa các lần chạy
-          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_zh.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json icon_miss_cache.json'
+          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_tw.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt loc_zh-tw.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json icon_miss_cache.json'
