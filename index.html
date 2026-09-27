@@ -1285,7 +1285,7 @@
       return;
     }
 
-    const file = lang==='en' ? 'ItemsData_en.json' : lang==='vi' ? 'ItemsData_vn.json' : 'ItemsData_zh.json';
+    const file = lang==='en' ? 'ItemsData_en.json' : lang==='vi' ? 'ItemsData_vn.json' : 'ItemsData_tw.json';
 
     // Với VN/ZH: luôn load song song EN để lấy Category, Tag, Icon làm fallback
     const dataP = fetch(`${file}?v=${APP_VERSION}`)
