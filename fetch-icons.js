@@ -119,7 +119,11 @@ function isKnownMiss(dir, file, ttl) {
     const t = missCache[missKey(dir, file)];
     return typeof t === 'number' && (Date.now() - t) < ttl;
 }
-function markMiss(dir, file) { missCache[missKey(dir, file)] = Date.now(); }
+// Jitter: cộng ngẫu nhiên thêm tối đa 30% TTL vào mốc thời gian để các mục miss KHÔNG hết hạn
+// cùng một lúc (tránh cảnh vài chục nghìn icon bị dò lại đồng loạt mỗi 7 ngày).
+function markMiss(dir, file, ttl = MISS_TTL_UPDATE_MS) {
+    missCache[missKey(dir, file)] = Date.now() + Math.floor(Math.random() * ttl * 0.3);
+}
 function clearMiss(dir, file) { delete missCache[missKey(dir, file)]; }
 function saveMissCache() {
     try {
@@ -290,7 +294,7 @@ async function tryDownload(id, targetDir, missTtl, probe = false) {
         console.log(`Downloaded: ${file}`);
         return true;
     }
-    if (definitiveMiss) markMiss(targetDir, file);
+    if (definitiveMiss) markMiss(targetDir, file, missTtl);
     return false;
 }
 
