@@ -464,6 +464,13 @@
     .im-desc-box{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
     .im-desc-key{font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:var(--brass);text-transform:uppercase;letter-spacing:.07em;padding:7px 11px 6px;border-bottom:1px solid var(--hair);background:rgba(255,255,255,.02);display:block;}
     .im-desc-val{font-size:.8rem;color:var(--paper-dim);line-height:1.7;padding:9px 11px 11px;}
+    .im-wl{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
+    .im-wl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);}
+    .im-wl-cell{background:#16130f;padding:8px 11px;display:flex;flex-direction:column;gap:2px;}
+    .im-wl-cell.full{grid-column:1/-1;}
+    .im-wl-cell b{font-family:var(--font-mono);font-size:.58rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:.07em;font-weight:700;}
+    .im-wl-cell span{font-size:.82rem;color:var(--paper);line-height:1.4;}
+    .im-wl-cell span em{font-style:normal;color:var(--paper-dim);font-size:.74rem;}
     .copy-btn{background:transparent;border:1px solid rgba(255,90,51,.28);color:var(--ember);clip-path:var(--clip-sm);padding:5px 7px;cursor:pointer;display:grid;place-items:center;transition:all var(--t);flex-shrink:0;}
     .copy-btn:hover{background:var(--ember-dim);}
     .im-acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px 16px 18px;border-top:1px solid var(--hair);margin-top:8px;}
@@ -475,33 +482,6 @@
     .im-btn.wish{background:linear-gradient(135deg,var(--ember),#ff8156);color:#1a0a05;box-shadow:0 0 14px rgba(255,90,51,.35);text-decoration:none;}
     .im-btn.wish:hover{filter:brightness(1.08);box-shadow:0 0 20px rgba(255,90,51,.55);transform:translateY(-1px);}
     .im-btn.wish.hidden{display:none;}
-
-
-    /* ---- Weapon stats (GunsData) ---- */
-    .im-stats{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
-    .im-stats[hidden]{display:none;}
-    .im-stats-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 11px 6px;border-bottom:1px solid var(--hair);background:rgba(255,255,255,.02);}
-    .im-stats-title{font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:var(--brass);text-transform:uppercase;letter-spacing:.07em;}
-    .im-stats-tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;}
-    .im-stats-tags{align-items:center;}
-    .gs-like{display:inline-flex;align-items:center;gap:5px;color:#ff6b6b;margin-left:4px;}
-    .gs-like svg{flex-shrink:0;}
-    .gs-like b{font-family:var(--font-mono);font-size:.8rem;font-weight:400;color:var(--ash);letter-spacing:.02em;}
-    .gs-tag{font-size:.6rem;letter-spacing:.04em;padding:2px 8px;color:var(--paper-dim);background:var(--glass2);border:1px solid var(--hair);clip-path:var(--clip-sm);white-space:nowrap;}
-    .gs-tag.evo{color:var(--ember);border-color:rgba(255,90,51,.35);background:var(--ember-dim);}
-    .im-stats-list{display:flex;flex-direction:column;padding:6px 11px 8px;}
-    .gs-row{display:grid;grid-template-columns:minmax(84px,34%) 1fr 34px;align-items:center;gap:10px;padding:5px 0;border-bottom:1px dashed rgba(200,168,90,.1);}
-    .gs-row:last-child{border-bottom:none;}
-    .gs-label{font-size:.76rem;color:var(--paper-dim);line-height:1.2;}
-    .gs-track{position:relative;height:8px;background:rgba(255,255,255,.05);border:1px solid var(--hair);}
-    .gs-track::before{content:'';position:absolute;top:-3px;bottom:-3px;left:50%;width:1px;background:var(--hair2);z-index:2;}
-    .gs-fill{position:absolute;top:0;bottom:0;transition:width .35s cubic-bezier(.4,0,.2,1);}
-    .gs-row.pos .gs-fill{left:50%;background:linear-gradient(90deg,var(--brass),var(--success));}
-    .gs-row.neg .gs-fill{right:50%;background:linear-gradient(270deg,var(--ember),var(--danger));}
-    .gs-val{font-family:var(--font-mono);font-size:.8rem;text-align:right;font-variant-numeric:tabular-nums;}
-    .gs-row.pos .gs-val{color:var(--success);}
-    .gs-row.neg .gs-val{color:var(--danger);}
-    .gs-row.zero .gs-val{color:var(--ash);}
 
     /* ---- Settings modal ---- */
     .sm-body{padding:22px 20px 24px;display:flex;flex-direction:column;gap:0;}
@@ -772,12 +752,9 @@
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
         </button>
       </div>
-      <div class="im-stats" id="imStats" hidden>
-        <div class="im-stats-head">
-          <span class="im-stats-title" id="txtModalStats">Weapon Stats</span>
-          <span class="im-stats-tags" id="imStatsTags"></span>
-        </div>
-        <div class="im-stats-list" id="imStatsList"></div>
+      <div class="im-wl" id="imWl" style="display:none">
+        <span class="im-desc-key" id="txtWlTitle">Wishlist</span>
+        <div class="im-wl-grid" id="imWlGrid"></div>
       </div>
       <div class="im-desc-box">
         <span class="im-desc-key" id="txtModalDesc">Description</span>
@@ -887,6 +864,9 @@
 
 <script>
   const APP_VERSION = "3.1.0";
+  /* Dữ liệu wishlist / ngày ra mắt (nguồn: wiki.ff.garena.vn) — file WishlistData.json, key = Item ID */
+  window._wlStats = {};
+  fetch(`WishlistData.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():{}).then(j=>{ window._wlStats=j||{}; }).catch(()=>{});
   if (localStorage.getItem('appVersion') !== APP_VERSION) {
     localStorage.setItem('appVersion', APP_VERSION);
     if ('caches' in window) caches.keys().then(n => n.forEach(k => caches.delete(k)));
@@ -916,6 +896,7 @@
       shareItemText:"Check out this item:", shareSearchText:"Check out this collection:",
       follow2:"Follow Aurust",
       wishlistBtn:"ADD TO WISHLIST",
+      wl:{title:"Wishlist & Release", wish:"Wishlist", like:"Like / Dislike", rank:"Rank", cat:"In category", first:"First released", last:"Last appeared", batch:"Batch", locale:"en-GB"},
       serverSetting:"Server",
       advanceNotice:"Advance / OB Test Server — preview data, subject to change. English only.",
       rarities:{
@@ -945,6 +926,7 @@
       shareItemText:"Xem mục này:", shareSearchText:"Xem bộ sưu tập:",
       follow2:"Theo dõi Aurust",
       wishlistBtn:"THÊM VÀO DSMM",
+      wl:{title:"Wishlist & Ra mắt", wish:"Lượt wishlist", like:"Thích / Không thích", rank:"Xếp hạng", cat:"Trong danh mục", first:"Ra mắt lần đầu", last:"Xuất hiện gần nhất", batch:"Đợt", locale:"vi-VN"},
       serverSetting:"Máy chủ",
       advanceNotice:"Máy chủ thử nghiệm Advance/OB — dữ liệu xem trước, có thể thay đổi. Chỉ có tiếng Anh.",
       rarities:{
@@ -1020,6 +1002,7 @@
       shareItemText:"查看此物品：", shareSearchText:"查看此收藏：",
       follow2:"關注 Aurust",
       wishlistBtn:"加入願望清單",
+      wl:{title:"願望清單與上架", wish:"願望清單數", like:"喜歡 / 不喜歡", rank:"排名", cat:"分類內排名", first:"首次上架", last:"最近出現", batch:"期數", locale:"zh-TW"},
       serverSetting:"伺服器",
       advanceNotice:"Advance / OB 測試服 — 預覽資料，可能變動。僅提供英文。",
       rarities:{
@@ -1260,10 +1243,10 @@
     $('txtWishlistBtn').textContent=t.wishlistBtn;
     $('hdrWishlistBtn').href='https://vk.gt.tc/wishlist/?lang='+lang;
     $('txtWishlistItemBtn').textContent=t.wishlistBtn;
+    $('txtWlTitle').textContent=t.wl.title;
     $('txtServerSetting').textContent=t.serverSetting;
     $('dSecServerTxt').textContent=t.serverSetting;
     $('txtAdvanceNotice').textContent=t.advanceNotice;
-    if(curItem && $('itemModal').classList.contains('open')) renderGunStats(curItem);
     updateDevBtns();
   }
   function updateDevBtns(){
@@ -1578,86 +1561,6 @@
     } else { openModal(gi); }
   }
 
-
-  /* ===== WEAPON STATS — đọc từ GunsData_en.json (cùng thư mục với index.html) ===== */
-  const STAT_KEYS=['damage','cartridge','biteArmor','accuracy','speed','range','reload','playerSpeedFactor'];
-  const STAT_I18N={
-    en:{title:'Weapon Stats',evo:'Evo Lv.',damage:'Damage',cartridge:'Magazine',biteArmor:'Armor Pen.',accuracy:'Accuracy',speed:'Fire Rate',range:'Range',reload:'Reload',playerSpeedFactor:'Move Speed'},
-    vi:{title:'Chỉ số vũ khí',evo:'Cấp tiến hóa',damage:'Sát thương',cartridge:'Băng đạn',biteArmor:'Xuyên giáp',accuracy:'Độ chính xác',speed:'Tốc độ bắn',range:'Tầm bắn',reload:'Nạp đạn',playerSpeedFactor:'Tốc độ di chuyển'},
-    zh:{title:'武器屬性',evo:'進化等級',damage:'傷害',cartridge:'彈匣',biteArmor:'穿甲',accuracy:'精準度',speed:'射速',range:'射程',reload:'換彈',playerSpeedFactor:'移動速度'}
-  };
-  const gunStatsCache={};
-  function gunsFileFor(l){ return l==='vi' ? 'GunsData_vi.json' : 'GunsData_en.json'; }   // zh chưa có file riêng → dùng en
-  /* Map: byId (id → súng), byIcon (icon → súng, chỉ giữ icon duy nhất) */
-  function fetchGunsFile(file){
-    return fetch(`${file}?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
-      .then(arr=>{
-        const byId=new Map(), iconCnt=new Map(), byIcon=new Map();
-        (Array.isArray(arr)?arr:[]).forEach(g=>{
-          if(!g||g.id==null) return;
-          byId.set(String(g.id),g);
-          const ic=String(g.icon||'').split('/').pop().replace(/\.png.*$/i,'').toLowerCase();
-          if(ic){ iconCnt.set(ic,(iconCnt.get(ic)||0)+1); byIcon.set(ic,g); }
-        });
-        iconCnt.forEach((n,ic)=>{ if(n>1) byIcon.delete(ic); });   // icon trùng nhiều cấp tiến hóa → không đoán bừa
-        return {byId,byIcon,size:byId.size};
-      });
-  }
-  function loadGunStats(){
-    const file=gunsFileFor(lang);
-    if(gunStatsCache[file]) return gunStatsCache[file];
-    gunStatsCache[file]=fetchGunsFile(file).then(m=>{
-      if(m.size===0 && file!=='GunsData_en.json') return loadGunStatsEn();   // file ngôn ngữ lỗi → dùng en
-      if(m.size===0) delete gunStatsCache[file];                             // lỗi mạng → lần sau thử lại
-      return m;
-    });
-    return gunStatsCache[file];
-  }
-  function loadGunStatsEn(){
-    const f='GunsData_en.json';
-    return gunStatsCache[f] || (gunStatsCache[f]=fetchGunsFile(f).then(m=>{ if(m.size===0) delete gunStatsCache[f]; return m; }));
-  }
-  /* Tìm súng: chỉ khớp đúng ID */
-  function findGun(m,item){
-    return m.byId.get(String(item.Id))||null;
-  }
-  function fmtCount(n){
-    n=Number(n)||0;
-    if(n<1000) return String(n);
-    if(n<1e6) return Math.round(n/1000)+'K';
-    return (n/1e6).toFixed(1).replace(/\.0$/,'')+'M';
-  }
-  const HEART_SVG='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-  function renderGunStats(item){
-    const box=$('imStats'); box.hidden=true;
-    const id=String(item.Id);
-    const reqLang=lang;
-    loadGunStats().then(m=>{
-      if(!curItem || String(curItem.Id)!==id || lang!==reqLang) return;   // đã chuyển sang item khác
-      const gun=findGun(m,item); if(!gun) return;
-      const st=gun.stats||{};
-      const L=STAT_I18N[lang]||STAT_I18N.en;
-      const rows=STAT_KEYS.filter(k=>st[k]!==null && st[k]!==undefined);
-      const tags=[];
-      if(st.gunType) tags.push(`<span class="gs-tag">${String(st.gunType).replace(/</g,'&lt;')}</span>`);
-      if(st.evoLevel) tags.push(`<span class="gs-tag evo">${L.evo} ${st.evoLevel}</span>`);
-      const likes=Number(gun.wishlist)||0;   // số người thêm vào danh sách mong muốn
-      const likeFull=likes.toLocaleString(lang==='vi'?'vi-VN':'en-US');
-      const likeHtml=`<span class="gs-like" title="${likeFull}">${HEART_SVG}<b>${likeFull}</b></span>`;
-      $('txtModalStats').textContent=L.title;
-      $('imStatsTags').innerHTML=tags.join('')+likeHtml;
-      $('imStatsList').innerHTML=rows.map(k=>{
-        const v=Number(st[k]);
-        const cls=v>0?'pos':v<0?'neg':'zero';
-        const txt=v>0?`+${v}`:v<0?`\u2212${Math.abs(v)}`:'0';
-        const w=Math.min(Math.abs(v),2)/2*50;
-        return `<div class="gs-row ${cls}"><span class="gs-label">${L[k]}</span><span class="gs-track"><span class="gs-fill" style="width:${w}%"></span></span><span class="gs-val">${txt}</span></div>`;
-      }).join('');
-      $('imStatsList').style.display=rows.length?'':'none';
-      box.hidden=false;
-    });
-  }
-
   function openModal(gi, pushHistory=true){
     curItem = items[gi];
     const bnrObj = banners.find(b=>b.itemID===curItem.Id);
@@ -1750,9 +1653,26 @@
     $('modalIconId').textContent = iconStr;
     const fb_desc = lang==='en' ? 'No description available.' : lang==='vi' ? 'Không có mô tả.' : '無描述。';
     $('modalDesc').textContent = (curItem.Desc && curItem.Desc.trim()) ? curItem.Desc : fb_desc;
-    renderGunStats(curItem);
     $('btnCopyId').innerHTML = cpySVG;
     $('btnCopyIconId').innerHTML = cpySVG;
+
+    // Wishlist & ngày ra mắt / kết thúc
+    (function(){
+      const box=$('imWl'), grid=$('imWlGrid');
+      const s=(window._wlStats||{})[itemIdStr];
+      if(!s){ box.style.display='none'; grid.innerHTML=''; return; }
+      const L=tr[lang].wl, fmtN=n=>Number(n).toLocaleString(L.locale);
+      const fmtD=iso=>new Date(iso).toLocaleDateString(L.locale,{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'});
+      const cell=(k,v,full)=>`<div class="im-wl-cell${full?' full':''}"><b>${k}</b><span>${v}</span></div>`;
+      grid.innerHTML =
+        cell(L.wish, fmtN(s.w)) +
+        cell(L.like, `${fmtN(s.l)} / ${fmtN(s.d)}`) +
+        cell(L.rank, `#${s.r}`) +
+        cell(L.cat, `#${s.cr} <em>(#${s.gr})</em>`) +
+        cell(L.first, `${fmtD(s.fa)} <em>· ${L.batch} ${s.fi}</em>`, true) +
+        cell(L.last, `${fmtD(s.la)} <em>· ${L.batch} ${s.li}</em>`, true);
+      box.style.display='';
+    })();
 
     // Nút "Thêm vào DSMM" — ẩn với các loại: Nhân vật, Thú cưng, Phụ Kiện Của Pyro, Hộp, Hộp lựa chọn, Hòm Xác, Hộp vũ khí, Huy Hiệu, Vé Giảm Giá
     const wishBtn = $('btnWishlistItem');
