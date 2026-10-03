@@ -1641,7 +1641,7 @@
       const tags=[];
       if(st.gunType) tags.push(`<span class="gs-tag">${String(st.gunType).replace(/</g,'&lt;')}</span>`);
       if(st.evoLevel) tags.push(`<span class="gs-tag evo">${L.evo} ${st.evoLevel}</span>`);
-      const likes=Number(gun.like)||0;
+      const likes=Number(gun.wishlist)||0;   // số người thêm vào danh sách mong muốn
       const likeFull=likes.toLocaleString(lang==='vi'?'vi-VN':'en-US');
       const likeHtml=`<span class="gs-like" title="${likeFull}">${HEART_SVG}<b>${likeFull}</b></span>`;
       $('txtModalStats').textContent=L.title;
