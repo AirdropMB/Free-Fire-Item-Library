@@ -113,6 +113,15 @@ jobs:
         run: node fetch-icons.js
 
 
+      # Workflow chạy rất lâu; nếu trong lúc đó có commit khác (vd. bạn upload file thủ công)
+      # thì push sẽ bị từ chối (non-fast-forward). Đưa HEAD về đầu nhánh remote mới nhất
+      # nhưng GIỮ NGUYÊN file đã tạo trong thư mục làm việc (reset --mixed), rồi mới commit.
+      # Action bên dưới chỉ add các file trong file_pattern nên file bạn mới upload không bị đè.
+      - name: Đồng bộ với nhánh main mới nhất trước khi commit
+        run: |
+          git fetch --depth=1 origin main
+          git reset origin/main
+
       - name: Commit và push nếu có thay đổi
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
