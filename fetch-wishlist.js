@@ -53,7 +53,7 @@ async function fetchAll(filter, label, out) {
             if (x.id == null) continue;
             out[String(x.id)] = {
                 w: x.wishlist, l: x.like, d: x.dislike,
-                r: x.rank, cr: x.categoryRank, gr: x.genreRank,
+                c: x.category, g: x.genre, r: x.rank, cr: x.categoryRank, gr: x.genreRank,
                 fi: x.firstAppearedIn, fa: x.firstAppearedAt,
                 li: x.lastAppearedIn, la: x.lastAppearedAt,
             };
