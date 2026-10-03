@@ -101,11 +101,17 @@ jobs:
       - name: Tải chỉ số súng (GunsData)
         run: node fetch-guns.js vi,en
 
+      # Tải wishlist / like / xếp hạng / ngày ra mắt & xuất hiện gần nhất của TẤT CẢ vật phẩm.
+      # Cùng API nội bộ với fetch-guns.js -> lỗi thì xem lại fetch-wishlist.js.
+      - name: Tải dữ liệu wishlist (WishlistData)
+        run: node fetch-wishlist.js
+
       - name: Commit và push nếu có thay đổi
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-synced data & icons [2h]"
           # Đã thêm icon_miss_cache.json để lưu tiến trình giữa các lần chạy,
           # loc_zh-tw.txt + ItemsData_tw.json cho bản tiếng Trung phồn thể,
-          # và GunsData_vi.json/GunsData_en.json cho chỉ số súng.
-          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_tw.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt loc_zh-tw.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json icon_miss_cache.json GunsData_vi.json GunsData_en.json'
+          # GunsData_vi.json/GunsData_en.json cho chỉ số súng,
+          # và WishlistData.json cho wishlist/ngày ra mắt của mọi vật phẩm.
+          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_tw.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt loc_zh-tw.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json icon_miss_cache.json GunsData_vi.json GunsData_en.json WishlistData.json'
