@@ -868,12 +868,12 @@
   window._wlStats = {};
   /* Số trong firstAppearedIn/lastAppearedIn -> nguồn ra mắt (tên hiển thị giống wiki). Thêm dần khi biết thêm. */
   const WL_SOURCES = {
-    4: 'Sự kiện web',
-    6: 'Chưa xác định',
-    9: 'VQMM',
-    11: 'Cửa hàng quy đổi',
-    13: 'Shop Đặc Biệt Hàng Ngày',
-    35: 'Cửa hàng Prime'
+    4:  { vi: 'Sự kiện web',             en: 'Web Event' },
+    6:  { vi: 'Chưa xác định',           en: 'Unknown' },
+    9:  { vi: 'VQMM',                    en: 'Lucky Royale' },
+    11: { vi: 'Cửa hàng quy đổi',        en: 'Exchange Store' },
+    13: { vi: 'Shop Đặc Biệt Hàng Ngày', en: 'Daily Discount Store' },
+    35: { vi: 'Cửa hàng Prime',          en: 'Prime Store' }
   };
   fetch(`WishlistData.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():{}).then(j=>{ window._wlStats=j||{}; }).catch(()=>{});
   if (localStorage.getItem('appVersion') !== APP_VERSION) {
@@ -1675,7 +1675,7 @@
       const fmtN=n=>has(n)?Number(n).toLocaleString(L.locale):NA;
       const fmtR=n=>has(n)?`#${n}`:NA;
       const fmtD=iso=>{ if(!has(iso)) return NA; const d=new Date(iso); return (isNaN(d)||d.getTime()<=0)?NA:d.toLocaleDateString(L.locale,{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'}); };
-      const fmtWhen=(iso,src)=>{ const dd=fmtD(iso); if(dd===NA) return NA; const nm=WL_SOURCES[src]; return nm?`${dd} <em>· ${nm}</em>`:dd; };
+      const fmtWhen=(iso,src)=>{ const dd=fmtD(iso); if(dd===NA) return NA; const so=WL_SOURCES[src], nm=so&&(so[lang]||so.en||so.vi); return nm?`${dd} <em>· ${nm}</em>`:dd; };
       const cell=(k,v,full)=>`<div class="im-wl-cell${full?' full':''}"><b>${k}</b><span>${v}</span></div>`;
       grid.innerHTML =
         cell(L.wish, fmtN(s.w)) +
