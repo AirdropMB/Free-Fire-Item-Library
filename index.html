@@ -868,12 +868,12 @@
   window._wlStats = {};
   /* Số trong firstAppearedIn/lastAppearedIn -> nguồn ra mắt (tên hiển thị giống wiki). Thêm dần khi biết thêm. */
   const WL_SOURCES = {
-    4:  { vi: 'Sự kiện web',             en: 'Web Event' },
-    6:  { vi: 'Chưa xác định',           en: 'Unknown' },
-    9:  { vi: 'VQMM',                    en: 'Lucky Royale' },
-    11: { vi: 'Cửa hàng quy đổi',        en: 'Exchange Store' },
-    13: { vi: 'Shop Đặc Biệt Hàng Ngày', en: 'Daily Discount Store' },
-    35: { vi: 'Cửa hàng Prime',          en: 'Prime Store' }
+    4:  { vi: 'Sự kiện web',             en: 'Web Event',            zh: '網頁活動' },
+    6:  { vi: 'Chưa xác định',           en: 'Unknown',              zh: '未知' },
+    9:  { vi: 'VQMM',                    en: 'Lucky Royale',         zh: '轉蛋' },
+    11: { vi: 'Cửa hàng quy đổi',        en: 'Exchange Store',       zh: '兌換商店' },
+    13: { vi: 'Shop Đặc Biệt Hàng Ngày', en: 'Daily Discount Store', zh: '每日特價' },
+    35: { vi: 'Cửa hàng Prime',          en: 'Prime Store',          zh: '尊爵商店' }
   };
   fetch(`WishlistData.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():{}).then(j=>{ window._wlStats=j||{}; }).catch(()=>{});
   if (localStorage.getItem('appVersion') !== APP_VERSION) {
