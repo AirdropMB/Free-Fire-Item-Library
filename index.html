@@ -483,6 +483,10 @@
     .im-stats-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 11px 6px;border-bottom:1px solid var(--hair);background:rgba(255,255,255,.02);}
     .im-stats-title{font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:var(--brass);text-transform:uppercase;letter-spacing:.07em;}
     .im-stats-tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;}
+    .im-stats-tags{align-items:center;}
+    .gs-like{display:inline-flex;align-items:center;gap:5px;color:#ff6b6b;margin-left:4px;}
+    .gs-like svg{flex-shrink:0;}
+    .gs-like b{font-family:var(--font-mono);font-size:.8rem;font-weight:400;color:var(--ash);letter-spacing:.02em;}
     .gs-tag{font-size:.6rem;letter-spacing:.04em;padding:2px 8px;color:var(--paper-dim);background:var(--glass2);border:1px solid var(--hair);clip-path:var(--clip-sm);white-space:nowrap;}
     .gs-tag.evo{color:var(--ember);border-color:rgba(255,90,51,.35);background:var(--ember-dim);}
     .im-stats-list{display:flex;flex-direction:column;padding:6px 11px 8px;}
@@ -1584,12 +1588,19 @@
   };
   const gunStatsCache={};
   function gunsFileFor(l){ return l==='vi' ? 'GunsData_vi.json' : 'GunsData_en.json'; }   // zh chưa có file riêng → dùng en
+  /* Map: byId (id → súng), byIcon (icon → súng, chỉ giữ icon duy nhất) */
   function fetchGunsFile(file){
     return fetch(`${file}?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
       .then(arr=>{
-        const m=new Map();
-        (Array.isArray(arr)?arr:[]).forEach(g=>{ if(g&&g.stats) m.set(String(g.id),g.stats); });
-        return m;
+        const byId=new Map(), iconCnt=new Map(), byIcon=new Map();
+        (Array.isArray(arr)?arr:[]).forEach(g=>{
+          if(!g||g.id==null) return;
+          byId.set(String(g.id),g);
+          const ic=String(g.icon||'').split('/').pop().replace(/\.png.*$/i,'').toLowerCase();
+          if(ic){ iconCnt.set(ic,(iconCnt.get(ic)||0)+1); byIcon.set(ic,g); }
+        });
+        iconCnt.forEach((n,ic)=>{ if(n>1) byIcon.delete(ic); });   // icon trùng nhiều cấp tiến hóa → không đoán bừa
+        return {byId,byIcon,size:byId.size};
       });
   }
   function loadGunStats(){
@@ -1606,21 +1617,35 @@
     const f='GunsData_en.json';
     return gunStatsCache[f] || (gunStatsCache[f]=fetchGunsFile(f).then(m=>{ if(m.size===0) delete gunStatsCache[f]; return m; }));
   }
+  /* Tìm súng: chỉ khớp đúng ID */
+  function findGun(m,item){
+    return m.byId.get(String(item.Id))||null;
+  }
+  function fmtCount(n){
+    n=Number(n)||0;
+    if(n<1000) return String(n);
+    if(n<1e6) return Math.round(n/1000)+'K';
+    return (n/1e6).toFixed(1).replace(/\.0$/,'')+'M';
+  }
+  const HEART_SVG='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
   function renderGunStats(item){
     const box=$('imStats'); box.hidden=true;
     const id=String(item.Id);
     const reqLang=lang;
-    loadGunStats().then(map=>{
+    loadGunStats().then(m=>{
       if(!curItem || String(curItem.Id)!==id || lang!==reqLang) return;   // đã chuyển sang item khác
-      const st=map.get(id); if(!st) return;
+      const gun=findGun(m,item); if(!gun) return;
+      const st=gun.stats||{};
       const L=STAT_I18N[lang]||STAT_I18N.en;
       const rows=STAT_KEYS.filter(k=>st[k]!==null && st[k]!==undefined);
       const tags=[];
       if(st.gunType) tags.push(`<span class="gs-tag">${String(st.gunType).replace(/</g,'&lt;')}</span>`);
       if(st.evoLevel) tags.push(`<span class="gs-tag evo">${L.evo} ${st.evoLevel}</span>`);
-      if(!rows.length && !tags.length) return;
+      const likes=Number(gun.like)||0;
+      const likeFull=likes.toLocaleString(lang==='vi'?'vi-VN':'en-US');
+      const likeHtml=`<span class="gs-like" title="${likeFull}">${HEART_SVG}<b>${likeFull}</b></span>`;
       $('txtModalStats').textContent=L.title;
-      $('imStatsTags').innerHTML=tags.join('');
+      $('imStatsTags').innerHTML=tags.join('')+likeHtml;
       $('imStatsList').innerHTML=rows.map(k=>{
         const v=Number(st[k]);
         const cls=v>0?'pos':v<0?'neg':'zero';
