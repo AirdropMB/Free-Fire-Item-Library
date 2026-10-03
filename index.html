@@ -1661,16 +1661,20 @@
       const box=$('imWl'), grid=$('imWlGrid');
       const s=(window._wlStats||{})[itemIdStr];
       if(!s){ box.style.display='none'; grid.innerHTML=''; return; }
-      const L=tr[lang].wl, fmtN=n=>Number(n).toLocaleString(L.locale);
-      const fmtD=iso=>new Date(iso).toLocaleDateString(L.locale,{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'});
+      const L=tr[lang].wl, NA='—';
+      const has=v=>v!==null&&v!==undefined&&v!=='';
+      const fmtN=n=>has(n)?Number(n).toLocaleString(L.locale):NA;
+      const fmtR=n=>has(n)?`#${n}`:NA;
+      const fmtD=iso=>{ if(!has(iso)) return NA; const d=new Date(iso); return (isNaN(d)||d.getTime()<=0)?NA:d.toLocaleDateString(L.locale,{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'}); };
+      const fmtWhen=(iso)=>fmtD(iso); /* số 'đợt' (firstAppearedIn/lastAppearedIn) chưa rõ ý nghĩa nên không hiển thị */
       const cell=(k,v,full)=>`<div class="im-wl-cell${full?' full':''}"><b>${k}</b><span>${v}</span></div>`;
       grid.innerHTML =
         cell(L.wish, fmtN(s.w)) +
         cell(L.like, `${fmtN(s.l)} / ${fmtN(s.d)}`) +
-        cell(L.rank, `#${s.r}`) +
-        cell(L.cat, `#${s.cr} <em>(#${s.gr})</em>`) +
-        cell(L.first, `${fmtD(s.fa)} <em>· ${L.batch} ${s.fi}</em>`, true) +
-        cell(L.last, `${fmtD(s.la)} <em>· ${L.batch} ${s.li}</em>`, true);
+        cell(L.rank, fmtR(s.r)) +
+        cell(L.cat, has(s.cr)?`${fmtR(s.cr)}${has(s.gr)?` <em>(${fmtR(s.gr)})</em>`:''}`:NA) +
+        cell(L.first, fmtWhen(s.fa,s.fi), true) +
+        cell(L.last, fmtWhen(s.la,s.li), true);
       box.style.display='';
     })();
 
