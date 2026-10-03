@@ -104,11 +104,11 @@ jobs:
       - name: Tải dữ liệu wishlist (WishlistData)
         run: node fetch-wishlist.js
 
-      # fetch icons rất nặng (~140k tác vụ). Giới hạn 40 phút và continue-on-error:
+      # fetch icons rất nặng (~140k tác vụ). Script tự dừng nhận task sau 45 phút; đây chỉ là lưới an toàn 50 phút và continue-on-error:
       # hết giờ thì bước này bị dừng nhưng các bước sau (commit) VẪN chạy,
       # nên những icon đã tải được vẫn được lưu, lần chạy sau làm tiếp.
       - name: Chạy fetch icons
-        timeout-minutes: 40
+        timeout-minutes: 50
         continue-on-error: true
         run: node fetch-icons.js
 
