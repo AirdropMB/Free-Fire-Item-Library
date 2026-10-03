@@ -462,12 +462,13 @@
     .im-row .copy-btn:hover{background:var(--ember-dim);color:var(--paper);}
     .im-row .copy-btn svg{pointer-events:none;}
     .im-wl{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
-    .im-wl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);}
-    .im-wl-cell{background:#16130f;padding:8px 11px;display:flex;flex-direction:column;gap:2px;}
+    .im-wl-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--hair);}
+    .im-wl-cell{background:#16130f;padding:8px 11px;display:flex;flex-direction:column;gap:2px;grid-column:span 2;min-width:0;}
+    .im-wl-cell.s3{grid-column:span 3;}
     .im-wl-cell.full{grid-column:1/-1;}
     .im-wl-cell b{font-family:var(--font-mono);font-size:.58rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:.07em;font-weight:700;}
     .im-wl-cell span{font-size:.82rem;color:var(--paper);line-height:1.4;}
-    .im-wl-cell span em{font-style:normal;color:var(--paper-dim);font-size:.74rem;}
+    .im-wl-cell span em{font-style:normal;color:var(--ember);font-size:.74rem;display:block;}
     .im-desc-box{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
     .im-desc-key{font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:var(--brass);text-transform:uppercase;letter-spacing:.07em;padding:7px 11px 6px;border-bottom:1px solid var(--hair);background:rgba(255,255,255,.02);display:block;}
     .im-desc-val{font-size:.8rem;color:var(--paper-dim);line-height:1.7;padding:9px 11px 11px;}
@@ -927,7 +928,7 @@
       shareItemText:"Check out this item:", shareSearchText:"Check out this collection:",
       follow2:"Follow Aurust",
       wishlistBtn:"ADD TO WISHLIST",
-      wl:{title:"Wishlist & Release", wish:"Wishlist", like:"Like / Dislike", rank:"In all items", cat:"In category", genre:"In genre", first:"First release", last:"Last appearance", locale:"en-GB"},
+      wl:{title:"Wishlist & Release", wish:"Wishlist", like:"Like / Dislike", rank:"Among all", cat:"In category", genre:"In genre", pre:"Among {x}", first:"First release", last:"Last appearance", locale:"en-GB"},
       serverSetting:"Server",
       advanceNotice:"Advance / OB Test Server — preview data, subject to change. English only.",
       rarities:{
@@ -957,7 +958,7 @@
       shareItemText:"Xem mục này:", shareSearchText:"Xem bộ sưu tập:",
       follow2:"Theo dõi Aurust",
       wishlistBtn:"THÊM VÀO DSMM",
-      wl:{title:"Wishlist & Ra mắt", wish:"Lượt wishlist", like:"Thích / Không thích", rank:"Trong tất cả vật phẩm", cat:"Trong danh mục", genre:"Trong thể loại", first:"Ra mắt lần đầu", last:"Xuất hiện gần nhất", locale:"vi-VN"},
+      wl:{title:"Wishlist & Ra mắt", wish:"Lượt wishlist", like:"Thích / Không thích", rank:"Trong tất cả", cat:"Trong danh mục", genre:"Trong thể loại", pre:"Trong {x}", first:"Ra mắt lần đầu", last:"Xuất hiện gần nhất", locale:"vi-VN"},
       serverSetting:"Máy chủ",
       advanceNotice:"Máy chủ thử nghiệm Advance/OB — dữ liệu xem trước, có thể thay đổi. Chỉ có tiếng Anh.",
       rarities:{
@@ -1033,7 +1034,7 @@
       shareItemText:"查看此物品：", shareSearchText:"查看此收藏：",
       follow2:"關注 Aurust",
       wishlistBtn:"加入願望清單",
-      wl:{title:"願望清單與上架", wish:"願望清單數", like:"喜歡 / 不喜歡", rank:"全部物品排名", cat:"分類內排名", genre:"類別內排名", first:"首次上架", last:"最近出現", locale:"zh-TW"},
+      wl:{title:"願望清單與上架", wish:"願望清單數", like:"喜歡 / 不喜歡", rank:"全部排名", cat:"分類內排名", genre:"類別內排名", pre:"{x}內排名", first:"首次上架", last:"最近出現", locale:"zh-TW"},
       serverSetting:"伺服器",
       advanceNotice:"Advance / OB 測試服 — 預覽資料，可能變動。僅提供英文。",
       rarities:{
@@ -1658,6 +1659,14 @@
     window._wlStats=j||{};
     if(curItem && $('itemModal').classList.contains('open')) renderWishlist(curItem);
   }).catch(()=>{});
+  const WL_CATS = {
+    3:  { vi: 'Thời trang', en: 'Fashion',    zh: '時裝' },
+    4:  { vi: 'Sưu tập',    en: 'Collection', zh: '收藏品' },
+    10: { vi: 'Súng',       en: 'Guns',       zh: '槍' }
+  };
+  // Dự phòng khi WishlistData.json chưa có trường c (id danh mục): suy ra từ loại vật phẩm đã kiểm chứng với wiki
+  const WL_FASHION = new Set(["Bundles","Top","Bottom","Shoe","Head","Mask","Facepaint"]);
+  const WL_COLLECTION = new Set(["Emote","Arrival Animation","Final Shot","Gloo Walls","Fist Skins","Skywings"]);
   function renderWishlist(item){
     const box=$('imWl'), grid=$('imWlGrid');
     const s=(window._wlStats||{})[String(item.Id)];
@@ -1666,17 +1675,24 @@
     const has=v=>v!==null&&v!==undefined&&v!=='';
     const fmtN=n=>has(n)?Number(n).toLocaleString(L.locale):NA;
     const fmtR=n=>has(n)?`#${n}`:NA;
-    const fmtD=iso=>{ if(!has(iso)) return NA; const d=new Date(iso); return (isNaN(d)||d.getTime()<=0)?NA:d.toLocaleDateString(L.locale,{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'}); };
-    const fmtWhen=(iso,src)=>{ const dd=fmtD(iso); if(dd===NA) return NA; const so=WL_SOURCES[src], nm=so&&(so[lang]||so.en||so.vi); return nm?`${dd} <em>· ${nm}</em>`:dd; };
-    const cell=(k,v,full)=>`<div class="im-wl-cell${full?' full':''}"><b>${k}</b><span>${v}</span></div>`;
+    const fmtD=iso=>{ if(!has(iso)) return null; const d=new Date(iso); return (isNaN(d)||d.getTime()<=0)?null:d.toLocaleDateString(L.locale,{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'}); };
+    const fmtWhen=(iso,src)=>{ const dd=fmtD(iso); if(!dd) return NA; const so=WL_SOURCES[src], nm=so&&(so[lang]||so.en||so.vi); return nm?`${dd}<em>${nm}</em>`:dd; };
+    // Tên danh mục / thể loại đổi theo từng vật phẩm (giống wiki: "Trong Thời trang", "Trong Đầu"...)
+    const catId = has(s.c) ? s.c : (WL_FASHION.has(item.Category)?3 : item.Category==='Weapon Skins'?10 : WL_COLLECTION.has(item.Category)?4 : null);
+    const catNm = catId!==null && WL_CATS[catId] ? (WL_CATS[catId][lang]||WL_CATS[catId].en) : null;
+    const genNm = (item.Category && item.Category!=='Weapon Skins') ? ((tr[lang].types&&tr[lang].types[item.Category])||item.Category) : null;
+    const catLbl = catNm ? L.pre.replace('{x}',catNm) : L.cat;
+    const genLbl = genNm ? L.pre.replace('{x}',genNm) : L.genre;
+    const cell=(k,v,cls)=>`<div class="im-wl-cell${cls?' '+cls:''}"><b>${k}</b><span>${v}</span></div>`;
+    const firstTxt=fmtWhen(s.fa,s.fi), lastTxt=fmtWhen(s.la,s.li);
     grid.innerHTML =
-      cell(L.wish, fmtN(s.w)) +
-      cell(L.like, `${fmtN(s.l)} / ${fmtN(s.d)}`) +
+      cell(L.wish, fmtN(s.w), 's3') +
+      cell(L.like, `${fmtN(s.l)} / ${fmtN(s.d)}`, 's3') +
       cell(L.rank, fmtR(s.r)) +
-      cell(L.cat, fmtR(s.cr)) +
-      cell(L.genre, fmtR(s.gr), true) +
-      cell(L.first, fmtWhen(s.fa,s.fi), true) +
-      cell(L.last, fmtWhen(s.la,s.li), true);
+      cell(catLbl, fmtR(s.cr)) +
+      cell(genLbl, fmtR(s.gr)) +
+      ((firstTxt===NA && lastTxt===NA) ? '' :
+        cell(L.first, firstTxt, 's3') + cell(L.last, lastTxt, 's3'));
     box.style.display='';
   }
 
