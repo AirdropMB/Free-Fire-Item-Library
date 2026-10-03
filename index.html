@@ -866,6 +866,8 @@
   const APP_VERSION = "3.1.0";
   /* Dữ liệu wishlist / ngày ra mắt (nguồn: wiki.ff.garena.vn) — file WishlistData.json, key = Item ID */
   window._wlStats = {};
+  /* Số trong firstAppearedIn/lastAppearedIn -> nguồn ra mắt (tên hiển thị giống wiki). Thêm dần khi biết thêm. */
+  const WL_SOURCES = { 9: 'VQMM' };
   fetch(`WishlistData.json?v=${APP_VERSION}`).then(r=>r.ok?r.json():{}).then(j=>{ window._wlStats=j||{}; }).catch(()=>{});
   if (localStorage.getItem('appVersion') !== APP_VERSION) {
     localStorage.setItem('appVersion', APP_VERSION);
@@ -896,7 +898,7 @@
       shareItemText:"Check out this item:", shareSearchText:"Check out this collection:",
       follow2:"Follow Aurust",
       wishlistBtn:"ADD TO WISHLIST",
-      wl:{title:"Wishlist & Release", wish:"Wishlist", like:"Like / Dislike", rank:"Rank", cat:"In category", first:"First released", last:"Last appeared", batch:"Batch", locale:"en-GB"},
+      wl:{title:"Wishlist & Release", wish:"Wishlist", like:"Like / Dislike", rank:"In all items", cat:"In collection", genre:"In genre", first:"First released", last:"Last appeared", batch:"Batch", locale:"en-GB"},
       serverSetting:"Server",
       advanceNotice:"Advance / OB Test Server — preview data, subject to change. English only.",
       rarities:{
@@ -926,7 +928,7 @@
       shareItemText:"Xem mục này:", shareSearchText:"Xem bộ sưu tập:",
       follow2:"Theo dõi Aurust",
       wishlistBtn:"THÊM VÀO DSMM",
-      wl:{title:"Wishlist & Ra mắt", wish:"Lượt wishlist", like:"Thích / Không thích", rank:"Xếp hạng", cat:"Trong danh mục", first:"Ra mắt lần đầu", last:"Xuất hiện gần nhất", batch:"Đợt", locale:"vi-VN"},
+      wl:{title:"Wishlist & Ra mắt", wish:"Lượt wishlist", like:"Thích / Không thích", rank:"Trong tất cả vật phẩm", cat:"Trong sưu tập", genre:"Trong thể loại", first:"Ra mắt lần đầu", last:"Xuất hiện gần nhất", batch:"Đợt", locale:"vi-VN"},
       serverSetting:"Máy chủ",
       advanceNotice:"Máy chủ thử nghiệm Advance/OB — dữ liệu xem trước, có thể thay đổi. Chỉ có tiếng Anh.",
       rarities:{
@@ -1002,7 +1004,7 @@
       shareItemText:"查看此物品：", shareSearchText:"查看此收藏：",
       follow2:"關注 Aurust",
       wishlistBtn:"加入願望清單",
-      wl:{title:"願望清單與上架", wish:"願望清單數", like:"喜歡 / 不喜歡", rank:"排名", cat:"分類內排名", first:"首次上架", last:"最近出現", batch:"期數", locale:"zh-TW"},
+      wl:{title:"願望清單與上架", wish:"願望清單數", like:"喜歡 / 不喜歡", rank:"全部物品排名", cat:"收藏內排名", genre:"類別內排名", first:"首次上架", last:"最近出現", batch:"期數", locale:"zh-TW"},
       serverSetting:"伺服器",
       advanceNotice:"Advance / OB 測試服 — 預覽資料，可能變動。僅提供英文。",
       rarities:{
@@ -1666,13 +1668,14 @@
       const fmtN=n=>has(n)?Number(n).toLocaleString(L.locale):NA;
       const fmtR=n=>has(n)?`#${n}`:NA;
       const fmtD=iso=>{ if(!has(iso)) return NA; const d=new Date(iso); return (isNaN(d)||d.getTime()<=0)?NA:d.toLocaleDateString(L.locale,{timeZone:'Asia/Ho_Chi_Minh',day:'2-digit',month:'2-digit',year:'numeric'}); };
-      const fmtWhen=(iso)=>fmtD(iso); /* số 'đợt' (firstAppearedIn/lastAppearedIn) chưa rõ ý nghĩa nên không hiển thị */
+      const fmtWhen=(iso,src)=>{ const dd=fmtD(iso); if(dd===NA) return NA; const nm=WL_SOURCES[src]; return nm?`${dd} <em>· ${nm}</em>`:dd; };
       const cell=(k,v,full)=>`<div class="im-wl-cell${full?' full':''}"><b>${k}</b><span>${v}</span></div>`;
       grid.innerHTML =
         cell(L.wish, fmtN(s.w)) +
         cell(L.like, `${fmtN(s.l)} / ${fmtN(s.d)}`) +
         cell(L.rank, fmtR(s.r)) +
-        cell(L.cat, has(s.cr)?`${fmtR(s.cr)}${has(s.gr)?` <em>(${fmtR(s.gr)})</em>`:''}`:NA) +
+        cell(L.cat, fmtR(s.cr)) +
+        cell(L.genre, fmtR(s.gr), true) +
         cell(L.first, fmtWhen(s.fa,s.fi), true) +
         cell(L.last, fmtWhen(s.la,s.li), true);
       box.style.display='';
