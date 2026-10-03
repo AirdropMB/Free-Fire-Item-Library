@@ -476,6 +476,29 @@
     .im-btn.wish:hover{filter:brightness(1.08);box-shadow:0 0 20px rgba(255,90,51,.55);transform:translateY(-1px);}
     .im-btn.wish.hidden{display:none;}
 
+
+    /* ---- Weapon stats (GunsData) ---- */
+    .im-stats{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
+    .im-stats[hidden]{display:none;}
+    .im-stats-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 11px 6px;border-bottom:1px solid var(--hair);background:rgba(255,255,255,.02);}
+    .im-stats-title{font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:var(--brass);text-transform:uppercase;letter-spacing:.07em;}
+    .im-stats-tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;}
+    .gs-tag{font-size:.6rem;letter-spacing:.04em;padding:2px 8px;color:var(--paper-dim);background:var(--glass2);border:1px solid var(--hair);clip-path:var(--clip-sm);white-space:nowrap;}
+    .gs-tag.evo{color:var(--ember);border-color:rgba(255,90,51,.35);background:var(--ember-dim);}
+    .im-stats-list{display:flex;flex-direction:column;padding:6px 11px 8px;}
+    .gs-row{display:grid;grid-template-columns:minmax(84px,34%) 1fr 34px;align-items:center;gap:10px;padding:5px 0;border-bottom:1px dashed rgba(200,168,90,.1);}
+    .gs-row:last-child{border-bottom:none;}
+    .gs-label{font-size:.76rem;color:var(--paper-dim);line-height:1.2;}
+    .gs-track{position:relative;height:8px;background:rgba(255,255,255,.05);border:1px solid var(--hair);}
+    .gs-track::before{content:'';position:absolute;top:-3px;bottom:-3px;left:50%;width:1px;background:var(--hair2);z-index:2;}
+    .gs-fill{position:absolute;top:0;bottom:0;transition:width .35s cubic-bezier(.4,0,.2,1);}
+    .gs-row.pos .gs-fill{left:50%;background:linear-gradient(90deg,var(--brass),var(--success));}
+    .gs-row.neg .gs-fill{right:50%;background:linear-gradient(270deg,var(--ember),var(--danger));}
+    .gs-val{font-family:var(--font-mono);font-size:.8rem;text-align:right;font-variant-numeric:tabular-nums;}
+    .gs-row.pos .gs-val{color:var(--success);}
+    .gs-row.neg .gs-val{color:var(--danger);}
+    .gs-row.zero .gs-val{color:var(--ash);}
+
     /* ---- Settings modal ---- */
     .sm-body{padding:22px 20px 24px;display:flex;flex-direction:column;gap:0;}
     .sm-title{font-family:var(--font-display);font-size:1.3rem;letter-spacing:.03em;margin-bottom:16px;}
@@ -744,6 +767,13 @@
         <button class="copy-btn" id="btnCopyIconId" onclick="copyIconId()" title="Copy Icon ID">
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
         </button>
+      </div>
+      <div class="im-stats" id="imStats" hidden>
+        <div class="im-stats-head">
+          <span class="im-stats-title" id="txtModalStats">Weapon Stats</span>
+          <span class="im-stats-tags" id="imStatsTags"></span>
+        </div>
+        <div class="im-stats-list" id="imStatsList"></div>
       </div>
       <div class="im-desc-box">
         <span class="im-desc-key" id="txtModalDesc">Description</span>
@@ -1229,6 +1259,7 @@
     $('txtServerSetting').textContent=t.serverSetting;
     $('dSecServerTxt').textContent=t.serverSetting;
     $('txtAdvanceNotice').textContent=t.advanceNotice;
+    if(curItem && $('itemModal').classList.contains('open')) renderGunStats(curItem);
     updateDevBtns();
   }
   function updateDevBtns(){
@@ -1543,6 +1574,65 @@
     } else { openModal(gi); }
   }
 
+
+  /* ===== WEAPON STATS — đọc từ GunsData_en.json (cùng thư mục với index.html) ===== */
+  const STAT_KEYS=['damage','cartridge','biteArmor','accuracy','speed','range','reload','playerSpeedFactor'];
+  const STAT_I18N={
+    en:{title:'Weapon Stats',evo:'Evo Lv.',damage:'Damage',cartridge:'Magazine',biteArmor:'Armor Pen.',accuracy:'Accuracy',speed:'Fire Rate',range:'Range',reload:'Reload',playerSpeedFactor:'Move Speed'},
+    vi:{title:'Chỉ số vũ khí',evo:'Cấp tiến hóa',damage:'Sát thương',cartridge:'Băng đạn',biteArmor:'Xuyên giáp',accuracy:'Độ chính xác',speed:'Tốc độ bắn',range:'Tầm bắn',reload:'Nạp đạn',playerSpeedFactor:'Tốc độ di chuyển'},
+    zh:{title:'武器屬性',evo:'進化等級',damage:'傷害',cartridge:'彈匣',biteArmor:'穿甲',accuracy:'精準度',speed:'射速',range:'射程',reload:'換彈',playerSpeedFactor:'移動速度'}
+  };
+  const gunStatsCache={};
+  function gunsFileFor(l){ return l==='vi' ? 'GunsData_vi.json' : 'GunsData_en.json'; }   // zh chưa có file riêng → dùng en
+  function fetchGunsFile(file){
+    return fetch(`${file}?v=${APP_VERSION}`).then(r=>r.ok?r.json():[]).catch(()=>[])
+      .then(arr=>{
+        const m=new Map();
+        (Array.isArray(arr)?arr:[]).forEach(g=>{ if(g&&g.stats) m.set(String(g.id),g.stats); });
+        return m;
+      });
+  }
+  function loadGunStats(){
+    const file=gunsFileFor(lang);
+    if(gunStatsCache[file]) return gunStatsCache[file];
+    gunStatsCache[file]=fetchGunsFile(file).then(m=>{
+      if(m.size===0 && file!=='GunsData_en.json') return loadGunStatsEn();   // file ngôn ngữ lỗi → dùng en
+      if(m.size===0) delete gunStatsCache[file];                             // lỗi mạng → lần sau thử lại
+      return m;
+    });
+    return gunStatsCache[file];
+  }
+  function loadGunStatsEn(){
+    const f='GunsData_en.json';
+    return gunStatsCache[f] || (gunStatsCache[f]=fetchGunsFile(f).then(m=>{ if(m.size===0) delete gunStatsCache[f]; return m; }));
+  }
+  function renderGunStats(item){
+    const box=$('imStats'); box.hidden=true;
+    const id=String(item.Id);
+    const reqLang=lang;
+    loadGunStats().then(map=>{
+      if(!curItem || String(curItem.Id)!==id || lang!==reqLang) return;   // đã chuyển sang item khác
+      const st=map.get(id); if(!st) return;
+      const L=STAT_I18N[lang]||STAT_I18N.en;
+      const rows=STAT_KEYS.filter(k=>st[k]!==null && st[k]!==undefined);
+      const tags=[];
+      if(st.gunType) tags.push(`<span class="gs-tag">${String(st.gunType).replace(/</g,'&lt;')}</span>`);
+      if(st.evoLevel) tags.push(`<span class="gs-tag evo">${L.evo} ${st.evoLevel}</span>`);
+      if(!rows.length && !tags.length) return;
+      $('txtModalStats').textContent=L.title;
+      $('imStatsTags').innerHTML=tags.join('');
+      $('imStatsList').innerHTML=rows.map(k=>{
+        const v=Number(st[k]);
+        const cls=v>0?'pos':v<0?'neg':'zero';
+        const txt=v>0?`+${v}`:v<0?`\u2212${Math.abs(v)}`:'0';
+        const w=Math.min(Math.abs(v),2)/2*50;
+        return `<div class="gs-row ${cls}"><span class="gs-label">${L[k]}</span><span class="gs-track"><span class="gs-fill" style="width:${w}%"></span></span><span class="gs-val">${txt}</span></div>`;
+      }).join('');
+      $('imStatsList').style.display=rows.length?'':'none';
+      box.hidden=false;
+    });
+  }
+
   function openModal(gi, pushHistory=true){
     curItem = items[gi];
     const bnrObj = banners.find(b=>b.itemID===curItem.Id);
@@ -1635,6 +1725,7 @@
     $('modalIconId').textContent = iconStr;
     const fb_desc = lang==='en' ? 'No description available.' : lang==='vi' ? 'Không có mô tả.' : '無描述。';
     $('modalDesc').textContent = (curItem.Desc && curItem.Desc.trim()) ? curItem.Desc : fb_desc;
+    renderGunStats(curItem);
     $('btnCopyId').innerHTML = cpySVG;
     $('btnCopyIconId').innerHTML = cpySVG;
 
