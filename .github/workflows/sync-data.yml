@@ -95,9 +95,17 @@ jobs:
       - name: Chạy fetch icons
         run: node fetch-icons.js
 
+      # Tải chỉ số súng (sát thương, tốc bắn, tầm bắn, băng đạn...) từ API nội bộ
+      # của wiki.ff.garena.vn/guns. Không phải API chính thức -> nếu lỗi hàng loạt,
+      # xem lại fetch-guns.js (có thể Garena đã đổi request).
+      - name: Tải chỉ số súng (GunsData)
+        run: node fetch-guns.js vi,en
+
       - name: Commit và push nếu có thay đổi
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-synced data & icons [2h]"
-          # Đã thêm icon_miss_cache.json để lưu tiến trình giữa các lần chạy
-          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_tw.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt loc_zh-tw.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json icon_miss_cache.json'
+          # Đã thêm icon_miss_cache.json để lưu tiến trình giữa các lần chạy,
+          # loc_zh-tw.txt + ItemsData_tw.json cho bản tiếng Trung phồn thể,
+          # và GunsData_vi.json/GunsData_en.json cho chỉ số súng.
+          file_pattern: 'ItemsData_en.json ItemsData_en_advance.json ItemsData_vn.json ItemsData_tw.json CollectionBanner.json CollectionBanner_advance.json IconCDNMap.json FF_LocId.json loc_en.txt loc_vn.txt loc_zh-tw.txt FFAdv_LocId.json loc_en_advance.txt icons/ icons_advance/ updated_icons.json updated_icons_advance.json icon_miss_cache.json GunsData_vi.json GunsData_en.json'
