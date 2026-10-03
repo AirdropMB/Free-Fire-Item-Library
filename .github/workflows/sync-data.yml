@@ -92,9 +92,7 @@ jobs:
           node resolve-loc.js ItemsData_tw.json FF_LocId.json loc_zh-tw.txt
           node resolve-loc.js ItemsData_en_advance.json FFAdv_LocId.json loc_en_advance.txt
 
-      - name: Chạy fetch icons
-        run: node fetch-icons.js
-
+      # Chạy các bước NHANH trước (súng + wishlist) để chúng luôn xong dù fetch icons có chậm/treo.
       # Tải chỉ số súng (sát thương, tốc bắn, tầm bắn, băng đạn...) từ API nội bộ
       # của wiki.ff.garena.vn/guns. Không phải API chính thức -> nếu lỗi hàng loạt,
       # xem lại fetch-guns.js (có thể Garena đã đổi request).
@@ -105,6 +103,15 @@ jobs:
       # Cùng API nội bộ với fetch-guns.js -> lỗi thì xem lại fetch-wishlist.js.
       - name: Tải dữ liệu wishlist (WishlistData)
         run: node fetch-wishlist.js
+
+      # fetch icons rất nặng (~140k tác vụ). Giới hạn 40 phút và continue-on-error:
+      # hết giờ thì bước này bị dừng nhưng các bước sau (commit) VẪN chạy,
+      # nên những icon đã tải được vẫn được lưu, lần chạy sau làm tiếp.
+      - name: Chạy fetch icons
+        timeout-minutes: 40
+        continue-on-error: true
+        run: node fetch-icons.js
+
 
       - name: Commit và push nếu có thay đổi
         uses: stefanzweifel/git-auto-commit-action@v5
