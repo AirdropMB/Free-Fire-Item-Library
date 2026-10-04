@@ -1667,6 +1667,18 @@
   // Dự phòng khi WishlistData.json chưa có trường c (id danh mục): suy ra từ loại vật phẩm đã kiểm chứng với wiki
   const WL_FASHION = new Set(["Bundles","Top","Bottom","Shoe","Head","Mask","Facepaint"]);
   const WL_COLLECTION = new Set(["Emote","Arrival Animation","Final Shot","Gloo Walls","Fist Skins","Skywings"]);
+  // Loại súng (genre id của wiki), đối chiếu từ GunsData + ảnh wiki. Id 59 = Súng khác (M79, Crossbow, Gatling...).
+  const WL_GUN_GENRES = {
+    129: { vi: 'Súng trường',         en: 'Assault Rifle',   zh: '步槍' },
+    130: { vi: 'Súng trường tầm xa',  en: 'Marksman Rifle',  zh: '射手步槍' },
+    131: { vi: 'Súng máy',            en: 'Machine Gun',     zh: '機關槍' },
+    132: { vi: 'Súng ngắm',           en: 'Sniper Rifle',    zh: '狙擊槍' },
+    133: { vi: 'Súng lục',            en: 'Pistol',          zh: '手槍' },
+    134: { vi: 'Shotgun',             en: 'Shotgun',         zh: '霰彈槍' },
+    135: { vi: 'Tiểu liên',           en: 'SMG',             zh: '衝鋒槍' },
+    59:  { vi: 'Súng khác',           en: 'Other Guns',      zh: '其他槍械' }
+  };
+
   function renderWishlist(item){
     const box=$('imWl'), grid=$('imWlGrid');
     const s=(window._wlStats||{})[String(item.Id)];
@@ -1680,7 +1692,9 @@
     // Tên danh mục / thể loại đổi theo từng vật phẩm (giống wiki: "Trong Thời trang", "Trong Đầu"...)
     const catId = has(s.c) ? s.c : (WL_FASHION.has(item.Category)?3 : item.Category==='Weapon Skins'?10 : WL_COLLECTION.has(item.Category)?4 : null);
     const catNm = catId!==null && WL_CATS[catId] ? (WL_CATS[catId][lang]||WL_CATS[catId].en) : null;
-    const genNm = (item.Category && item.Category!=='Weapon Skins') ? ((tr[lang].types&&tr[lang].types[item.Category])||item.Category) : null;
+    const gg = WL_GUN_GENRES[s.g];
+    const genNm = catId===10 ? (gg ? (gg[lang]||gg.en) : null)
+                : (item.Category ? ((tr[lang].types&&tr[lang].types[item.Category])||item.Category) : null);
     const catLbl = catNm ? L.pre.replace('{x}',catNm) : L.cat;
     const genLbl = genNm ? L.pre.replace('{x}',genNm) : L.genre;
     const cell=(k,v,cls)=>`<div class="im-wl-cell${cls?' '+cls:''}"><b>${k}</b><span>${v}</span></div>`;
