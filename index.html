@@ -965,7 +965,7 @@
       shareItemText:"Check out this item:", shareSearchText:"Check out this collection:",
       follow2:"Follow Aurust",
       wishlistBtn:"ADD TO WISHLIST",
-      wl:{title:"Wishlist & Release", wish:"Wishlist", like:"Like / Dislike", rank:"Among all", cat:"In category", genre:"In genre", pre:"Among {x}", first:"First release", last:"Last appearance", locale:"en-GB"},
+      wl:{title:"Wishlist & Release", wish:"Wishlist", like:"Like / Dislike", rank:"Among all items", cat:"In category", genre:"In genre", pre:"Among {x}", first:"First release", last:"Last appearance", locale:"en-GB"},
       serverSetting:"Server",
       advanceNotice:"Advance / OB Test Server — preview data, subject to change. English only.",
       rarities:{
@@ -1760,23 +1760,31 @@
   const WL_CATS = {
     3:  { vi: 'Thời trang', en: 'Fashion',    zh: '時裝' },
     4:  { vi: 'Sưu tập',    en: 'Collection', zh: '收藏品' },
-    10: { vi: 'Súng',       en: 'Guns',       zh: '槍械' }
+    10: { vi: 'Súng',       en: 'Gun',        zh: '槍械' }
   };
   // Dự phòng khi WishlistData.json chưa có trường c (id danh mục): suy ra từ loại vật phẩm đã kiểm chứng với wiki
   const WL_FASHION = new Set(["Bundles","Top","Bottom","Shoe","Head","Mask","Facepaint"]);
   const WL_COLLECTION = new Set(["Emote","Arrival Animation","Final Shot","Gloo Walls","Fist Skins","Skywings"]);
   // Loại súng (genre id của wiki), đối chiếu từ GunsData + ảnh wiki. Id 59 = Súng khác (M79, Crossbow, Gatling...).
   const WL_GUN_GENRES = {
-    129: { vi: 'Súng trường',         en: 'Assault Rifle',   zh: '步槍' },
+    129: { vi: 'Súng trường',         en: 'Rifle',           zh: '步槍' },
     130: { vi: 'Súng trường tầm xa',  en: 'Marksman Rifle',  zh: '射手步槍' },
     131: { vi: 'Súng máy',            en: 'Machine Gun',     zh: '機關槍' },
-    132: { vi: 'Súng ngắm',           en: 'Sniper Rifle',    zh: '狙擊槍' },
+    132: { vi: 'Súng ngắm',           en: 'Sniper',          zh: '狙擊槍' },
     133: { vi: 'Súng lục',            en: 'Pistol',          zh: '手槍' },
     134: { vi: 'Shotgun',             en: 'Shotgun',         zh: '霰彈槍' },
     135: { vi: 'Tiểu liên',           en: 'SMG',             zh: '衝鋒槍' },
     59:  { vi: 'Súng khác',           en: 'Other Guns',      zh: '其他槍械' }
   };
 
+  // Tên thể loại tiếng Anh theo bảng dịch chính thức của wiki (GEN_*), ứng với Category của trang
+  const WL_GENRE_EN = {
+    'Bundles':'Fashion Bundle','Top':'Top','Bottom':'Bottom','Shoe':'Shoes','Head':'Head','Mask':'Accessory','Facepaint':'Face Paint',
+    'Fist Skins':'Fist Skin','Gloo Walls':'Gloo Wall Skin','Grenade Skin':'Grenade Skin','Final Shot':'Final Shot','Emote':'Emote',
+    'Arrival Animation':'Arrival Animation','Finishing Move':'Finish Move','Vehicle Skins':'Vehicle Skin','Loot Box':'Lootbox',
+    'Bag Skins':'Backpack','Parachute':'Parachute','Skyboard':'Skyboard','Skywings':'Skywing','Banners':'Banner','Avatars':'Avatar',
+    'Skill Skins':'Skill Skin','Music':'Music','Voice Packs':'Voice Pack','Pets':'Pet'
+  };
   function renderWishlist(item){
     const box=$('imWl'), grid=$('imWlGrid');
     const s=(window._wlStats||{})[String(item.Id)];
@@ -1792,7 +1800,7 @@
     const catNm = catId!==null && WL_CATS[catId] ? (WL_CATS[catId][lang]||WL_CATS[catId].en) : null;
     const gg = WL_GUN_GENRES[s.g];
     const genNm = catId===10 ? (gg ? (gg[lang]||gg.en) : null)
-                : (item.Category ? ((tr[lang].types&&tr[lang].types[item.Category])||item.Category) : null);
+                : (item.Category ? ((lang==='en' && WL_GENRE_EN[item.Category]) || (tr[lang].types&&tr[lang].types[item.Category]) || item.Category) : null);
     const catLbl = catNm ? L.pre.replace('{x}',catNm) : L.cat;
     const genLbl = genNm ? L.pre.replace('{x}',genNm) : L.genre;
     const when=(iso,src)=>{ const d=fmtD(iso); if(!d) return null; const so=WL_SOURCES[src]; return { d, n: so&&(so[lang]||so.en||so.vi)||'' }; };
