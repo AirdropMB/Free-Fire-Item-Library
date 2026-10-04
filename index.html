@@ -475,13 +475,26 @@
     .im-row .copy-btn:hover{background:var(--ember-dim);color:var(--paper);}
     .im-row .copy-btn svg{pointer-events:none;}
     .im-wl{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
-    .im-wl-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--hair);}
-    .im-wl-cell{background:#16130f;padding:8px 11px;display:flex;flex-direction:column;gap:2px;grid-column:span 2;min-width:0;}
-    .im-wl-cell.s3{grid-column:span 3;}
-    .im-wl-cell.full{grid-column:1/-1;}
-    .im-wl-cell b{font-family:var(--font-mono);font-size:.58rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:.07em;font-weight:700;}
-    .im-wl-cell span{font-size:.82rem;color:var(--paper);line-height:1.4;}
-    .im-wl-cell span em{font-style:normal;color:var(--ember);font-size:.74rem;display:block;}
+    .wl-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:14px;}
+    .wl-top{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end;}
+    .wl-k{display:block;font-family:var(--font-mono);font-size:.56rem;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:.09em;margin-bottom:4px;}
+    .wl-big{font-family:var(--font-mono);font-size:1.25rem;font-weight:700;color:var(--paper);line-height:1.1;display:flex;align-items:baseline;gap:5px;}
+    .wl-big i{font-style:normal;color:var(--ember);font-size:.9rem;}
+    .wl-likes{display:flex;align-items:baseline;gap:10px;font-family:var(--font-mono);font-weight:700;font-size:1.05rem;}
+    .wl-likes .up{color:var(--success);} .wl-likes .dn{color:var(--danger);}
+    .wl-bar{height:3px;border-radius:2px;background:rgba(226,80,63,.45);overflow:hidden;margin-top:6px;}
+    .wl-bar i{display:block;height:100%;background:var(--success);}
+    .wl-ranks{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--hair);padding-top:12px;}
+    .wl-rank{text-align:center;padding:0 6px;min-width:0;}
+    .wl-rank + .wl-rank{border-left:1px solid var(--hair);}
+    .wl-rank b{display:block;font-family:var(--font-mono);font-size:1.02rem;color:var(--brass);line-height:1.2;}
+    .wl-rank span{display:block;font-size:.62rem;color:var(--ash);margin-top:3px;line-height:1.3;}
+    .wl-dates{display:flex;align-items:stretch;gap:10px;border-top:1px solid var(--hair);padding-top:12px;}
+    .wl-date{flex:1;min-width:0;}
+    .wl-date.end{text-align:right;}
+    .wl-date b{display:block;font-size:.84rem;color:var(--paper);font-weight:600;}
+    .wl-date em{display:block;font-style:normal;font-size:.7rem;color:var(--ember);margin-top:1px;}
+    .wl-arrow{align-self:center;color:var(--brass-dim);font-size:.8rem;flex:none;}
     .im-desc-box{background:var(--glass);border:1px solid var(--hair);clip-path:var(--clip-sm);overflow:hidden;}
     .im-desc-key{font-family:var(--font-mono);font-size:.6rem;font-weight:700;color:var(--brass);text-transform:uppercase;letter-spacing:.07em;padding:7px 11px 6px;border-bottom:1px solid var(--hair);background:rgba(255,255,255,.02);display:block;}
     .im-desc-val{font-size:.8rem;color:var(--paper-dim);line-height:1.7;padding:9px 11px 11px;}
@@ -813,7 +826,7 @@
       </div>
       <div class="im-wl" id="imWl" style="display:none">
         <span class="im-desc-key" id="txtWlTitle">Wishlist</span>
-        <div class="im-wl-grid" id="imWlGrid"></div>
+        <div class="wl-body" id="imWlGrid"></div>
       </div>
       <div class="im-desc-box">
         <span class="im-desc-key" id="txtModalDesc">Description</span>
@@ -982,7 +995,7 @@
       shareItemText:"Xem mục này:", shareSearchText:"Xem bộ sưu tập:",
       follow2:"Theo dõi Aurust",
       wishlistBtn:"THÊM VÀO DSMM",
-      wl:{title:"Wishlist & Ra mắt", wish:"Lượt wishlist", like:"Thích / Không thích", rank:"Trong tất cả", cat:"Trong danh mục", genre:"Trong thể loại", pre:"Trong {x}", first:"Ra mắt lần đầu", last:"Xuất hiện gần nhất", locale:"vi-VN"},
+      wl:{title:"Wishlist & Ra mắt", wish:"Lượt thêm vào DSMM", like:"Thích / Không thích", rank:"Trong tất cả", cat:"Trong danh mục", genre:"Trong thể loại", pre:"Trong {x}", first:"Ra mắt lần đầu", last:"Xuất hiện gần nhất", locale:"vi-VN"},
       serverSetting:"Máy chủ",
       advanceNotice:"Máy chủ thử nghiệm Advance/OB — dữ liệu xem trước, có thể thay đổi. Chỉ có tiếng Anh.",
       rarities:{
@@ -1771,16 +1784,23 @@
                 : (item.Category ? ((tr[lang].types&&tr[lang].types[item.Category])||item.Category) : null);
     const catLbl = catNm ? L.pre.replace('{x}',catNm) : L.cat;
     const genLbl = genNm ? L.pre.replace('{x}',genNm) : L.genre;
-    const cell=(k,v,cls)=>`<div class="im-wl-cell${cls?' '+cls:''}"><b>${k}</b><span>${v}</span></div>`;
-    const firstTxt=fmtWhen(s.fa,s.fi), lastTxt=fmtWhen(s.la,s.li);
+    const when=(iso,src)=>{ const d=fmtD(iso); if(!d) return null; const so=WL_SOURCES[src]; return { d, n: so&&(so[lang]||so.en||so.vi)||'' }; };
+    const f=when(s.fa,s.fi), l=when(s.la,s.li);
+    const tot=(Number(s.l)||0)+(Number(s.d)||0), pct=tot?Math.round((Number(s.l)||0)/tot*100):null;
+    const rank=(n,lbl)=>`<div class="wl-rank"><b>${fmtR(n)}</b><span>${lbl}</span></div>`;
+    const dateBox=(x,k,cls)=>`<div class="wl-date${cls?' '+cls:''}"><span class="wl-k">${k}</span><b>${x.d}</b>${x.n?`<em>${x.n}</em>`:''}</div>`;
+    const same = f && l && f.d===l.d && f.n===l.n;
     grid.innerHTML =
-      cell(L.wish, fmtN(s.w), 's3') +
-      cell(L.like, `${fmtN(s.l)} / ${fmtN(s.d)}`, 's3') +
-      cell(L.rank, fmtR(s.r)) +
-      cell(catLbl, fmtR(s.cr)) +
-      cell(genLbl, fmtR(s.gr)) +
-      ((firstTxt===NA && lastTxt===NA) ? '' :
-        cell(L.first, firstTxt, 's3') + cell(L.last, lastTxt, 's3'));
+      `<div class="wl-top">
+         <div><span class="wl-k">${L.wish}</span><div class="wl-big"><i>♥</i>${fmtN(s.w)}</div></div>
+         <div><span class="wl-k">${L.like}</span><div class="wl-likes"><span class="up">▲ ${fmtN(s.l)}</span><span class="dn">▼ ${fmtN(s.d)}</span></div>${pct===null?'':`<div class="wl-bar"><i style="width:${pct}%"></i></div>`}</div>
+       </div>
+       <div class="wl-ranks">${rank(s.r,L.rank)}${rank(s.cr,catLbl)}${rank(s.gr,genLbl)}</div>` +
+      ((!f && !l) ? '' :
+        `<div class="wl-dates">${
+          same ? dateBox(f,L.first)
+          : (f ? dateBox(f,L.first) : '') + (f&&l ? '<span class="wl-arrow">→</span>' : '') + (l ? dateBox(l,L.last,'end') : '')
+        }</div>`);
     box.style.display='';
   }
 
