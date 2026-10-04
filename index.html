@@ -1221,8 +1221,10 @@
     lang=l; document.body.setAttribute('dir','ltr');
     const cs=searchEl.value,ct=tagSel.value,cy=typeSel.value,cr=rareSel.value,cp=curPage;
     applyLangUI(); fetchData(cs,ct,cy,cr,cp); syncLangBtns();
-    const url = buildUrl(routeItemId, cs, ct, cy, cr);
-    history.pushState({lang,itemId:routeItemId},'',url);
+    // Đang xem popup: thay link tại chỗ (không chồng thêm lịch sử), vẫn giữ bộ lọc
+    const url = buildUrl(routeItemId, cs, cy, cr, ct);
+    if(routeItemId) history.replaceState({lang,itemId:routeItemId},'',url);
+    else history.pushState({lang,itemId:null},'',url);
   }
   function syncLangBtns(){
     const isEn=lang==='en', isVi=lang==='vi', isZh=lang==='zh';
@@ -1942,9 +1944,14 @@
 
     if(pushHistory){
       routeItemId = curItem.Id.toString();
+      // Link item = ngôn ngữ + mã item + bộ lọc hiện tại (search, type, rare, tag), luôn tính lại theo trạng thái lọc mới nhất
       const url = buildUrl(routeItemId, searchEl.value.trim(), typeSel.value, rareSel.value, tagSel.value);
-      history.pushState({lang,itemId:routeItemId},'',url);
-      _modalPushedHistory = true;
+      if(_modalPushedHistory || $('itemModal').classList.contains('open')){
+        history.replaceState({lang,itemId:routeItemId},'',url);   // đang xem item khác -> đổi link tại chỗ
+      } else {
+        history.pushState({lang,itemId:routeItemId},'',url);
+        _modalPushedHistory = true;
+      }
     }
 
     $('itemModal').classList.add('open');
@@ -1952,9 +1959,12 @@
 
   function closeModal(){ 
     $('itemModal').classList.remove('open'); curItem=null; 
-    if(_modalPushedHistory && routeItemId){
-      history.back();
-      _modalPushedHistory = false;
+    if(_modalPushedHistory){
+      _modalPushedHistory = false; routeItemId = null;
+      history.back();                       // quay về link danh sách trước khi mở popup
+    } else if(routeItemId){
+      routeItemId = null;                   // mở từ link trực tiếp: xóa mã item khỏi thanh địa chỉ
+      history.replaceState({lang,itemId:null},'',buildUrl(null, searchEl.value.trim(), typeSel.value, rareSel.value, tagSel.value));
     }
   }
   $('itemModal').addEventListener('click',e=>{ if(e.target===$('itemModal')) closeModal(); });
