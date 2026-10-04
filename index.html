@@ -1483,7 +1483,16 @@
   }
 
   /* ---- FILTER & RENDER ---- */
+  // Đồng bộ thanh địa chỉ với bộ lọc/tìm kiếm hiện tại (thay tại chỗ, không chồng thêm lịch sử)
+  function syncUrl(){
+    try{
+      history.replaceState({lang,itemId:routeItemId},'',
+        buildUrl(routeItemId, searchEl.value.trim(), typeSel.value, rareSel.value, tagSel.value));
+    }catch(_){}
+  }
+
   function applyFilters(pg=null){
+    syncUrl();
     const sq=searchEl.value.toLowerCase().trim();
     const tv=tagSel.value, tyv=typeSel.value, rv=rareSel.value;
     const hasF=sq!==''||tv!=='all'||tyv!=='all'||rv!=='all';
